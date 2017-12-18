@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yemain_beijing"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/beijing">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:text="确认订单"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/iv_yaodian_back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_back_white" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/llyt_queren_qingdan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@color/gray"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="点餐清单"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/size_18" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@color/gray"
+                android:gravity="center_vertical" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_qingdan_canpin1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llyt_queren_qingdan"
+            android:text="油条2根"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_18"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="8dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_qingdan_canpin1_momey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1元"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_18"
+            android:layout_alignBaseline="@+id/tv_qingdan_canpin1"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_qingdan_canpin2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_qingdan_canpin1"
+            android:text="豆浆1碗"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_18"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="8dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_qingdan_canpin1_momey2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1元"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_18"
+            android:layout_alignBaseline="@+id/tv_qingdan_canpin2"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_qingdan_canpin3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_qingdan_canpin2"
+            android:text="米饭1份"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_18"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="8dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_qingdan_canpin1_momey3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1元"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_18"
+            android:layout_alignBaseline="@+id/tv_qingdan_canpin3"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_qingdan_canpin4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_qingdan_canpin3"
+            android:text="西红柿炒鸡蛋1份"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_18"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_qingdan_canpin1_momey4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3元"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_18"
+            android:layout_alignBaseline="@+id/tv_qingdan_canpin4"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            />
+    </RelativeLayout>
+
+
+
+</LinearLayout>

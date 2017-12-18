@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beijing"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_25"
+        android:layout_above="@+id/et_login_gonghao"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        />
+    <EditText
+        android:id="@+id/et_login_gonghao"
+        android:layout_above="@+id/et_login_pws"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:hint="请输入工号"
+        android:textColorHint="@color/gray_txt"
+        android:background="@color/white"
+        android:textSize="@dimen/size_18"
+        android:padding="8dp"
+        />
+    <EditText
+        android:id="@+id/et_login_pws"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:hint="请输入密码"
+        android:textColorHint="@color/gray_txt"
+        android:background="@color/white"
+        android:textSize="@dimen/size_18"
+        android:padding="8dp"
+        />
+    <Button
+        android:id="@+id/bt_login_submit"
+        android:layout_below="@+id/et_login_pws"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        android:background="@color/font_orange"
+        android:textSize="@dimen/size_18"
+        android:padding="5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        />
+</RelativeLayout>
+</LinearLayout>

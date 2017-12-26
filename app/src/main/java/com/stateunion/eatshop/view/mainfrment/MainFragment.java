@@ -19,6 +19,7 @@ import com.stateunion.eatshop.view.baseactivity.PingJIaActivity;
 import com.stateunion.eatshop.view.baseactivity.QuCanActivity;
 import com.stateunion.eatshop.view.baseactivity.TongJiActivity;
 import com.stateunion.eatshop.view.baseactivity.TuiDanShenHe;
+import com.stateunion.eatshop.view.baseactivity.UpCaiPinActivity;
 import com.stateunion.eatshop.view.basefrment.BaseFragment;
 
 /**
@@ -28,7 +29,7 @@ import com.stateunion.eatshop.view.basefrment.BaseFragment;
 public class MainFragment extends BaseFragment {
   private Context context=null;
   private RollPagerView mRollViewPager;
-  private Button bt_main_tongji,bt_main_dingcan,bt_main_tuidan,bt_main_pingjia,bt_main_qucan;
+  private Button bt_main_tongji,bt_main_dingcan,bt_main_tuidan,bt_main_pingjia,bt_main_qucan,bt_main_shangchuan;
     @Override
     public int getLayoutId() {
         return R.layout.fragment_main;
@@ -96,6 +97,16 @@ public class MainFragment extends BaseFragment {
         @Override
         public void onClick(View view) {
           Intent intent=new Intent(context, QuCanActivity.class);
+          startActivity(intent);
+        }
+      });
+
+
+      bt_main_shangchuan= (Button) rootView.findViewById(R.id.bt_main_shangchuan);
+      bt_main_shangchuan.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          Intent intent=new Intent(context, UpCaiPinActivity.class);
           startActivity(intent);
         }
       });

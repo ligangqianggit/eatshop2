@@ -21,7 +21,7 @@
             android:text="退单审核" />
 
         <ImageView
-            android:id="@+id/iv_yaodian_back"
+            android:id="@+id/iv_tuidan_back"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:text="取餐时间:12-08 8:00"
             android:textSize="@dimen/size_14"
-           android:layout_toRightOf="@+id/tv_tuidan_xiadantime"
+            android:layout_toRightOf="@+id/tv_tuidan_xiadantime"
             android:layout_alignBaseline="@+id/tv_tuidan_xiadantime"
             android:layout_marginLeft="8dp"
             android:textColor="@color/gray"

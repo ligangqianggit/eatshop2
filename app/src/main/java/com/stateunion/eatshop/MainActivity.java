@@ -75,11 +75,9 @@ public class MainActivity extends BaseFragmentAct implements RadioGroup.OnChecke
 //                break;
             case R.id.acty_main_radio2:
                 getSupportFragmentManager().beginTransaction().replace(R.id.acty_main_frame,getFragment(DataStore.getInt(APPKey.SP_MAIN_RADIO_3 ))).commit();
-
                 break;
             case R.id.acty_main_radio3:
                 getSupportFragmentManager().beginTransaction().replace(R.id.acty_main_frame,getFragment(DataStore.getInt(APPKey.SP_MAIN_RADIO_4))).commit();
-
                 break;
         }
     }

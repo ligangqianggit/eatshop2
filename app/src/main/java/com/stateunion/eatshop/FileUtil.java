@@ -50,8 +50,7 @@ public class FileUtil {
             } catch (IOException e) {
                 Log.e(TAG, "关闭流", e);
             }
-
-    }
+     }
 
     /**
      * 关闭输出流

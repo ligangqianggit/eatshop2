@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ import com.stateunion.eatshop.bean.CatograyBean;
 import com.stateunion.eatshop.bean.GoodsBean;
 import com.stateunion.eatshop.bean.ItemBean;
 import com.stateunion.eatshop.custom_view.MyListView;
+import com.stateunion.eatshop.pay.PayService;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -43,7 +45,7 @@ import java.util.List;
 
 public class DingCanActivity extends Activity{
     private ListView lv_catogary,lv_good;
-    private ImageView iv_logo;
+    private ImageView iv_diancan_back;
     private TextView tv_car;
     private  TextView tv_count,tv_totle_money,tv_jiesuan;
     Double totleMoney = 0.00;
@@ -70,7 +72,6 @@ public class DingCanActivity extends Activity{
     private List<GoodsBean> list5 = new ArrayList<GoodsBean>();
     private List<GoodsBean> list6 = new ArrayList<GoodsBean>();
     private List<GoodsBean> list7 = new ArrayList<GoodsBean>();
-
     private Handler mHanlder;
     private ViewGroup anim_mask_layout;//动画层
 
@@ -93,6 +94,13 @@ public class DingCanActivity extends Activity{
     }
 
     public void initView() {
+        iv_diancan_back= (ImageView) findViewById(R.id.iv_diancan_back);
+        iv_diancan_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DingCanActivity.this.finish();
+            }
+        });
         lv_catogary = (ListView) findViewById(R.id.list_catogary);
         lv_good = (ListView) findViewById(R.id.list_good);
         tv_car = (TextView) findViewById(R.id.tv_car);
@@ -104,7 +112,9 @@ public class DingCanActivity extends Activity{
             @Override
             public void onClick(View view) {
                 //跳转到结算订单
-//                Intent intent=new Intent()
+                Intent intent=new Intent(DingCanActivity.this,PayService.class);
+                startActivity(intent);
+
             }
         });
         bv_unm = (TextView) findViewById(R.id.bv_unm);
@@ -494,7 +504,13 @@ public class DingCanActivity extends Activity{
 
     }
 
-
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            this.finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
 

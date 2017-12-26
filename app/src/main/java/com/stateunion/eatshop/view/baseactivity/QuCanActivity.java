@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.stateunion.eatshop.R;
@@ -28,7 +30,7 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
 
     private Button bt_qucan_zaocan,bt_qucan_lunch,bt_qucan_dinner,bt_qucan_xiaochao,bt_qucan_jiaban;
     private int REQUEST_CODE_SCAN = 111;
-
+    private ImageView iv_qucan_back;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
         intview();
     }
         public void intview(){
+        iv_qucan_back= (ImageView) findViewById(R.id.iv_qucan_back);
         bt_qucan_zaocan= (Button) findViewById(R.id.bt_qucan_zaocan);
         bt_qucan_lunch= (Button) findViewById(R.id.bt_qucan_lunch);
         bt_qucan_dinner= (Button) findViewById(R.id.bt_qucan_dinner);
@@ -116,6 +119,9 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
                 intent5.putExtra("cord","0000000000005");
                 startActivity(intent5);
                 break;
+            case R.id.iv_qucan_back:
+                QuCanActivity.this.finish();
+                break;
         }
     }
     @Override
@@ -134,6 +140,14 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
             }
         }
 
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            this.finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
 

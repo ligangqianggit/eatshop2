@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yemain_beijing"
+    android:orientation="vertical"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/beijing"
+        >
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true"
+            android:textColor="#fff"
+            android:text="订单完成" />
+
+        <ImageView
+            android:id="@+id/iv_payjieguo_back"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_back_white" />
+    </RelativeLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical"
+         android:background="@color/white"
+         android:layout_marginTop="5dp"
+         >
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="订单完成"
+             android:textColor="@color/font_gray"
+             android:textSize="@dimen/size_22"
+             android:layout_gravity="center_horizontal"
+             android:layout_marginTop="20dp"
+             android:gravity="center_horizontal"
+             />
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="请您按时去餐厅就餐"
+             android:textColor="@color/font_gray"
+             android:textSize="@dimen/size_18"
+             android:layout_marginTop="30dp"
+             android:layout_gravity="center_horizontal"
+             android:gravity="center_horizontal"
+             />
+
+         <Button
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center_horizontal"
+             android:gravity="center"
+             android:text="返回首页"
+             android:layout_marginTop="25dp"
+             android:layout_marginBottom="10dp"
+             android:background="@color/beijing"
+             android:textColor="@color/white"
+             android:textSize="@dimen/size_18"
+             android:padding="5dp"
+             />
+     </LinearLayout>
+</LinearLayout>

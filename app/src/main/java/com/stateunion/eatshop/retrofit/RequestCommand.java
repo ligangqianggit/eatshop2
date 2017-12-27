@@ -27,4 +27,10 @@ public class RequestCommand {
         Call call = getApi().passwordLogin(useLoginName, useLoginPswd, identify, uuid);
         send(call, callback);
     }
+    //密码登录
+    public static void pswLogin(RequestCallback callback, String useLoginName,
+                                     String useLoginPswd) {
+        Call call = getApi().pawLogin(useLoginName, useLoginPswd);
+        send(call, callback);
+    }
 }

@@ -2,6 +2,7 @@ package com.stateunion.eatshop.retrofit;
 
 
 
+import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.entiity.UserInfoBean;
 
 import retrofit2.Call;
@@ -32,5 +33,24 @@ public interface ServiceApi {
                                      @Field("useLoginPswd") String useLoginPswd,
                                      @Field("identify") String identify,
                                      @Field("uuid") String uuid
+    );
+
+    /**
+     * 密码登录
+     *
+     * @param useLoginName
+     * @param useLoginPswd
+     * @param identify
+     * @param uuid
+     * @return
+     */
+    /**
+     *
+     */
+    @POST("login")
+    @FormUrlEncoded
+    Call<BaseBean> pawLogin(@Field("user") String useLoginName,
+                            @Field("password") String useLoginPswd
+
     );
 }

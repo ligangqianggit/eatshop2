@@ -3,6 +3,7 @@ package com.stateunion.eatshop.retrofit;
 
 
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
+import com.stateunion.eatshop.retrofit.entiity.DingCanBean;
 import com.stateunion.eatshop.retrofit.entiity.UserInfoBean;
 
 import retrofit2.Call;
@@ -53,4 +54,17 @@ public interface ServiceApi {
                             @Field("password") String useLoginPswd
 
     );
+
+    /**
+     * 食品列表页
+     *
+     * @param type 餐品分类
+     * @return
+     */
+    /**
+     *
+     */
+    @POST("food_list")
+    @FormUrlEncoded
+    Call<DingCanBean> getdingcaninfo(@Field("fen") String type);
 }

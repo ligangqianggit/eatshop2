@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.stateunion.eatshop">
+    <uses-permission android:name="android.permission.CAMERA"/>
 
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+
+    <uses-feature android:name="android.hardware.camera"/>
+
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- iBeancon功能所需权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <!-- 个推3.0电子围栏功能所需权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:name=".application.ProjectApplication"
         android:allowBackup="true"
@@ -15,15 +38,27 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".view.baseactivity.TongJiActivity"></activity>
-        <activity android:name=".view.baseactivity.DingCanActivity"></activity>
-        <activity android:name=".view.baseactivity.OpinActivity"></activity>
-        <activity android:name=".view.baseactivity.TuiDanShenHe"></activity>
-        <activity android:name=".view.baseactivity.PingJIaActivity"></activity>
-        <activity android:name=".view.baseactivity.HistoryActivity"></activity>
-        <activity android:name=".view.baseactivity.QuCanActivity"></activity>
-        <activity android:name=".view.baseactivity.ErWeiMaActivity"></activity>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".view.baseactivity.TongJiActivity"/>
+        <activity android:name=".view.baseactivity.DingCanActivity"/>
+        <activity android:name=".view.baseactivity.OpinActivity"/>
+        <activity android:name=".view.baseactivity.TuiDanShenHe"/>
+        <activity android:name=".view.baseactivity.PingJIaActivity"/>
+        <activity android:name=".view.baseactivity.HistoryActivity"/>
+        <activity android:name=".view.baseactivity.QuCanActivity"/>
+        <activity android:name=".view.baseactivity.ErWeiMaActivity"/>
+        <activity android:name=".view.baseactivity.QuCanMingXiActivity"/>
+        <activity android:name=".zxing.android.CaptureActivity"/>
+        <activity android:name=".view.baseactivity.UpCaiPinActivity"/>
+        <activity android:name=".pay.PayService"/>
+
+        <service
+            android:name="com.stateunion.eatshop.service.DemoPushService"
+            android:exported="true"
+            android:label="PushService"
+            android:process=":pushservice">
+        </service>
+       <service android:name=".service.DemoIntentService"/>
     </application>
 
 </manifest>

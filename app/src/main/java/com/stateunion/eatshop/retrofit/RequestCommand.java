@@ -33,4 +33,9 @@ public class RequestCommand {
         Call call = getApi().pawLogin(useLoginName, useLoginPswd);
         send(call, callback);
     }
+    //获取点餐页的餐品
+    public static void getDingCanInfo(RequestCallback callback,String type){
+        Call call=getApi().getdingcaninfo(type);
+        send(call,callback);
+    };
 }

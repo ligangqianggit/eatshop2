@@ -8,12 +8,12 @@ import com.stateunion.eatshop.retrofit.bean.BaseBean;
  */
 
 public class UserInfoBean extends BaseBean {
-         private LoginResultEntity body;
+     private LoginResultEntity body;
      public LoginResultEntity getBody() {
         return body;
     }
 
-    public void setBody(LoginResultEntity body) {
+     public void setBody(LoginResultEntity body) {
         this.body = body;
     }
 }

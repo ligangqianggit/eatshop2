@@ -39,7 +39,7 @@ public class LoginActivity extends BaseActivity{
 
      private void initView(){
          etName= (EditText) findViewById(R.id.et_login_gonghao);
-         etPsw= (EditText) findViewById(R.id.et_login_gonghao);
+         etPsw= (EditText) findViewById(R.id.et_login_pws);
          btLogin= (Button) findViewById(R.id.bt_login_submit);
          btLogin.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -54,11 +54,10 @@ public class LoginActivity extends BaseActivity{
         String name=etName.getText().toString().trim();
         String psw=etPsw.getText().toString().trim();
         if(name.length()==0){
-            Toast.makeText(LoginActivity.this,"请输入密码",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(psw.length()==0){
             Toast.makeText(LoginActivity.this,"请输入手机号",Toast.LENGTH_SHORT).show();
+            return;
+        }else if(psw.length()==0){
+            Toast.makeText(LoginActivity.this,"请输入密码",Toast.LENGTH_SHORT).show();
             return;
         }
 

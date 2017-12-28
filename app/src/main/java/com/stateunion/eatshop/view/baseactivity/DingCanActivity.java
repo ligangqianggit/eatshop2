@@ -32,18 +32,26 @@ import com.stateunion.eatshop.application.ProjectApplication;
 import com.stateunion.eatshop.bean.CatograyBean;
 import com.stateunion.eatshop.bean.GoodsBean;
 import com.stateunion.eatshop.bean.ItemBean;
+import com.stateunion.eatshop.bean.UserInfoBean;
 import com.stateunion.eatshop.custom_view.MyListView;
 import com.stateunion.eatshop.pay.PayService;
+import com.stateunion.eatshop.retrofit.RequestCommand;
+import com.stateunion.eatshop.retrofit.callback.DialogCallback;
+import com.stateunion.eatshop.retrofit.entiity.DingCanBean;
+import com.stateunion.eatshop.retrofit.view.IBaseDialogView;
+import com.stateunion.eatshop.util.LoginHelp;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+
 /**
  * Created by 青春 on 2017/12/12.
  */
 
-public class DingCanActivity extends Activity{
+public class DingCanActivity extends BaseActivity {
     private ListView lv_catogary,lv_good;
     private ImageView iv_diancan_back;
     private TextView tv_car;
@@ -91,7 +99,22 @@ public class DingCanActivity extends Activity{
                 showBottomSheet();
             }
         });
+        getdingcaninfo();
     }
+    private void getdingcaninfo(){
+        RequestCommand.getDingCanInfo(new DingcaninfoCallBack(this),"1");
+    };
+
+    public static class DingcaninfoCallBack extends DialogCallback<DingCanBean,DingCanActivity>{
+
+        public DingcaninfoCallBack(DingCanActivity requestView) {
+            super(requestView);
+        }
+        @Override
+        protected void onResponseSuccess(DingCanBean userInfoBean, Call<DingCanBean> call) {
+            super.onResponseSuccess(userInfoBean, call);
+        }
+    };
 
     public void initView() {
         iv_diancan_back= (ImageView) findViewById(R.id.iv_diancan_back);

@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 
 import com.growingio.android.sdk.collection.Configuration;
 import com.growingio.android.sdk.collection.GrowingIO;
+import com.igexin.sdk.PushManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -16,6 +17,8 @@ import com.stateunion.eatshop.APPKey;
 import com.stateunion.eatshop.DataStore;
 import com.stateunion.eatshop.commons.Constants;
 import com.stateunion.eatshop.retrofit.BuildConfig;
+import com.stateunion.eatshop.service.DemoIntentService;
+import com.stateunion.eatshop.service.DemoPushService;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.ArrayList;
@@ -55,7 +58,9 @@ public class ProjectApplication extends MultiDexApplication {
                 getApplicationContext()).defaultDisplayImageOptions(
                 defaultOptions).build();
         ImageLoader.getInstance().init(config);
-
+        //初始化个推
+        PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
+        PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
 
     }
 

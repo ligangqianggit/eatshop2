@@ -11,17 +11,18 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.igexin.sdk.PushManager;
 import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.retrofit.entiity.UserInfoBean;
-import com.stateunion.eatshop.util.AppSessionEngine;
+import com.stateunion.eatshop.service.DemoIntentService;
+import com.stateunion.eatshop.service.DemoPushService;
 import com.stateunion.eatshop.view.baseactivity.BaseActivity;
 import com.stateunion.eatshop.view.basefrment.BaseFragment;
 import com.stateunion.eatshop.view.basefrment.BaseFragmentAct;
 import com.stateunion.eatshop.view.mainfrment.CouPonFragment;
 import com.stateunion.eatshop.view.mainfrment.MainFragment;
 import com.stateunion.eatshop.view.mainfrment.PersFragment;
-import com.stateunion.eatshop.view.mainfrment.StaffHomeFragment;
 import com.stateunion.eatshop.view.mainfrment.TakeFragment;
 
 import retrofit2.Call;
@@ -44,24 +45,20 @@ public class MainActivity extends BaseFragmentAct implements RadioGroup.OnChecke
      * 个人 fragment
      */
     private PersFragment persFragment=null;
-    //会员
-    private StaffHomeFragment staffHomeFragment;
     private RadioButton [] arrRadios=null;
     /**
      * 首页下面引导button
       */
     RadioButton radio0,radio2,radio3;
-    String userType="";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acty_main);
-        userType= AppSessionEngine.getUserInfo().getZhiwei();
+
+
         initview();
         setRadios();
-
-    }
+     }
  private void initview(){
      radio0= (RadioButton) findViewById(R.id.acty_main_radio0);
 //     radio1= (RadioButton) findViewById(R.id.acty_main_radio1);
@@ -75,8 +72,8 @@ public class MainActivity extends BaseFragmentAct implements RadioGroup.OnChecke
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         switch (checkedId){
             case R.id.acty_main_radio0:
-                     getSupportFragmentManager().beginTransaction().replace(R.id.acty_main_frame, getFragment(DataStore.getInt(APPKey.SP_MAIN_RADIO_1))).commit();
-                     break;
+                getSupportFragmentManager().beginTransaction().replace(R.id.acty_main_frame,getFragment(DataStore.getInt(APPKey.SP_MAIN_RADIO_1 ))).commit();
+               break;
 //            case R.id.acty_main_radio1:
 //                getSupportFragmentManager().beginTransaction().replace(R.id.acty_main_frame,getFragment(DataStore.getInt(APPKey.SP_MAIN_RADIO_2 ))).commit();
 //
@@ -96,17 +93,13 @@ public class MainActivity extends BaseFragmentAct implements RadioGroup.OnChecke
     private BaseFragment getFragment(int fr_id){
         switch (fr_id){
             case APPKey.SP_MAIN_RADIO_LAYOUT_MAIN:
-                if(userType.equals("厨师长")){
-                    return getMainFragment();
-                 }else {
-                    return getStaffFragment();
-                }
-             case APPKey.SP_MAIN_RADIO_LAYOUT_COUP:
+                return getMainFragment();
+//            case APPKey.SP_MAIN_RADIO_LAYOUT_TAKE:
+//                return getTakeFragment();
+            case APPKey.SP_MAIN_RADIO_LAYOUT_COUP:
                 return getCouPonFragment();
             case APPKey.SP_MAIN_RADIO_LAYOUT_PERS:
                 return getPersFragment();
-            case APPKey.SP_MAIN_RADIO_LAYOUT_STAFF:
-                return getStaffFragment();
             default:
                 return null;
         }
@@ -127,9 +120,7 @@ public class MainActivity extends BaseFragmentAct implements RadioGroup.OnChecke
     private PersFragment getPersFragment(){
         return persFragment==null?persFragment=new PersFragment():persFragment;
     }
-    private StaffHomeFragment getStaffFragment(){
-        return staffHomeFragment==null?staffHomeFragment=new StaffHomeFragment():staffHomeFragment;
-    }
+
     /**
      * 设置 自定义导航后的 radio button 样式
      *

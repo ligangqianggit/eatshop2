@@ -1,5 +1,6 @@
 package com.stateunion.eatshop.activity.loginactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -7,11 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.stateunion.eatshop.MainActivity;
 import com.stateunion.eatshop.R;
 import com.stateunion.eatshop.bean.UserInfoBean;
 import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
+import com.stateunion.eatshop.retrofit.entiity.LoginResultEntity;
 import com.stateunion.eatshop.util.LoginHelp;
 import com.stateunion.eatshop.view.baseactivity.BaseActivity;
 
@@ -58,6 +61,7 @@ public class LoginActivity extends BaseActivity{
             Toast.makeText(LoginActivity.this,"请输入手机号",Toast.LENGTH_SHORT).show();
             return;
         }
+
         RequestCommand.pswLogin(new LoginCallBck(this),name,psw);
     }
 
@@ -72,6 +76,9 @@ public class LoginActivity extends BaseActivity{
               super.onResponseSuccess(userInfoBean, call);
               LoginHelp.saveUserInfo(userInfoBean.getBody(),getAttachTarget().getBaseActivity());
               //跳转 和finash
+              Intent intent=new Intent(getAttachTarget().getBaseActivity(), MainActivity.class);
+              getAttachTarget().getBaseActivity().startActivity(intent);
+              getAttachTarget().getBaseActivity().finish();
           }
       }
 }

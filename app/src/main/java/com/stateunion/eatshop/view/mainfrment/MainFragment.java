@@ -14,6 +14,7 @@ import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.stateunion.eatshop.R;
+import com.stateunion.eatshop.util.AppSessionEngine;
 import com.stateunion.eatshop.view.baseactivity.DingCanActivity;
 import com.stateunion.eatshop.view.baseactivity.PingJIaActivity;
 import com.stateunion.eatshop.view.baseactivity.QuCanActivity;

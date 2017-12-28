@@ -8,12 +8,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.stateunion.eatshop.R;
+import com.stateunion.eatshop.bean.UserInfoBean;
 import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
+import com.stateunion.eatshop.util.LoginHelp;
 import com.stateunion.eatshop.view.baseactivity.BaseActivity;
 
 import butterknife.ButterKnife;
+import retrofit2.Call;
 
 /**
  * Created by admini on 2017/12/27.
@@ -58,10 +61,17 @@ public class LoginActivity extends BaseActivity{
         RequestCommand.pswLogin(new LoginCallBck(this),name,psw);
     }
 
-      public static class LoginCallBck extends DialogCallback<BaseBean,LoginActivity>{
+      public static class LoginCallBck extends DialogCallback<UserInfoBean,LoginActivity>{
 
           public LoginCallBck(LoginActivity requestView) {
               super(requestView);
+          }
+
+          @Override
+          protected void onResponseSuccess(UserInfoBean userInfoBean, Call<UserInfoBean> call) {
+              super.onResponseSuccess(userInfoBean, call);
+              LoginHelp.saveUserInfo(userInfoBean.getBody(),getAttachTarget().getBaseActivity());
+              //跳转 和finash
           }
       }
 }

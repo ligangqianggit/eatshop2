@@ -9,71 +9,101 @@ public class LoginResultEntity {
 
     private String sessionId;
     private UserInfoEntity sftUserMdl;
-    private int notReadMsg;
-    /**
-     * 是否为当月首次登录
-     */
-    private String firstOfMonth;
-    /**
-     * 当月是否有还款
-     */
-    private String hasRepayOfMonth;
+    private int id;
+    private int cid;
+    private String num;
+    private String name;
+    private String sex;
+    private String gonghao;
+    private String phone;
+    private String zhiwei;
+    private String chusheng;
 
-    private boolean firstLogin;
-
-    public int getNotReadMsg() {
-        return notReadMsg;
+    public String getSessionId() {
+        return sessionId;
     }
 
-
-    public void setNotReadMsg(int notReadMsg) {
-        this.notReadMsg = notReadMsg;
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
     }
 
     public UserInfoEntity getSftUserMdl() {
         return sftUserMdl;
     }
 
-
     public void setSftUserMdl(UserInfoEntity sftUserMdl) {
         this.sftUserMdl = sftUserMdl;
     }
 
-
-    public String getSessionId() {
-        return sessionId;
+    public int getId() {
+        return id;
     }
 
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-
-    public String getFirstOfMonth() {
-        return firstOfMonth;
+    public int getCid() {
+        return cid;
     }
 
-
-    public void setFirstOfMonth(String firstOfMonth) {
-        this.firstOfMonth = firstOfMonth;
+    public void setCid(int cid) {
+        this.cid = cid;
     }
 
-
-    public String getHasRepayOfMonth() {
-        return hasRepayOfMonth;
+    public String getNum() {
+        return num;
     }
 
-
-    public void setHasRepayOfMonth(String hasRepayOfMonth) {
-        this.hasRepayOfMonth = hasRepayOfMonth;
+    public void setNum(String num) {
+        this.num = num;
     }
 
-    public boolean isFirstLogin() {
-        return firstLogin;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstLogin(boolean firstLogin) {
-        this.firstLogin = firstLogin;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getGonghao() {
+        return gonghao;
+    }
+
+    public void setGonghao(String gonghao) {
+        this.gonghao = gonghao;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getZhiwei() {
+        return zhiwei;
+    }
+
+    public void setZhiwei(String zhiwei) {
+        this.zhiwei = zhiwei;
+    }
+
+    public String getChusheng() {
+        return chusheng;
+    }
+
+    public void setChusheng(String chusheng) {
+        this.chusheng = chusheng;
     }
 }

@@ -49,7 +49,7 @@ public interface ServiceApi {
      */
     @POST("login")
     @FormUrlEncoded
-    Call<BaseBean> pawLogin(@Field("user") String useLoginName,
+    Call<UserInfoBean> pawLogin(@Field("user") String useLoginName,
                             @Field("password") String useLoginPswd
 
     );

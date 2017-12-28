@@ -106,4 +106,6 @@ public class LoginResultEntity {
     public void setChusheng(String chusheng) {
         this.chusheng = chusheng;
     }
-}
+
+
+ }

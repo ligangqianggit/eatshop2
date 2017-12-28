@@ -95,7 +95,7 @@ public class AppSessionEngine {
         if (loginBody == null) {
             return 0;
         } else {
-            return loginBody.getNotReadMsg();
+            return loginBody.getCid();
         }
     }
 
@@ -104,7 +104,7 @@ public class AppSessionEngine {
         if (loginBody == null) {
             return null;
         } else {
-            return loginBody.getFirstOfMonth();
+            return loginBody.getChusheng();
         }
     }
 
@@ -113,18 +113,11 @@ public class AppSessionEngine {
         if (loginBody == null) {
             return null;
         } else {
-            return loginBody.getHasRepayOfMonth();
+            return loginBody.getChusheng();
         }
     }
 
 
-    public static void setNotReadMsg(int notReadMsg) {
-        LoginResultEntity loginInfo = getLoginInfo();
-        if (loginInfo != null) {
-            loginInfo.setNotReadMsg(notReadMsg);
-            setLoginInfo(loginInfo);
-        }
-    }
 
     public static void setUserInfo(UserInfoEntity userInfo) {
         LoginResultEntity loginInfo = getLoginInfo();

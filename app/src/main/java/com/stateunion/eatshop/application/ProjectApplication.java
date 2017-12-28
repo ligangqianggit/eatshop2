@@ -100,6 +100,8 @@ public class ProjectApplication extends MultiDexApplication {
             DataStore.put(APPKey.SP_MAIN_RADIO_2, APPKey.SP_MAIN_RADIO_LAYOUT_TAKE);
             DataStore.put(APPKey.SP_MAIN_RADIO_3, APPKey.SP_MAIN_RADIO_LAYOUT_COUP);
             DataStore.put(APPKey.SP_MAIN_RADIO_4, APPKey.SP_MAIN_RADIO_LAYOUT_PERS);
-         }
+            DataStore.put(APPKey.SP_MAIN_RADIO_5, APPKey.SP_MAIN_RADIO_LAYOUT_STAFF);
+
+        }
     }
 }

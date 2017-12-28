@@ -5,6 +5,6 @@ package com.stateunion.eatshop.commons;
  */
 
 public class Config {
-    public static String HTTPS_URL = "https://api.etongdai.com/";
+    public static String HTTPS_URL = "http://ceshi123.dns178.com/home/index/";
 
 }

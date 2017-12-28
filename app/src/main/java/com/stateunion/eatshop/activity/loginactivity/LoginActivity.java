@@ -10,11 +10,11 @@ import android.widget.Toast;
 
 import com.stateunion.eatshop.MainActivity;
 import com.stateunion.eatshop.R;
-import com.stateunion.eatshop.bean.UserInfoBean;
-import com.stateunion.eatshop.retrofit.RequestCommand;
+ import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.retrofit.entiity.LoginResultEntity;
+import com.stateunion.eatshop.retrofit.entiity.UserInfoBean;
 import com.stateunion.eatshop.util.LoginHelp;
 import com.stateunion.eatshop.view.baseactivity.BaseActivity;
 
@@ -39,7 +39,7 @@ public class LoginActivity extends BaseActivity{
 
      private void initView(){
          etName= (EditText) findViewById(R.id.et_login_gonghao);
-         etPsw= (EditText) findViewById(R.id.et_login_gonghao);
+         etPsw= (EditText) findViewById(R.id.et_login_pws);
          btLogin= (Button) findViewById(R.id.bt_login_submit);
          btLogin.setOnClickListener(new View.OnClickListener() {
              @Override

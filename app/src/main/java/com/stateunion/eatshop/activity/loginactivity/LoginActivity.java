@@ -10,11 +10,11 @@ import android.widget.Toast;
 
 import com.stateunion.eatshop.MainActivity;
 import com.stateunion.eatshop.R;
-import com.stateunion.eatshop.bean.UserInfoBean;
-import com.stateunion.eatshop.retrofit.RequestCommand;
+ import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.retrofit.entiity.LoginResultEntity;
+import com.stateunion.eatshop.retrofit.entiity.UserInfoBean;
 import com.stateunion.eatshop.util.LoginHelp;
 import com.stateunion.eatshop.view.baseactivity.BaseActivity;
 

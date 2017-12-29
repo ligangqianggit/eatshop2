@@ -14,7 +14,7 @@ public class BaseBean implements IBaseBean {
      * info :
      */
     private String time;
-    private boolean success;
+    private int success;
     private String code;
     private String info;
     private String requestId;
@@ -32,15 +32,24 @@ public class BaseBean implements IBaseBean {
         return time;
     }
 
+    @Override
+    public boolean isSuccess() {
+        if (success==1){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     public void setTime(String time) {
         this.time = time;
     }
 
-    public boolean isSuccess() {
+    public int getSuccess() {
         return success;
     }
 
-    public void setSuccess(boolean success) {
+    public void setSuccess(int success) {
         this.success = success;
     }
 

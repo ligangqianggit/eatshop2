@@ -32,7 +32,6 @@ import com.stateunion.eatshop.application.ProjectApplication;
 import com.stateunion.eatshop.bean.CatograyBean;
 import com.stateunion.eatshop.bean.GoodsBean;
 import com.stateunion.eatshop.bean.ItemBean;
-import com.stateunion.eatshop.bean.UserInfoBean;
 import com.stateunion.eatshop.custom_view.MyListView;
 import com.stateunion.eatshop.pay.PayService;
 import com.stateunion.eatshop.retrofit.RequestCommand;
@@ -103,7 +102,7 @@ public class DingCanActivity extends BaseActivity {
     }
     private void getdingcaninfo(){
         RequestCommand.getDingCanInfo(new DingcaninfoCallBack(this),"1");
-    };
+    }
 
     public static class DingcaninfoCallBack extends DialogCallback<DingCanBean,DingCanActivity>{
 
@@ -111,10 +110,11 @@ public class DingCanActivity extends BaseActivity {
             super(requestView);
         }
         @Override
-        protected void onResponseSuccess(DingCanBean userInfoBean, Call<DingCanBean> call) {
-            super.onResponseSuccess(userInfoBean, call);
+        protected void onResponseSuccess(DingCanBean dingcanBena, Call<DingCanBean> call) {
+            super.onResponseSuccess(dingcanBena, call);
+            dingcanBena.getBody();
         }
-    };
+    }
 
     public void initView() {
         iv_diancan_back= (ImageView) findViewById(R.id.iv_diancan_back);

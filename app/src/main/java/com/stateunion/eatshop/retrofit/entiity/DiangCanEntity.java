@@ -6,27 +6,9 @@ import java.util.List;
  * Created by 青春 on 2017/12/28.
  */
 
-public class DiangCanEntity {
+public class
+DiangCanEntity {
 
-    /**
-     * time : 1513325002
-     * success : 1
-     * code : null
-     * info : 获取成功！
-     * body : [{"id":1,"cid":17,"utime":"1513323097","ctime":"1513322125","num":50,"foot_name":"长粒香","foot_jianjie":"长粒香长粒香长粒香长粒香长粒香长粒香长粒香","jiage":"19","riqi":"1513353600","fenlei":"早餐","czfenlei":"套餐","jiezhi":"1513346400","foodtupian":"upload/image/2017/12/15/5a337a59dca0a8205912115e194388fab2c43640277d5.png"}]
-     */
-
-    private List<BodyBean> body;
-
-    public List<BodyBean> getBody() {
-        return body;
-    }
-
-    public void setBody(List<BodyBean> body) {
-        this.body = body;
-    }
-
-    public static class BodyBean {
         /**
          * id : 1
          * cid : 17
@@ -160,5 +142,5 @@ public class DiangCanEntity {
         public void setFoodtupian(String foodtupian) {
             this.foodtupian = foodtupian;
         }
-    }
+
 }

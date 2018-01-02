@@ -6,7 +6,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:background="@color/beijing"
+        >
 
         <TextView
             android:id="@+id/navigation_back"

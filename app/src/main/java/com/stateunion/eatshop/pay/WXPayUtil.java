@@ -210,7 +210,6 @@ public class WXPayUtil {
         try {
             String	nonceStr = genNonceStr();
             System.out.println(ordernum+"ppppppppppppp");
-
             xml.append("</xml>");
             List<NameValuePair> packageParams = new LinkedList<NameValuePair>();
             packageParams.add(new BasicNameValuePair("appid", Constants.APP_ID));

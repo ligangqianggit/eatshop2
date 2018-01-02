@@ -1,11 +1,14 @@
 package com.stateunion.eatshop.view.baseactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
+import com.stateunion.eatshop.MainActivity;
 import com.stateunion.eatshop.R;
 
 /**
@@ -14,6 +17,7 @@ import com.stateunion.eatshop.R;
 
 public class PayJieGuoActivity extends BaseActivity{
     private ImageView iv_payjieguo_back;
+    private Button go_main;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +29,15 @@ public class PayJieGuoActivity extends BaseActivity{
                 PayJieGuoActivity.this.finish();
             }
         });
-
+//        go_main= (Button) findViewById(R.id.go_main);
+//        go_main.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Intent intent=new Intent(PayJieGuoActivity.this, MainActivity.class);
+////                startActivity(intent);
+////                PayJieGuoActivity.this.finish();
+//            }
+//        });
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

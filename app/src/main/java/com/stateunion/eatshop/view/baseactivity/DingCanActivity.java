@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.stateunion.eatshop.R;
@@ -36,6 +37,7 @@ import com.stateunion.eatshop.custom_view.MyListView;
 import com.stateunion.eatshop.pay.PayService;
 import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
+import com.stateunion.eatshop.retrofit.entiity.DiangCanEntity;
 import com.stateunion.eatshop.retrofit.entiity.DingCanBean;
 import com.stateunion.eatshop.retrofit.view.IBaseDialogView;
 import com.stateunion.eatshop.util.LoginHelp;
@@ -63,15 +65,15 @@ public class DingCanActivity extends BaseActivity {
     private List<GoodsBean> list2 = new ArrayList<GoodsBean>();
     private ProjectApplication myApp;
     private CatograyAdapter catograyAdapter;//分类的adapter
-    private GoodsAdapter goodsAdapter;//分类下商品adapter
-    ProductAdapter productAdapter;//底部购物车的adapter
+    public static GoodsAdapter goodsAdapter;//分类下商品adapter
+    private ProductAdapter productAdapter;//底部购物车的adapter
     GoodsDetailAdapter goodsDetailAdapter;//套餐详情的adapter
     private static DecimalFormat df;
     private LinearLayout ll_shopcar;
     //底部数据
     private BottomSheetLayout bottomSheetLayout;
     private View bottomSheet;
-    private SparseArray<GoodsBean> selectedList;
+    public static SparseArray<GoodsBean> selectedList;
     //套餐
     private View bottomDetailSheet;
     private List<GoodsBean> list3 = new ArrayList<GoodsBean>();
@@ -79,10 +81,15 @@ public class DingCanActivity extends BaseActivity {
     private List<GoodsBean> list5 = new ArrayList<GoodsBean>();
     private List<GoodsBean> list6 = new ArrayList<GoodsBean>();
     private List<GoodsBean> list7 = new ArrayList<GoodsBean>();
+
+
+
+
+
     private Handler mHanlder;
     private ViewGroup anim_mask_layout;//动画层
 
-
+    String money;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,18 +112,22 @@ public class DingCanActivity extends BaseActivity {
     }
 
     public static class DingcaninfoCallBack extends DialogCallback<DingCanBean,DingCanActivity>{
+        public List<DiangCanEntity> zaolist=new ArrayList<>();
 
         public DingcaninfoCallBack(DingCanActivity requestView) {
             super(requestView);
         }
         @Override
-        protected void onResponseSuccess(DingCanBean dingcanBena, Call<DingCanBean> call) {
-            super.onResponseSuccess(dingcanBena, call);
-            dingcanBena.getBody();
+        protected void onResponseSuccess(DingCanBean dingcanBean, Call<DingCanBean> call) {
+            super.onResponseSuccess(dingcanBean, call);
+            Log.v("eatshop","====================="+dingcanBean.getBody());
+            zaolist=dingcanBean.getBody();
+            Log.v("eatshop","====================="+zaolist);
         }
     }
 
     public void initView() {
+//        new DingcaninfoCallBack().zaolist;
         iv_diancan_back= (ImageView) findViewById(R.id.iv_diancan_back);
         iv_diancan_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,8 +146,14 @@ public class DingCanActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 //跳转到结算订单
-                Intent intent=new Intent(DingCanActivity.this,PayService.class);
-                startActivity(intent);
+                if(selectedList.size()==0){
+                    Toast.makeText(DingCanActivity.this,"请选择菜品",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent=new Intent(DingCanActivity.this,PayService.class);
+                    intent.putExtra("money",money);
+                    startActivity(intent);
+                }
+
 
             }
         });
@@ -244,19 +261,14 @@ public class DingCanActivity extends BaseActivity {
         //默认值
         list2.clear();
         list2.addAll(list.get(0).getList());
-
         //分类
         catograyAdapter = new CatograyAdapter(DingCanActivity.this, list);
-        Log.v("eatshop","============list"+list);
-        Log.v("eatshop","============"+catograyAdapter);
-        Log.v("eatshop","============listview"+lv_catogary);
         lv_catogary.setAdapter(catograyAdapter);
         catograyAdapter.notifyDataSetChanged();
         //商品
         goodsAdapter = new GoodsAdapter(DingCanActivity.this, list2, catograyAdapter);
         lv_good.setAdapter(goodsAdapter);
         goodsAdapter.notifyDataSetChanged();
-
     }
 
 
@@ -418,6 +430,7 @@ public class DingCanActivity extends BaseActivity {
             count += item.getNum();
             totleMoney += item.getNum()*Double.parseDouble(item.getPrice());
         }
+        money=String.valueOf(df.format(totleMoney));
         tv_totle_money.setText("￥"+String.valueOf(df.format(totleMoney)));
         totleMoney = 0.00;
         if(count<1){

@@ -19,7 +19,7 @@ import com.stateunion.eatshop.view.mainfrment.UpOverTimeFragment;
  */
 public class UpCanPinAdapter extends FragmentPagerAdapter {
 
-    private String[] mTitles = new String[]{"早餐", "午餐", "晚餐","加班"};
+    private String[] mTitles = new String[]{"早餐", "午餐", "晚餐","小炒"};
 
     public UpCanPinAdapter(FragmentManager fm) {
         super(fm);

@@ -59,8 +59,8 @@ public class GoodsAdapter extends BaseAdapter {
             convertView= LayoutInflater.from(context).inflate(R.layout.shopcart_right_listview,null);
             viewholder=new Viewholder();
             viewholder.tv_name= (TextView) convertView.findViewById(R.id.tv_name);
-            viewholder.tv_original_price= (TextView) convertView.findViewById(R.id.tv_original_price);
-            viewholder.tv_price= (TextView) convertView.findViewById(R.id.tv_price);
+            viewholder.tv_dingcan_mes= (TextView) convertView.findViewById(R.id.tv_dingcan_mes);
+            viewholder.tv_dingcan_price= (TextView) convertView.findViewById(R.id.tv_dingcan_price);
             viewholder.iv_add= (ImageView) convertView.findViewById(R.id.iv_add);
             viewholder.iv_remove= (ImageView) convertView.findViewById(R.id.iv_remove);
             viewholder.tv_acount= (TextView) convertView.findViewById(R.id.tv_acount);
@@ -72,9 +72,8 @@ public class GoodsAdapter extends BaseAdapter {
 
         }
         viewholder.tv_name.setText(list.get(position).getTitle());
-        viewholder.tv_original_price.setText("￥"+list.get(position).getOriginal_price());
-        viewholder.tv_original_price.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG); //中划线
-        viewholder.tv_price.setText("￥"+list.get(position).getPrice());
+        viewholder.tv_dingcan_mes.setText("此处是mes");
+        viewholder.tv_dingcan_price.setText("￥"+list.get(position).getPrice());
 
 
         if(list.get(position)!=null){
@@ -89,7 +88,8 @@ public class GoodsAdapter extends BaseAdapter {
                 viewholder.tv_acount.setText(String.valueOf(list.get(position).getNum()));
                 catograyAdapter.notifyDataSetChanged();
             }
-        }else{
+        }
+        else{
             viewholder.tv_acount.setVisibility(View.INVISIBLE);
             viewholder.iv_remove.setVisibility(View.INVISIBLE);
         }
@@ -160,7 +160,7 @@ public class GoodsAdapter extends BaseAdapter {
         return convertView;
     }
     class Viewholder{
-        TextView tv_name,tv_original_price,tv_price;
+        TextView tv_name,tv_dingcan_mes,tv_dingcan_price;
         ImageView iv_add,iv_remove,iv_pic;
         TextView tv_acount;
         RelativeLayout rl_item;

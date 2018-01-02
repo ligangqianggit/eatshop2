@@ -2,6 +2,8 @@ package com.stateunion.eatshop.retrofit;
 
 import com.stateunion.eatshop.retrofit.callback.RequestCallback;
 
+import java.util.List;
+
 import retrofit2.Call;
 
 /**
@@ -38,4 +40,8 @@ public class RequestCommand {
         Call call=getApi().getdingcaninfo(type);
         send(call,callback);
     };
+    public static void zhifujiekou(RequestCallback callback, String pay_time, String pay_lei, String all_money, List<String> list){
+        Call call=getApi().goPay(pay_time,pay_lei,all_money,list);
+        send(call,callback);
+    }
 }

@@ -6,6 +6,8 @@ import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.entiity.DingCanBean;
 import com.stateunion.eatshop.retrofit.entiity.UserInfoBean;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -67,4 +69,13 @@ public interface ServiceApi {
     @POST("food_list")
     @FormUrlEncoded
     Call<DingCanBean> getdingcaninfo(@Field("fen") String type);
+
+    /**
+     * 支付接口
+     *
+     */
+    @POST("dingdan")
+    @FormUrlEncoded
+    Call<BaseBean> goPay(@Field("pay_time") String pay_time,@Field("pay_lei") String pay_lei,
+                       @Field("all_money") String all_money, @Field("list") List<String> list);
 }

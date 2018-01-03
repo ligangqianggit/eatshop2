@@ -58,6 +58,7 @@ public class GoodsAdapter extends BaseAdapter {
         if (convertView==null){
             convertView= LayoutInflater.from(context).inflate(R.layout.shopcart_right_listview,null);
             viewholder=new Viewholder();
+
             viewholder.tv_name= (TextView) convertView.findViewById(R.id.tv_name);
             viewholder.tv_dingcan_mes= (TextView) convertView.findViewById(R.id.tv_dingcan_mes);
             viewholder.tv_dingcan_price= (TextView) convertView.findViewById(R.id.tv_dingcan_price);

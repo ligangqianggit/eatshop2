@@ -58,7 +58,6 @@ public class GoodsAdapter extends BaseAdapter {
         if (convertView==null){
             convertView= LayoutInflater.from(context).inflate(R.layout.shopcart_right_listview,null);
             viewholder=new Viewholder();
-
             viewholder.tv_name= (TextView) convertView.findViewById(R.id.tv_name);
             viewholder.tv_dingcan_mes= (TextView) convertView.findViewById(R.id.tv_dingcan_mes);
             viewholder.tv_dingcan_price= (TextView) convertView.findViewById(R.id.tv_dingcan_price);
@@ -70,7 +69,6 @@ public class GoodsAdapter extends BaseAdapter {
             convertView.setTag(viewholder);
         }else {
             viewholder = (Viewholder) convertView.getTag();
-
         }
         viewholder.tv_name.setText(list.get(position).getTitle());
         viewholder.tv_dingcan_mes.setText("此处是mes");
@@ -78,7 +76,7 @@ public class GoodsAdapter extends BaseAdapter {
 
 
         if(list.get(position)!=null){
-            //默认进来数量
+        //默认进来数量
             if (list.get(position).getNum()<1){
                 viewholder.tv_acount.setVisibility(View.INVISIBLE);
                 viewholder.iv_remove.setVisibility(View.INVISIBLE);

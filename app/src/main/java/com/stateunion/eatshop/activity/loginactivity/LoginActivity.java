@@ -3,6 +3,7 @@ package com.stateunion.eatshop.activity.loginactivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,7 +11,8 @@ import android.widget.Toast;
 
 import com.stateunion.eatshop.MainActivity;
 import com.stateunion.eatshop.R;
- import com.stateunion.eatshop.retrofit.RequestCommand;
+import com.stateunion.eatshop.application.ProjectApplication;
+import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.retrofit.entiity.LoginResultEntity;
@@ -80,4 +82,19 @@ public class LoginActivity extends BaseActivity{
               getAttachTarget().getBaseActivity().finish();
           }
       }
+      private long mExitTime;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                mExitTime = System.currentTimeMillis();
+            } else {
+                ProjectApplication.sApplication.exit();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 }

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.stateunion.eatshop.view.baseactivity.BaseActivity;
+
 /**
  * Created by admini on 2017/11/28.
  */
@@ -58,5 +60,7 @@ import android.view.ViewGroup;
      * 刷新数据
      */
     public abstract void refreshData(View rootView);
-
+    public BaseActivity getBaseActivity() {
+        return (BaseActivity) super.getActivity();
+    }
 }

@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import com.stateunion.eatshop.R;
 
 import java.util.Calendar;
-
 
 /**
  * Created by 青春 on 2018/1/1.

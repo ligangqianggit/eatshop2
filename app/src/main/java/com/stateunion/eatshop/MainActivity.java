@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.igexin.sdk.PushManager;
+import com.stateunion.eatshop.application.ProjectApplication;
 import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.retrofit.entiity.UserInfoBean;
@@ -29,7 +30,7 @@ import com.stateunion.eatshop.view.mainfrment.TakeFragment;
 
 import retrofit2.Call;
 
-public class MainActivity extends BaseFragmentAct implements RadioGroup.OnCheckedChangeListener{
+public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener{
     private long clickTime = 0;
     /**
      *  首页 fragment
@@ -196,22 +197,21 @@ public class MainActivity extends BaseFragmentAct implements RadioGroup.OnChecke
         }
         super.onResume();
     }
+    private long mExitTime;
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            exit();
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                mExitTime = System.currentTimeMillis();
+            } else {
+                ProjectApplication.sApplication.exit();
+            }
             return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
-    private void exit() {
-        if ((System.currentTimeMillis() - clickTime) > 2000) {
-            Toast.makeText(getApplicationContext(), "再按一次后退键退出程序", Toast.LENGTH_SHORT).show();
-            clickTime = System.currentTimeMillis();
-        } else {
-            Log.v("eatshop", "exit application");
-           this.finish();
-        }
-    }
+
+
 }

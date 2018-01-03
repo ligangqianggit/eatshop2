@@ -109,4 +109,57 @@ public class ProjectApplication extends MultiDexApplication {
 
         }
     }
+    // 保存所有的Activity
+    private List<Activity> activityList;
+
+    /**
+     * 添加activity到activityList集合中
+     *
+     * @param activity 每一個activity
+     */
+    public void addActivity(Activity activity) {
+        if (activityList == null) {
+            activityList = new ArrayList<Activity>();
+        }
+        activityList.add(activity);
+    }
+
+    public int getListSize() {
+        if (activityList != null) {
+            return activityList.size();
+        }
+        return 0;
+    }
+
+    public void removeActivity(Activity activity) {
+        if (activityList != null) {
+
+            if (activityList.contains(activity)) {
+                activityList.remove(activity);
+            }
+        }
+
+    }
+
+    /**
+     * 清空列表，取消引用
+     */
+    public void clearActivity() {
+        activityList.clear();
+    }
+
+    /**
+     * app退出
+     */
+    public void exit() {
+        if (null != activityList) {
+            for (Activity activity : activityList) {
+                if (!activity.isFinishing() && activity != null) {
+                    activity.finish();
+                }
+            }
+            clearActivity();
+            System.exit(0);
+        }
+    }
 }

@@ -133,6 +133,7 @@
         />
 </RelativeLayout>
     <LinearLayout
+        android:id="@+id/llyt_preson_zilaio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -143,7 +144,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:drawableLeft="@mipmap/ic_preson_opin"
-            android:text="修改资料"
+            android:text="完善资料"
             android:textSize="@dimen/text_size_20"
             android:textColor="@color/gray"
             android:layout_weight="5"

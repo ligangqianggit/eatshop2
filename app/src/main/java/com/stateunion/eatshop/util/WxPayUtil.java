@@ -1,24 +1,11 @@
 package com.stateunion.eatshop.util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.X509Certificate;
-import java.util.ArrayList;
-import java.util.List;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
+import com.tencent.mm.opensdk.utils.Log;
+
+import junit.framework.Assert;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -40,24 +27,34 @@ import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
-import junit.framework.Assert;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.List;
+ import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Bitmap.CompressFormat;
-import android.util.Log;
 /**
- * Created by admini on 2018/1/3.
+ * Created by admini on 2017/12/14.
  */
 
-public class WxUtil {
-
-
-    private static final String TAG = "SDK_Sample.Util";
+public class WxPayUtil {private static final String TAG = "SDK_Sample.Util";
 
     public static byte[] bmpToByteArray(final Bitmap bmp, final boolean needRecycle) {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
-        bmp.compress(CompressFormat.PNG, 100, output);
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, output);
         if (needRecycle) {
             bmp.recycle();
         }

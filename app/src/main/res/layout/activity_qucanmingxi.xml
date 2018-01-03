@@ -31,41 +31,7 @@
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_back_white" />
     </RelativeLayout>
-    <TextView
-        android:id="@+id/yonghuming"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1"
-        android:textSize="@dimen/size_18"
-        android:textColor="@color/black"
-        />
-<TextView
-    android:id="@+id/dingdanhao"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="2"
-    android:textSize="@dimen/size_18"
-    android:textColor="@color/black"
 
-    />
-    <TextView
-        android:id="@+id/shidianduan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3"
-        android:textSize="@dimen/size_18"
-        android:textColor="@color/black"
-
-        />
-    <TextView
-        android:id="@+id/chuankouhao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="4"
-        android:textSize="@dimen/size_18"
-        android:textColor="@color/black"
-
-        />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

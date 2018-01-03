@@ -78,7 +78,7 @@ public class GoodsAdapter extends BaseAdapter {
 
 
         if(list.get(position)!=null){
-        //默认进来数量
+            //默认进来数量
             if (list.get(position).getNum()<1){
                 viewholder.tv_acount.setVisibility(View.INVISIBLE);
                 viewholder.iv_remove.setVisibility(View.INVISIBLE);

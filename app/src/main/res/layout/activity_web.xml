@@ -21,16 +21,16 @@
 
         <ImageView
             android:id="@+id/iv_tonggao_back"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_back_white" />
     </RelativeLayout>
-    <WebView
-        android:id="@+id/web_tonggao"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </WebView>
+ <WebView
+     android:id="@+id/web_tonggao"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+ </WebView>
 </LinearLayout>

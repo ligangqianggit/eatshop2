@@ -1,36 +1,16 @@
 package com.stateunion.eatshop.pay;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 
 import com.stateunion.eatshop.R;
-import com.stateunion.eatshop.adapter.PayListAdapter;
-import com.stateunion.eatshop.custom_view.MyListView;
-import com.stateunion.eatshop.retrofit.RequestCommand;
-import com.stateunion.eatshop.retrofit.bean.BaseBean;
-import com.stateunion.eatshop.retrofit.callback.DialogCallback;
-import com.stateunion.eatshop.retrofit.callback.RequestCallback;
-import com.stateunion.eatshop.retrofit.entiity.DiangCanEntity;
-import com.stateunion.eatshop.retrofit.entiity.DingCanBean;
 import com.stateunion.eatshop.view.baseactivity.BaseActivity;
-import com.stateunion.eatshop.view.baseactivity.DingCanActivity;
-import com.stateunion.eatshop.view.baseactivity.PayJieGuoActivity;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-
-import static com.stateunion.eatshop.view.baseactivity.DingCanActivity.goodsAdapter;
-import static com.stateunion.eatshop.view.baseactivity.DingCanActivity.selectedList;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 
 /**
@@ -39,84 +19,29 @@ import static com.stateunion.eatshop.view.baseactivity.DingCanActivity.selectedL
 
 public class PayService extends BaseActivity{
    private ImageView zfbPay,wxPay;
-   private RadioGroup radioGroup;
-   private RadioButton yue,zhifubao,weixin;
     private Button buyNow;
     private boolean isWxPay=false;
-//    private IWXAPI msgApi;
-    private LinearLayout rl_zhifubao_pay,rl_weixin_pay;
-    MyListView lv_product;
-    String money;
-    Button bt_pay;
-    private PayListAdapter payListAdapter;
-    private List<String> list;
+    private IWXAPI msgApi;
+    private RelativeLayout rl_zhifubao_pay,rl_weixin_pay;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pay);
-        Intent intent=getIntent();
-        money=intent.getStringExtra("money");
+         setContentView(R.layout.activity_pay);
         init();
     }
     private void init(){
-          lv_product = (MyListView)findViewById(R.id.lv_pay);
-          Log.v("eatshop","lv_product"+lv_product);
-          Log.v("eatshop","selectedList"+selectedList);
-          Log.v("eatshop","goodsAdapter"+goodsAdapter);
-
-          payListAdapter=new PayListAdapter(PayService.this,goodsAdapter,selectedList);
-          lv_product.setAdapter(payListAdapter);
-
-//          radioGroup= (RadioGroup) findViewById(R.id.mRadioGroup);
-//          yue= (RadioButton) findViewById(R.id.radio_yue);
-//          weixin=(RadioButton) findViewById(R.id.radio_weixin);
-//          zhifubao=(RadioButton) findViewById(R.id.radio_zhifubao);
-//          radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//              @Override
-//              public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-//                  if(yue.getId()==checkedId){
-//                      String pay_time=getTime();
-//                      RequestCommand.zhifujiekou(new zhifuCallBack(PayService.this),pay_time,"余额",money,);
-//                  }
-//                  if(weixin.getId()==checkedId){
-//
-//                  }
-//                  if(zhifubao.getId()==checkedId){
-//
-//                  }
-//              }
-//          });
-
-
-          bt_pay= (Button) findViewById(R.id.bt_pay);
-          bt_pay.setText(money+"元");
-          bt_pay.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                  Intent intent=new Intent(PayService.this, PayJieGuoActivity.class);
-                  startActivity(intent);
-                  PayService.this.finish();
-              }
-          });
-
+//         rl_zhifubao_pay= (RelativeLayout) findViewById(R.id.rl_zhifubao_pay);
+//        rl_weixin_pay=(RelativeLayout) findViewById(R.id.rl_weixin_pay);
+//        zfbPay= (ImageView) findViewById(R.id.iv_right_circle1);
+//        wxPay= (ImageView) findViewById(R.id.iv_right_circle2);
+//        buyNow=(Button) findViewById(R.id.bt_buy);
+//        zfbPay.setImageResource(R.mipmap.right_circle_true);
+//        rl_zhifubao_pay.setOnClickListener(listener);
+//        rl_weixin_pay.setOnClickListener(listener);
+//        buyNow.setOnClickListener(listener);
 
     }
-    //获取时间戳
-    public String getTime(){
-        long time=System.currentTimeMillis()/1000;//获取系统时间的10位的时间戳
-        String  str=String.valueOf(time);
-        return str;
-    }
-    public static class zhifuCallBack extends DialogCallback<BaseBean,PayService> {
-        public zhifuCallBack(PayService requestView) {
-            super(requestView);
-        }
-        @Override
-        protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
-            super.onResponseSuccess(baseBean, call);
-            Log.v("eatshop","====================="+baseBean);
-        }
-    }
+
       private View.OnClickListener listener=new View.OnClickListener() {
           @Override
           public void onClick(View v) {

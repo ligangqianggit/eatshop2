@@ -42,12 +42,12 @@ public class AppSessionEngine {
         return ProjectApplication.sApplication.getSharedPreferences(SP_NAME_APP_SESSION, Context.MODE_PRIVATE);
     }
 
-    public static UserInfoEntity getUserInfo() {
+    public static String getUserSex() {
         LoginResultEntity loginInfo = getLoginInfo();
         if (loginInfo == null) {
             return null;
         } else {
-            return loginInfo.getSftUserMdl();
+            return loginInfo.getSex();
         }
     }
 
@@ -70,16 +70,16 @@ public class AppSessionEngine {
         setString(result, SP_KEY_LOGIN_INFO);
     }
 
-    public static String getUseId() {
-        UserInfoEntity userInfo = AppSessionEngine.getUserInfo();
+    public static String getgonghao() {
+        LoginResultEntity userInfo = AppSessionEngine.getLoginInfo();
         if (userInfo == null) {
-            return null;
+            return "";
         }
-        return userInfo.getUseId();
+        return userInfo.getGonghao();
     }
 
     public static boolean isSignIn() {
-        return getUserInfo()!=null&&getSession() != null;
+        return getUserSex()!=null&&getgonghao() != null;
     }
 
     public static void logout() {

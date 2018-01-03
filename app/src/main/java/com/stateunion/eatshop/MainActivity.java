@@ -35,10 +35,10 @@ public class MainActivity extends BaseFragmentAct implements RadioGroup.OnChecke
      *  首页 fragment
      */
     private MainFragment mainFragment=null;
-    /**
+     /**
      * 取餐 fragment
-     */
-//    private TakeFragment takeFragment=null;
+      */
+    private StaffHomeFragment staffHomeFragment=null;
     /**
      * 福利 fragment
      */
@@ -47,39 +47,35 @@ public class MainActivity extends BaseFragmentAct implements RadioGroup.OnChecke
      * 个人 fragment
      */
     private PersFragment persFragment=null;
-    //会员
-    private StaffHomeFragment staffHomeFragment;
     private RadioButton [] arrRadios=null;
     /**
      * 首页下面引导button
-     */
+      */
     RadioButton radio0,radio2,radio3;
-    String userType="";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acty_main);
-        userType= AppSessionEngine.getUserInfo().getZhiwei();
+
+
         initview();
         setRadios();
-
-    }
-    private void initview(){
-        radio0= (RadioButton) findViewById(R.id.acty_main_radio0);
+     }
+ private void initview(){
+     radio0= (RadioButton) findViewById(R.id.acty_main_radio0);
 //     radio1= (RadioButton) findViewById(R.id.acty_main_radio1);
-        radio2= (RadioButton) findViewById(R.id.acty_main_radio2);
-        radio3= (RadioButton) findViewById(R.id.acty_main_radio3);
-        arrRadios=new RadioButton[]{radio0,radio2,radio3};
-        ((RadioGroup)findViewById(R.id.acty_main_radioGroups)).setOnCheckedChangeListener(this);
-    }
+     radio2= (RadioButton) findViewById(R.id.acty_main_radio2);
+     radio3= (RadioButton) findViewById(R.id.acty_main_radio3);
+     arrRadios=new RadioButton[]{radio0,radio2,radio3};
+     ((RadioGroup)findViewById(R.id.acty_main_radioGroups)).setOnCheckedChangeListener(this);
+ }
 
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         switch (checkedId){
             case R.id.acty_main_radio0:
-                getSupportFragmentManager().beginTransaction().replace(R.id.acty_main_frame, getFragment(DataStore.getInt(APPKey.SP_MAIN_RADIO_1))).commit();
-                break;
+                getSupportFragmentManager().beginTransaction().replace(R.id.acty_main_frame,getFragment(DataStore.getInt(APPKey.SP_MAIN_RADIO_1 ))).commit();
+               break;
 //            case R.id.acty_main_radio1:
 //                getSupportFragmentManager().beginTransaction().replace(R.id.acty_main_frame,getFragment(DataStore.getInt(APPKey.SP_MAIN_RADIO_2 ))).commit();
 //
@@ -92,27 +88,28 @@ public class MainActivity extends BaseFragmentAct implements RadioGroup.OnChecke
                 break;
         }
     }
+
     /**
      *  根据初始值 获取对应fragment
-     */
+      */
     private BaseFragment getFragment(int fr_id){
         switch (fr_id){
             case APPKey.SP_MAIN_RADIO_LAYOUT_MAIN:
-                if(userType.equals("厨师长")){
+                if(AppSessionEngine.getLoginInfo().getZhiwei().equals("厨师长")){
                     return getMainFragment();
-                }else {
-                    return getStaffFragment();
+                 }else {
+                    return gettakeFragment();
                 }
+//            case APPKey.SP_MAIN_RADIO_LAYOUT_TAKE:
+//                return getTakeFragment();
             case APPKey.SP_MAIN_RADIO_LAYOUT_COUP:
                 return getCouPonFragment();
             case APPKey.SP_MAIN_RADIO_LAYOUT_PERS:
                 return getPersFragment();
-            case APPKey.SP_MAIN_RADIO_LAYOUT_STAFF:
-                return getStaffFragment();
             default:
                 return null;
         }
-    }
+     }
 
     /**
      *  获取 首页 取餐 福利 个人
@@ -120,7 +117,7 @@ public class MainActivity extends BaseFragmentAct implements RadioGroup.OnChecke
     private MainFragment getMainFragment(){
         return mainFragment==null ?mainFragment=new MainFragment():mainFragment;
     }
-    //    private TakeFragment getTakeFragment(){
+//    private TakeFragment getTakeFragment(){
 //        return takeFragment==null?takeFragment=new TakeFragment():takeFragment;
 //    }
     private CouPonFragment getCouPonFragment(){
@@ -129,9 +126,10 @@ public class MainActivity extends BaseFragmentAct implements RadioGroup.OnChecke
     private PersFragment getPersFragment(){
         return persFragment==null?persFragment=new PersFragment():persFragment;
     }
-    private StaffHomeFragment getStaffFragment(){
+    private StaffHomeFragment gettakeFragment(){
         return staffHomeFragment==null?staffHomeFragment=new StaffHomeFragment():staffHomeFragment;
     }
+
     /**
      * 设置 自定义导航后的 radio button 样式
      *
@@ -183,7 +181,7 @@ public class MainActivity extends BaseFragmentAct implements RadioGroup.OnChecke
         String[] arrMainRadioType = getResources().getStringArray(R.array.main_radio);
         Log.v("eatshop","11111");
         for (int i = 0; i < 3; i++) {
-            setSelfNaviRadio(arrRadios[i], DataStore.getInt(arrMainRadioType[i]));
+             setSelfNaviRadio(arrRadios[i], DataStore.getInt(arrMainRadioType[i]));
         }
     }
 
@@ -213,7 +211,7 @@ public class MainActivity extends BaseFragmentAct implements RadioGroup.OnChecke
             clickTime = System.currentTimeMillis();
         } else {
             Log.v("eatshop", "exit application");
-            this.finish();
+           this.finish();
         }
     }
 }

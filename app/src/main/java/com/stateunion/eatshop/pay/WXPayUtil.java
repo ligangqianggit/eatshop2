@@ -7,7 +7,7 @@ import android.util.Xml;
 
 import com.stateunion.eatshop.commons.Constants;
 import com.stateunion.eatshop.util.PayMD5;
-import com.stateunion.eatshop.util.WxUtil;
+import com.stateunion.eatshop.util.WxPayUtil;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.utils.Log;
@@ -140,7 +140,7 @@ public class WXPayUtil {
             String entity = genProductArgs();
 
 
-            byte[] buf = WxUtil.httpPost(url, entity);
+            byte[] buf = WxPayUtil.httpPost(url, entity);
 
             String content = new String(buf);
              Map<String,String> xml=decodeXml(content);

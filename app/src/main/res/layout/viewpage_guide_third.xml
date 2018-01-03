@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:background="@mipmap/thirdpage"
+>
+    <Button
+        android:id="@+id/third_experience"
+        android:text="立即体验"
+        android:textSize="20sp"
+        android:textColor="#6BD3C9"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="bottom"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:background="@drawable/round_rectangle_green"
+    />
+
+</LinearLayout>

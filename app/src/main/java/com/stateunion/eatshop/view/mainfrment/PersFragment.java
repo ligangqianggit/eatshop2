@@ -77,7 +77,8 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
             @Override
             public void onClick(View v) {
 //                 LoginOut();
-               getBaseActivity().startActivity(new Intent(getBaseActivity(),LoginActivity.class));
+                AppSessionEngine.logout();
+                getBaseActivity().startActivity(new Intent(getBaseActivity(),LoginActivity.class));
                }
         });
 
@@ -130,8 +131,6 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
         @Override
         protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
             super.onResponseSuccess(baseBean, call);
-            AppSessionEngine.logout();
-            Log.d("tuichu","tuichu");
 
             getAttachTarget().startActivity(new Intent(getAttachTarget().getBaseActivity(),LoginActivity.class));
             getAttachTarget().getBaseActivity().finish();

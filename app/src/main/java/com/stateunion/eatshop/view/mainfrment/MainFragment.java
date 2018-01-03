@@ -3,6 +3,7 @@ package com.stateunion.eatshop.view.mainfrment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.stateunion.eatshop.util.AppSessionEngine;
 import com.stateunion.eatshop.view.baseactivity.DingCanActivity;
 import com.stateunion.eatshop.view.baseactivity.PingJIaActivity;
 import com.stateunion.eatshop.view.baseactivity.QuCanActivity;
+import com.stateunion.eatshop.view.baseactivity.TongGaoActivity;
 import com.stateunion.eatshop.view.baseactivity.TongJiActivity;
 import com.stateunion.eatshop.view.baseactivity.TuiDanShenHe;
 import com.stateunion.eatshop.view.baseactivity.UpCaiPinActivity;
@@ -38,7 +40,7 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void createView(View rootView) {
-    context=rootView.getContext();
+      context=rootView.getContext();
       mRollViewPager = (RollPagerView) rootView.findViewById(R.id.roll_view_pager);
       //设置播放时间间隔
       mRollViewPager.setPlayDelay(3000);
@@ -55,7 +57,14 @@ public class MainFragment extends BaseFragment {
       mRollViewPager.setHintView(new ColorPointHintView(context, Color.RED,Color.WHITE));
       //mRollViewPager.setHintView(new TextHintView(this));
       //mRollViewPager.setHintView(null);
-
+      mRollViewPager.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          Log.v("eatshop","=======单击");
+          Intent intent=new Intent(context, TongGaoActivity.class);
+          startActivity(intent);
+        }
+      });
       //点餐统计
       bt_main_tongji= (Button) rootView.findViewById(R.id.bt_main_tongji);
       bt_main_tongji.setOnClickListener(new View.OnClickListener() {

@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/yemain_beijing"
-    >
+    android:background="@color/yemain_beijing">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,19 +29,41 @@
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_back_white" />
     </RelativeLayout>
-
-    <!--取餐详情-->
-<ListView
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_margin="5dp"
     >
-</ListView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点餐清单"
+        android:textSize="@dimen/size_18"
+        android:textColor="@color/gray"
+        android:layout_gravity="center_horizontal"
+        />
+    <!--取餐详情-->
+    <com.stateunion.eatshop.custom_view.MyListView
+        android:id="@+id/lv_pay"
+        android:background="@color/white"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:listitem="@layout/product_item"
+        android:layout_marginTop="5dp"
+        >
+    </com.stateunion.eatshop.custom_view.MyListView>
+</LinearLayout>
+
 
 
     <LinearLayout
         android:id="@+id/rl_zhifubao_pay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="8dp"
         android:padding="10dp" >
 
         <RadioGroup
@@ -50,6 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:checkedButton="@+id/radio_yue"
             android:orientation="vertical">
 
             <RadioButton
@@ -94,6 +117,7 @@
         </RadioGroup>
     </LinearLayout>
     <Button
+        android:id="@+id/bt_pay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="价钱"

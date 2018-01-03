@@ -14,7 +14,7 @@ import com.stateunion.eatshop.view.mainfrment.OverTimeFragment;
  */
 public class TongJiPagerAdapter extends FragmentPagerAdapter {
 
-    private String[] mTitles = new String[]{"早餐", "午餐", "晚餐","加班"};
+    private String[] mTitles = new String[]{"早餐", "午餐", "晚餐","小炒"};
 
     public TongJiPagerAdapter(FragmentManager fm) {
         super(fm);

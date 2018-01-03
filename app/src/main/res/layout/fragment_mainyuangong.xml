@@ -6,7 +6,7 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
  <com.jude.rollviewpager.RollPagerView
-     android:id="@+id/roll_view_pager"
+     android:id="@+id/roll_yuangong_pager"
      android:layout_width="match_parent"
      android:layout_height="240dp"
      app:rollviewpager_play_delay="3000"/>

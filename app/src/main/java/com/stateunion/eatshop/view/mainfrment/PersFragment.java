@@ -9,24 +9,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.stateunion.eatshop.R;
 import com.stateunion.eatshop.activity.loginactivity.LoginActivity;
-import com.stateunion.eatshop.application.ProjectApplication;
-import com.stateunion.eatshop.pay.PayResult;
 import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
+import com.stateunion.eatshop.retrofit.entiity.PersonInfoBean;
+import com.stateunion.eatshop.retrofit.entiity.PersonInfoEntity;
 import com.stateunion.eatshop.retrofit.view.IBaseDialogView;
 import com.stateunion.eatshop.util.AppSessionEngine;
-import com.stateunion.eatshop.view.baseactivity.BaseActivity;
 import com.stateunion.eatshop.view.baseactivity.HistoryActivity;
 import com.stateunion.eatshop.view.baseactivity.OpinActivity;
 import com.stateunion.eatshop.view.baseactivity.ZiLiaoActivity;
 import com.stateunion.eatshop.view.basefrment.BaseFragment;
-
 import retrofit2.Call;
-
 /**
  * Created by admini on 2017/11/28.
  */
@@ -84,16 +80,28 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
 
     }
     public void intview(View view){
-        AppSessionEngine.getLoginInfo().getName();
+
+        RequestCommand.getPreson(new PresonCallBck(PersFragment.this),AppSessionEngine.getLoginInfo().getGonghao());
+        AppSessionEngine.getLoginInfo().getGonghao();
                 tv_preson_user= (TextView) view.findViewById(R.id.tv_preson_user);
                 tv_preson_iccard=(TextView) view.findViewById(R.id.tv_preson_iccard);
                 tv_preson_phone=(TextView) view.findViewById(R.id.tv_preson_phone);
                 tv_preson_location=(TextView) view.findViewById(R.id.tv_preson_location);
-        tv_preson_user.setText(AppSessionEngine.getLoginInfo().getName());
-        tv_preson_iccard.setText(AppSessionEngine.getLoginInfo().getGonghao());
-        tv_preson_phone.setText(AppSessionEngine.getLoginInfo().getPhone());
-    }
 
+    }
+    public static class PresonCallBck extends DialogCallback<PersonInfoBean,PersFragment>{
+
+        public PresonCallBck(PersFragment requestView) {
+            super(requestView);
+        }
+
+        @Override
+        protected void onResponseSuccess(PersonInfoBean personInfoBean, Call<PersonInfoBean> call) {
+            super.onResponseSuccess(personInfoBean, call);
+            Log.v("eatshop","返回数据");
+              Log.v("eatshop","返回数据"+personInfoBean.getBody());
+        }
+    }
     @Override
     public void refreshData(View rootView) {
 

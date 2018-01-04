@@ -32,6 +32,7 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
     private LinearLayout llyt_preson_fankui,llyt_preson_history,llyt_preson_zilaio;
     private TextView tv_preson_user,tv_preson_iccard,tv_preson_phone,tv_preson_location;
     private Button btLogOut;
+    private boolean isAlive =false;
     @Override
     public int getLayoutId() {
         return R.layout.frag_preson;
@@ -41,7 +42,7 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
     public void createView(View rootView) {
         context=rootView.getContext();
         intview(rootView);
-
+isAlive=true;
         llyt_preson_zilaio=(LinearLayout) rootView.findViewById(R.id.llyt_preson_zilaio);
         llyt_preson_zilaio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +82,6 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
     }
     public void intview(View view){
 
-        RequestCommand.getPreson(new PresonCallBck(PersFragment.this),AppSessionEngine.getLoginInfo().getGonghao());
         AppSessionEngine.getLoginInfo().getGonghao();
                 tv_preson_user= (TextView) view.findViewById(R.id.tv_preson_user);
                 tv_preson_iccard=(TextView) view.findViewById(R.id.tv_preson_iccard);
@@ -98,12 +98,12 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
         @Override
         protected void onResponseSuccess(PersonInfoBean personInfoBean, Call<PersonInfoBean> call) {
             super.onResponseSuccess(personInfoBean, call);
-            Log.v("eatshop","返回数据");
-              Log.v("eatshop","返回数据"+personInfoBean.getBody());
+               Log.v("eatshop","返回数据"+personInfoBean.getBody());
         }
     }
     @Override
     public void refreshData(View rootView) {
+        RequestCommand.getPreson(new PresonCallBck(PersFragment.this),AppSessionEngine.getLoginInfo().getGonghao());
 
     }
 
@@ -112,12 +112,13 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
      * 顶掉请求
      */
    private void LoginOut(){
-       RequestCommand.pswLogin(new RequestOutLogCall(PersFragment.this),"111111","123");
+//       RequestCommand.pswLogin(new RequestOutLogCall(PersFragment.this),"111111","123");
    }
 
     @Override
     public Dialog createDialog(@StyleRes int themeResId) {
-        return null;
+        Dialog dialog=new Dialog(getContext(),themeResId);
+        return dialog;
     }
 
     @Override
@@ -127,21 +128,12 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
 
     @Override
     public boolean isAlive() {
-        return false;
+        return isAlive;
     }
 
-    private class RequestOutLogCall extends DialogCallback<BaseBean,PersFragment>{
-
-        public RequestOutLogCall(PersFragment requestView) {
-            super(requestView);
-        }
-
-        @Override
-        protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
-            super.onResponseSuccess(baseBean, call);
-
-            getAttachTarget().startActivity(new Intent(getAttachTarget().getBaseActivity(),LoginActivity.class));
-            getAttachTarget().getBaseActivity().finish();
-        }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        isAlive=false;
     }
 }

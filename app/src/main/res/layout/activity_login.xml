@@ -8,18 +8,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <ImageView
+        android:id="@+id/iv_login_logo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_above="@+id/tv_login_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp"
+        android:src="@drawable/ic_app1" />
+
     <TextView
         android:id="@+id/tv_login_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="登录"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_25"
         android:layout_above="@+id/et_login_gonghao"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="35dp"
+        android:text="中融新大集团"
 
-        />
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_25" />
     <EditText
         android:id="@+id/et_login_gonghao"
         android:layout_above="@+id/et_login_pws"

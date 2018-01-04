@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/yemain_beijing"
     >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,10 +36,12 @@
         android:background="@color/gray_txt">
 
         <EditText
+
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@color/white"
             android:id="@+id/er_opin"
+            android:textColor="@color/black"
             />
 
         <Button

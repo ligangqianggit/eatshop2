@@ -4,9 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.stateunion.eatshop.R;
+
+import butterknife.BindView;
 
 /**
  * Created by 青春 on 2017/12/12.
@@ -14,6 +19,10 @@ import com.stateunion.eatshop.R;
 
 public class OpinActivity extends BaseActivity{
     private ImageView iv_opin_back;
+    @BindView(R.id.er_opin)
+    EditText er_opin;
+    @BindView(R.id.bt_opin)
+    Button bt_opin;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

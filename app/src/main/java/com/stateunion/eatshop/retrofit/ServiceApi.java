@@ -4,6 +4,7 @@ package com.stateunion.eatshop.retrofit;
 
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.entiity.DingCanBean;
+import com.stateunion.eatshop.retrofit.entiity.PersonInfoBean;
 import com.stateunion.eatshop.retrofit.entiity.UserInfoBean;
 
 import java.util.List;
@@ -78,4 +79,21 @@ public interface ServiceApi {
     @FormUrlEncoded
     Call<BaseBean> goPay(@Field("pay_time") String pay_time,@Field("pay_lei") String pay_lei,
                        @Field("all_money") String all_money, @Field("list") List<String> list);
+
+    /**
+     * 个人中心接口
+     * @param user_id 用户工号
+     */
+    @POST("zhongxin")
+    @FormUrlEncoded
+    Call<PersonInfoBean> getPresonInfo(@Field("user_id") String user_id);
+
+    /**
+     * 意见反馈接口
+     * @param user_id 用户工号
+     * @param neirong 反馈内容
+     */
+    @POST("yijian")
+    @FormUrlEncoded
+    Call<BaseBean> toFankui(@Field("user_id") String user_id,@Field("neirong") String neirong);
 }

@@ -86,6 +86,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 break;
             case R.id.acty_main_radio3:
                 getSupportFragmentManager().beginTransaction().replace(R.id.acty_main_frame,getFragment(DataStore.getInt(APPKey.SP_MAIN_RADIO_4))).commit();
+                Log.d("aaaa","进来了"+APPKey.SP_MAIN_RADIO_4);
                 break;
         }
     }
@@ -138,6 +139,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
      * @param layoutType 对应静态数据的样式
      */
     private void setSelfNaviRadio(RadioButton radio, int layoutType) {
+        Log.d("aaa",layoutType+"zzzz");
+
         switch (layoutType) {
             case APPKey.SP_MAIN_RADIO_LAYOUT_MAIN:
                 Log.v("eatshop","首页");

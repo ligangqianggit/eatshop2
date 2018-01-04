@@ -102,10 +102,8 @@ public class ProjectApplication extends MultiDexApplication {
     private void initMainNavigationRadioGroup() {
         if (DataStore.getInt(APPKey.SP_MAIN_RADIO_1) == -1) {
             DataStore.put(APPKey.SP_MAIN_RADIO_1, APPKey.SP_MAIN_RADIO_LAYOUT_MAIN);
-            DataStore.put(APPKey.SP_MAIN_RADIO_2, APPKey.SP_MAIN_RADIO_LAYOUT_TAKE);
-            DataStore.put(APPKey.SP_MAIN_RADIO_3, APPKey.SP_MAIN_RADIO_LAYOUT_COUP);
+             DataStore.put(APPKey.SP_MAIN_RADIO_3, APPKey.SP_MAIN_RADIO_LAYOUT_COUP);
             DataStore.put(APPKey.SP_MAIN_RADIO_4, APPKey.SP_MAIN_RADIO_LAYOUT_PERS);
-            DataStore.put(APPKey.SP_MAIN_RADIO_5, APPKey.SP_MAIN_RADIO_LAYOUT_STAFF);
 
         }
     }

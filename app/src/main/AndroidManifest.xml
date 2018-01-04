@@ -61,6 +61,7 @@
         <activity android:name=".view.baseactivity.UpCaiPinActivity"/>
         <activity android:name=".pay.PayService"/>
 <activity android:name=".activity.loginactivity.GuideActivity"/>
+        <activity android:name=".view.baseactivity.PayJieGuoActivity"/>
         <activity android:name=".activity.loginactivity.LoginActivity"/>
         <service
             android:name="com.stateunion.eatshop.service.DemoPushService"

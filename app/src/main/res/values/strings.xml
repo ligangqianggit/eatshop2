@@ -12,11 +12,9 @@
     <string name="main_radio_per">个人中心</string>
      <string-array name="main_radio">
         <item>radio_index_1</item>
-        <item>radio_index_2</item>
-        <item>radio_index_3</item>
+         <item>radio_index_3</item>
         <item>radio_index_4</item>
-        <item>radio_index_5</item>
-    </string-array>
+     </string-array>
 
     <string name="msg_camera_framework_bug">相机被占用或没有相机权限，请检查</string>
 

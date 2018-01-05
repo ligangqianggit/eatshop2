@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.stateunion.eatshop.R;
@@ -24,7 +25,7 @@ public class ZiLiaoActivity extends BaseActivity{
     private int mDay;
     // 声明一个独一无二的标识，来作为要显示DatePicker的Dialog的ID：
     static final int DATE_DIALOG_ID = 0;
-
+    private ImageView iv_ziliao_back;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,16 @@ public class ZiLiaoActivity extends BaseActivity{
         intview();
     }
     public void intview(){
+        iv_ziliao_back= (ImageView) findViewById(R.id.iv_ziliao_back);
+        iv_ziliao_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ZiLiaoActivity.this.finish();
+            }
+        });
+
+
+
         tv_ziliao_date= (TextView) findViewById(R.id.tv_ziliao_date);
         // 获得当前的日期：
         final Calendar currentDate = Calendar.getInstance();

@@ -51,8 +51,8 @@ public class RequestCommand {
     }
 
     //意见反馈
-    public static void FanKui(RequestCallback callback,String user_id,String neirong){
-        Call call=getApi().toFankui(user_id,neirong);
+    public static void FanKui(RequestCallback callback,String neirong,String user_id){
+        Call call=getApi().toFankui(neirong,user_id);
         send(call,callback);
     }
 }

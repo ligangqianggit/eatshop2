@@ -95,5 +95,5 @@ public interface ServiceApi {
      */
     @POST("yijian")
     @FormUrlEncoded
-    Call<BaseBean> toFankui(@Field("user_id") String user_id,@Field("neirong") String neirong);
+    Call<BaseBean> toFankui(@Field("neirong") String neirong,@Field("user_id") String user_id);
 }

@@ -55,4 +55,10 @@ public class RequestCommand {
         Call call=getApi().toFankui(neirong,user_id);
         send(call,callback);
     }
+
+    //修改密码
+    public static void ChangePwd(RequestCallback callback,String user_id,String oldpassword,String newpassword,String twopassword){
+        Call call=getApi().changePwd(user_id,oldpassword,newpassword,twopassword);
+        send(call,callback);
+    }
 }

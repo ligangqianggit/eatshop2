@@ -96,4 +96,17 @@ public interface ServiceApi {
     @POST("yijian")
     @FormUrlEncoded
     Call<BaseBean> toFankui(@Field("neirong") String neirong,@Field("user_id") String user_id);
+
+    /**
+     * 意见反馈接口
+     * @param user_id 用户工号
+     * @param oldpassword 旧密码
+     * @param newpassword 新密码密码
+     * @param oldpassword 确认新密码
+     */
+
+    @POST("uppassword")
+    @FormUrlEncoded
+    Call<BaseBean> changePwd(@Field("user_id") String user_id,@Field("oldpassword") String oldpassword,
+                             @Field("newpassword") String newpassword,@Field("twopassword") String twopassword);
 }

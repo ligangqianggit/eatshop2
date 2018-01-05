@@ -7,6 +7,7 @@ import android.support.annotation.StyleRes;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.stateunion.eatshop.R;
@@ -32,6 +33,7 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
     public static TextView tv_preson_user,tv_preson_iccard,tv_preson_phone,tv_preson_location,tv_preson_yue,tv_preson_jifen;
     private Button btLogOut;
     private boolean isAlive =false;
+    public static ImageView iv_preson_touxiang;
     @Override
     public int getLayoutId() {
         return R.layout.frag_preson;
@@ -42,6 +44,7 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
         context=rootView.getContext();
         intview(rootView);
         isAlive=true;
+        iv_preson_touxiang= (ImageView) rootView.findViewById(R.id.iv_preson_touxiang);
         llyt_preson_zilaio=(LinearLayout) rootView.findViewById(R.id.llyt_preson_zilaio);
         llyt_preson_zilaio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +117,8 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
             tv_preson_location.setText(personInfoBean.getBody().getZhuzhi());
             tv_preson_yue.setText("余额："+personInfoBean.getBody().getYumoney());
             tv_preson_jifen.setText("积分："+personInfoBean.getBody().getJifen());
+            //此处加载网络图片
+            String url="http://ceshi123.dns178.com/"+personInfoBean.getBody().getTouxiang();
         }
     }
     @Override

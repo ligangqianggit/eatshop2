@@ -12,12 +12,11 @@ import android.widget.TextView;
 import com.stateunion.eatshop.R;
 import com.stateunion.eatshop.activity.loginactivity.LoginActivity;
 import com.stateunion.eatshop.retrofit.RequestCommand;
-import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.retrofit.entiity.PersonInfoBean;
-import com.stateunion.eatshop.retrofit.entiity.PersonInfoEntity;
 import com.stateunion.eatshop.retrofit.view.IBaseDialogView;
 import com.stateunion.eatshop.util.AppSessionEngine;
+import com.stateunion.eatshop.view.baseactivity.ChangePwdActivity;
 import com.stateunion.eatshop.view.baseactivity.HistoryActivity;
 import com.stateunion.eatshop.view.baseactivity.OpinActivity;
 import com.stateunion.eatshop.view.baseactivity.ZiLiaoActivity;
@@ -29,8 +28,8 @@ import retrofit2.Call;
 
 public class PersFragment extends BaseFragment implements IBaseDialogView{
     private Context context=null;
-    private LinearLayout llyt_preson_fankui,llyt_preson_history,llyt_preson_zilaio;
-    private TextView tv_preson_user,tv_preson_iccard,tv_preson_phone,tv_preson_location;
+    private LinearLayout llyt_preson_fankui,llyt_preson_history,llyt_preson_zilaio,llyt_preson_changepwd;
+    public static TextView tv_preson_user,tv_preson_iccard,tv_preson_phone,tv_preson_location,tv_preson_yue,tv_preson_jifen;
     private Button btLogOut;
     private boolean isAlive =false;
     @Override
@@ -42,7 +41,7 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
     public void createView(View rootView) {
         context=rootView.getContext();
         intview(rootView);
-isAlive=true;
+        isAlive=true;
         llyt_preson_zilaio=(LinearLayout) rootView.findViewById(R.id.llyt_preson_zilaio);
         llyt_preson_zilaio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +68,15 @@ isAlive=true;
                 startActivity(intent);
             }
         });
+
+        llyt_preson_changepwd= (LinearLayout) rootView.findViewById(R.id.llyt_preson_changepwd);
+        llyt_preson_changepwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, ChangePwdActivity.class);
+                startActivity(intent);
+            }
+        });
         btLogOut= (Button) rootView.findViewById(R.id.bt_logout);
         btLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,12 +89,13 @@ isAlive=true;
 
     }
     public void intview(View view){
-
         AppSessionEngine.getLoginInfo().getGonghao();
                 tv_preson_user= (TextView) view.findViewById(R.id.tv_preson_user);
                 tv_preson_iccard=(TextView) view.findViewById(R.id.tv_preson_iccard);
                 tv_preson_phone=(TextView) view.findViewById(R.id.tv_preson_phone);
                 tv_preson_location=(TextView) view.findViewById(R.id.tv_preson_location);
+                tv_preson_yue= (TextView) view.findViewById(R.id.tv_preson_yue);
+                tv_preson_jifen= (TextView) view.findViewById(R.id.tv_preson_jifen);
 
     }
     public static class PresonCallBck extends DialogCallback<PersonInfoBean,PersFragment>{
@@ -99,6 +108,12 @@ isAlive=true;
         protected void onResponseSuccess(PersonInfoBean personInfoBean, Call<PersonInfoBean> call) {
             super.onResponseSuccess(personInfoBean, call);
                Log.v("eatshop","返回数据"+personInfoBean.getBody());
+            tv_preson_user.setText(personInfoBean.getBody().getName());
+            tv_preson_iccard.setText(personInfoBean.getBody().getGonghao());
+            tv_preson_phone.setText(personInfoBean.getBody().getPhone());
+            tv_preson_location.setText(personInfoBean.getBody().getZhuzhi());
+            tv_preson_yue.setText("余额："+personInfoBean.getBody().getYumoney());
+            tv_preson_jifen.setText("积分："+personInfoBean.getBody().getJifen());
         }
     }
     @Override

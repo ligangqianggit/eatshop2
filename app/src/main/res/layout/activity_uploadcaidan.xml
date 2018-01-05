@@ -19,39 +19,26 @@
       android:layout_height="wrap_content"
       android:orientation="vertical"
       android:layout_below="@+id/nv_upcaidan"
+      android:id="@+id/rl_caidan"
       >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
          <android.support.design.widget.TabLayout
             android:id="@+id/project_tablayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             app:tabIndicatorColor="#2EA7E0"
-            app:tabSelectedTextColor="@color/blue_bg"
-            app:tabTextAppearance="@style/NoTitleStyle"
-            app:tabTextColor="@color/font_black"
-             android:background="@color/white"
-              >
+             android:layout_width="match_parent"
+              android:layout_marginLeft="15dp"
+             android:layout_marginRight="15dp"
+             android:layout_height="25dp"
+             app:tabIndicatorColor="@null"
+             app:tabIndicatorHeight="5dp"
+             app:tabTextColor="@color/black"
+             app:tabSelectedTextColor="@color/beijing"
+             app:tabMode="fixed"
+             app:tabBackground="@drawable/selected"
+               >
 
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="早餐"
-                 />
 
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="中午" />
-             <android.support.design.widget.TabItem
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="晚饭" />
-             <android.support.design.widget.TabItem
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="加班" />
         </android.support.design.widget.TabLayout>
 
     </RelativeLayout>
@@ -60,183 +47,14 @@
         android:layout_height="2dp"
         android:background="@color/gray"
         android:layout_below="@+id/rl"
+        android:id="@+id/image"
          />
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="30dp"
-      >
-      <RelativeLayout
-          android:layout_width="110dp"
-          android:layout_height="110dp"
-          android:background="@color/gray"
-          android:layout_marginLeft="2dp"
-          android:id="@+id/rl_food"
-          >
-          <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:src="@mipmap/icon_food"
-               android:gravity="center"
-              android:layout_centerHorizontal="true"
-              android:layout_centerInParent="true"
-              android:id="@+id/img_food"
-              />
-       </RelativeLayout>
-
-  <EditText
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-      android:hint="请输入标题"
-       android:layout_alignParentTop="true"
-      android:layout_alignParentRight="true"
-       android:layout_toRightOf="@+id/rl_food"
-      android:layout_alignTop="@+id/rl_food"
-      android:textColor="@color/black"
-       android:id="@+id/et_foodtitle"
-      android:textSize="25sp"
-      android:theme="@style/MyEditText"
-      android:layout_marginLeft="3dp"
-      android:gravity="center_vertical"
-      />
-
-      <EditText
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:hint="价格"
-          android:textColor="@color/black"
-           android:id="@+id/et_price"
-          android:textSize="25sp"
-          android:layout_alignBaseline="@+id/rl_food"
-          android:layout_alignBottom="@+id/rl_food"
-          android:layout_alignParentRight="true"
-          android:layout_alignParentEnd="true"
-          android:theme="@style/MyEditText"
-          android:layout_toRightOf="@+id/rl_food"
-          android:layout_toEndOf="@+id/rl_food"
-          android:gravity="center_vertical"
-          android:layout_marginLeft="3dp"
-
-          />
-
-  </RelativeLayout>
-
-      <EditText
-          android:id="@+id/et_foodinfo"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_margin="10dp"
-          android:hint="请输入描述内容"
-          android:textColor="@color/black"
-          android:gravity="center_vertical"
-          android:theme="@style/MyEditText"
-          android:maxLines="3"
-
-          />
-
-      <EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-     android:hint="厨师"
-    android:layout_margin="10dp"
-    android:id="@+id/et_chushi"
-          android:textColor="@color/black"
-          android:gravity="center_vertical"
-          android:theme="@style/MyEditText"
-
-          />
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        >
-
-    </RelativeLayout>
-  </LinearLayout>
-    <!--buttom-->
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_alignParentBottom="true"
-    >
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       android:background="@color/white"
-       >
-
-       <TextView
-           android:id="@+id/textView"
-           android:layout_width="0dp"
-           android:layout_height="wrap_content"
-           android:layout_weight="1"
-           android:gravity="center_horizontal"
-           android:text="预约截止时间"
-           android:textColor="@color/gray"
-           android:textSize="20sp" />
-
-       <TextView
-           android:id="@+id/tv_buytime"
-           android:layout_width="0dp"
-           android:layout_height="wrap_content"
-           android:layout_weight="1"
-           android:gravity="center_horizontal"
-           android:text="11-18 09:30"
-           android:textColor="@color/gray"
-           android:textSize="20sp" />
-   </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_margin="10dp"
-        android:background="@color/gray" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="退单时间"
-            android:textSize="20sp"
-            android:gravity="center_horizontal"
-            android:textColor="@color/gray"
-            />
-
-        <TextView
-            android:id="@+id/tv_tuitime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="11-18 09:30"
-            android:textColor="@color/gray"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-    <ImageView
-         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_margin="10dp"
-        android:background="@color/gray" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="确定上传"
-        android:background="@color/font_orange"
-        android:padding="5dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/bt_upfood"
-        />
 </LinearLayout>
+    <com.stateunion.eatshop.widget.MyViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/myviepage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/rl_caidan"></com.stateunion.eatshop.widget.MyViewPager>
 </RelativeLayout>

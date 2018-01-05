@@ -36,7 +36,7 @@ public class ParamInterceptor implements Interceptor {
     }
 
     FormBody addParam(Map<String, String> oldParams) {
-        oldParams.put("terminalType", "3");
+//        oldParams.put("terminalType", "3");
 //        oldParams.put("appVersion", AndroidUtil.getVersionName());
 //        String session = AppSessionEngine.getSession();
 //        if (null != session) {

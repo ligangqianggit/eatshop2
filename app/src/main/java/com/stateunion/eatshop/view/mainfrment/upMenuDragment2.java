@@ -62,6 +62,7 @@ public class upMenuDragment2 extends Fragment {
         View view = inflater.inflate(R.layout.upmenu_fragment, container, false);
         context = view.getContext();
         unbinder = ButterKnife.bind(this, view);
+        initUtil();
         return view;
     }
 

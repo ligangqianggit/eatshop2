@@ -10,7 +10,6 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,8 +60,9 @@ public class UpMenuDragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.upmenu_fragment, container, false);
         unbinder = ButterKnife.bind(this, view);
-        context=view.getContext();
-        return view;
+        context = view.getContext();
+        initUtil();
+         return view;
     }
 
     @Override
@@ -70,42 +70,6 @@ public class UpMenuDragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
 
-    }
-
-    @OnClick({R.id.img_food, R.id.tv_buytime, R.id.tv_tuitime, R.id.bt_upfood})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.img_food:
-                Log.d("电解了","aaa");
-                PermissionGen.with(UpMenuDragment.this)
-                        .addRequestCode(TakePhone.REQ_TAKE_PHOTO)
-                        .permissions(Manifest.permission.READ_EXTERNAL_STORAGE,
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                Manifest.permission.CAMERA
-                        ).request();
-                break;
-            case R.id.tv_buytime:
-                timeSelector = new TimeSelector(context, new TimeSelector.ResultHandler() {
-                    @Override
-                    public void handle(String time) {
-                        tvBuytime.setText(time);
-                    }
-                }, "2018-01-01 00:00", "2030-12-31 00:00");
-                timeSelector.show();
-                break;
-            case R.id.tv_tuitime:
-                timeSelector = new TimeSelector(context, new TimeSelector.ResultHandler() {
-                    @Override
-                    public void handle(String time) {
-                        tvTuitime.setText(time);
-                    }
-                }, "2018-01-01 00:00", "2030-12-31 00:00");
-                timeSelector.show();
-                break;
-            case R.id.bt_upfood:
-
-                break;
-        }
     }
 
 
@@ -183,13 +147,44 @@ public class UpMenuDragment extends Fragment {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+        PermissionGen.onRequestPermissionsResult(UpMenuDragment.this, requestCode, permissions, grantResults);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // 2、在Activity中的onActivityResult()方法里与LQRPhotoSelectUtils关联
-        takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
+    public static Fragment newInstance() {
+        return new UpMenuDragment();
+    }
+
+    @OnClick({R.id.img_food, R.id.tv_buytime, R.id.tv_tuitime, R.id.bt_upfood})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.img_food:
+                PermissionGen.with(UpMenuDragment.this)
+                        .addRequestCode(TakePhone.REQ_TAKE_PHOTO)
+                        .permissions(Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.CAMERA
+                        ).request();
+                break;
+            case R.id.tv_buytime:
+                timeSelector = new TimeSelector(context, new TimeSelector.ResultHandler() {
+                    @Override
+                    public void handle(String time) {
+                        tvBuytime.setText(time);
+                    }
+                }, "2018-01-01 00:00", "2030-12-31 00:00");
+                timeSelector.show();
+                break;
+            case R.id.tv_tuitime:
+                timeSelector = new TimeSelector(context, new TimeSelector.ResultHandler() {
+                    @Override
+                    public void handle(String time) {
+                        tvTuitime.setText(time);
+                    }
+                }, "2018-01-01 00:00", "2030-12-31 00:00");
+                timeSelector.show();
+                break;
+            case R.id.bt_upfood:
+                break;
+        }
     }
 }

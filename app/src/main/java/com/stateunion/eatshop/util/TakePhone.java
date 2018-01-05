@@ -55,6 +55,7 @@ public class TakePhone {
         mShouldCrop = shouldCrop;
         AUTHORITIES = activity.getPackageName() + ".fileprovider";
         imgPath = generateImgePath();
+        Log.d("进来了 其实","aaaaaaaaaa");
     }
 
     /**

@@ -6,21 +6,21 @@ package com.stateunion.eatshop.retrofit.entiity;
 
 public class PersonInfoEntity {
 
-
     /**
-     * id : 1
+     * id : 2
      * cid : 21
-     * utime : 1514449404
-     * ctime : 1514449355
+     * utime : 1514449390
+     * ctime : 1514449390
      * num : 50
-     * name : 111
+     * name : 222
      * sex : 男
-     * gonghao : 111111
-     * phone : 1111
+     * gonghao : 222222
+     * phone : 222222222
      * jifen : 10
-     * chusheng : 1990-10-12
+     * chusheng : 1993-10-11
      * yumoney : 10
-     * zhuzhi : 阿斯顿的
+     * zhuzhi : 120
+     * touxiang : nopic.jpg
      */
 
     private int id;
@@ -36,6 +36,7 @@ public class PersonInfoEntity {
     private String chusheng;
     private String yumoney;
     private String zhuzhi;
+    private String touxiang;
 
     public int getId() {
         return id;
@@ -139,5 +140,13 @@ public class PersonInfoEntity {
 
     public void setZhuzhi(String zhuzhi) {
         this.zhuzhi = zhuzhi;
+    }
+
+    public String getTouxiang() {
+        return touxiang;
+    }
+
+    public void setTouxiang(String touxiang) {
+        this.touxiang = touxiang;
     }
 }

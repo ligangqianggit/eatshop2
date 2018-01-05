@@ -1,18 +1,21 @@
 package com.stateunion.eatshop.view.baseactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.stateunion.eatshop.MainActivity;
 import com.stateunion.eatshop.R;
+import com.stateunion.eatshop.activity.loginactivity.*;
 import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.util.AppSessionEngine;
-
 import retrofit2.Call;
 
 /**
@@ -22,6 +25,7 @@ import retrofit2.Call;
 public class ChangePwdActivity extends BaseActivity{
     public static EditText oldpwd,newpwd1,newped2;
     private Button bt_change;
+    private ImageView iv_changepwd_back;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,13 @@ public class ChangePwdActivity extends BaseActivity{
         intview();
     }
     public void intview(){
+        iv_changepwd_back= (ImageView) findViewById(R.id.iv_changepwd_back);
+        iv_changepwd_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ChangePwdActivity.this.finish();
+            }
+        });
         oldpwd= (EditText) findViewById(R.id.ed_changge_oldpwd);
         newpwd1= (EditText) findViewById(R.id.ed_changge_newpwd);
         newped2= (EditText) findViewById(R.id.ed_changge_newpwd2);
@@ -42,7 +53,7 @@ public class ChangePwdActivity extends BaseActivity{
                     Toast.makeText(ChangePwdActivity.this,"请输入新密码！",Toast.LENGTH_LONG).show();
                 }else if(newped2.getText().toString().equals("")){
                     Toast.makeText(ChangePwdActivity.this,"请确认新密码！",Toast.LENGTH_LONG).show();
-                }else if(newped2.getText().toString().equals(newpwd1.getText().toString())){
+                }else if(!newped2.getText().toString().equals(newpwd1.getText().toString())){
                     Toast.makeText(ChangePwdActivity.this,"两次输入密码不一致，请重新输入！",Toast.LENGTH_LONG).show();
                 }else{
                     changepwd();
@@ -68,9 +79,11 @@ public class ChangePwdActivity extends BaseActivity{
                 oldpwd.setText("");
                 newpwd1.setText("");
                 newped2.setText("");
+                AppSessionEngine.logout();
+                Intent intent=new Intent(getAttachTarget().getBaseActivity(),LogoActivity.class);
+                getAttachTarget().getBaseActivity().startActivity(intent);
+                getAttachTarget().getBaseActivity().finish();
             }
-
-
         }
     }
 }

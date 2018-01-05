@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 import com.stateunion.eatshop.R;
 import com.stateunion.eatshop.activity.loginactivity.LoginActivity;
 import com.stateunion.eatshop.retrofit.RequestCommand;
@@ -17,6 +19,7 @@ import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.retrofit.entiity.PersonInfoBean;
 import com.stateunion.eatshop.retrofit.view.IBaseDialogView;
 import com.stateunion.eatshop.util.AppSessionEngine;
+import com.stateunion.eatshop.util.CircleTransform;
 import com.stateunion.eatshop.view.baseactivity.ChangePwdActivity;
 import com.stateunion.eatshop.view.baseactivity.HistoryActivity;
 import com.stateunion.eatshop.view.baseactivity.OpinActivity;
@@ -119,6 +122,9 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
             tv_preson_jifen.setText("积分："+personInfoBean.getBody().getJifen());
             //此处加载网络图片
             String url="http://ceshi123.dns178.com/"+personInfoBean.getBody().getTouxiang();
+            Picasso.with(getAttachTarget().getContext()).
+                    load(url).resize(200, 200).transform
+                    (new CircleTransform()).into(iv_preson_touxiang);
         }
     }
     @Override

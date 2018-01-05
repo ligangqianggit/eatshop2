@@ -1,6 +1,5 @@
 package com.stateunion.eatshop.view.baseactivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -9,19 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.stateunion.eatshop.MainActivity;
 import com.stateunion.eatshop.R;
-import com.stateunion.eatshop.activity.loginactivity.*;
 import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
-import com.stateunion.eatshop.retrofit.entiity.UserInfoBean;
 import com.stateunion.eatshop.util.AppSessionEngine;
-import com.stateunion.eatshop.util.LoginHelp;
-
 import butterknife.BindView;
 import retrofit2.Call;
 
@@ -30,8 +22,7 @@ import retrofit2.Call;
  */
 
 public class OpinActivity extends BaseActivity implements View.OnClickListener {
-    @BindView(R.id.er_opin)
-    EditText er_opin;
+   public static EditText er_opin;
     @BindView(R.id.bt_opin)
     Button bt_opin;
     @BindView(R.id.iv_opin_back)
@@ -84,6 +75,12 @@ public class OpinActivity extends BaseActivity implements View.OnClickListener {
         @Override
         protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
             super.onResponseSuccess(baseBean, call);
+            Log.v("eatshop","info=========="+baseBean.getInfo());
+           if(baseBean.getSuccess()==1){
+               Toast.makeText(getAttachTarget().getBaseActivity(), baseBean.getInfo().toString(),Toast.LENGTH_LONG).show();
+               er_opin.setText("");
+           }
+
         }
     }
 }

@@ -72,13 +72,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:checkedButton="@+id/radio_yue"
+            android:checkedButton="@+id/radio_weixin"
             android:orientation="vertical">
 
             <RadioButton
                 android:id="@+id/radio_yue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/ic_yue"
                 android:drawableRight="@drawable/radio_buttonbg"
                 android:drawablePadding="10dp"
                 android:padding="8dp"
@@ -91,6 +92,7 @@
                 android:id="@+id/radio_weixin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/ic_weixin"
                 android:drawableRight="@drawable/radio_buttonbg"
                 android:drawablePadding="10dp"
                 android:button="@null"
@@ -103,6 +105,7 @@
             <RadioButton
                 android:id="@+id/radio_zhifubao"
                 android:button="@null"
+                android:drawableLeft="@mipmap/ic_zhifubao"
                 android:drawableRight="@drawable/radio_buttonbg"
                 android:drawablePadding="10dp"
                 android:padding="8dp"

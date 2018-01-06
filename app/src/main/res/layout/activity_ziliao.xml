@@ -29,8 +29,8 @@
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_back_white" />
     </RelativeLayout>
+
     <LinearLayout
-        android:id="@+id/llyt_preson_zilaio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -39,30 +39,30 @@
         >
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:drawableLeft="@mipmap/ic_preson_opin"
-            android:text="生日"
+            android:text="头像"
             android:textSize="@dimen/text_size_20"
             android:textColor="@color/gray"
             android:layout_weight="2"
             android:gravity="center_vertical"
             android:padding="8dp"
             />
-        <TextView
-            android:id="@+id/tv_ziliao_date"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_right_hui"
+        <ImageView
+            android:id="@+id/tv_ziliao_touxiang"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_app1"
             android:layout_weight="1"
             android:textSize="@dimen/size_18"
             android:textColor="@color/black"
-            android:text="当前日期"
             android:layout_gravity="center"
+            android:padding="10dp"
             />
     </LinearLayout>
 
+
     <LinearLayout
-        android:id="@+id/llyt_preson_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -80,21 +80,20 @@
             android:gravity="center_vertical"
             android:padding="8dp"
             />
-        <TextView
-            android:id="@+id/tv_ziliao_phone"
+        <EditText
+            android:id="@+id/ed_ziliao_phone"
             android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_right_hui"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="@dimen/size_18"
             android:textColor="@color/black"
-            android:text="当前电话"
-            android:layout_gravity="center"
+            android:hint="请输入手机号"
+            android:textColorHint="@color/gray"
+            android:inputType="text"
             />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llyt_preson_fankui"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -112,16 +111,26 @@
             android:gravity="center_vertical"
             android:padding="8dp"
             />
-        <TextView
-            android:id="@+id/tv_ziliao_dizhi"
+        <EditText
+            android:id="@+id/ed_ziliao_dizhi"
             android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_right_hui"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="@dimen/size_18"
             android:textColor="@color/black"
-            android:text="地址"
-            android:layout_gravity="center"
+            android:hint="请输入地址"
+            android:textColorHint="@color/gray"
+            android:inputType="text"
             />
     </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="确认修改"
+        android:textSize="@dimen/size_18"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/login_bt"
+        android:id="@+id/bt_ziliao"
+        />
 </LinearLayout>

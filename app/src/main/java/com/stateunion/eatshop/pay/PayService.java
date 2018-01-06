@@ -1,16 +1,34 @@
 package com.stateunion.eatshop.pay;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.stateunion.eatshop.R;
+import com.stateunion.eatshop.adapter.PayListAdapter;
+import com.stateunion.eatshop.custom_view.MyListView;
+import com.stateunion.eatshop.retrofit.RequestCommand;
+import com.stateunion.eatshop.retrofit.callback.DialogCallback;
+import com.stateunion.eatshop.retrofit.entiity.YueBean;
+import com.stateunion.eatshop.util.AppSessionEngine;
 import com.stateunion.eatshop.view.baseactivity.BaseActivity;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.stateunion.eatshop.view.baseactivity.PayJieGuoActivity;
+
+import java.util.List;
+
+import retrofit2.Call;
+
+import static com.stateunion.eatshop.view.baseactivity.DingCanActivity.goodsAdapter;
+import static com.stateunion.eatshop.view.baseactivity.DingCanActivity.selectedList;
 
 
 /**
@@ -18,33 +36,105 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
  */
 
 public class PayService extends BaseActivity{
-   private ImageView zfbPay,wxPay;
+    private ImageView zfbPay,wxPay;
+    private RadioGroup radioGroup;
+    public static RadioButton yue,zhifubao,weixin;
     private Button buyNow;
     private boolean isWxPay=false;
-    private IWXAPI msgApi;
-    private RelativeLayout rl_zhifubao_pay,rl_weixin_pay;
+    //    private IWXAPI msgApi;
+    private LinearLayout rl_zhifubao_pay,rl_weixin_pay;
+    MyListView lv_product;
+    public static String money;
+    Button bt_pay;
+    private PayListAdapter payListAdapter;
+    private List<String> list;
+    public static String stryue;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         setContentView(R.layout.activity_pay);
+        setContentView(R.layout.activity_pay);
+        Intent intent=getIntent();
+        money=intent.getStringExtra("money");
         init();
     }
     private void init(){
-//         rl_zhifubao_pay= (RelativeLayout) findViewById(R.id.rl_zhifubao_pay);
-//        rl_weixin_pay=(RelativeLayout) findViewById(R.id.rl_weixin_pay);
-//        zfbPay= (ImageView) findViewById(R.id.iv_right_circle1);
-//        wxPay= (ImageView) findViewById(R.id.iv_right_circle2);
-//        buyNow=(Button) findViewById(R.id.bt_buy);
-//        zfbPay.setImageResource(R.mipmap.right_circle_true);
-//        rl_zhifubao_pay.setOnClickListener(listener);
-//        rl_weixin_pay.setOnClickListener(listener);
-//        buyNow.setOnClickListener(listener);
+        lv_product = (MyListView)findViewById(R.id.lv_pay);
+        Log.v("eatshop","lv_product"+lv_product);
+        Log.v("eatshop","selectedList"+selectedList);
+        Log.v("eatshop","goodsAdapter"+goodsAdapter);
 
+        payListAdapter=new PayListAdapter(PayService.this,goodsAdapter,selectedList);
+        lv_product.setAdapter(payListAdapter);
+
+          radioGroup= (RadioGroup) findViewById(R.id.mRadioGroup);
+          yue= (RadioButton) findViewById(R.id.radio_yue);
+          weixin=(RadioButton) findViewById(R.id.radio_weixin);
+          zhifubao=(RadioButton) findViewById(R.id.radio_zhifubao);
+          radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+              @Override
+              public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                  if(yue.getId()==checkedId){
+
+                  }
+                  if(weixin.getId()==checkedId){
+
+                  }
+                  if(zhifubao.getId()==checkedId){
+
+                  }
+              }
+          });
+
+
+        bt_pay= (Button) findViewById(R.id.bt_pay);
+        bt_pay.setText(money+"元");
+        bt_pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(PayService.this, PayJieGuoActivity.class);
+                startActivity(intent);
+                PayService.this.finish();
+            }
+        });
+        RequestCommand.getYue(new YueCallBack(PayService.this), AppSessionEngine.getLoginInfo().getGonghao().toString());
     }
 
-      private View.OnClickListener listener=new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
+    //获取余额
+    public class YueCallBack extends DialogCallback<YueBean,PayService> {
+        public YueCallBack(PayService requestView) {
+            super(requestView);
+        }
+        @Override
+        protected void onResponseSuccess(YueBean yueBean, Call<YueBean> call) {
+            super.onResponseSuccess(yueBean, call);
+            Log.v("eatshop","====================="+yueBean.getBody().getYumoney());
+            Double.parseDouble(yueBean.getBody().getYumoney());
+            yue.setText("当前余额："+yueBean.getBody().getYumoney()+"元");
+            if(Double.parseDouble(yueBean.getBody().getYumoney())<Double.parseDouble(money)){
+               //余额小于支付金额
+                yue.setTextColor(PayService.this.getResources().getColor(R.color.gray));
+                yue.setClickable(false);
+                yue.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                        Toast.makeText(getAttachTarget().getBaseActivity(),"余额不足，请使用其他方式支付！",Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+                });
+            }
+        }
+    }
+
+    //获取时间戳
+    public String getTime(){
+        long time=System.currentTimeMillis()/1000;//获取系统时间的10位的时间戳
+        String  str=String.valueOf(time);
+        return str;
+    }
+
+    private View.OnClickListener listener=new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
 //          switch (v.getId()){
 //              case R.id.bt_buy:
 //                if (isWxPay){
@@ -74,8 +164,8 @@ public class PayService extends BaseActivity{
 //              default:
 //                  break;
 //          }
-          }
-      };
+        }
+    };
 
     private void payWithZFB() {
         ZFBPayUtil zfb = new ZFBPayUtil();
@@ -84,11 +174,11 @@ public class PayService extends BaseActivity{
 
     private void payWithWX() {
         WXPayUtil pay = new WXPayUtil();
- //        pay.payWX(getApplicationContext(), (int) f + "", ss[type], wxorder, msgApi);
+        //        pay.payWX(getApplicationContext(), (int) f + "", ss[type], wxorder, msgApi);
     }
 
 
     public void callWXPayFailure() {
 
-     }
+    }
 }

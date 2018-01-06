@@ -2,6 +2,7 @@ package com.stateunion.eatshop.retrofit;
 
 import com.stateunion.eatshop.retrofit.callback.RequestCallback;
 
+import java.io.File;
 import java.util.List;
 
 import retrofit2.Call;
@@ -59,6 +60,18 @@ public class RequestCommand {
     //修改密码
     public static void ChangePwd(RequestCallback callback,String user_id,String oldpassword,String newpassword,String twopassword){
         Call call=getApi().changePwd(user_id,oldpassword,newpassword,twopassword);
+        send(call,callback);
+    }
+
+    //修改资料
+    public static void Upziliao(RequestCallback callback, String user_id, File file,String phone, String zhuzhi){
+        Call call=getApi().xiugaizilaio(user_id,file,phone,zhuzhi);
+        send(call,callback);
+    }
+
+    //获取余额
+    public static void getYue(RequestCallback callback, String user_id){
+        Call call=getApi().yue(user_id);
         send(call,callback);
     }
 }

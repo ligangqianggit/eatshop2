@@ -10,6 +10,19 @@
     <string name="main_radio_take">取餐</string>
     <string name="main_radio_coup">福利</string>
     <string name="main_radio_per">个人中心</string>
+
+    <string name="permission_camera">摄像头</string>
+
+    <string name="permission_storage">文件</string>
+
+    <string name="permission_accounts">信息</string>
+
+    <string name="permission_phone">状态</string>
+
+    <string name="permission_location">定位</string>
+
+    <string name="permission_audio">录音</string>
+
      <string-array name="main_radio">
         <item>radio_index_1</item>
          <item>radio_index_3</item>

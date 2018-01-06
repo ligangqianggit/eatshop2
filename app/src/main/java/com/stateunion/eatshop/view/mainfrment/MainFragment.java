@@ -17,6 +17,7 @@ import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.stateunion.eatshop.R;
 import com.stateunion.eatshop.util.AppSessionEngine;
 import com.stateunion.eatshop.view.baseactivity.DingCanActivity;
+import com.stateunion.eatshop.view.baseactivity.PaiMIngActivity;
 import com.stateunion.eatshop.view.baseactivity.PingJIaActivity;
 import com.stateunion.eatshop.view.baseactivity.QuCanActivity;
 import com.stateunion.eatshop.view.baseactivity.TongGaoActivity;
@@ -32,7 +33,7 @@ import com.stateunion.eatshop.view.basefrment.BaseFragment;
 public class MainFragment extends BaseFragment {
   private Context context=null;
   private RollPagerView mRollViewPager;
-  private Button bt_main_tongji,bt_main_dingcan,bt_main_tuidan,bt_main_pingjia,bt_main_qucan,bt_main_shangchuan;
+  private Button bt_main_tongji,bt_main_dingcan,bt_main_tuidan,bt_main_pingjia,bt_main_qucan,bt_main_shangchuan,bt_main_paiming;
     @Override
     public int getLayoutId() {
         return R.layout.fragment_main;
@@ -121,14 +122,21 @@ public class MainFragment extends BaseFragment {
         }
       });
 
+      bt_main_paiming= (Button) rootView.findViewById(R.id.bt_main_paiming);
+      bt_main_paiming.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          Intent intent=new Intent(context, PaiMIngActivity.class);
+          startActivity(intent);
+        }
+      });
     }
   private class TestNormalAdapter extends StaticPagerAdapter {
     private int[] imgs = {
-            R.drawable.lunbo2,
-            R.drawable.lunbo2,
-            R.drawable.lunbo2,
+            R.drawable.bg_lunbo1,
+            R.drawable.bg_lunbo2,
+            R.drawable.bg_lunbo3,
     };
-
 
     @Override
     public View getView(ViewGroup container, int position) {
@@ -136,6 +144,13 @@ public class MainFragment extends BaseFragment {
       view.setImageResource(imgs[position]);
       view.setScaleType(ImageView.ScaleType.CENTER_CROP);
       view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+      view.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          Intent intent=new Intent(context,TongGaoActivity.class);
+          startActivity(intent);
+        }
+      });
       return view;
     }
 

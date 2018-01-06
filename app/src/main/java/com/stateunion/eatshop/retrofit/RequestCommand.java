@@ -74,4 +74,11 @@ public class RequestCommand {
         Call call=getApi().yue(user_id);
         send(call,callback);
     }
+
+    //历史订单
+    public static void getHistoryList(RequestCallback callback, String user_id){
+        Call call=getApi().history(user_id);
+        send(call,callback);
+    }
+
 }

@@ -122,12 +122,18 @@ public interface ServiceApi {
     Call<BaseBean> xiugaizilaio(@Field("user_id") String user_id, @Field("touxiang")File file, @Field("phone") String phone,
                                 @Field("zhuzhi") String zhuzhi);
 
-
     /**
      * 获取余额
      * @param user_id 用户工号
      */
     @POST("yue")
     @FormUrlEncoded
-    Call<YueBean> yue(@Field("user_id") String user_id);
+     Call<YueBean> yue(@Field("user_id") String user_id);
+
+    /**
+     * 历史订单
+      */
+    @POST("dinglist")
+    @FormUrlEncoded
+    Call<BaseBean> history(@Field("user_id") String user_id);
 }

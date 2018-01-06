@@ -37,6 +37,7 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
     private Button btLogOut;
     private boolean isAlive =false;
     public static ImageView iv_preson_touxiang;
+    public static String url,shengri;
     @Override
     public int getLayoutId() {
         return R.layout.frag_preson;
@@ -53,6 +54,10 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, ZiLiaoActivity.class);
+                intent.putExtra("imageurl",url);
+                intent.putExtra("shengri",shengri);
+                intent.putExtra("phone",tv_preson_phone.getText().toString());
+                intent.putExtra("zhuzhi",tv_preson_location.getText().toString());
                 startActivity(intent);
             }
         });
@@ -120,8 +125,10 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
             tv_preson_location.setText(personInfoBean.getBody().getZhuzhi());
             tv_preson_yue.setText("余额："+personInfoBean.getBody().getYumoney());
             tv_preson_jifen.setText("积分："+personInfoBean.getBody().getJifen());
+            shengri=personInfoBean.getBody().getChusheng();
+
             //此处加载网络图片
-            String url="http://ceshi123.dns178.com/"+personInfoBean.getBody().getTouxiang();
+            url="http://ceshi123.dns178.com/"+personInfoBean.getBody().getTouxiang();
             Picasso.with(getAttachTarget().getContext()).
                     load(url).resize(200, 200).transform
                     (new CircleTransform()).into(iv_preson_touxiang);

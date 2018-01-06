@@ -31,7 +31,6 @@ public class HistoryActivity extends BaseActivity{
                HistoryActivity.this.finish();
             }
         });
-
         RequestCommand.getHistoryList(new HistoryCallback(this), AppSessionEngine.getLoginInfo().getGonghao().toString());
     }
     public class HistoryCallback extends DialogCallback<BaseBean,HistoryActivity>{
@@ -42,7 +41,6 @@ public class HistoryActivity extends BaseActivity{
         @Override
         protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
             super.onResponseSuccess(baseBean, call);
-
         }
     }
     @Override

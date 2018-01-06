@@ -7,6 +7,12 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.stateunion.eatshop.R;
+import com.stateunion.eatshop.retrofit.RequestCommand;
+import com.stateunion.eatshop.retrofit.bean.BaseBean;
+import com.stateunion.eatshop.retrofit.callback.DialogCallback;
+import com.stateunion.eatshop.util.AppSessionEngine;
+
+import retrofit2.Call;
 
 /**
  * Created by 青春 on 2017/12/13.
@@ -25,6 +31,19 @@ public class HistoryActivity extends BaseActivity{
                HistoryActivity.this.finish();
             }
         });
+
+        RequestCommand.getHistoryList(new HistoryCallback(this), AppSessionEngine.getLoginInfo().getGonghao().toString());
+    }
+    public class HistoryCallback extends DialogCallback<BaseBean,HistoryActivity>{
+
+        public HistoryCallback(HistoryActivity requestView) {
+            super(requestView);
+        }
+        @Override
+        protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
+            super.onResponseSuccess(baseBean, call);
+
+        }
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

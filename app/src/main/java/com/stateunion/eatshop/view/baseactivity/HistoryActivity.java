@@ -2,6 +2,7 @@ package com.stateunion.eatshop.view.baseactivity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,6 +11,7 @@ import com.stateunion.eatshop.R;
 import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
+import com.stateunion.eatshop.retrofit.entiity.HisttoryBean;
 import com.stateunion.eatshop.util.AppSessionEngine;
 
 import retrofit2.Call;
@@ -31,16 +33,18 @@ public class HistoryActivity extends BaseActivity{
                HistoryActivity.this.finish();
             }
         });
-        RequestCommand.getHistoryList(new HistoryCallback(this), AppSessionEngine.getLoginInfo().getGonghao().toString());
+        RequestCommand.getHistoryList(new HistoryCallback(this), "222222");
     }
-    public class HistoryCallback extends DialogCallback<BaseBean,HistoryActivity>{
+    public class HistoryCallback extends DialogCallback<HisttoryBean,HistoryActivity>{
 
         public HistoryCallback(HistoryActivity requestView) {
             super(requestView);
         }
+
         @Override
-        protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
-            super.onResponseSuccess(baseBean, call);
+        protected void onResponseSuccess(HisttoryBean histtoryBean, Call<HisttoryBean> call) {
+            super.onResponseSuccess(histtoryBean, call);
+            Log.d("我chengg",histtoryBean.getBody().get(0).getGoods().get(0).getFoot_name());
         }
     }
     @Override

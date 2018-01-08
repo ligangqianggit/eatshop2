@@ -21,12 +21,11 @@
             android:textColor="#fff"
             android:text="福利" />
     </RelativeLayout>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@drawable/bg_fuli"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        />
+   <WebView
+       android:id="@+id/web_fuli"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="@color/yemain_beijing"
+       >
+   </WebView>
 </LinearLayout>

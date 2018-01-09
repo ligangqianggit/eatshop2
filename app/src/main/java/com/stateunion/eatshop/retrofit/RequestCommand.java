@@ -72,8 +72,7 @@ public class RequestCommand {
         send(call,callback);
     }
     //修改资料 文件
-    public static void Upziliaos(RequestCallback callback, String user_id, Map<String, RequestBody> files
-            , String phone, String zhuzhi,File file){
+    public static void Upziliaos(RequestCallback callback, String user_id, String phone, String zhuzhi,File file){
         Call call=getApi().xiugaizilaios(user_id,phone,zhuzhi,file);
         send(call,callback);
     }
@@ -86,6 +85,12 @@ public class RequestCommand {
     //历史订单
     public static void getHistoryList(RequestCallback callback, String user_id){
         Call call=getApi().history(user_id);
+        send(call,callback);
+    }
+
+    //余额支付
+    public static void YuePay(RequestCallback callback, String user_id,String allmoney){
+        Call call=getApi().yuepay(user_id,allmoney);
         send(call,callback);
     }
 

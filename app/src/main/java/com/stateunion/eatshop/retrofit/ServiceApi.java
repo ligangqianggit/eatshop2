@@ -138,7 +138,7 @@ public interface ServiceApi {
 
     @FormUrlEncoded
     @POST("xiugai")
-    Call<BaseBean> xiugaizilaios(@Field("user_id") String user_id,
+    Call<BaseBean> xiugaizilaios(@Field("gonghao") String user_id,
                                 @Field("phone") String phone,
                                 @Field("zhuzhi") String zhuzhi,
                                  @Field("touxiang") File touxiang
@@ -163,4 +163,13 @@ public interface ServiceApi {
     @POST("dinglist")
     @FormUrlEncoded
     Call<HisttoryBean> history(@Field("user_id") String user_id);
+
+    /**
+     * 余额支付
+     * @param user_id
+     *
+     */
+    @POST("yuezhifu")
+    @FormUrlEncoded
+    Call<BaseBean> yuepay(@Field("user_id") String user_id,@Field("allmoney") String allmoney);
 }

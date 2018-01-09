@@ -4,17 +4,26 @@ package com.stateunion.eatshop.retrofit;
 
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.entiity.DingCanBean;
+import com.stateunion.eatshop.retrofit.entiity.HisttoryBean;
 import com.stateunion.eatshop.retrofit.entiity.PersonInfoBean;
 import com.stateunion.eatshop.retrofit.entiity.UserInfoBean;
 import com.stateunion.eatshop.retrofit.entiity.YueBean;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.PartMap;
+import retrofit2.http.Query;
 
 /**
  * Created by zhangguozheng on 2017/8/23.
@@ -118,9 +127,27 @@ public interface ServiceApi {
      */
 
     @POST("xiugai")
+    @Multipart
+    Call<BaseBean> xiugaizilaio(@Query("user_id") String user_id,
+                                @Query("phone") String phone,
+                                @Query("zhuzhi") String zhuzhi,
+                                @Part("touxiang") RequestBody description,
+                                @Part MultipartBody.Part file
+//                                @Part("avatar\"; filename=\"avatar.jpg") RequestBody avatar
+                                );
+
     @FormUrlEncoded
-    Call<BaseBean> xiugaizilaio(@Field("user_id") String user_id, @Field("touxiang")File file, @Field("phone") String phone,
-                                @Field("zhuzhi") String zhuzhi);
+    @POST("xiugai")
+    Call<BaseBean> xiugaizilaios(@Field("user_id") String user_id,
+                                @Field("phone") String phone,
+                                @Field("zhuzhi") String zhuzhi,
+                                 @Field("touxiang") File touxiang
+
+                                 //@Part("avatar\"; filename=\"avatar.jpg") RequestBody avatar
+//                                  @PartMap() Map<String, RequestBody> files
+    );
+
+
 
     /**
      * 获取余额
@@ -135,5 +162,5 @@ public interface ServiceApi {
       */
     @POST("dinglist")
     @FormUrlEncoded
-    Call<BaseBean> history(@Field("user_id") String user_id);
+    Call<HisttoryBean> history(@Field("user_id") String user_id);
 }

@@ -164,9 +164,9 @@ public class upMenuDragment3 extends Fragment {
         takePhoneUtils.takePhoto();
     }
 
-    @PermissionSuccess(requestCode = TakePhone.REQ_SELECT_PHOTO)
+    @PermissionSuccess(requestCode = TakePhone.REQ_SELECT_PHOTO3)
     private void selectPhoto() {
-        takePhoneUtils.selectPhoto();
+        takePhoneUtils.selectPhoto(TakePhone.REQ_SELECT_PHOTO3);
     }
 
     @PermissionFail(requestCode = TakePhone.REQ_TAKE_PHOTO)
@@ -174,7 +174,7 @@ public class upMenuDragment3 extends Fragment {
         showDialog();
     }
 
-    @PermissionFail(requestCode = TakePhone.REQ_SELECT_PHOTO)
+    @PermissionFail(requestCode = TakePhone.REQ_SELECT_PHOTO3)
     private void showTip2() {
         showDialog();
     }

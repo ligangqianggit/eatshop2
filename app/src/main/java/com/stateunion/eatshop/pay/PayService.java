@@ -22,6 +22,8 @@ import com.stateunion.eatshop.retrofit.entiity.YueBean;
 import com.stateunion.eatshop.util.AppSessionEngine;
 import com.stateunion.eatshop.view.baseactivity.BaseActivity;
 import com.stateunion.eatshop.view.baseactivity.PayJieGuoActivity;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.List;
 
@@ -164,8 +166,8 @@ public class PayService extends BaseActivity{
 //              default:
 //                  break;
 //          }
-        }
-    };
+          }
+      };
 
     private void payWithZFB() {
         ZFBPayUtil zfb = new ZFBPayUtil();
@@ -174,11 +176,11 @@ public class PayService extends BaseActivity{
 
     private void payWithWX() {
         WXPayUtil pay = new WXPayUtil();
-        //        pay.payWX(getApplicationContext(), (int) f + "", ss[type], wxorder, msgApi);
+ //        pay.payWX(getApplicationContext(), (int) f + "", ss[type], wxorder, msgApi);
     }
 
 
     public void callWXPayFailure() {
 
-    }
+     }
 }

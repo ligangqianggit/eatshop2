@@ -4,7 +4,10 @@ import com.stateunion.eatshop.retrofit.callback.RequestCallback;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 
 /**
@@ -64,11 +67,16 @@ public class RequestCommand {
     }
 
     //修改资料
-    public static void Upziliao(RequestCallback callback, String user_id, File file,String phone, String zhuzhi){
-        Call call=getApi().xiugaizilaio(user_id,file,phone,zhuzhi);
+    public static void Upziliao(RequestCallback callback, String user_id, MultipartBody.Part file, String phone, String zhuzhi,RequestBody description){
+        Call call=getApi().xiugaizilaio(user_id,phone,zhuzhi,description,file);
         send(call,callback);
     }
-
+    //修改资料 文件
+    public static void Upziliaos(RequestCallback callback, String user_id, Map<String, RequestBody> files
+            , String phone, String zhuzhi,File file){
+        Call call=getApi().xiugaizilaios(user_id,phone,zhuzhi,file);
+        send(call,callback);
+    }
     //获取余额
     public static void getYue(RequestCallback callback, String user_id){
         Call call=getApi().yue(user_id);

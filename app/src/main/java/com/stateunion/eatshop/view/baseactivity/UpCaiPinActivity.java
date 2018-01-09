@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.stateunion.eatshop.R;
 import com.stateunion.eatshop.adapter.UpMenuFragmentAdapter;
 import com.stateunion.eatshop.util.TakePhone;
+import com.stateunion.eatshop.view.basefrment.BaseFragmentActivity;
 import com.stateunion.eatshop.view.mainfrment.UpMenuDragment;
 import com.stateunion.eatshop.view.mainfrment.UpMenuDragment1;
 import com.stateunion.eatshop.view.mainfrment.upMenuDragment2;
@@ -45,7 +47,7 @@ import kr.co.namee.permissiongen.PermissionSuccess;
  * Created by 青春 on 2017/12/21.
  */
 
-public class UpCaiPinActivity extends BaseActivity {
+public class UpCaiPinActivity extends FragmentActivity {
 
     private TabLayout projectTabLayout;
     private List<String> listString;//title
@@ -87,7 +89,25 @@ public class UpCaiPinActivity extends BaseActivity {
 //        two = projectTabLayout.getTabAt(1);
 
     }
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("lailema","sssssssss"+requestCode+data.getAction());
+        super.onActivityResult(requestCode,resultCode,data);
+        switch (requestCode){
+            case TakePhone.REQ_SELECT_PHOTO:
+                UpMenuDragment.takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
+                break;
+            case TakePhone.REQ_SELECT_PHOTO1:
+                UpMenuDragment1.takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
+                break;
+            case TakePhone.REQ_SELECT_PHOTO2:
+                UpMenuDragment.takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
+                break;
+            case TakePhone.REQ_SELECT_PHOTO3:
+                UpMenuDragment.takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
+                break;
+        }
+        }
 
 
 }

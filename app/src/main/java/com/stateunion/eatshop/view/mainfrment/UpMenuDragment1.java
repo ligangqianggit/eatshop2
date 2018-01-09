@@ -54,7 +54,7 @@ public class UpMenuDragment1 extends Fragment {
 
 
     private TimeSelector timeSelector;
-    private TakePhone takePhoneUtils;
+    public static TakePhone takePhoneUtils;
 
 
     @Override
@@ -77,7 +77,7 @@ public class UpMenuDragment1 extends Fragment {
         switch (view.getId()) {
             case R.id.img_food:
                 PermissionGen.with(UpMenuDragment1.this)
-                        .addRequestCode(TakePhone.REQ_TAKE_PHOTO)
+                        .addRequestCode(TakePhone.REQ_SELECT_PHOTO1)
                         .permissions(Manifest.permission.READ_EXTERNAL_STORAGE,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                 Manifest.permission.CAMERA
@@ -164,9 +164,9 @@ public class UpMenuDragment1 extends Fragment {
         takePhoneUtils.takePhoto();
     }
 
-    @PermissionSuccess(requestCode = TakePhone.REQ_SELECT_PHOTO)
+    @PermissionSuccess(requestCode = TakePhone.REQ_SELECT_PHOTO1)
     private void selectPhoto() {
-        takePhoneUtils.selectPhoto();
+        takePhoneUtils.selectPhoto(TakePhone.REQ_SELECT_PHOTO1);
     }
 
     @PermissionFail(requestCode = TakePhone.REQ_TAKE_PHOTO)
@@ -174,7 +174,7 @@ public class UpMenuDragment1 extends Fragment {
         showDialog();
     }
 
-    @PermissionFail(requestCode = TakePhone.REQ_SELECT_PHOTO)
+    @PermissionFail(requestCode = TakePhone.REQ_SELECT_PHOTO1)
     private void showTip2() {
         showDialog();
     }

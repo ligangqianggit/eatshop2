@@ -10,6 +10,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,7 @@ public class UpMenuDragment extends Fragment {
 
 
     private TimeSelector timeSelector;
-    private TakePhone takePhoneUtils;
+    public static TakePhone takePhoneUtils;
 
 
     @Override
@@ -120,6 +121,7 @@ public class UpMenuDragment extends Fragment {
             public void onFinish(File outputFile, Uri outputUri) {
                 // 4、当拍照或从图库选取图片成功后回调
                 Glide.with(UpMenuDragment.this).load(outputUri).into(imgFood);
+                Log.d("aaaa",outputFile.getAbsolutePath()+"[[[["+outputFile.toString());
             }
         }, false);//true裁剪，false不裁剪
 
@@ -132,7 +134,7 @@ public class UpMenuDragment extends Fragment {
 
     @PermissionSuccess(requestCode = TakePhone.REQ_SELECT_PHOTO)
     private void selectPhoto() {
-        takePhoneUtils.selectPhoto();
+        takePhoneUtils.selectPhoto(TakePhone.REQ_SELECT_PHOTO);
     }
 
     @PermissionFail(requestCode = TakePhone.REQ_TAKE_PHOTO)
@@ -150,6 +152,22 @@ public class UpMenuDragment extends Fragment {
         PermissionGen.onRequestPermissionsResult(UpMenuDragment.this, requestCode, permissions, grantResults);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("lailema","ooooo"+requestCode);
+
+        switch (requestCode){
+            case TakePhone.REQ_SELECT_PHOTO://该结果码与FragmentActivity中是保持一致的
+                //在这里获取你需要的数据
+                takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
+                 break;
+            case 2:
+
+                break;
+
+        }
+    }
+
     public static Fragment newInstance() {
         return new UpMenuDragment();
     }
@@ -159,7 +177,7 @@ public class UpMenuDragment extends Fragment {
         switch (view.getId()) {
             case R.id.img_food:
                 PermissionGen.with(UpMenuDragment.this)
-                        .addRequestCode(TakePhone.REQ_TAKE_PHOTO)
+                        .addRequestCode(TakePhone.REQ_SELECT_PHOTO)
                         .permissions(Manifest.permission.READ_EXTERNAL_STORAGE,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                 Manifest.permission.CAMERA
@@ -184,6 +202,7 @@ public class UpMenuDragment extends Fragment {
                 timeSelector.show();
                 break;
             case R.id.bt_upfood:
+
                 break;
         }
     }

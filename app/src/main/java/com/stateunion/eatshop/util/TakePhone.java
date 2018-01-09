@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import java.io.File;
@@ -20,7 +21,11 @@ import java.io.File;
 
 public class TakePhone {
     public static final int REQ_TAKE_PHOTO = 10001;
-    public static final int REQ_SELECT_PHOTO = 10002;
+    public static final int REQ_SELECT_PHOTO = 10002;//早餐
+    public static final int REQ_SELECT_PHOTO1 = 10004;//中午
+    public static final int REQ_SELECT_PHOTO2 = 10005;//晚上
+    public static final int REQ_SELECT_PHOTO3 = 10006;//加班
+
     public static final int REQ_ZOOM_PHOTO = 10003;
 
     private Activity mActivity;
@@ -39,7 +44,8 @@ public class TakePhone {
     private int mOutputX = 800;
     private int mOutputY = 480;
     PhotoSelectListener mListener;
-
+    Fragment fragment;
+    Context context;
     /**
      * 可指定是否在拍照或从图库选取照片后进行裁剪
      * <p>
@@ -55,9 +61,20 @@ public class TakePhone {
         mShouldCrop = shouldCrop;
         AUTHORITIES = activity.getPackageName() + ".fileprovider";
         imgPath = generateImgePath();
-        Log.d("进来了 其实","aaaaaaaaaa");
-    }
+        context=activity;
+        Log.d("=======++++++","activiry");
 
+    }
+    public TakePhone(Fragment fragment, PhotoSelectListener listener, boolean shouldCrop) {
+        this.fragment = fragment;
+        mListener = listener;
+        mShouldCrop = shouldCrop;
+        AUTHORITIES = fragment.getActivity().getPackageName() + ".fileprovider";
+        imgPath = generateImgePath();
+        context=fragment.getActivity();
+        Log.d("=======++++++","fargemnt");
+
+    }
     /**
      * 可以拍照或从图库选取照片后裁剪的比例及宽高
      *
@@ -74,6 +91,8 @@ public class TakePhone {
         mAspectY = aspectY;
         mOutputX = outputX;
         mOutputY = outputY;
+        Log.d("=======++++++","来了吗");
+
     }
 
     /**
@@ -133,10 +152,15 @@ public class TakePhone {
     /**
      * 从图库获取
      */
-    public void selectPhoto() {
+    public void selectPhoto(int a) {
         Intent intent = new Intent(Intent.ACTION_PICK, null);
         intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-        mActivity.startActivityForResult(intent, REQ_SELECT_PHOTO);
+        if(null!=fragment){
+            Log.d("==============","aaaa");
+            fragment.startActivityForResult(intent, a);
+        }else {
+            mActivity.startActivityForResult(intent, a);
+        }
     }
 
     private void zoomPhoto(File inputFile, File outputFile) {
@@ -185,6 +209,28 @@ public class TakePhone {
                     }
                     break;
                 case TakePhone.REQ_SELECT_PHOTO://图库
+                    if (data != null) {
+                        Uri sourceUri = data.getData();
+                        String[] proj = {MediaStore.Images.Media.DATA};
+                        Cursor cursor = mActivity.managedQuery(sourceUri, proj, null, null, null);
+                        int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                        cursor.moveToFirst();
+                        String imgPath = cursor.getString(columnIndex);
+                        mInputFile = new File(imgPath);
+
+                        if (mShouldCrop) {//裁剪
+                            mOutputFile = new File(generateImgePath());
+                            mOutputUri = Uri.fromFile(mOutputFile);
+                            zoomPhoto(mInputFile, mOutputFile);
+                        } else {//不裁剪
+                            mOutputUri = Uri.fromFile(mInputFile);
+                            if (mListener != null) {
+                                mListener.onFinish(mInputFile, mOutputUri);
+                            }
+                        }
+                    }
+                    break;
+                case TakePhone.REQ_SELECT_PHOTO1://图库
                     if (data != null) {
                         Uri sourceUri = data.getData();
                         String[] proj = {MediaStore.Images.Media.DATA};
@@ -264,11 +310,12 @@ public class TakePhone {
      * 获取SD下的应用目录
      */
     private String getExternalStoragePath() {
+        String ROOT_DIR;
         StringBuilder sb = new StringBuilder();
         sb.append(Environment.getExternalStorageDirectory().getAbsolutePath());
         sb.append(File.separator);
-        String ROOT_DIR = "Android/data/" + mActivity.getPackageName();
-        sb.append(ROOT_DIR);
+         ROOT_DIR= "Android/data/" + mActivity.getPackageName();
+         sb.append(ROOT_DIR);
         sb.append(File.separator);
         return sb.toString();
     }
@@ -276,4 +323,5 @@ public class TakePhone {
     public interface PhotoSelectListener {
         void onFinish(File outputFile, Uri outputUri);
     }
+
 }

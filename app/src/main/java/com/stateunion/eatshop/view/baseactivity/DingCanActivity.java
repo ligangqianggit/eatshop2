@@ -83,6 +83,7 @@ public class DingCanActivity extends BaseActivity {
     private List<GoodsBean> list7 = new ArrayList<GoodsBean>();
 
 
+    public List<DiangCanEntity> zaolist=new ArrayList<>();
 
 
 
@@ -96,23 +97,22 @@ public class DingCanActivity extends BaseActivity {
         setContentView(R.layout.activity_diancan);
         myApp = (ProjectApplication) getApplicationContext();
         mHanlder = new Handler(getMainLooper());
+        getdingcaninfo();
+
         initView();
-        initData();
-        addListener();
+         addListener();
         ll_shopcar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showBottomSheet();
             }
         });
-        getdingcaninfo();
     }
     private void getdingcaninfo(){
         RequestCommand.getDingCanInfo(new DingcaninfoCallBack(this),"1");
     }
 
-    public static class DingcaninfoCallBack extends DialogCallback<DingCanBean,DingCanActivity>{
-        public List<DiangCanEntity> zaolist=new ArrayList<>();
+    public  class DingcaninfoCallBack extends DialogCallback<DingCanBean,DingCanActivity>{
 
         public DingcaninfoCallBack(DingCanActivity requestView) {
             super(requestView);
@@ -121,8 +121,9 @@ public class DingCanActivity extends BaseActivity {
         protected void onResponseSuccess(DingCanBean dingcanBean, Call<DingCanBean> call) {
             super.onResponseSuccess(dingcanBean, call);
             Log.v("eatshop","====================="+dingcanBean.getBody());
-            zaolist=dingcanBean.getBody();
+            zaolist.addAll(dingcanBean.getBody());
             Log.v("eatshop","====================="+zaolist);
+            initData();
         }
     }
 
@@ -166,15 +167,15 @@ public class DingCanActivity extends BaseActivity {
 
     //填充数据
     private void initData() {
-        //商品
-        for (int j=30;j<45;j++){
+         //商品
+        for (int j=0;j<zaolist.size();j++){
             GoodsBean goodsBean = new GoodsBean();
-            goodsBean.setTitle("油条"+j);
+            goodsBean.setTitle(zaolist.get(j).getFoot_name());
             goodsBean.setProduct_id(j);
             goodsBean.setCategory_id(j);
-            goodsBean.setIcon("https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=23b5fe8364061d95694b3f6a1a9d61b4/0b46f21fbe096b637c90d9eb06338744eaf8ac84.jpg");
+            goodsBean.setIcon(zaolist.get(j).getFoodtupian());
             goodsBean.setOriginal_price("200");
-            goodsBean.setPrice("100");
+            goodsBean.setPrice(zaolist.get(j).getJiage());
             list3.add(goodsBean);
         }
 

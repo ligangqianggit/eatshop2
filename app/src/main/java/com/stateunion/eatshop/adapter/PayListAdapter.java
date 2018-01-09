@@ -46,17 +46,17 @@ public class PayListAdapter extends BaseAdapter{
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
-        final PayListAdapter.Viewholder viewholder;
+        final Viewholder viewholder;
         if (view == null) {
             view = LayoutInflater.from(payService).inflate(R.layout.pay_item, null);
-            viewholder = new PayListAdapter.Viewholder();
+            viewholder = new Viewholder();
             viewholder.tv_name = (TextView) view.findViewById(R.id.tv_pay_name);
             viewholder.tv_price = (TextView) view.findViewById(R.id.tv_pay_price);
             viewholder.tv_count= (TextView) view.findViewById(R.id.tv_pay_count);
 
             view.setTag(viewholder);
         } else {
-            viewholder = (PayListAdapter.Viewholder) view.getTag();
+            viewholder = (Viewholder) view.getTag();
         }
         StringUtils.filtNull(viewholder.tv_name,dataList.valueAt(position).getTitle());//商品名称
         StringUtils.filtNull(viewholder.tv_price,"￥"+dataList.valueAt(position).getPrice());//商品价格

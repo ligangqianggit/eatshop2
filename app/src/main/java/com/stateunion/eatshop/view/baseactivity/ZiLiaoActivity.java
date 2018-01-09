@@ -138,14 +138,14 @@ public class ZiLiaoActivity extends BaseActivity {
 //                .setType(MultipartBody.FORM)//表单类型
 //                ;//ParamKey.TOKEN 自定义参数key常量类，即参数名
         Log.d("file",outputFiles+"");
+        Log.v("eatshop",file.length()+"===========");
         RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
 //
 //        List<MultipartBody.Part> parts = builder.build().parts();
         Map<String,RequestBody > map=new HashMap<>();
         map.put("touxiang",imageBody);
 
-        RequestCommand.Upziliaos(new ChangeUserInfoCallback(this),AppSessionEngine.getgonghao(),map,ed_ziliao_phone.getText().toString(),
-                ed_ziliao_dizhi.getText().toString(),file);
+        RequestCommand.Upziliaos(new ChangeUserInfoCallback(this),AppSessionEngine.getgonghao().toString(),ed_ziliao_phone.getText().toString(), ed_ziliao_dizhi.getText().toString(),file);
     }
 
    public static class ChangeUserInfoCallback extends DialogCallback<BaseBean,ZiLiaoActivity>{

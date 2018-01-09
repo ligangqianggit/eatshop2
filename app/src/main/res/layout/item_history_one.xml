@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_history_diangdanhao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="订单号:201712071800"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/size_14" />
+
+        <TextView
+            android:id="@+id/tv_history_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tv_history_diangdanhao"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:text="2017-12-08 12:10"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/size_14" />
+
+        <TextView
+            android:id="@+id/tv_history_xian1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tv_history_time"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/yemain_beijing" />
+        <ListView
+            android:id="@+id/list_item_history"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_history_xian1"
+            >
+        </ListView>
+        <TextView
+            android:id="@+id/tv_history_xian2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/list_item_history"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/yemain_beijing" />
+
+
+        <TextView
+            android:id="@+id/tv_history_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_history_xian2"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:text="金额:5元"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_size_18" />
+    </RelativeLayout>
+</LinearLayout>

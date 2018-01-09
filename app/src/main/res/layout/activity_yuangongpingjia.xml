@@ -21,7 +21,7 @@
             android:text="发表评价" />
 
         <ImageView
-            android:id="@+id/iv_yaodian_back"
+            android:id="@+id/iv_yuangongpingjia_back"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
@@ -29,4 +29,10 @@
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_back_white" />
     </RelativeLayout>
+    <ListView
+        android:id="@+id/list_yuangongpingjia"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
 </LinearLayout>

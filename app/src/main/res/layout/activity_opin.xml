@@ -36,12 +36,14 @@
         android:background="@color/gray_txt">
 
         <EditText
-
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             android:id="@+id/er_opin"
             android:textColor="@color/black"
+            android:gravity="left|top"
+            android:inputType="textMultiLine"
+            android:minLines="6"
             />
 
         <Button

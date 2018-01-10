@@ -8,6 +8,7 @@ import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.entiity.DingCanBean;
 import com.stateunion.eatshop.retrofit.entiity.HisttoryBean;
 import com.stateunion.eatshop.retrofit.entiity.PersonInfoBean;
+import com.stateunion.eatshop.retrofit.entiity.PostOrderBean;
 import com.stateunion.eatshop.retrofit.entiity.UserInfoBean;
 import com.stateunion.eatshop.retrofit.entiity.YueBean;
 
@@ -92,7 +93,7 @@ public interface ServiceApi {
     @POST("dingdan")
     @FormUrlEncoded
     Call<BaseBean> goPay(@Field("pay_time") String pay_time,@Field("pay_lei") String pay_lei,
-                       @Field("all_money") String all_money, @Field("list") List<String> list);
+                       @Field("all_money") String all_money, @Field("list") List<PostOrderBean> list);
 
     /**
      * 个人中心接口

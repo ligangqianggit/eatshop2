@@ -216,7 +216,7 @@ public class DingCanActivity extends BaseActivity {
         for (int j=0;j<zaolist.size();j++){
                  GoodsBean goodsBean = new GoodsBean();
                 goodsBean.setTitle(zaolist.get(4).getZao().get(0).getFoot_name());
-                goodsBean.setProduct_id(4);
+                goodsBean.setProduct_id(zaolist.get(4).getZao().get(0).getId());
                 goodsBean.setCategory_id(4);
                 goodsBean.setIcon(zaolist.get(4).getZao().get(0).getFoodtupian());
                 goodsBean.setOriginal_price("200");

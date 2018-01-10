@@ -1,6 +1,7 @@
 package com.stateunion.eatshop.retrofit;
 
 import com.stateunion.eatshop.retrofit.callback.RequestCallback;
+import com.stateunion.eatshop.retrofit.entiity.PostOrderBean;
 
 import java.io.File;
 import java.util.List;
@@ -44,7 +45,7 @@ public class RequestCommand {
         Call call=getApi().getdingcaninfo(type);
         send(call,callback);
     }
-    public static void zhifujiekou(RequestCallback callback, String pay_time, String pay_lei, String all_money, List<String> list){
+    public static void zhifujiekou(RequestCallback callback, String pay_time, String pay_lei, String all_money, List<PostOrderBean> list){
         Call call=getApi().goPay(pay_time,pay_lei,all_money,list);
         send(call,callback);
     }

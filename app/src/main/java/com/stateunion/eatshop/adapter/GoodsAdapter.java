@@ -74,7 +74,6 @@ public class GoodsAdapter extends BaseAdapter {
         viewholder.tv_dingcan_mes.setText("此处是mes");
         viewholder.tv_dingcan_price.setText("￥"+list.get(position).getPrice());
 
-
         if(list.get(position)!=null){
         //默认进来数量
             if (list.get(position).getNum()<1){

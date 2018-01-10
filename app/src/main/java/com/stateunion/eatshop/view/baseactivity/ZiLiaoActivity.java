@@ -43,6 +43,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
 
 /**
  * Created by 青春 on 2018/1/1.
@@ -138,14 +139,22 @@ public class ZiLiaoActivity extends BaseActivity {
 //                .setType(MultipartBody.FORM)//表单类型
 //                ;//ParamKey.TOKEN 自定义参数key常量类，即参数名
         Log.d("file",outputFiles+"");
-        Log.v("eatshop",file.length()+"===========");
-        RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-//
-//        List<MultipartBody.Part> parts = builder.build().parts();
-        Map<String,RequestBody > map=new HashMap<>();
-        map.put("touxiang",imageBody);
+         RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                 .addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("image/png"), file))
+                 .build();
+        requestBody =RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        Map<String, String> params=new HashMap<String, String>();
+        Map<String, RequestBody> files=new HashMap<String, RequestBody>();
+        params.put("phone","13212121");
+        params.put("zhuzhi","121212");
+        params.put("gonghao","222222");
+        files.put("touxiang",requestBody);
+ //        RequestCommand.Upziliaoss(new ChangeUserInfoCallback(this),params,body);
 
-        RequestCommand.Upziliaos(new ChangeUserInfoCallback(this),AppSessionEngine.getgonghao().toString(),ed_ziliao_phone.getText().toString(), ed_ziliao_dizhi.getText().toString(),file);
+        RequestCommand.cesgi(new ChangeUserInfoCallback(this),"a","b","c",files);
+//        RequestCommand.Upziliaos(new ChangeUserInfoCallback(this),AppSessionEngine.getgonghao(),map,ed_ziliao_phone.getText().toString(),
+//                ed_ziliao_dizhi.getText().toString(),file);
     }
 
    public static class ChangeUserInfoCallback extends DialogCallback<BaseBean,ZiLiaoActivity>{

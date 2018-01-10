@@ -55,7 +55,8 @@ public class HistoryListAdapter extends BaseAdapter{
             zujian.tv_history_time= (TextView) view.findViewById(R.id.tv_history_time);
             zujian.tv_history_money= (TextView) view.findViewById(R.id.tv_history_money);
             zujian.list_item_history= (ListView) view.findViewById(R.id.list_item_history);
-            zujian.tv_history_diangdanhao.setText("订单号:"+historyInfo.get(i).getOrder_sn());
+            zujian.tv_history_diangdanhao.setText("订单号:"+historyInfo.get(i)
+                    .getOrder_sn());
             zujian.tv_history_time.setText(DateUtil.timedate(historyInfo.get(i).getPay_time()));
             historyListItemAdapter=new HistoryListItemAdapter(historyInfo.get(i).getGoods(),context);
             zujian.list_item_history.setAdapter(historyListItemAdapter);

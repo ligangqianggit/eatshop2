@@ -76,6 +76,16 @@ public class RequestCommand {
         Call call=getApi().xiugaizilaios(user_id,phone,zhuzhi,file);
         send(call,callback);
     }
+    //修改资料 文件
+    public static void Upziliaoss(RequestCallback callback,Map<String, String> params,MultipartBody.Part files){
+        Call call=getApi().doFeedback(params,files);
+        send(call,callback);
+    }
+    //获取余额
+    public static void cesgi(RequestCallback callback, String a,String b,String c,Map<String, RequestBody> files){
+        Call call=getApi().ces(a,b,c,files);
+        send(call,callback);
+    }
     //获取余额
     public static void getYue(RequestCallback callback, String user_id){
         Call call=getApi().yue(user_id);

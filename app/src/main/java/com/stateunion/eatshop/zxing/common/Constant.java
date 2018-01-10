@@ -25,5 +25,21 @@ public class Constant {
 
     public static final String INTENT_ZXING_CONFIG = "zxingConfig";
 
+    /**
+     * @author Richie on 2017.07.31
+     *         常量类
+     */
+         public static final String[] BOOKS = {"周一", "周二", "周三","周四","周五"};
+        public static final String[][] FIGURES = {
+                {"早餐", "午餐", "晚餐", "加班"},
+                {"早餐", "午餐", "晚餐", "加班"},
+                {"早餐", "午餐", "晚餐", "加班"},
+                {"早餐", "午餐", "晚餐", "加班"},
+                {"早餐", "午餐", "晚餐", "加班"}
 
+
+        };
+
+        public static final String BOOK_NAME = "book_name";
+        public static final String FIGURE_NAME = "figure_name";
 }

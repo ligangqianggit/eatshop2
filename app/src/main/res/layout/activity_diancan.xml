@@ -141,7 +141,7 @@
                 android:background="@color/white"
                 android:orientation="horizontal">
 
-                <ListView
+                <ExpandableListView
                     android:id="@+id/list_catogary"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
@@ -151,7 +151,7 @@
                     android:dividerHeight="1dp"
                     >
 
-                </ListView>
+                </ExpandableListView>
                 <ListView
                     android:id="@+id/list_good"
                     android:layout_width="0dp"

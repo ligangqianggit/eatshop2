@@ -2,6 +2,8 @@ package com.stateunion.eatshop.retrofit;
 
 
 
+import android.database.Observable;
+
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.entiity.DingCanBean;
 import com.stateunion.eatshop.retrofit.entiity.HisttoryBean;
@@ -24,6 +26,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 /**
  * Created by zhangguozheng on 2017/8/23.
@@ -147,7 +150,15 @@ public interface ServiceApi {
 //                                  @PartMap() Map<String, RequestBody> files
     );
 
+    @Multipart
+    @POST("xiugai")
+    Call<BaseBean> doFeedback(@QueryMap() Map<String, String> params,
+                                    @Part() MultipartBody.Part part);
 
+    @POST("xiugai")
+    @FormUrlEncoded
+    Call<BaseBean> ces(@Field("phone") String user_id,@Field("zhuzhi") String oldpassword,
+                             @Field("gonghao") String newpassword,@PartMap Map<String, RequestBody> files);
 
     /**
      * 获取余额

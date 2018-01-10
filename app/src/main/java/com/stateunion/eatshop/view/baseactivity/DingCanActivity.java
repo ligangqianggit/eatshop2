@@ -16,6 +16,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -28,6 +29,8 @@ import com.stateunion.eatshop.R;
 import com.stateunion.eatshop.adapter.CatograyAdapter;
 import com.stateunion.eatshop.adapter.GoodsAdapter;
 import com.stateunion.eatshop.adapter.GoodsDetailAdapter;
+import com.stateunion.eatshop.adapter.NormalExpandableListAdapter;
+import com.stateunion.eatshop.adapter.OnGroupExpandedListener;
 import com.stateunion.eatshop.adapter.ProductAdapter;
 import com.stateunion.eatshop.application.ProjectApplication;
 import com.stateunion.eatshop.bean.CatograyBean;
@@ -41,6 +44,7 @@ import com.stateunion.eatshop.retrofit.entiity.DiangCanEntity;
 import com.stateunion.eatshop.retrofit.entiity.DingCanBean;
 import com.stateunion.eatshop.retrofit.view.IBaseDialogView;
 import com.stateunion.eatshop.util.LoginHelp;
+import com.stateunion.eatshop.zxing.common.Constant;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -81,9 +85,13 @@ public class DingCanActivity extends BaseActivity {
     private List<GoodsBean> list5 = new ArrayList<GoodsBean>();
     private List<GoodsBean> list6 = new ArrayList<GoodsBean>();
     private List<GoodsBean> list7 = new ArrayList<GoodsBean>();
+    private ExpandableListView mExpandableListView;
 
 
     public List<DiangCanEntity> zaolist=new ArrayList<>();
+    private List<DiangCanEntity> getZaolist = new ArrayList<DiangCanEntity>();
+    private List<DiangCanEntity> getWulist = new ArrayList<DiangCanEntity>();
+    private List<DiangCanEntity> getWanlist = new ArrayList<DiangCanEntity>();
 
 
 
@@ -120,10 +128,11 @@ public class DingCanActivity extends BaseActivity {
         @Override
         protected void onResponseSuccess(DingCanBean dingcanBean, Call<DingCanBean> call) {
             super.onResponseSuccess(dingcanBean, call);
-            Log.v("eatshop","====================="+dingcanBean.getBody());
-            zaolist.addAll(dingcanBean.getBody());
-            Log.v("eatshop","====================="+zaolist);
+             zaolist.addAll(dingcanBean.getBody());
+            Log.d("aaaa",dingcanBean.getBody().size()+"changdu"+zaolist.size());
+
             initData();
+            initEm();
         }
     }
 
@@ -136,7 +145,7 @@ public class DingCanActivity extends BaseActivity {
                 DingCanActivity.this.finish();
             }
         });
-        lv_catogary = (ListView) findViewById(R.id.list_catogary);
+        mExpandableListView = (ExpandableListView) findViewById(R.id.list_catogary);
         lv_good = (ListView) findViewById(R.id.list_good);
         tv_car = (TextView) findViewById(R.id.tv_car);
         //底部控件
@@ -164,19 +173,56 @@ public class DingCanActivity extends BaseActivity {
         selectedList = new SparseArray<>();
         df = new DecimalFormat("0.00");
     }
+    private void initEm(){
+        final NormalExpandableListAdapter adapter = new NormalExpandableListAdapter(Constant.BOOKS, Constant.FIGURES);
+        mExpandableListView.setAdapter(adapter);
+        adapter.setOnGroupExpandedListener(new OnGroupExpandedListener() {
+            @Override
+            public void onGroupExpanded(int groupPosition) {
+                expandOnlyOne(groupPosition);
+            }
+        });
+        //  设置分组项的点击监听事件
+        mExpandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                 // 请务必返回 false，否则分组不会展开
+                Log.d("fulei位置",groupPosition+"");
 
+                return false;
+            }
+        });
+
+        //  设置子选项点击监听事件
+        mExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Log.d("位置",groupPosition+"");
+                 list2.clear();
+                list2.addAll(list.get(childPosition).getList());
+                catograyAdapter.setSelection(childPosition);
+                catograyAdapter.notifyDataSetChanged();
+                goodsAdapter.notifyDataSetChanged();
+                 return true;
+            }
+        });
+
+    }
     //填充数据
     private void initData() {
-         //商品
+        Log.d("上批长度",zaolist.get(4).getZao().toString()+"");
+
+        //商品
         for (int j=0;j<zaolist.size();j++){
-            GoodsBean goodsBean = new GoodsBean();
-            goodsBean.setTitle(zaolist.get(j).getFoot_name());
-            goodsBean.setProduct_id(j);
-            goodsBean.setCategory_id(j);
-            goodsBean.setIcon(zaolist.get(j).getFoodtupian());
-            goodsBean.setOriginal_price("200");
-            goodsBean.setPrice(zaolist.get(j).getJiage());
-            list3.add(goodsBean);
+                 GoodsBean goodsBean = new GoodsBean();
+                goodsBean.setTitle(zaolist.get(4).getZao().get(0).getFoot_name());
+                goodsBean.setProduct_id(4);
+                goodsBean.setCategory_id(4);
+                goodsBean.setIcon(zaolist.get(4).getZao().get(0).getFoodtupian());
+                goodsBean.setOriginal_price("200");
+                goodsBean.setPrice(zaolist.get(4).getZao().get(0).getJiage());
+                list3.add(goodsBean);
+
         }
 
         //商品
@@ -264,7 +310,7 @@ public class DingCanActivity extends BaseActivity {
         list2.addAll(list.get(0).getList());
         //分类
         catograyAdapter = new CatograyAdapter(DingCanActivity.this, list);
-        lv_catogary.setAdapter(catograyAdapter);
+//        lv_catogary.setAdapter(catograyAdapter);
         catograyAdapter.notifyDataSetChanged();
         //商品
         goodsAdapter = new GoodsAdapter(DingCanActivity.this, list2, catograyAdapter);
@@ -275,18 +321,18 @@ public class DingCanActivity extends BaseActivity {
 
     //添加监听
     private void addListener() {
-        lv_catogary.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("fyg","list.get(position).getList():"+list.get(position).getList());
-                list2.clear();
-                list2.addAll(list.get(position).getList());
-                catograyAdapter.setSelection(position);
-                catograyAdapter.notifyDataSetChanged();
-                goodsAdapter.notifyDataSetChanged();
-
-            }
-        });
+//        lv_catogary.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Log.i("fyg","list.get(position).getList():"+list.get(position).getList());
+//                list2.clear();
+//                list2.addAll(list.get(position).getList());
+//                catograyAdapter.setSelection(position);
+//                catograyAdapter.notifyDataSetChanged();
+//                goodsAdapter.notifyDataSetChanged();
+//
+//            }
+//        });
     }
 
 
@@ -548,6 +594,18 @@ public class DingCanActivity extends BaseActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    // 每次展开一个分组后，关闭其他的分组
+    private boolean expandOnlyOne(int expandedPosition) {
+        boolean result = true;
+        int groupLength = mExpandableListView.getExpandableListAdapter().getGroupCount();
+        for (int i = 0; i < groupLength; i++) {
+            if (i != expandedPosition && mExpandableListView.isGroupExpanded(i)) {
+                result &= mExpandableListView.collapseGroup(i);
+            }
+        }
+        return result;
     }
 }
 

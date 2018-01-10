@@ -20,7 +20,13 @@ public class HisttoryBean extends BaseBean {
     }
 
     public class HistoryInfo{
-         private String pay_time;
+
+        private String pay_time;
+
+        private String order_sn;
+        private String all_money;
+        private int id;
+
 
         public String getPay_time() {
             return pay_time;
@@ -31,6 +37,7 @@ public class HisttoryBean extends BaseBean {
         }
         List<HistoryInfoBeanList> goods;
 
+
         public List<HistoryInfoBeanList> getGoods() {
             return goods;
         }
@@ -39,11 +46,37 @@ public class HisttoryBean extends BaseBean {
             this.goods = goods;
         }
 
-        public class HistoryInfoBeanList{
-                private String jiezhi;
-                private String  foot_name;
+        public String getOrder_sn() {
+            return order_sn;
+        }
 
-                public String getJiezhi() {
+        public void setOrder_sn(String order_sn) {
+            this.order_sn = order_sn;
+        }
+
+        public String getAll_money() {
+            return all_money;
+        }
+
+        public void setAll_money(String all_money) {
+            this.all_money = all_money;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public class HistoryInfoBeanList{
+            private String jiezhi;
+            private String  foot_name;
+            private String jiage;
+            private String goods_num;
+
+            public String getJiezhi() {
                     return jiezhi;
                 }
 
@@ -59,6 +92,21 @@ public class HisttoryBean extends BaseBean {
                     this.foot_name = foot_name;
                 }
 
+            public String getJiage() {
+                return jiage;
+            }
+
+            public void setJiage(String jiage) {
+                this.jiage = jiage;
+            }
+
+            public String getGoods_num() {
+                return goods_num;
+            }
+
+            public void setGoods_num(String goods_num) {
+                this.goods_num = goods_num;
+            }
         }
     }
 }

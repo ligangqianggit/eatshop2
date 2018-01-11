@@ -57,11 +57,23 @@
         android:textSize="@dimen/size_18"
         android:padding="8dp"
         android:textColor="@color/black"
+        android:inputType="textPassword"
+        />
+    <CheckBox
+        android:id="@+id/ck_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示密码"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_below="@+id/et_login_pws"
+        android:layout_alignRight="@+id/et_login_pws"
+        android:layout_marginTop="5dp"
         />
     <Button
         android:id="@+id/bt_login_submit"
-        android:layout_below="@+id/et_login_pws"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/ck_login"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="登录"

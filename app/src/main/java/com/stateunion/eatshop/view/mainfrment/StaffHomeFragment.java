@@ -14,6 +14,7 @@ import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.stateunion.eatshop.R;
 import com.stateunion.eatshop.view.baseactivity.DingCanActivity;
 import com.stateunion.eatshop.view.baseactivity.QuCanActivity;
+import com.stateunion.eatshop.view.baseactivity.TongGaoActivity;
 import com.stateunion.eatshop.view.basefrment.BaseFragment;
 
 /**
@@ -70,9 +71,9 @@ public class StaffHomeFragment extends BaseFragment{
     }
     private class TestNormalAdapter extends StaticPagerAdapter {
         private int[] imgs = {
-                R.drawable.lunbo2,
-                R.drawable.lunbo2,
-                R.drawable.lunbo2,
+                R.drawable.bg_lunbo1,
+                R.drawable.bg_lunbo2,
+                R.drawable.bg_lunbo3,
         };
 
 
@@ -82,6 +83,13 @@ public class StaffHomeFragment extends BaseFragment{
             view.setImageResource(imgs[position]);
             view.setScaleType(ImageView.ScaleType.CENTER_CROP);
             view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(context,TongGaoActivity.class);
+                    startActivity(intent);
+                }
+            });
             return view;
         }
 

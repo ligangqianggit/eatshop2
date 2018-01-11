@@ -99,6 +99,39 @@
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
         >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            >
+
+            <TextView
+                android:id="@+id/textView0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="员工点餐日期"
+                android:textColor="@color/gray"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_dingcantime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="11-18 09:30"
+                android:textColor="@color/gray"
+                android:textSize="20sp" />
+        </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:background="@color/gray" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

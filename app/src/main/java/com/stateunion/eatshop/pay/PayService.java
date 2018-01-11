@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -45,7 +46,7 @@ import static com.stateunion.eatshop.view.baseactivity.DingCanActivity.selectedL
  */
 
 public class PayService extends BaseActivity{
-    private ImageView zfbPay,wxPay;
+    private ImageView zfbPay,wxPay,iv_querendingdan_back;
     private RadioGroup radioGroup;
     public static RadioButton yue,zhifubao,weixin;
     private Button buyNow;
@@ -71,6 +72,13 @@ public class PayService extends BaseActivity{
     }
     private void init(){
         lv_product = (MyListView)findViewById(R.id.lv_pay);
+        iv_querendingdan_back= (ImageView) findViewById(R.id.iv_querendingdan_back);
+        iv_querendingdan_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PayService.this.finish();
+            }
+        });
         Log.v("eatshop","lv_product"+lv_product);
         Log.v("eatshop","selectedList"+selectedList);
         Log.v("eatshop","goodsAdapter"+goodsAdapter);
@@ -221,5 +229,12 @@ public class PayService extends BaseActivity{
             super.onResponseSuccess(baseBean, call);
         }
     }
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            this.finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

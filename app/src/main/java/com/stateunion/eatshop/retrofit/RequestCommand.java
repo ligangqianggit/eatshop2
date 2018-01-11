@@ -77,16 +77,16 @@ public class RequestCommand {
         Call call=getApi().xiugaizilaios(user_id,phone,zhuzhi,file);
         send(call,callback);
     }
-    //修改资料 文件
-    public static void Upziliaoss(RequestCallback callback,Map<String, String> params,MultipartBody.Part files){
-        Call call=getApi().doFeedback(params,files);
-        send(call,callback);
-    }
-    //获取余额
-    public static void cesgi(RequestCallback callback, String a,String b,String c,Map<String, RequestBody> files){
-        Call call=getApi().ces(a,b,c,files);
-        send(call,callback);
-    }
+//    //修改资料 文件
+//    public static void Upziliaoss(RequestCallback callback,Map<String, String> params,MultipartBody.Part files){
+//        Call call=getApi().doFeedback(params,files);
+//        send(call,callback);
+//    }
+//    //获取余额
+//    public static void cesgi(RequestCallback callback, String a,String b,String c,Map<String, RequestBody> files){
+//        Call call=getApi().ces(a,b,c,files);
+//        send(call,callback);
+//    }
     //获取余额
     public static void getYue(RequestCallback callback, String user_id){
         Call call=getApi().yue(user_id);
@@ -105,4 +105,30 @@ public class RequestCommand {
         send(call,callback);
     }
 
+
+    //历史订单详情
+    public static void getDDxiangqiang(RequestCallback callback, String user_id,String order_sn){
+        Call call=getApi().ddxiangqing(user_id,order_sn);
+        send(call,callback);
+    }
+
+
+    //取餐详情页
+    public static void getQucanxiangqing(RequestCallback callback, String user_id,String order,String shijianduan,String fenlei){
+        Call call=getApi().qucanmingxi(user_id,order,shijianduan,fenlei);
+        send(call,callback);
+    }
+
+    //推单审核
+    public static void getTuiDanShengHe(RequestCallback callback,String user_id){
+        Call call=getApi().tuidanshenhe(user_id);
+        send(call,callback);
+    }
+
+
+    //获取订单号
+    public static void getDingdanhao(RequestCallback callback,String user_id){
+        Call call=getApi().dingdanhao(user_id);
+        send(call,callback);
+    }
 }

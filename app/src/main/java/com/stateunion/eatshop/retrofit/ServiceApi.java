@@ -1,14 +1,14 @@
 package com.stateunion.eatshop.retrofit;
 
-
-
-import android.database.Observable;
-
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
+import com.stateunion.eatshop.retrofit.entiity.DIngDanHaoBean;
 import com.stateunion.eatshop.retrofit.entiity.DingCanBean;
 import com.stateunion.eatshop.retrofit.entiity.HisttoryBean;
+import com.stateunion.eatshop.retrofit.entiity.OrderBean;
 import com.stateunion.eatshop.retrofit.entiity.PersonInfoBean;
 import com.stateunion.eatshop.retrofit.entiity.PostOrderBean;
+import com.stateunion.eatshop.retrofit.entiity.QuCanMingXiBean;
+import com.stateunion.eatshop.retrofit.entiity.TuiDanShenHeBean;
 import com.stateunion.eatshop.retrofit.entiity.UserInfoBean;
 import com.stateunion.eatshop.retrofit.entiity.YueBean;
 
@@ -184,4 +184,43 @@ public interface ServiceApi {
     @POST("yuezhifu")
     @FormUrlEncoded
     Call<BaseBean> yuepay(@Field("user_id") String user_id,@Field("allmoney") String allmoney);
+
+
+    /**
+     * 历史订单详情
+     * @param user_id
+     *
+     */
+    @POST("dingxiang")
+    @FormUrlEncoded
+    Call<OrderBean> ddxiangqing(@Field("user_id") String user_id, @Field("order_sn") String order_sn);
+
+    /**
+     * 取餐明细页
+     * @param user_id
+     *
+     */
+    @POST("saomiao")
+    @FormUrlEncoded
+    Call<QuCanMingXiBean> qucanmingxi(@Field("user_id") String user_id, @Field("order_sn") String order, @Field("shijianduan") String shijianduan, @Field("fenlei") String fenlei);
+
+
+    /**
+     * 退单审核list
+     * @param
+     *
+     */
+    @POST("tui")
+    @FormUrlEncoded
+    Call<TuiDanShenHeBean> tuidanshenhe(@Field("user_id") String user_id);
+
+
+    /**
+     * zuihao
+     * @param
+     *
+     */
+    @POST("zuihao")
+    @FormUrlEncoded
+    Call<DIngDanHaoBean> dingdanhao(@Field("user_id") String user_id);
 }

@@ -1,17 +1,20 @@
 package com.stateunion.eatshop.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.stateunion.eatshop.R;
 import com.stateunion.eatshop.retrofit.entiity.HisttoryBean;
 import com.stateunion.eatshop.util.ChildLiatviewUtil;
 import com.stateunion.eatshop.util.DateUtil;
+import com.stateunion.eatshop.view.baseactivity.DDXiangQingActivity;
 
 import java.util.List;
 
@@ -46,11 +49,12 @@ public class HistoryListAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         Zujian zujian=null;
         if(zujian==null){
             zujian=new Zujian();
             view=layoutInflater.inflate(R.layout.item_history_one,null);
+            zujian.rl_history_item= (RelativeLayout) view.findViewById(R.id.rl_history_item);
             zujian.tv_history_diangdanhao= (TextView) view.findViewById(R.id.tv_history_diangdanhao);
             zujian.tv_history_time= (TextView) view.findViewById(R.id.tv_history_time);
             zujian.tv_history_money= (TextView) view.findViewById(R.id.tv_history_money);
@@ -62,11 +66,21 @@ public class HistoryListAdapter extends BaseAdapter{
             zujian.list_item_history.setAdapter(historyListItemAdapter);
             ChildLiatviewUtil.setListViewHeightBasedOnChildren(zujian.list_item_history);
             zujian.tv_history_money.setText("金额:"+historyInfo.get(i).getAll_money()+"元");
+
+            zujian.rl_history_item.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(context, DDXiangQingActivity.class);
+                    intent.putExtra("order_sn",historyInfo.get(i).getOrder_sn());
+                    context.startActivity(intent);
+                }
+            });
         }
         return view;
     }
     public final class Zujian{
         public TextView tv_history_diangdanhao,tv_history_time,tv_history_money;
         public ListView list_item_history;
+        public RelativeLayout rl_history_item;
     }
 }

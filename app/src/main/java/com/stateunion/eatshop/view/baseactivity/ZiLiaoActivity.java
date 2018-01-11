@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.ValueCallback;
 import android.widget.Button;
@@ -86,7 +87,13 @@ public class ZiLiaoActivity extends BaseActivity {
         ed_ziliao_phone = (EditText) findViewById(R.id.ed_ziliao_phone);
         ed_ziliao_dizhi = (EditText) findViewById(R.id.ed_ziliao_dizhi);
         bt_ziliao = (Button) findViewById(R.id.bt_ziliao);
-
+        iv_ziliao_back= (ImageView) findViewById(R.id.iv_ziliao_back);
+        iv_ziliao_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ZiLiaoActivity.this.finish();
+            }
+        });
         ed_ziliao_phone.setText(phone);
         ed_ziliao_dizhi.setText(zhuzhi);
         Picasso.with(this).load(imageurl).resize(200, 200).transform
@@ -152,7 +159,7 @@ public class ZiLiaoActivity extends BaseActivity {
         files.put("touxiang",requestBody);
  //        RequestCommand.Upziliaoss(new ChangeUserInfoCallback(this),params,body);
 
-        RequestCommand.cesgi(new ChangeUserInfoCallback(this),"a","b","c",files);
+//        RequestCommand.cesgi(new ChangeUserInfoCallback(this),"a","b","c",files);
 //        RequestCommand.Upziliaos(new ChangeUserInfoCallback(this),AppSessionEngine.getgonghao(),map,ed_ziliao_phone.getText().toString(),
 //                ed_ziliao_dizhi.getText().toString(),file);
     }
@@ -267,4 +274,14 @@ public class ZiLiaoActivity extends BaseActivity {
         return parts;
     }
 
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            this.finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

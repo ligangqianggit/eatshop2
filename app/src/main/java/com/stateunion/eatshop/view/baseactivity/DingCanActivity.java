@@ -90,6 +90,7 @@ public class DingCanActivity extends BaseActivity {
 
     public List<DiangCanEntity> zaolist=new ArrayList<>();
     private List<DiangCanEntity> getZaolist = new ArrayList<DiangCanEntity>();
+
     private List<DiangCanEntity> getWulist = new ArrayList<DiangCanEntity>();
     private List<DiangCanEntity> getWanlist = new ArrayList<DiangCanEntity>();
 
@@ -233,7 +234,7 @@ public class DingCanActivity extends BaseActivity {
             goodsBean.setCategory_id(j);
             goodsBean.setIcon("https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=f4472b346681800a7ae8815cd05c589f/8601a18b87d6277fbb30e08322381f30e924fc6f.jpg");
             goodsBean.setOriginal_price("80");
-            goodsBean.setPrice("60");
+            goodsBean.setPrice("10");
             list4.add(goodsBean);
         }
 
@@ -245,7 +246,7 @@ public class DingCanActivity extends BaseActivity {
             goodsBean.setCategory_id(j);
             goodsBean.setIcon("https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=313294a0c38065386fe7ac41f6b4ca21/fd039245d688d43f25b5801c741ed21b0ef43b3b.jpg");
             goodsBean.setOriginal_price("40");
-            goodsBean.setPrice("20");
+            goodsBean.setPrice("5");
             list5.add(goodsBean);
         }
 
@@ -257,7 +258,7 @@ public class DingCanActivity extends BaseActivity {
             goodsBean.setCategory_id(j);
             goodsBean.setIcon("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513163513366&di=720432adaa4d7ff1fe76997e4c2ca3a8&imgtype=0&src=http%3A%2F%2Fmemberpic.114my.cn%2F0329111%2Fproduct%2F20141%2F2014010453335829.jpg");
             goodsBean.setOriginal_price("40");
-            goodsBean.setPrice("20");
+            goodsBean.setPrice("10");
             list6.add(goodsBean);
         }
 
@@ -269,7 +270,7 @@ public class DingCanActivity extends BaseActivity {
             goodsBean.setCategory_id(j);
             goodsBean.setIcon("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513163582203&di=0fc65ff46cea0932aa7dd35b32e1501c&imgtype=0&src=http%3A%2F%2Fpic.qiantucdn.com%2F58pic%2F22%2F95%2F78%2F57eff6c7b0aed_1024.jpg");
             goodsBean.setOriginal_price("40");
-            goodsBean.setPrice("20");
+            goodsBean.setPrice("5");
             list7.add(goodsBean);
         }
 

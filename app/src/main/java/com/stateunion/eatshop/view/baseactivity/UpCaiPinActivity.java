@@ -75,12 +75,11 @@ public class UpCaiPinActivity extends FragmentActivity {
         listString.add("早餐");
         listString.add("午餐");
         listString.add("晚餐");
-        listString.add("加班");
+        listString.add("小炒");
 
         projectTabLayout = (TabLayout) findViewById(R.id.project_tablayout);
 
         myViewPager = (MyViewPager) findViewById(R.id.myviepage);
-
 
         UpMenuFragmentAdapter upMenuFragmentAdapter= new UpMenuFragmentAdapter(getSupportFragmentManager(), listString, listFragment);
         myViewPager.setAdapter(upMenuFragmentAdapter);

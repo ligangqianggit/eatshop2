@@ -15,6 +15,10 @@ import android.widget.Toast;
 
 
 import com.stateunion.eatshop.R;
+import com.stateunion.eatshop.commons.engine.AppSessionEngine;
+import com.stateunion.eatshop.retrofit.RequestCommand;
+import com.stateunion.eatshop.retrofit.callback.DialogCallback;
+import com.stateunion.eatshop.retrofit.entiity.DIngDanHaoBean;
 import com.stateunion.eatshop.zxing.android.CaptureActivity;
 import com.stateunion.eatshop.zxing.bean.ZxingConfig;
 import com.stateunion.eatshop.zxing.common.Constant;
@@ -22,6 +26,8 @@ import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.PermissionListener;
 
 import java.util.List;
+
+import retrofit2.Call;
 
 /**
  * Created by 青春 on 2017/12/13.
@@ -32,14 +38,19 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
     private Button bt_qucan_zaocan,bt_qucan_lunch,bt_qucan_dinner,bt_qucan_xiaochao,bt_qucan_jiaban;
     private int REQUEST_CODE_SCAN = 111;
     private ImageView iv_qucan_back;
+    public  static String dingdanhao;
     int type=0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qucan);
+
+        RequestCommand.getDingdanhao(new DingDanHaoCallBack(this), AppSessionEngine.getgonghao().toString());
+
         intview();
     }
         public void intview(){
+
         iv_qucan_back= (ImageView) findViewById(R.id.iv_qucan_back);
         bt_qucan_zaocan= (Button) findViewById(R.id.bt_qucan_zaocan);
         bt_qucan_lunch= (Button) findViewById(R.id.bt_qucan_lunch);
@@ -53,6 +64,20 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
         bt_qucan_xiaochao.setOnClickListener(this);
         bt_qucan_jiaban.setOnClickListener(this);
     }
+
+    public class DingDanHaoCallBack extends DialogCallback<DIngDanHaoBean,QuCanActivity>{
+
+        public DingDanHaoCallBack(QuCanActivity requestView) {
+            super(requestView);
+        }
+
+        @Override
+        protected void onResponseSuccess(DIngDanHaoBean dIngDanHaoBean, Call<DIngDanHaoBean> call) {
+            super.onResponseSuccess(dIngDanHaoBean, call);
+            dingdanhao=dIngDanHaoBean.getBody().getOrder_sn();
+        }
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -124,28 +149,33 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
         if (requestCode == REQUEST_CODE_SCAN && resultCode == RESULT_OK) {
             if (data != null) {
                 String content = data.getStringExtra(Constant.CODED_CONTENT);
-                if(type==4||content.equals("1")){
-                    Toast.makeText(this, "请去2窗口取小炒", Toast.LENGTH_SHORT).show();
-                }else if(type!=4||content.equals("2")){
-                    Toast.makeText(this, "请去1窗口取套餐", Toast.LENGTH_SHORT).show();
-                }else {
-                    Intent intent=new Intent(QuCanActivity.this,QuCanMingXiActivity.class);
-                    intent.putExtra("chuankouhao",content);
+                Intent intent=new Intent(QuCanActivity.this,QuCanMingXiActivity.class);
+                intent.putExtra("chuankouhao",content);
+                intent.putExtra("dingdanhao",dingdanhao);
+                if(content.equals("1")){
                     if(type==1){
                         intent.putExtra("type","早餐");
+                        startActivity(intent);
                     }else if(type==2){
                         intent.putExtra("type","午餐");
+                        startActivity(intent);
                     }
                     else if(type==3){
                         intent.putExtra("type","晚餐");
-                    }
-                    else if(type==4){
-                        intent.putExtra("type","小炒");
-                    }
-                    else if(type==5){
+                        startActivity(intent);
+                    }else if(type==4){
+                        Toast.makeText(this, "请去2窗口取小炒", Toast.LENGTH_LONG).show();
+                    } else if(type==5){
                         intent.putExtra("type","加班");
+                        startActivity(intent);
                     }
-                    startActivity(intent);
+                }else if(content.equals("2")){
+                    if(type==4){
+                        intent.putExtra("type","小炒");
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(this, "请去1窗口取套餐", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         }

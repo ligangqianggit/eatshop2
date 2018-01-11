@@ -3,10 +3,19 @@ package com.stateunion.eatshop.activity.loginactivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.stateunion.eatshop.MainActivity;
@@ -30,7 +39,8 @@ import retrofit2.Call;
 public class LoginActivity extends BaseActivity{
     private EditText etName,etPsw;
     private Button btLogin;
-
+   private CheckBox ck_login;
+    private boolean isHidden=true;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +50,7 @@ public class LoginActivity extends BaseActivity{
      }
 
      private void initView(){
+         ck_login= (CheckBox) findViewById(R.id.ck_login);
          etName= (EditText) findViewById(R.id.et_login_gonghao);
          etPsw= (EditText) findViewById(R.id.et_login_pws);
          btLogin= (Button) findViewById(R.id.bt_login_submit);
@@ -50,6 +61,18 @@ public class LoginActivity extends BaseActivity{
              }
          });
 
+         ck_login.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+             @Override
+             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                 if (b) {
+                     //设置EditText文本为可见的
+                     etPsw.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                 } else {
+                     //设置EditText文本为隐藏的
+                     etPsw.setTransformationMethod(PasswordTransformationMethod.getInstance());
+             }
+             }
+         });
       }
  //提交登录
     private void subLogin(){

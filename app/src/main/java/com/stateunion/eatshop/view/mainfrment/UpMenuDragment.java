@@ -42,6 +42,8 @@ public class UpMenuDragment extends Fragment {
 
     @BindView(R.id.img_food)
     ImageView imgFood;
+    @BindView(R.id.tv_dingcantime)
+    TextView tv_dingcantime;
     @BindView(R.id.tv_buytime)
     TextView tvBuytime;
     @BindView(R.id.tv_tuitime)
@@ -70,7 +72,6 @@ public class UpMenuDragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-
     }
 
 
@@ -120,6 +121,8 @@ public class UpMenuDragment extends Fragment {
             @Override
             public void onFinish(File outputFile, Uri outputUri) {
                 // 4、当拍照或从图库选取图片成功后回调
+                Log.v("eatshop","===+++===+++====outputFile："+outputFile);
+                Log.v("eatshop","===+++===+++====outputUri："+outputUri);
                 Glide.with(UpMenuDragment.this).load(outputUri).into(imgFood);
                 Log.d("aaaa",outputFile.getAbsolutePath()+"[[[["+outputFile.toString());
             }
@@ -172,7 +175,7 @@ public class UpMenuDragment extends Fragment {
         return new UpMenuDragment();
     }
 
-    @OnClick({R.id.img_food, R.id.tv_buytime, R.id.tv_tuitime, R.id.bt_upfood})
+    @OnClick({R.id.img_food, R.id.tv_buytime, R.id.tv_tuitime, R.id.bt_upfood,R.id.tv_dingcantime})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_food:
@@ -183,6 +186,14 @@ public class UpMenuDragment extends Fragment {
                                 Manifest.permission.CAMERA
                         ).request();
                 break;
+            case R.id.tv_dingcantime:
+                timeSelector = new TimeSelector(context, new TimeSelector.ResultHandler() {
+                    @Override
+                    public void handle(String time) {
+                        tv_dingcantime.setText(time);
+                    }
+                }, "2018-01-01 00:00", "2030-12-31 00:00");
+                timeSelector.show();
             case R.id.tv_buytime:
                 timeSelector = new TimeSelector(context, new TimeSelector.ResultHandler() {
                     @Override

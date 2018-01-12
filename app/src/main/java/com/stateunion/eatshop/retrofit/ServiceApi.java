@@ -195,6 +195,14 @@ public interface ServiceApi {
     @FormUrlEncoded
     Call<OrderBean> ddxiangqing(@Field("user_id") String user_id, @Field("order_sn") String order_sn);
 
+//    /**
+//     * 评价订单详情
+//     * @param user_id
+//     *
+//     */
+//    @POST("dingxiang")
+//    @FormUrlEncoded
+//    Call<OrderBean> ddxiangqing(@Field("user_id") String user_id, @Field("order_sn") String order_sn);
     /**
      * 取餐明细页
      * @param user_id
@@ -216,11 +224,29 @@ public interface ServiceApi {
 
 
     /**
-     * zuihao
+     * 取餐时获取订单号接口
      * @param
      *
      */
     @POST("zuihao")
     @FormUrlEncoded
     Call<DIngDanHaoBean> dingdanhao(@Field("user_id") String user_id);
+
+    /**
+     * 评价接口
+     * @param
+     *
+     */
+    @POST("pingjia")
+    @FormUrlEncoded
+    Call<BaseBean> ygpingjia(@Field("dingdan_id") String dingdan_id,@Field("dingdan_id") List<String> list);
+
+    /**
+     * 退单接口
+     * @param
+     *
+     */
+    @POST("shenqing")
+    @FormUrlEncoded
+    Call<BaseBean> tuidan(@Field("user_id") String user_id,@Field("order_sn") String order_sn,@Field("message") String message);
 }

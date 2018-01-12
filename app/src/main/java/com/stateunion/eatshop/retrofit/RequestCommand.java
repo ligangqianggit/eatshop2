@@ -1,5 +1,7 @@
 package com.stateunion.eatshop.retrofit;
 
+import android.widget.ListView;
+
 import com.stateunion.eatshop.retrofit.callback.RequestCallback;
 import com.stateunion.eatshop.retrofit.entiity.PostOrderBean;
 
@@ -129,6 +131,18 @@ public class RequestCommand {
     //获取订单号
     public static void getDingdanhao(RequestCallback callback,String user_id){
         Call call=getApi().dingdanhao(user_id);
+        send(call,callback);
+    }
+
+    //员工评价接口
+    public static void setYGPingjia(RequestCallback callback, String diangdan_id, List<String> list){
+        Call call=getApi().ygpingjia(diangdan_id,list);
+        send(call,callback);
+    }
+
+    //员工评价接口
+    public static void setTuidan(RequestCallback callback, String user_id, String  order_sn,String message){
+        Call call=getApi().tuidan(user_id,order_sn,message);
         send(call,callback);
     }
 }

@@ -72,6 +72,7 @@
     <!--<color name="gray">#888888</color>-->
 
     <!--<color name="gray1">#f8f8f8</color>-->
+    <color name="dialog_et">#fef39d</color>
 
     <color name="line">#dddddd</color>
     <color name="title_red">#fc404e</color>

@@ -56,7 +56,6 @@
             android:background="@color/beijing"
             android:text="退单或者评价"
             android:textColor="@color/white"
-            android:visibility="gone"
             />
     </LinearLayout>
 

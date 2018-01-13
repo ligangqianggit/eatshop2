@@ -23,6 +23,7 @@ import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.retrofit.entiity.PostOrderBean;
+import com.stateunion.eatshop.retrofit.entiity.YuZhiFuBean;
 import com.stateunion.eatshop.retrofit.entiity.YueBean;
 import com.stateunion.eatshop.util.AppSessionEngine;
 import com.stateunion.eatshop.view.baseactivity.BaseActivity;
@@ -120,9 +121,6 @@ String payType="微信支付";
             @Override
             public void onClick(View view) {
                 SubmitOrder();
-//                Intent intent=new Intent(PayService.this, PayJieGuoActivity.class);
-//                startActivity(intent);
-//                PayService.this.finish();
             }
         });
         RequestCommand.getYue(new YueCallBack(PayService.this), AppSessionEngine.getLoginInfo().getGonghao().toString());
@@ -132,14 +130,12 @@ String payType="微信支付";
        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
        String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
         Log.v("eatshop","list 样式"+gson.toJson(OrderList));
-       RequestCommand.zhifujiekou(new SubmitCallBack(this),date,payType,money,gson.toJson(OrderList));
+       RequestCommand.zhifujiekou(new SubmitCallBack(this),AppSessionEngine.getLoginInfo().getGonghao().toString(),date,payType,money,gson.toJson(OrderList));
    }
     //获取余额
     public class YueCallBack extends DialogCallback<YueBean,PayService> {
         public YueCallBack(PayService requestView) {
             super(requestView);
-
-
         }
         @Override
         protected void onResponseSuccess(YueBean yueBean, Call<YueBean> call) {
@@ -218,17 +214,37 @@ String payType="微信支付";
     public void callWXPayFailure() {
 
      }
-    public class SubmitCallBack extends DialogCallback<BaseBean,PayService> {
+    public class SubmitCallBack extends DialogCallback<YuZhiFuBean,PayService> {
 
         public SubmitCallBack(PayService requestView) {
             super(requestView);
         }
 
         @Override
-        protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
-            super.onResponseSuccess(baseBean, call);
+        protected void onResponseSuccess(YuZhiFuBean yuZhiFuBean, Call<YuZhiFuBean> call) {
+            super.onResponseSuccess(yuZhiFuBean, call);
+            if(yuZhiFuBean.getSuccess()==1){
+                RequestCommand.YuePay(new YuePayCallBack(PayService.this),AppSessionEngine.getLoginInfo().getGonghao().toString(),yuZhiFuBean.getBody().toString(),money);
+            }
+
         }
     }
+
+    public class  YuePayCallBack extends DialogCallback<BaseBean,PayService>{
+        public YuePayCallBack(PayService requestView) {
+            super(requestView);
+        }
+        @Override
+        protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
+            super.onResponseSuccess(baseBean, call);
+            if(baseBean.getSuccess()==1){
+                Intent intent=new Intent(PayService.this, PayJieGuoActivity.class);
+                startActivity(intent);
+                PayService.this.finish();
+            }
+        }
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

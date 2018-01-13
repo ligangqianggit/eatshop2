@@ -48,8 +48,8 @@ public class TongJiActivity extends BaseActivity{
     }
 
     private void initViews() {
-        list_shengri= (ListView) findViewById(R.id.list_shengri);
-        tv_tongji_shengrinum= (TextView) findViewById(R.id.tv_tongji_shengrinum);
+//        list_shengri= (ListView) findViewById(R.id.list_shengri);
+//        tv_tongji_shengrinum= (TextView) findViewById(R.id.tv_tongji_shengrinum);
 
         iv_tongji_back= (ImageView) findViewById(R.id.iv_tongji_back);
         iv_tongji_back.setOnClickListener(new View.OnClickListener() {
@@ -72,23 +72,9 @@ public class TongJiActivity extends BaseActivity{
         two = mTabLayout.getTabAt(1);
         three = mTabLayout.getTabAt(2);
         four = mTabLayout.getTabAt(3);
-        RequestCommand.getTongji(new TongJICallBack(this),"早餐");
 
     }
-    public class TongJICallBack extends DialogCallback<TongJiBean,TongJiActivity>{
-        ShengRiListAdapter shengRiListAdapter;
-        public TongJICallBack(TongJiActivity requestView) {
-            super(requestView);
-        }
 
-        @Override
-        protected void onResponseSuccess(TongJiBean tongJiBean, Call<TongJiBean> call) {
-            super.onResponseSuccess(tongJiBean, call);
-            shengRiListAdapter=new ShengRiListAdapter( tongJiBean.getBody().getShenglist(),getAttachTarget().getBaseActivity());
-            list_shengri.setAdapter(shengRiListAdapter);
-            tv_tongji_shengrinum.setText("今日生日员工:"+tongJiBean.getBody().getSheng_num());
-        }
-    }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

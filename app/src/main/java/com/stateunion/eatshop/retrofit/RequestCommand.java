@@ -1,14 +1,8 @@
 package com.stateunion.eatshop.retrofit;
 
-import android.widget.ListView;
-
 import com.stateunion.eatshop.retrofit.callback.RequestCallback;
-import com.stateunion.eatshop.retrofit.entiity.PostOrderBean;
-
 import java.io.File;
 import java.util.List;
-import java.util.Map;
-
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -47,8 +41,8 @@ public class RequestCommand {
         Call call=getApi().getdingcaninfo(type,fenlei);
         send(call,callback);
     }
-    public static void zhifujiekou(RequestCallback callback, String pay_time, String pay_lei, String all_money, String  list){
-        Call call=getApi().goPay(pay_time,pay_lei,all_money,list);
+    public static void zhifujiekou(RequestCallback callback,String user_id,String pay_time, String pay_lei, String all_money, String  list){
+        Call call=getApi().goPay(user_id,pay_time,pay_lei,all_money,list);
         send(call,callback);
     }
     //获取个人信息
@@ -102,8 +96,8 @@ public class RequestCommand {
     }
 
     //余额支付
-    public static void YuePay(RequestCallback callback, String user_id,String allmoney){
-        Call call=getApi().yuepay(user_id,allmoney);
+    public static void YuePay(RequestCallback callback, String user_id,String order_sn,String allmoney){
+        Call call=getApi().yuepay(user_id,order_sn,allmoney);
         send(call,callback);
     }
 
@@ -143,6 +137,32 @@ public class RequestCommand {
     //员工评价接口
     public static void setTuidan(RequestCallback callback, String user_id, String  order_sn,String message){
         Call call=getApi().tuidan(user_id,order_sn,message);
+        send(call,callback);
+    }
+
+
+    //厨师长退单审核同意 拒绝
+    public static void CSZTuiDanShenHe(RequestCallback callback, String order_sn,int jiekou){
+        Call call=getApi().tuichushishenhe(order_sn,jiekou);
+        send(call,callback);
+    }
+
+    //厨师端评价列表
+    public static void getPingJiaList(RequestCallback callback,String user_id){
+        Call call=getApi().pingjiaList(user_id);
+        send(call,callback);
+    }
+
+    //厨师端点餐统计页
+    public static void getTongji(RequestCallback callback,String shijianduan){
+        Call call=getApi().tongji(shijianduan);
+        send(call,callback);
+    }
+
+
+    //厨师端厨师排名
+    public static void getPaiming(RequestCallback callback,String user_id){
+        Call call=getApi().paiming(user_id);
         send(call,callback);
     }
 }

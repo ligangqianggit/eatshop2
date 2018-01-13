@@ -1,15 +1,19 @@
 package com.stateunion.eatshop.retrofit;
 
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
+import com.stateunion.eatshop.retrofit.entiity.CSPingJIaBean;
 import com.stateunion.eatshop.retrofit.entiity.DIngDanHaoBean;
 import com.stateunion.eatshop.retrofit.entiity.DingCanBean;
 import com.stateunion.eatshop.retrofit.entiity.HisttoryBean;
 import com.stateunion.eatshop.retrofit.entiity.OrderBean;
+import com.stateunion.eatshop.retrofit.entiity.PaiMingBean;
 import com.stateunion.eatshop.retrofit.entiity.PersonInfoBean;
 import com.stateunion.eatshop.retrofit.entiity.PostOrderBean;
 import com.stateunion.eatshop.retrofit.entiity.QuCanMingXiBean;
+import com.stateunion.eatshop.retrofit.entiity.TongJiBean;
 import com.stateunion.eatshop.retrofit.entiity.TuiDanShenHeBean;
 import com.stateunion.eatshop.retrofit.entiity.UserInfoBean;
+import com.stateunion.eatshop.retrofit.entiity.YuZhiFuBean;
 import com.stateunion.eatshop.retrofit.entiity.YueBean;
 
 import java.io.File;
@@ -87,13 +91,13 @@ public interface ServiceApi {
     Call<DingCanBean> getdingcaninfo(@Field("riqi") String type,@Field("fenlei") String fenlei);
 
     /**
-     * 支付接口
+     * 生成订单接口
      *
      */
     @POST("dingdan")
     @FormUrlEncoded
-    Call<BaseBean> goPay(@Field("pay_time") String pay_time,@Field("pay_lei") String pay_lei,
-                       @Field("all_money") String all_money, @Field("list") String list);
+    Call<YuZhiFuBean> goPay(@Field("user_id") String user_id, @Field("pay_time") String pay_time, @Field("pay_lei") String pay_lei,
+                            @Field("all_money") String all_money, @Field("list") String list);
 
     /**
      * 个人中心接口
@@ -183,7 +187,7 @@ public interface ServiceApi {
      */
     @POST("yuezhifu")
     @FormUrlEncoded
-    Call<BaseBean> yuepay(@Field("user_id") String user_id,@Field("allmoney") String allmoney);
+    Call<BaseBean> yuepay(@Field("user_id") String user_id,@Field("order_sn") String order_sn,@Field("allmoney") String allmoney);
 
 
     /**
@@ -239,7 +243,8 @@ public interface ServiceApi {
      */
     @POST("pingjia")
     @FormUrlEncoded
-    Call<BaseBean> ygpingjia(@Field("dingdan_id") String dingdan_id,@Field("dingdan_id") List<String> list);
+
+    Call<BaseBean> ygpingjia(@Field("order_sn") String dingdan_id,@Field("list") List<String> list);
 
     /**
      * 退单接口
@@ -249,4 +254,43 @@ public interface ServiceApi {
     @POST("shenqing")
     @FormUrlEncoded
     Call<BaseBean> tuidan(@Field("user_id") String user_id,@Field("order_sn") String order_sn,@Field("message") String message);
+
+    /**
+     * 退单接口
+     * @param
+     *
+     */
+    @POST("do_tui")
+    @FormUrlEncoded
+    Call<BaseBean> tuichushishenhe(@Field("order_sn") String order_sn,@Field("jiekou") int jiekou);
+
+
+    /**
+     * 厨师长端查看评价列表
+     * @param
+     *
+     */
+    @POST("ping_list")
+    @FormUrlEncoded
+    Call<CSPingJIaBean> pingjiaList(@Field("user_id") String user_id);
+
+    /**
+     * 厨师长端统计页
+     * @param
+     *
+     */
+    @POST("diantong")
+    @FormUrlEncoded
+    Call<TongJiBean> tongji(@Field("shijianduan") String shijianduan);
+
+
+    /**
+     * 厨师长厨师排名
+     * @param
+     *
+     */
+    @POST("chupai")
+    @FormUrlEncoded
+    Call<PaiMingBean> paiming(@Field("user_id") String user_id);
+
 }

@@ -93,7 +93,7 @@ public interface ServiceApi {
     @POST("dingdan")
     @FormUrlEncoded
     Call<BaseBean> goPay(@Field("pay_time") String pay_time,@Field("pay_lei") String pay_lei,
-                       @Field("all_money") String all_money, @Field("list") List<PostOrderBean> list);
+                       @Field("all_money") String all_money, @Field("list") String list);
 
     /**
      * 个人中心接口

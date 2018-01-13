@@ -47,7 +47,7 @@ public class RequestCommand {
         Call call=getApi().getdingcaninfo(type,fenlei);
         send(call,callback);
     }
-    public static void zhifujiekou(RequestCallback callback, String pay_time, String pay_lei, String all_money, List<PostOrderBean> list){
+    public static void zhifujiekou(RequestCallback callback, String pay_time, String pay_lei, String all_money, String  list){
         Call call=getApi().goPay(pay_time,pay_lei,all_money,list);
         send(call,callback);
     }

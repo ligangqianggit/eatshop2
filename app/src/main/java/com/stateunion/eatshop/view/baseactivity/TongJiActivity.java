@@ -6,10 +6,22 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.stateunion.eatshop.R;
+import com.stateunion.eatshop.adapter.ShengRiListAdapter;
 import com.stateunion.eatshop.adapter.TongJiPagerAdapter;
+import com.stateunion.eatshop.retrofit.RequestCommand;
+import com.stateunion.eatshop.retrofit.bean.BaseBean;
+import com.stateunion.eatshop.retrofit.callback.DialogCallback;
+import com.stateunion.eatshop.retrofit.entiity.TongJiBean;
+
+import java.util.List;
+
+import retrofit2.Call;
 
 /**
  * Created by 青春 on 2017/12/11.
@@ -25,16 +37,20 @@ public class TongJiActivity extends BaseActivity{
     private TabLayout.Tab three;
     private TabLayout.Tab four;
     private ImageView iv_tongji_back;
+    public static ListView list_shengri;
+    public static TextView tv_tongji_shengrinum;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_tongji);
         initViews();
-
     }
+
     private void initViews() {
+        list_shengri= (ListView) findViewById(R.id.list_shengri);
+        tv_tongji_shengrinum= (TextView) findViewById(R.id.tv_tongji_shengrinum);
+
         iv_tongji_back= (ImageView) findViewById(R.id.iv_tongji_back);
         iv_tongji_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,14 +72,23 @@ public class TongJiActivity extends BaseActivity{
         two = mTabLayout.getTabAt(1);
         three = mTabLayout.getTabAt(2);
         four = mTabLayout.getTabAt(3);
-//
-//        //设置Tab的图标
-//        one.setIcon(R.mipmap.ic_launcher);
-//        two.setIcon(R.mipmap.ic_launcher);
-//        three.setIcon(R.mipmap.ic_launcher);
-//        four.setIcon(R.mipmap.ic_launcher);
-    }
+        RequestCommand.getTongji(new TongJICallBack(this),"早餐");
 
+    }
+    public class TongJICallBack extends DialogCallback<TongJiBean,TongJiActivity>{
+        ShengRiListAdapter shengRiListAdapter;
+        public TongJICallBack(TongJiActivity requestView) {
+            super(requestView);
+        }
+
+        @Override
+        protected void onResponseSuccess(TongJiBean tongJiBean, Call<TongJiBean> call) {
+            super.onResponseSuccess(tongJiBean, call);
+            shengRiListAdapter=new ShengRiListAdapter( tongJiBean.getBody().getShenglist(),getAttachTarget().getBaseActivity());
+            list_shengri.setAdapter(shengRiListAdapter);
+            tv_tongji_shengrinum.setText("今日生日员工:"+tongJiBean.getBody().getSheng_num());
+        }
+    }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

@@ -29,8 +29,10 @@ public class Constant {
      * @author Richie on 2017.07.31
      *         常量类
      */
-         public static final String[] BOOKS = {"周一", "周二", "周三","周四","周五"};
+         public static final String[] BOOKS = {"星期一", "星期二", "星期三","星期四","星期五","星期六","星期七"};
         public static final String[][] FIGURES = {
+                {"早餐", "午餐", "晚餐", "加班"},
+                {"早餐", "午餐", "晚餐", "加班"},
                 {"早餐", "午餐", "晚餐", "加班"},
                 {"早餐", "午餐", "晚餐", "加班"},
                 {"早餐", "午餐", "晚餐", "加班"},

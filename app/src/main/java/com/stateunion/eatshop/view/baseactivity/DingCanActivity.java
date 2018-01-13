@@ -48,7 +48,9 @@ import com.stateunion.eatshop.zxing.common.Constant;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 
@@ -88,7 +90,7 @@ public class DingCanActivity extends BaseActivity {
     private ExpandableListView mExpandableListView;
 
 
-    public List<DiangCanEntity> zaolist=new ArrayList<>();
+    public List<DiangCanEntity> zaolist;
     private List<DiangCanEntity> getZaolist = new ArrayList<DiangCanEntity>();
 
     private List<DiangCanEntity> getWulist = new ArrayList<DiangCanEntity>();
@@ -100,13 +102,15 @@ public class DingCanActivity extends BaseActivity {
     private ViewGroup anim_mask_layout;//动画层
 
     String money;
+    String canType="早餐";
+    String canRiqi="星期一";
+   private int thisgroupPosition=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diancan);
         myApp = (ProjectApplication) getApplicationContext();
         mHanlder = new Handler(getMainLooper());
-        getdingcaninfo();
 
         initView();
          addListener();
@@ -116,9 +120,11 @@ public class DingCanActivity extends BaseActivity {
                 showBottomSheet();
             }
         });
+        getdingcaninfo(canRiqi,canType);
+
     }
-    private void getdingcaninfo(){
-        RequestCommand.getDingCanInfo(new DingcaninfoCallBack(this),"1");
+    private void getdingcaninfo(String mydate,String leiXing){
+        RequestCommand.getDingCanInfo(new DingcaninfoCallBack(this),mydate,leiXing);
     }
 
     public  class DingcaninfoCallBack extends DialogCallback<DingCanBean,DingCanActivity>{
@@ -129,11 +135,15 @@ public class DingCanActivity extends BaseActivity {
         @Override
         protected void onResponseSuccess(DingCanBean dingcanBean, Call<DingCanBean> call) {
             super.onResponseSuccess(dingcanBean, call);
+            zaolist =new ArrayList<>();
+              zaolist.clear();
              zaolist.addAll(dingcanBean.getBody());
-            Log.d("aaaa",dingcanBean.getBody().size()+"changdu"+zaolist.size());
+            Log.d("看我的长度",zaolist.size()+"");
 
             initData();
             initEm();
+            mExpandableListView.expandGroup(thisgroupPosition);
+
         }
     }
 
@@ -164,8 +174,6 @@ public class DingCanActivity extends BaseActivity {
                     intent.putExtra("money",money);
                     startActivity(intent);
                 }
-
-
             }
         });
         bv_unm = (TextView) findViewById(R.id.bv_unm);
@@ -188,9 +196,8 @@ public class DingCanActivity extends BaseActivity {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                  // 请务必返回 false，否则分组不会展开
-                Log.d("fulei位置",groupPosition+"");
-
-                return false;
+                Log.d("fulei位置",mExpandableListView.isGroupExpanded(groupPosition)+"");
+                 return false;
             }
         });
 
@@ -198,125 +205,166 @@ public class DingCanActivity extends BaseActivity {
         mExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                Log.d("位置",groupPosition+"");
-                 list2.clear();
-                list2.addAll(list.get(childPosition).getList());
-                catograyAdapter.setSelection(childPosition);
-                catograyAdapter.notifyDataSetChanged();
-                goodsAdapter.notifyDataSetChanged();
-                 return true;
+                      if(childPosition==0){
+                          canType="早餐";
+                     } else if(childPosition==1){
+                       canType="午餐";
+                     } else if(childPosition==2){
+                          canType="晚餐";
+                      } else if(childPosition==3){
+                          canType="加班";
+                      }
+                canRiqi=Constant.BOOKS[groupPosition];
+                getdingcaninfo(canRiqi,canType);
+                Log.d("fulei位置",canRiqi+""+canType);
+                thisgroupPosition=groupPosition;
+//                list2.clear();
+//                list2.addAll(list.get(childPosition).getList());
+//                catograyAdapter.setSelection(childPosition);
+//                catograyAdapter.notifyDataSetChanged();
+//                goodsAdapter.notifyDataSetChanged();
+                return false;
             }
         });
 
     }
     //填充数据
     private void initData() {
-        Log.d("上批长度",zaolist.get(4).getZao().toString()+"");
+        list3.clear();
 
         //商品
         for (int j=0;j<zaolist.size();j++){
-                 GoodsBean goodsBean = new GoodsBean();
-                goodsBean.setTitle(zaolist.get(4).getZao().get(0).getFoot_name());
-                goodsBean.setProduct_id(zaolist.get(4).getZao().get(0).getId());
-                goodsBean.setCategory_id(4);
-                goodsBean.setIcon(zaolist.get(4).getZao().get(0).getFoodtupian());
-                goodsBean.setOriginal_price("200");
-                goodsBean.setPrice(zaolist.get(4).getZao().get(0).getJiage());
-                list3.add(goodsBean);
-
-        }
-
-        //商品
-        for (int j=5;j<10;j++){
+            Log.d("玩撒1",zaolist.size()+"");
             GoodsBean goodsBean = new GoodsBean();
-            goodsBean.setTitle("西红柿炒鸡蛋"+j);
-            goodsBean.setProduct_id(j);
-            goodsBean.setCategory_id(j);
-            goodsBean.setIcon("https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=f4472b346681800a7ae8815cd05c589f/8601a18b87d6277fbb30e08322381f30e924fc6f.jpg");
-            goodsBean.setOriginal_price("80");
-            goodsBean.setPrice("10");
-            list4.add(goodsBean);
+            goodsBean.setTitle(zaolist.get(j).getFoot_name());
+            goodsBean.setProduct_id(zaolist.get(j).getId());
+            goodsBean.setCategory_id(4);
+            goodsBean.setIcon(zaolist.get(j).getFoodtupian());
+            goodsBean.setOriginal_price("200");
+            goodsBean.setPrice(zaolist.get(j).getJiage());
+            list3.add(goodsBean);
         }
-
-        //商品
-        for (int j=10;j<15;j++){
-            GoodsBean goodsBean = new GoodsBean();
-            goodsBean.setTitle("胡辣汤"+j);
-            goodsBean.setProduct_id(j);
-            goodsBean.setCategory_id(j);
-            goodsBean.setIcon("https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=313294a0c38065386fe7ac41f6b4ca21/fd039245d688d43f25b5801c741ed21b0ef43b3b.jpg");
-            goodsBean.setOriginal_price("40");
-            goodsBean.setPrice("5");
-            list5.add(goodsBean);
-        }
-
-        //商品
-        for (int j=10;j<15;j++){
-            GoodsBean goodsBean = new GoodsBean();
-            goodsBean.setTitle("套餐"+j);
-            goodsBean.setProduct_id(j);
-            goodsBean.setCategory_id(j);
-            goodsBean.setIcon("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513163513366&di=720432adaa4d7ff1fe76997e4c2ca3a8&imgtype=0&src=http%3A%2F%2Fmemberpic.114my.cn%2F0329111%2Fproduct%2F20141%2F2014010453335829.jpg");
-            goodsBean.setOriginal_price("40");
-            goodsBean.setPrice("10");
-            list6.add(goodsBean);
-        }
-
-//商品
-        for (int j=10;j<15;j++){
-            GoodsBean goodsBean = new GoodsBean();
-            goodsBean.setTitle("甜点"+j);
-            goodsBean.setProduct_id(j);
-            goodsBean.setCategory_id(j);
-            goodsBean.setIcon("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513163582203&di=0fc65ff46cea0932aa7dd35b32e1501c&imgtype=0&src=http%3A%2F%2Fpic.qiantucdn.com%2F58pic%2F22%2F95%2F78%2F57eff6c7b0aed_1024.jpg");
-            goodsBean.setOriginal_price("40");
-            goodsBean.setPrice("5");
-            list7.add(goodsBean);
-        }
-
+ //        //商品
+//        for (int j=0;j<zaolist.size();j++){
+//            Log.d("玩撒2",zaolist.size()+"");
+//
+//            GoodsBean goodsBean = new GoodsBean();
+//            goodsBean.setTitle(zaolist.get(j).getFoot_name());
+//            goodsBean.setProduct_id(zaolist.get(j).getId());
+//            goodsBean.setCategory_id(4);
+//            goodsBean.setIcon(zaolist.get(j).getFoodtupian());
+//            goodsBean.setOriginal_price("200");
+//            goodsBean.setPrice(zaolist.get(j).getJiage());
+//            list4.add(goodsBean);
+//        }
+//
+//        //商品
+//        for (int j=0;j<zaolist.size();j++){
+//            Log.d("玩撒3",zaolist.size()+"");
+//
+//            GoodsBean goodsBean = new GoodsBean();
+//            goodsBean.setTitle(zaolist.get(j).getFoot_name());
+//            goodsBean.setProduct_id(zaolist.get(j).getId());
+//            goodsBean.setCategory_id(4);
+//            goodsBean.setIcon(zaolist.get(j).getFoodtupian());
+//            goodsBean.setOriginal_price("200");
+//            goodsBean.setPrice(zaolist.get(j).getJiage());
+//            list5.add(goodsBean);
+//        }
+//
+//        //商品
+//        for (int j=0;j<zaolist.size();j++){
+//            Log.d("玩撒4",zaolist.size()+"");
+//
+//            GoodsBean goodsBean = new GoodsBean();
+//            goodsBean.setTitle(zaolist.get(j).getFoot_name());
+//            goodsBean.setProduct_id(zaolist.get(j).getId());
+//            goodsBean.setCategory_id(4);
+//            goodsBean.setIcon(zaolist.get(j).getFoodtupian());
+//            goodsBean.setOriginal_price("200");
+//            goodsBean.setPrice(zaolist.get(j).getJiage());
+//            list6.add(goodsBean);
+//        }
+//
+////商品
+//        //商品
+//        for (int j=0;j<zaolist.size();j++){
+//            Log.d("玩撒5",zaolist.size()+"");
+//            GoodsBean goodsBean = new GoodsBean();
+//            goodsBean.setTitle(zaolist.get(j).getFoot_name());
+//            goodsBean.setProduct_id(zaolist.get(j).getId());
+//            goodsBean.setCategory_id(4);
+//            goodsBean.setIcon(zaolist.get(j).getFoodtupian());
+//            goodsBean.setOriginal_price("200");
+//            goodsBean.setPrice(zaolist.get(j).getJiage());
+//            list7.add(goodsBean);
+//        }
+//
+        list.clear();
         CatograyBean catograyBean3 = new CatograyBean();
         catograyBean3.setCount(3);
         catograyBean3.setKind("早餐");
         catograyBean3.setList(list3);
         list.add(catograyBean3);
+ //        CatograyBean catograyBean4 = new CatograyBean();
+//        catograyBean4.setCount(4);
+//        catograyBean4.setKind("午餐");
+//        catograyBean4.setList(list4);
+//        list.add(catograyBean4);
+//
+//        CatograyBean catograyBean5 = new CatograyBean();
+//        catograyBean5.setCount(5);
+//        catograyBean5.setKind("晚餐");
+//        catograyBean5.setList(list5);
+//        list.add(catograyBean5);
+//
+//        CatograyBean catograyBean6 = new CatograyBean();
+//        catograyBean6.setCount(6);
+//        catograyBean6.setKind("小炒");
+//        catograyBean6.setList(list6);
+//        list.add(catograyBean6);
 
-        CatograyBean catograyBean4 = new CatograyBean();
-        catograyBean4.setCount(4);
-        catograyBean4.setKind("午餐");
-        catograyBean4.setList(list4);
-        list.add(catograyBean4);
-
-        CatograyBean catograyBean5 = new CatograyBean();
-        catograyBean5.setCount(5);
-        catograyBean5.setKind("晚餐");
-        catograyBean5.setList(list5);
-        list.add(catograyBean5);
-
-        CatograyBean catograyBean6 = new CatograyBean();
-        catograyBean6.setCount(6);
-        catograyBean6.setKind("小炒");
-        catograyBean6.setList(list6);
-        list.add(catograyBean6);
-
-        CatograyBean catograyBean7 = new CatograyBean();
-        catograyBean7.setCount(7);
-        catograyBean7.setKind("加班");
-        catograyBean7.setList(list7);
-        list.add(catograyBean7);
+//        CatograyBean catograyBean7 = new CatograyBean();
+//        catograyBean7.setCount(7);
+//        catograyBean7.setKind("加班");
+//        catograyBean7.setList(list7);
+//        list.add(catograyBean7);
 
         bottomSheetLayout = (BottomSheetLayout) findViewById(R.id.bottomSheetLayout);
 
         //默认值
         list2.clear();
-        list2.addAll(list.get(0).getList());
+        List<GoodsBean> shujuList=new ArrayList<>();
+        CatograyBean catograyBean=new CatograyBean();
+//         for (int a=0;a<list.size();a++){
+              list2.addAll(list.get(0).getList());
+//            list2.addAll(a,list.get(a).getList());
+//             shujuList.add(list.get(a).getList().get(a));
+//            list2.add(list.get(a).getList().get(a));
+//         }
+
+ //        list2.addAll(list.get(0).getList());
         //分类
         catograyAdapter = new CatograyAdapter(DingCanActivity.this, list);
 //        lv_catogary.setAdapter(catograyAdapter);
-        catograyAdapter.notifyDataSetChanged();
+//        catograyAdapter.notifyDataSetChanged();
+//        catograyAdapter.notifyDataSetInvalidated();
         //商品
+        Log.d("list2",list2.size()+""+list.get(0).getList().size());
         goodsAdapter = new GoodsAdapter(DingCanActivity.this, list2, catograyAdapter);
         lv_good.setAdapter(goodsAdapter);
-        goodsAdapter.notifyDataSetChanged();
+
+        lv_good.post(new Runnable() {
+             @Override
+            public void run() {
+                 catograyAdapter.notifyDataSetChanged();
+                 catograyAdapter.notifyDataSetInvalidated();
+                goodsAdapter.notifyDataSetChanged();
+                 goodsAdapter.notifyDataSetInvalidated();
+                 Log.d("aaaa","zhixingle ");
+              }
+        });
+
     }
 
 

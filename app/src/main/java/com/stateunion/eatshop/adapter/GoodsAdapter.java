@@ -73,6 +73,7 @@ public class GoodsAdapter extends BaseAdapter {
         viewholder.tv_name.setText(list.get(position).getTitle());
         viewholder.tv_dingcan_mes.setText("此处是mes");
         viewholder.tv_dingcan_price.setText("￥"+list.get(position).getPrice());
+        Log.d("shipeiqi",list.size()+"");
 
         if(list.get(position)!=null){
         //默认进来数量

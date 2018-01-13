@@ -8,33 +8,41 @@ import java.util.List;
 
 public class
 DiangCanEntity {
- List<DianCanBeanInfo> zao;
-    List<DianCanBeanInfo> wu;
-    List<DianCanBeanInfo> wan;
-
-    public List<DianCanBeanInfo> getZao() {
-        return zao;
-    }
-
-    public void setZao(List<DianCanBeanInfo> zao) {
-        this.zao = zao;
-    }
-
-    public List<DianCanBeanInfo> getWu() {
-        return wu;
-    }
-
-    public void setWu(List<DianCanBeanInfo> wu) {
-        this.wu = wu;
-    }
-
-    public List<DianCanBeanInfo> getWan() {
-        return wan;
-    }
-
-    public void setWan(List<DianCanBeanInfo> wan) {
-        this.wan = wan;
-    }
+// List<DianCanBeanInfo> CanInfo;
+//    List<DianCanBeanInfo> wu;
+//    List<DianCanBeanInfo> wan;
+//
+//    public List<DianCanBeanInfo> getZao() {
+//        return zao;
+//    }
+//
+//    public void setZao(List<DianCanBeanInfo> zao) {
+//        this.zao = zao;
+//    }
+//
+//    public List<DianCanBeanInfo> getWu() {
+//        return wu;
+//    }
+//
+//    public void setWu(List<DianCanBeanInfo> wu) {
+//        this.wu = wu;
+//    }
+//
+//    public List<DianCanBeanInfo> getWan() {
+//        return wan;
+//    }
+//
+//    public void setWan(List<DianCanBeanInfo> wan) {
+//        this.wan = wan;
+//    }
+//
+//    public List<DianCanBeanInfo> getCanInfo() {
+//        return CanInfo;
+//    }
+//
+//    public void setCanInfo(List<DianCanBeanInfo> canInfo) {
+//        CanInfo = canInfo;
+//    }
 
     /**
          * id : 1
@@ -51,7 +59,7 @@ DiangCanEntity {
          * jiezhi : 1513346400
          * foodtupian : upload/image/2017/12/15/5a337a59dca0a8205912115e194388fab2c43640277d5.png
          */
- public class DianCanBeanInfo{
+// public class DianCanBeanInfo{
             private int id;
             private int cid;
             private String utime;
@@ -170,6 +178,6 @@ DiangCanEntity {
                 this.foodtupian = foodtupian;
             }
 
-        }
+//        }
 
 }

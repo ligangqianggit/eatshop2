@@ -84,7 +84,7 @@ public interface ServiceApi {
      */
     @POST("food_list")
     @FormUrlEncoded
-    Call<DingCanBean> getdingcaninfo(@Field("fen") String type);
+    Call<DingCanBean> getdingcaninfo(@Field("riqi") String type,@Field("fenlei") String fenlei);
 
     /**
      * 支付接口

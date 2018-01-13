@@ -43,8 +43,8 @@ public class RequestCommand {
         send(call, callback);
     }
     //获取点餐页的餐品
-    public static void getDingCanInfo(RequestCallback callback,String type){
-        Call call=getApi().getdingcaninfo(type);
+    public static void getDingCanInfo(RequestCallback callback,String type,String fenlei){
+        Call call=getApi().getdingcaninfo(type,fenlei);
         send(call,callback);
     }
     public static void zhifujiekou(RequestCallback callback, String pay_time, String pay_lei, String all_money, List<PostOrderBean> list){

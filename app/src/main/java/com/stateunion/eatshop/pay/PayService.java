@@ -134,13 +134,15 @@ public class PayService extends BaseActivity{
        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
        String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
 //       gson.toJson(OrderList)  list 以string 传递这样就可以
-       Log.v("eatshop","========----===-===-=="+OrderList.toString());
+       Log.v("eatshop","list 样式"+gson.toJson(OrderList));
        RequestCommand.zhifujiekou(new SubmitCallBack(this),date,"余额支付",money,OrderList);
    }
     //获取余额
     public class YueCallBack extends DialogCallback<YueBean,PayService> {
         public YueCallBack(PayService requestView) {
             super(requestView);
+
+
         }
         @Override
         protected void onResponseSuccess(YueBean yueBean, Call<YueBean> call) {

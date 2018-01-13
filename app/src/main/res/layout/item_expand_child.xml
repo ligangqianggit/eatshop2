@@ -9,5 +9,6 @@
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
     tools:text="测试数据"
-    android:textColor="@color/blue_bg"
+    android:textColor="@color/black"
+    android:background="@color/gray"
     />

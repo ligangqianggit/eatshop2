@@ -33,7 +33,7 @@ public class DDXiangQingActivity extends BaseActivity{
       String order_sn;
     public static ListView list_ddxiangqiang;
     private ImageView iv_ddxiangqiang_back;
-    private Button bt_ddxiangqiang_tuiorpoing;
+    public static Button bt_ddxiangqiang_tuiorpoing;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,19 +42,9 @@ public class DDXiangQingActivity extends BaseActivity{
         order_sn=intent.getStringExtra("order_sn");
         intview();
     }
+    //厨师还控件
     public void intview(){
-
         bt_ddxiangqiang_tuiorpoing= (Button) findViewById(R.id.bt_ddxiangqiang_tuiorpoing);
-        bt_ddxiangqiang_tuiorpoing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showAlertDialog();
-//                Intent intent=new Intent(DDXiangQingActivity.this,YGPingjiaActivity.class);
-//                intent.putExtra("order_sn",order_sn);
-//                startActivity(intent);
-            }
-        });
-
         list_ddxiangqiang= (ListView) findViewById(R.id.list_ddxiangqiang);
         iv_ddxiangqiang_back= (ImageView) findViewById(R.id.iv_ddxiangqiang_back);
         iv_ddxiangqiang_back.setOnClickListener(new View.OnClickListener() {
@@ -73,8 +63,50 @@ public class DDXiangQingActivity extends BaseActivity{
         @Override
         protected void onResponseSuccess(OrderBean orderBean, Call<OrderBean> call) {
             super.onResponseSuccess(orderBean, call);
-            dDxiangqingListAdapter=new DDxiangqingListAdapter(orderBean.getBody().getGoods(),getAttachTarget().getBaseActivity());
-            list_ddxiangqiang.setAdapter(dDxiangqingListAdapter);
+            if(orderBean.getSuccess()==1){
+                dDxiangqingListAdapter=new DDxiangqingListAdapter(orderBean.getBody().getGoods(),getAttachTarget().getBaseActivity());
+                list_ddxiangqiang.setAdapter(dDxiangqingListAdapter);
+                if(orderBean.getBody().getZhuangtai()==0){
+                    bt_ddxiangqiang_tuiorpoing.setText("评价");
+                    bt_ddxiangqiang_tuiorpoing.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent=new Intent(DDXiangQingActivity.this,YGPingjiaActivity.class);
+                            intent.putExtra("order_sn",order_sn);
+                            startActivity(intent);
+                        }
+                    });
+                }else
+                if(orderBean.getBody().getZhuangtai()==1){
+                    bt_ddxiangqiang_tuiorpoing.setText("已评价");
+                    bt_ddxiangqiang_tuiorpoing.setEnabled(false);
+                }else
+                if(orderBean.getBody().getZhuangtai()==2){
+                    //未消费不能评价不能退
+                    bt_ddxiangqiang_tuiorpoing.setVisibility(View.GONE);
+                }
+                if(orderBean.getBody().getZhuangtai()==3){
+                    //可退单
+                    bt_ddxiangqiang_tuiorpoing.setText("退单");
+                    bt_ddxiangqiang_tuiorpoing.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            showAlertDialog();
+                        }
+                    });
+                }
+                if(orderBean.getBody().getZhuangtai()==4){
+                    bt_ddxiangqiang_tuiorpoing.setText("退单中");
+                    bt_ddxiangqiang_tuiorpoing.setEnabled(false);
+                }
+                if(orderBean.getBody().getZhuangtai()==5){
+                    // 已退单
+                    bt_ddxiangqiang_tuiorpoing.setText("已退单");
+                    bt_ddxiangqiang_tuiorpoing.setEnabled(false);
+                }
+            }
+
+
         }
     }
 

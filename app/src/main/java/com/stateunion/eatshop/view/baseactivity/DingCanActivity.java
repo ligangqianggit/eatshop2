@@ -215,6 +215,7 @@ public class DingCanActivity extends BaseActivity {
                           canType="加班";
                       }
                 canRiqi=Constant.BOOKS[groupPosition];
+                      Log.v("eatshop","===="+canRiqi+"======="+canType);
                 getdingcaninfo(canRiqi,canType);
                 Log.d("fulei位置",canRiqi+""+canType);
                 thisgroupPosition=groupPosition;
@@ -418,10 +419,6 @@ public class DingCanActivity extends BaseActivity {
         return view;
     }
 
-
-
-
-
     //创建购物车view
     private void showBottomSheet(){
         bottomSheet = createBottomSheetView();
@@ -433,9 +430,6 @@ public class DingCanActivity extends BaseActivity {
             }
         }
     }
-
-
-
 
     //查看购物车布局
     private View createBottomSheetView(){
@@ -515,8 +509,6 @@ public class DingCanActivity extends BaseActivity {
 
     }
 
-
-
     //刷新布局 总价、购买数量等
     private void update(boolean refreshGoodList){
         int size = selectedList.size();
@@ -554,7 +546,6 @@ public class DingCanActivity extends BaseActivity {
         }
     }
 
-
     /**
      * @Description: 创建动画层
      * @param
@@ -573,7 +564,6 @@ public class DingCanActivity extends BaseActivity {
         rootView.addView(animLayout);
         return animLayout;
     }
-
     private View addViewToAnimLayout(final ViewGroup parent, final View view,
                                      int[] location) {
         int x = location[0];
@@ -586,7 +576,6 @@ public class DingCanActivity extends BaseActivity {
         view.setLayoutParams(lp);
         return view;
     }
-
     public void setAnim(final View v, int[] startLocation) {
         anim_mask_layout = null;
         anim_mask_layout = createAnimLayout();
@@ -635,7 +624,6 @@ public class DingCanActivity extends BaseActivity {
         });
 
     }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -644,7 +632,6 @@ public class DingCanActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
     // 每次展开一个分组后，关闭其他的分组
     private boolean expandOnlyOne(int expandedPosition) {
         boolean result = true;

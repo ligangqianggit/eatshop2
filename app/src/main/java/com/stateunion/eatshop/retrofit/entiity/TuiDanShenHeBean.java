@@ -27,6 +27,7 @@ public class TuiDanShenHeBean extends BaseBean{
         private String pay_time;
         private String message;
         private String all_money;
+        private String order_sn;
 
         public List<TuiDanShenHeBeanInfoList> getGoods() {
             return goods;
@@ -66,6 +67,14 @@ public class TuiDanShenHeBean extends BaseBean{
 
         public void setAll_money(String all_money) {
             this.all_money = all_money;
+        }
+
+        public String getOrder_sn() {
+            return order_sn;
+        }
+
+        public void setOrder_sn(String order_sn) {
+            this.order_sn = order_sn;
         }
 
         public class TuiDanShenHeBeanInfoList {

@@ -30,6 +30,7 @@ public class QuCanMingXiActivity extends BaseActivity{
     private TextView tv_qucanxingqiang_user_id;
     String shijianduan1,chuangkouhao,order1;
     public static ListView list_qucanmingxi;
+    private QuCanxiangqingListAdapter quCanxiangqingListAdapter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,22 +52,26 @@ public class QuCanMingXiActivity extends BaseActivity{
         tv_qucanxingqiang_user_id= (TextView) findViewById(R.id.tv_qucanxingqiang_user_id);
         tv_qucanxingqiang_user_id.setText(AppSessionEngine.getLoginInfo().getGonghao());
         list_qucanmingxi= (ListView) findViewById(R.id.list_qucanmingxi);
-        RequestCommand.getQucanxiangqing(new QuCanXiangQingCallBack(this),AppSessionEngine.getLoginInfo().getGonghao(),order1,shijianduan1,chuangkouhao);
+        quCanxiangqingListAdapter=new QuCanxiangqingListAdapter(QuCanActivity.body,this);
+        list_qucanmingxi.setAdapter(quCanxiangqingListAdapter);
+
+
+//        RequestCommand.getQucanxiangqing(new QuCanXiangQingCallBack(this),AppSessionEngine.getLoginInfo().getGonghao(),order1,shijianduan1,chuangkouhao);
     }
 
-    public class QuCanXiangQingCallBack extends DialogCallback<QuCanMingXiBean,QuCanMingXiActivity>{
-       QuCanxiangqingListAdapter quCanxiangqingListAdapter;
-        public QuCanXiangQingCallBack(QuCanMingXiActivity requestView) {
-            super(requestView);
-        }
-
-        @Override
-        protected void onResponseSuccess(QuCanMingXiBean quCanMingXiBean, Call<QuCanMingXiBean> call) {
-            super.onResponseSuccess(quCanMingXiBean, call);
-            quCanxiangqingListAdapter=new QuCanxiangqingListAdapter(quCanMingXiBean.getBody(),getAttachTarget().getBaseActivity());
-            list_qucanmingxi.setAdapter(quCanxiangqingListAdapter);
-        }
-    }
+//    public class QuCanXiangQingCallBack extends DialogCallback<QuCanMingXiBean,QuCanMingXiActivity>{
+//       QuCanxiangqingListAdapter quCanxiangqingListAdapter;
+//        public QuCanXiangQingCallBack(QuCanMingXiActivity requestView) {
+//            super(requestView);
+//        }
+//
+//        @Override
+//        protected void onResponseSuccess(QuCanMingXiBean quCanMingXiBean, Call<QuCanMingXiBean> call) {
+//            super.onResponseSuccess(quCanMingXiBean, call);
+//            quCanxiangqingListAdapter=new QuCanxiangqingListAdapter(quCanMingXiBean.getBody(),getAttachTarget().getBaseActivity());
+//            list_qucanmingxi.setAdapter(quCanxiangqingListAdapter);
+//        }
+//    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

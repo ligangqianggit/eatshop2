@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,16 +16,20 @@ import android.widget.Toast;
 
 
 import com.stateunion.eatshop.R;
+import com.stateunion.eatshop.adapter.QuCanxiangqingListAdapter;
 import com.stateunion.eatshop.commons.engine.AppSessionEngine;
 import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.retrofit.entiity.DIngDanHaoBean;
+import com.stateunion.eatshop.retrofit.entiity.QuCanMingXiBean;
+import com.stateunion.eatshop.retrofit.entiity.QuCanMingXiEntity;
 import com.stateunion.eatshop.zxing.android.CaptureActivity;
 import com.stateunion.eatshop.zxing.bean.ZxingConfig;
 import com.stateunion.eatshop.zxing.common.Constant;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.PermissionListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -40,6 +45,7 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
     private ImageView iv_qucan_back;
     public  static String dingdanhao;
     int type=0;
+    public static List<QuCanMingXiEntity> body;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,40 +153,67 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
         super.onActivityResult(requestCode, resultCode, data);
         // 扫描二维码/条码回传
         if (requestCode == REQUEST_CODE_SCAN && resultCode == RESULT_OK) {
+
             if (data != null) {
                 String content = data.getStringExtra(Constant.CODED_CONTENT);
-                Intent intent=new Intent(QuCanActivity.this,QuCanMingXiActivity.class);
-                intent.putExtra("chuankouhao",content);
-                intent.putExtra("dingdanhao",dingdanhao);
+                String shijianduan1="";
                 if(content.equals("1")){
                     if(type==1){
-                        intent.putExtra("type","早餐");
-                        startActivity(intent);
-                    }else if(type==2){
-                        intent.putExtra("type","午餐");
-                        startActivity(intent);
+                        shijianduan1="早餐";
+                        RequestCommand.getQucanxiangqing(new QuCanXiangQingCallBack(this), com.stateunion.eatshop.util.AppSessionEngine.getLoginInfo().getGonghao(),dingdanhao,shijianduan1,content);
+
                     }
-                    else if(type==3){
-                        intent.putExtra("type","晚餐");
-                        startActivity(intent);
-                    }else if(type==4){
+                    if(type==2){
+                        shijianduan1="午餐";
+                        RequestCommand.getQucanxiangqing(new QuCanXiangQingCallBack(this), com.stateunion.eatshop.util.AppSessionEngine.getLoginInfo().getGonghao(),dingdanhao,shijianduan1,content);
+
+                    }
+                     if(type==3){
+                         shijianduan1="晚餐";
+                         RequestCommand.getQucanxiangqing(new QuCanXiangQingCallBack(this), com.stateunion.eatshop.util.AppSessionEngine.getLoginInfo().getGonghao(),dingdanhao,shijianduan1,content);
+
+                     }
+                    if(type==4){
                         Toast.makeText(this, "请去2窗口取小炒", Toast.LENGTH_LONG).show();
-                    } else if(type==5){
-                        intent.putExtra("type","加班");
-                        startActivity(intent);
+                    }
+                    if(type==5){
+                        shijianduan1="加班";
+                        RequestCommand.getQucanxiangqing(new QuCanXiangQingCallBack(this), com.stateunion.eatshop.util.AppSessionEngine.getLoginInfo().getGonghao(),dingdanhao,shijianduan1,content);
+
                     }
                 }else if(content.equals("2")){
                     if(type==4){
-                        intent.putExtra("type","小炒");
-                        startActivity(intent);
+                        shijianduan1="小炒";
+                        RequestCommand.getQucanxiangqing(new QuCanXiangQingCallBack(this), com.stateunion.eatshop.util.AppSessionEngine.getLoginInfo().getGonghao(),dingdanhao,shijianduan1,content);
+
                     }else{
                         Toast.makeText(this, "请去1窗口取套餐", Toast.LENGTH_LONG).show();
                     }
                 }
+                Toast.makeText(this, shijianduan1, Toast.LENGTH_SHORT).show();
+
             }
         }
 
     }
+
+
+    public  class QuCanXiangQingCallBack extends DialogCallback<QuCanMingXiBean,QuCanActivity>{
+        public QuCanXiangQingCallBack(QuCanActivity requestView) {
+            super(requestView);
+        }
+
+        @Override
+        protected void onResponseSuccess(QuCanMingXiBean quCanMingXiBean, Call<QuCanMingXiBean> call) {
+            super.onResponseSuccess(quCanMingXiBean, call);
+            body=quCanMingXiBean.getBody();
+            if(quCanMingXiBean.getSuccess()==1){
+                Intent intent=new Intent(QuCanActivity.this,QuCanMingXiActivity.class);
+                startActivity(intent);
+            }
+        }
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

@@ -30,6 +30,32 @@
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_back_white" />
     </RelativeLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_margin="5dp"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点餐清单"
+        android:textSize="@dimen/size_18"
+        android:textColor="@color/gray"
+        android:layout_gravity="center_horizontal"
+        />
+    <!--取餐详情-->
+    <ListView
+        android:id="@+id/lv_pay"
+        android:background="@color/white"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        tools:listitem="@layout/product_item"
+        android:layout_marginTop="5dp"
+        >
+    </ListView>
+</LinearLayout>
 
 
     <LinearLayout
@@ -50,15 +76,7 @@
         <!--取餐详情-->
 
 
-        <com.stateunion.eatshop.custom_view.MyListView
-            android:id="@+id/lv_pay"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="5dp"
-            android:background="@color/white"
-            tools:listitem="@layout/product_item">
 
-        </com.stateunion.eatshop.custom_view.MyListView>
     </LinearLayout>
 
 

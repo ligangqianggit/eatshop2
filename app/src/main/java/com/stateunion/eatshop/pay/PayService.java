@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -54,7 +55,7 @@ public class PayService extends BaseActivity{
     private boolean isWxPay=false;
     //    private IWXAPI msgApi;
     private LinearLayout rl_zhifubao_pay,rl_weixin_pay;
-    MyListView lv_product;
+    ListView lv_product;
     public static String money;
     Button bt_pay;
     private PayListAdapter payListAdapter;
@@ -72,7 +73,7 @@ String payType="微信支付";
         init();
     }
     private void init(){
-        lv_product = (MyListView)findViewById(R.id.lv_pay);
+        lv_product = (ListView)findViewById(R.id.lv_pay);
         iv_querendingdan_back= (ImageView) findViewById(R.id.iv_querendingdan_back);
         iv_querendingdan_back.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -196,8 +196,7 @@ public class DingCanActivity extends BaseActivity {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                  // 请务必返回 false，否则分组不会展开
-                Log.d("fulei位置",mExpandableListView.isGroupExpanded(groupPosition)+"");
-                 return false;
+                  return false;
             }
         });
 

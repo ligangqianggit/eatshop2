@@ -96,7 +96,7 @@ public class GoodsAdapter extends BaseAdapter {
         //商品图片
         if(list.get(position).getIcon()!=null){
             ImageLoader.getInstance().displayImage(
-                    list.get(position).getIcon(), viewholder.iv_pic);
+                    "http://ceshi123.dns178.com/home/index/"+list.get(position).getIcon(), viewholder.iv_pic);
         }
 
 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:background="@color/white"
+   >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+
+        >
+
+        <TextView
+            android:id="@+id/tv_paimingitem_paiming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_18" />
+
+        <TextView
+            android:id="@+id/tv_paimingitem_chushi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="厨师"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/size_22"
+            android:layout_toRightOf="@+id/tv_paimingitem_paiming"
+            android:layout_alignBaseline="@+id/tv_paimingitem_paiming"
+            android:layout_marginLeft="20dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_paimingitem_fenshu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分数"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/size_22"
+            android:layout_toRightOf="@+id/tv_paimingitem_chushi"
+            android:layout_alignBaseline="@+id/tv_paimingitem_chushi"
+            android:layout_marginLeft="20dp"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

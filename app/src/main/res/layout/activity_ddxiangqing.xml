@@ -54,7 +54,6 @@
             android:layout_marginRight="10dp"
             android:textSize="@dimen/size_18"
             android:background="@color/beijing"
-            android:text="退单或者评价"
             android:textColor="@color/white"
             />
     </LinearLayout>

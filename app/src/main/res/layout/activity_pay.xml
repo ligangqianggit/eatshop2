@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@color/yemain_beijing">
+    android:background="@color/yemain_beijing"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/beijing"
-        >
+        android:background="@color/beijing">
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_margin="10dp"
             android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:text="确认订单"
             android:textColor="#fff"
-            android:text="确认订单" />
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/iv_querendingdan_back"
@@ -29,42 +30,46 @@
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_back_white" />
     </RelativeLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/white"
-    android:layout_margin="5dp"
-    >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="点餐清单"
-        android:textSize="@dimen/size_18"
-        android:textColor="@color/gray"
-        android:layout_gravity="center_horizontal"
-        />
-    <!--取餐详情-->
-    <com.stateunion.eatshop.custom_view.MyListView
-        android:id="@+id/lv_pay"
-        android:background="@color/white"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        tools:listitem="@layout/product_item"
-        android:layout_marginTop="5dp"
-        >
-    </com.stateunion.eatshop.custom_view.MyListView>
-</LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:layout_margin="5dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="点餐清单"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/size_18" />
+        <!--取餐详情-->
+
+
+        <com.stateunion.eatshop.custom_view.MyListView
+            android:id="@+id/lv_pay"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            tools:listitem="@layout/product_item">
+
+        </com.stateunion.eatshop.custom_view.MyListView>
+    </LinearLayout>
 
 
     <LinearLayout
         android:id="@+id/rl_zhifubao_pay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_height="0dp"
+        android:layout_weight="4"
         android:layout_marginTop="8dp"
-        android:padding="10dp" >
+        android:background="@color/white"
+        android:padding="10dp">
 
         <RadioGroup
             android:id="@+id/mRadioGroup"
@@ -79,55 +84,55 @@
                 android:id="@+id/radio_yue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@mipmap/ic_yue"
-                android:drawableRight="@drawable/radio_buttonbg"
-                android:drawablePadding="10dp"
-                android:padding="8dp"
                 android:button="@null"
+                android:drawableLeft="@mipmap/ic_yue"
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/radio_buttonbg"
+                android:padding="5dp"
+                android:text="余额"
                 android:textColor="@color/black"
-                android:textSize="@dimen/size_18"
-                android:text="余额"/>
+                android:textSize="@dimen/size_18" />
 
             <RadioButton
                 android:id="@+id/radio_weixin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@mipmap/ic_weixin"
-                android:drawableRight="@drawable/radio_buttonbg"
-                android:drawablePadding="10dp"
-                android:button="@null"
-                android:padding="8dp"
-                android:textSize="@dimen/size_18"
-                android:textColor="@color/black"
                 android:layout_marginTop="5dp"
-                android:text="微信支付"/>
+                android:button="@null"
+                android:drawableLeft="@mipmap/ic_weixin"
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/radio_buttonbg"
+                android:padding="8dp"
+                android:text="微信支付"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_18" />
 
             <RadioButton
                 android:id="@+id/radio_zhifubao"
-                android:button="@null"
-                android:drawableLeft="@mipmap/ic_zhifubao"
-                android:drawableRight="@drawable/radio_buttonbg"
-                android:drawablePadding="10dp"
-                android:padding="8dp"
-                android:textSize="@dimen/size_18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
                 android:layout_marginTop="5dp"
+                android:button="@null"
+                android:drawableLeft="@mipmap/ic_zhifubao"
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/radio_buttonbg"
+                android:padding="8dp"
                 android:text="支付宝支付"
-                />
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_18" />
 
         </RadioGroup>
     </LinearLayout>
+
     <Button
         android:id="@+id/bt_pay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="价钱"
-        android:textColor="@color/white"
-        android:background="@color/beijing"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        />
+        android:background="@color/beijing"
+        android:text="价钱"
+        android:textColor="@color/white" />
 
 </LinearLayout>

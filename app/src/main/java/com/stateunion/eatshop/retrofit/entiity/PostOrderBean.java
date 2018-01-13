@@ -24,8 +24,5 @@ public class PostOrderBean {
         this.num = num;
     }
 
-    public PostOrderBean(String id, String num) {
-        this.id = id;
-        this.num = num;
-    }
+
 }

@@ -61,7 +61,7 @@ public class PayService extends BaseActivity{
     public static String stryue;
    Gson gson;
     List<PostOrderBean> OrderList=new ArrayList();
-
+String payType="微信支付";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,21 +79,17 @@ public class PayService extends BaseActivity{
                 PayService.this.finish();
             }
         });
-        Log.v("eatshop","lv_product"+lv_product);
-        Log.v("eatshop","selectedList"+selectedList);
-        Log.v("eatshop","goodsAdapter"+goodsAdapter);
-        PostOrderBean postOrderBean=new PostOrderBean("7","2");
-        PostOrderBean postOrderBeans=new PostOrderBean("9","2");
-        GsonBuilder gsonBuilder=new GsonBuilder();
-        gson=gsonBuilder.create();
-//        for (int i=0;i<selectedList.size();i++){
-//           postOrderBean.setNum(selectedList.valueAt(i).getNum()+"");
-//            postOrderBean.setId(selectedList.valueAt(i).getProduct_id()+"");
-        OrderList.add(postOrderBean);
-        OrderList.add(postOrderBeans);
 
-//        }
-         payListAdapter=new PayListAdapter(PayService.this,goodsAdapter,selectedList);
+         GsonBuilder gsonBuilder=new GsonBuilder();
+        gson=gsonBuilder.create();
+        for (int i=0;i<selectedList.size();i++){
+            PostOrderBean postOrderBean=new PostOrderBean();
+
+            postOrderBean.setNum(selectedList.valueAt(i).getNum()+"");
+            postOrderBean.setId(selectedList.valueAt(i).getProduct_id()+"");
+             OrderList.add(postOrderBean);
+          }
+          payListAdapter=new PayListAdapter(PayService.this,goodsAdapter,selectedList);
         lv_product.setAdapter(payListAdapter);
 
           radioGroup= (RadioGroup) findViewById(R.id.mRadioGroup);
@@ -104,12 +100,14 @@ public class PayService extends BaseActivity{
               @Override
               public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                   if(yue.getId()==checkedId){
-
+                      payType="余额支付";
                   }
                   if(weixin.getId()==checkedId){
+                      payType="微信支付";
 
                   }
                   if(zhifubao.getId()==checkedId){
+                      payType="支付宝支付";
 
                   }
               }
@@ -133,9 +131,8 @@ public class PayService extends BaseActivity{
 //       SubmitCallBackack
        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
        String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
-//       gson.toJson(OrderList)  list 以string 传递这样就可以
-       Log.v("eatshop","list 样式"+gson.toJson(OrderList));
-       RequestCommand.zhifujiekou(new SubmitCallBack(this),date,"余额支付",money,gson.toJson(OrderList));
+        Log.v("eatshop","list 样式"+gson.toJson(OrderList));
+       RequestCommand.zhifujiekou(new SubmitCallBack(this),date,payType,money,gson.toJson(OrderList));
    }
     //获取余额
     public class YueCallBack extends DialogCallback<YueBean,PayService> {

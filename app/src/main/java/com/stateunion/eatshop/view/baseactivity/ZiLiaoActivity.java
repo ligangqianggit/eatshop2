@@ -4,12 +4,15 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -29,7 +32,10 @@ import com.stateunion.eatshop.util.CircleTransform;
 import com.stateunion.eatshop.util.TakePhone;
 import com.stateunion.eatshop.view.mainfrment.upMenuDragment3;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -104,7 +110,7 @@ public class ZiLiaoActivity extends BaseActivity {
     }
 
     @OnClick({R.id.iv_ziliao_back, R.id.tv_ziliao_touxiang, R.id.bt_ziliao})
-    public void onViewClicked(View view) {
+    public void onViewClicked(View view){
         switch (view.getId()) {
             case R.id.iv_ziliao_back:
 
@@ -122,7 +128,7 @@ public class ZiLiaoActivity extends BaseActivity {
                 break;
         }
     }
-    public void submitInfo(){
+    public void submitInfo() {
         String path1 = "";
       List<File> fileList = new ArrayList<>();
       fileList.add(new File(outputFiles));
@@ -145,23 +151,34 @@ public class ZiLiaoActivity extends BaseActivity {
 //        MultipartBody.Builder builder = new MultipartBody.Builder()
 //                .setType(MultipartBody.FORM)//表单类型
 //                ;//ParamKey.TOKEN 自定义参数key常量类，即参数名
-        Log.d("file",outputFiles+"");
-         RequestBody requestBody = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                 .addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("image/png"), file))
-                 .build();
-        requestBody =RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        Map<String, String> params=new HashMap<String, String>();
-        Map<String, RequestBody> files=new HashMap<String, RequestBody>();
-        params.put("phone","13212121");
-        params.put("zhuzhi","121212");
-        params.put("gonghao","222222");
-        files.put("touxiang",requestBody);
+        try{
+            FileInputStream fis = new FileInputStream(outputFiles);
+            Bitmap bitmap  = BitmapFactory.decodeStream(fis);
+            String touxiang= bitmaptoString(bitmap);
+            RequestCommand.Upziliaos(new ChangeUserInfoCallback(this),AppSessionEngine.getgonghao(),
+                    ed_ziliao_phone.getText().toString(),
+                    ed_ziliao_dizhi.getText().toString(),
+                    touxiang
+            );
+        }catch (Exception e){
+
+        }
+
+//          RequestBody requestBody = new MultipartBody.Builder()
+//                .setType(MultipartBody.FORM)
+//                 .addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("image/png"), file))
+//                 .build();
+//        requestBody =RequestBody.create(MediaType.parse("multipart/form-data"), file);
+//        Map<String, String> params=new HashMap<String, String>();
+//        Map<String, RequestBody> files=new HashMap<String, RequestBody>();
+//        params.put("phone","13212121");
+//        params.put("zhuzhi","121212");
+//        params.put("gonghao","222222");
+//        files.put("touxiang",requestBody);
  //        RequestCommand.Upziliaoss(new ChangeUserInfoCallback(this),params,body);
 
 //        RequestCommand.cesgi(new ChangeUserInfoCallback(this),"a","b","c",files);
-//        RequestCommand.Upziliaos(new ChangeUserInfoCallback(this),AppSessionEngine.getgonghao(),map,ed_ziliao_phone.getText().toString(),
-//                ed_ziliao_dizhi.getText().toString(),file);
+
     }
 
    public static class ChangeUserInfoCallback extends DialogCallback<BaseBean,ZiLiaoActivity>{
@@ -283,5 +300,14 @@ public class ZiLiaoActivity extends BaseActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+    public String bitmaptoString(Bitmap bitmap){
+//将Bitmap转换成字符串
+        String string=null;
+        ByteArrayOutputStream bStream=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,bStream);
+        byte[]bytes=bStream.toByteArray();
+        string= Base64.encodeToString(bytes,Base64.DEFAULT);
+        return string;
     }
 }

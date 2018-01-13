@@ -145,7 +145,7 @@ public interface ServiceApi {
     Call<BaseBean> xiugaizilaios(@Field("gonghao") String user_id,
                                 @Field("phone") String phone,
                                 @Field("zhuzhi") String zhuzhi,
-                                 @Field("touxiang") File touxiang
+                                 @Field("touxiang") String touxiang
 
                                  //@Part("avatar\"; filename=\"avatar.jpg") RequestBody avatar
 //                                  @PartMap() Map<String, RequestBody> files

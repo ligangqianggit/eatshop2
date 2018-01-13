@@ -75,7 +75,7 @@ public class RequestCommand {
         send(call,callback);
     }
     //修改资料 文件
-    public static void Upziliaos(RequestCallback callback, String user_id, String phone, String zhuzhi,File file){
+    public static void Upziliaos(RequestCallback callback, String user_id, String phone, String zhuzhi,String file){
         Call call=getApi().xiugaizilaios(user_id,phone,zhuzhi,file);
         send(call,callback);
     }

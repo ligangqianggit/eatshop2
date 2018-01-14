@@ -1,6 +1,7 @@
 package com.stateunion.eatshop.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,12 +30,12 @@ import retrofit2.Call;
  */
 
 public class TuiDanListAdapter extends BaseAdapter{
-    private List<TuiDanShenHeBean.TuiDanShenHeBeanInfo> tuiDanShenHeBeanInfo;
+    public static List<TuiDanShenHeBean.TuiDanShenHeBeanInfo> tuiDanShenHeBeanInfo;
     private TuiDanShenHeListItemAdapter tuiDanShenHeListItemAdapter;
-    private Context context;
+    public static TuiDanShenHe context;
     private LayoutInflater layoutInflater;
-    TuiDanShenHe tuiDanShenHe;
-    public TuiDanListAdapter(List<TuiDanShenHeBean.TuiDanShenHeBeanInfo> tuiDanShenHeBeanInfo, Context context) {
+    public static int position;
+    public TuiDanListAdapter(List<TuiDanShenHeBean.TuiDanShenHeBeanInfo> tuiDanShenHeBeanInfo, TuiDanShenHe context) {
         this.tuiDanShenHeBeanInfo = tuiDanShenHeBeanInfo;
         this.context = context;
         this.layoutInflater=LayoutInflater.from(context);
@@ -84,14 +85,16 @@ public class TuiDanListAdapter extends BaseAdapter{
                 @Override
                 public void onClick(View view) {
                     //拒绝
-                    RequestCommand.CSZTuiDanShenHe(new TuiDanShenHeCallBack(tuiDanShenHe),tuiDanShenHeBeanInfo.get(i).getOrder_sn(),2);
+                    position=i;
+                    RequestCommand.CSZTuiDanShenHe(new TuiDanShenHeCallBack(context),tuiDanShenHeBeanInfo.get(i).getOrder_sn(),2);
                 }
             });
             zujian.bt_tuidan_tongyi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //同意
-                    RequestCommand.CSZTuiDanShenHe(new TuiDanShenHeCallBack(tuiDanShenHe),tuiDanShenHeBeanInfo.get(i).getOrder_sn(),1);
+                    position=i;
+                    RequestCommand.CSZTuiDanShenHe(new TuiDanShenHeCallBack(context),tuiDanShenHeBeanInfo.get(i).getOrder_sn(),1);
 
                 }
             });
@@ -101,7 +104,6 @@ public class TuiDanListAdapter extends BaseAdapter{
     }
 
     public class TuiDanShenHeCallBack extends DialogCallback<BaseBean,TuiDanShenHe>{
-
         public TuiDanShenHeCallBack(TuiDanShenHe requestView) {
             super(requestView);
         }
@@ -109,12 +111,16 @@ public class TuiDanListAdapter extends BaseAdapter{
         protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
             super.onResponseSuccess(baseBean, call);
             if(baseBean.getSuccess()==1){
-                Toast.makeText(getAttachTarget().getBaseActivity(),baseBean.getInfo(),Toast.LENGTH_LONG).show();
+//                Toast.makeText(getAttachTarget().getBaseActivity(),baseBean.getInfo(),Toast.LENGTH_LONG).show();
+                  if(tuiDanShenHeBeanInfo.size()>0){
+                      Log.v("eatshop","===========++++---========"+position);
+                      tuiDanShenHeBeanInfo.remove(position);
+                      notifyDataSetChanged();
+                      Log.v("satshop","====+++++++==="+tuiDanShenHeBeanInfo.size());
+                  }
             }
         }
-
     }
-
     public final class Zujian{
         public TextView tv_tuidan_user,tv_tuidan_zhuangtai,tv_tuidan_xiadantime,tv_tuidan_qucantime,tv_tuidan_yuanyin,tv_tuidan_money;
         public Button bt_tuidan_jvjue,bt_tuidan_tongyi;

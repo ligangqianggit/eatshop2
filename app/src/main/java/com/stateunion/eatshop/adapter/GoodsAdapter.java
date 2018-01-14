@@ -71,7 +71,7 @@ public class GoodsAdapter extends BaseAdapter {
             viewholder = (Viewholder) convertView.getTag();
         }
         viewholder.tv_name.setText(list.get(position).getTitle());
-        viewholder.tv_dingcan_mes.setText("此处是mes");
+        viewholder.tv_dingcan_mes.setText("此处是mes"+list.get(position).getTitle());
         viewholder.tv_dingcan_price.setText("￥"+list.get(position).getPrice());
         Log.d("shipeiqi",list.size()+"");
 
@@ -96,7 +96,7 @@ public class GoodsAdapter extends BaseAdapter {
         //商品图片
         if(list.get(position).getIcon()!=null){
             ImageLoader.getInstance().displayImage(
-                    "http://ceshi123.dns178.com/home/index/"+list.get(position).getIcon(), viewholder.iv_pic);
+                    "http://ceshi123.dns178.com/"+list.get(position).getIcon(), viewholder.iv_pic);
         }
 
 

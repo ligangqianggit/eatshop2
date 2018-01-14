@@ -3,6 +3,7 @@ package com.stateunion.eatshop.adapter;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -23,6 +24,7 @@ public class YGPingjiaListAdapter extends BaseAdapter{
     private List<OrderBean.OrderBeanInfo.OrderBeanInfoList> orderBeanInfoList;
     private Context context;
     private LayoutInflater layoutInflater;
+    int index;
     public YGPingjiaListAdapter(List<OrderBean.OrderBeanInfo.OrderBeanInfoList> orderBeanInfoList, Context context) {
         this.orderBeanInfoList = orderBeanInfoList;
         this.context = context;
@@ -45,7 +47,7 @@ public class YGPingjiaListAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         Zujian zujian=null;
         if(zujian==null){
             zujian=new Zujian();
@@ -54,6 +56,24 @@ public class YGPingjiaListAdapter extends BaseAdapter{
             zujian.tv_ygpingjiaitem_chushi= (TextView) view.findViewById(R.id.tv_ygpingjiaitem_chushi);
             zujian.ratingBar= (RatingBar) view.findViewById(R.id.ratingBar);
             zujian.et_ygpingjiaitem_message= (EditText) view.findViewById(R.id.et_ygpingjiaitem_message);
+
+//            holder.mEtComment.setTag(commentItem);//将bean与EditText进行绑定
+
+            zujian.et_ygpingjiaitem_message.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                        index = i;
+                    }
+                    return false;
+                }
+            });
+
+            if (index == i) {
+                zujian.et_ygpingjiaitem_message.requestFocus();
+            } else {
+                zujian.et_ygpingjiaitem_message.clearFocus();
+            }
 
             zujian.tv_ygpingjiaitem_caipin.setText("餐品:"+orderBeanInfoList.get(i).getFoot_name());
             zujian.tv_ygpingjiaitem_chushi.setText("厨师:"+orderBeanInfoList.get(i).getChushi());

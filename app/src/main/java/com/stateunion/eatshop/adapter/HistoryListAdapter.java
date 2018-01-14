@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -54,7 +55,7 @@ public class HistoryListAdapter extends BaseAdapter{
         if(zujian==null){
             zujian=new Zujian();
             view=layoutInflater.inflate(R.layout.item_history_one,null);
-            zujian.rl_history_item= (RelativeLayout) view.findViewById(R.id.rl_history_item);
+            zujian.bt_xiangqing= (Button) view.findViewById(R.id.bt_history_xiangqing);
             zujian.tv_history_diangdanhao= (TextView) view.findViewById(R.id.tv_history_diangdanhao);
             zujian.tv_history_time= (TextView) view.findViewById(R.id.tv_history_time);
             zujian.tv_history_money= (TextView) view.findViewById(R.id.tv_history_money);
@@ -64,10 +65,10 @@ public class HistoryListAdapter extends BaseAdapter{
             zujian.tv_history_time.setText(DateUtil.timedate(historyInfo.get(i).getPay_time()));
             historyListItemAdapter=new HistoryListItemAdapter(historyInfo.get(i).getGoods(),context);
             zujian.list_item_history.setAdapter(historyListItemAdapter);
-            ChildLiatviewUtil.setListViewHeightBasedOnChildren(zujian.list_item_history);
+//            ChildLiatviewUtil.setListViewHeightBasedOnChildren(zujian.list_item_history);
             zujian.tv_history_money.setText("金额:"+historyInfo.get(i).getAll_money()+"元");
 
-            zujian.rl_history_item.setOnClickListener(new View.OnClickListener() {
+            zujian.bt_xiangqing.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent=new Intent(context, DDXiangQingActivity.class);
@@ -81,6 +82,6 @@ public class HistoryListAdapter extends BaseAdapter{
     public final class Zujian{
         public TextView tv_history_diangdanhao,tv_history_time,tv_history_money;
         public ListView list_item_history;
-        public RelativeLayout rl_history_item;
+        public Button bt_xiangqing;
     }
 }

@@ -100,7 +100,6 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
 
     }
     public void intview(View view){
-        AppSessionEngine.getLoginInfo().getGonghao();
                 tv_preson_user= (TextView) view.findViewById(R.id.tv_preson_user);
                 tv_preson_iccard=(TextView) view.findViewById(R.id.tv_preson_iccard);
                 tv_preson_phone=(TextView) view.findViewById(R.id.tv_preson_phone);
@@ -137,9 +136,13 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
     @Override
     public void refreshData(View rootView) {
         RequestCommand.getPreson(new PresonCallBck(PersFragment.this),AppSessionEngine.getLoginInfo().getGonghao());
-
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        RequestCommand.getPreson(new PresonCallBck(PersFragment.this),AppSessionEngine.getLoginInfo().getGonghao());
+    }
 
     /**
      * 顶掉请求
@@ -147,6 +150,12 @@ public class PersFragment extends BaseFragment implements IBaseDialogView{
    private void LoginOut(){
 //       RequestCommand.pswLogin(new RequestOutLogCall(PersFragment.this),"111111","123");
    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        RequestCommand.getPreson(new PresonCallBck(PersFragment.this),AppSessionEngine.getLoginInfo().getGonghao());
+    }
 
     @Override
     public Dialog createDialog(@StyleRes int themeResId) {

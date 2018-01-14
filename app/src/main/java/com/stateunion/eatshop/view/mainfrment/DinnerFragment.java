@@ -53,7 +53,7 @@ public class DinnerFragment extends Fragment implements IBaseDialogView {
     }
 
     public void call() {
-        RequestCommand.getTongji(new TongJICallBackW(DinnerFragment.this), "午餐");
+        RequestCommand.getTongji(new TongJICallBackW(DinnerFragment.this), "晚餐");
      }
 
     @Override

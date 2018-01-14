@@ -51,7 +51,7 @@ public class OverTimeFragment extends Fragment implements IBaseDialogView {
     }
 
     public void call() {
-        RequestCommand.getTongji(new TongJICallBackW(OverTimeFragment.this), "晚餐");
+        RequestCommand.getTongji(new TongJICallBackW(OverTimeFragment.this), "加班");
     }
 
     @Override

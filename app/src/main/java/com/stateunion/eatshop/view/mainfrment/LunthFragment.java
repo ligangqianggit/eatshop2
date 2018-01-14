@@ -52,7 +52,7 @@ public class LunthFragment extends Fragment implements IBaseDialogView {
     }
 
     public void call() {
-        RequestCommand.getTongji(new TongJICallBack(LunthFragment.this), "早餐");
+        RequestCommand.getTongji(new TongJICallBack(LunthFragment.this), "午餐");
 
     }
 

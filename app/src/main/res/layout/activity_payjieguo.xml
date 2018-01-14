@@ -60,19 +60,19 @@
              android:gravity="center_horizontal"
              />
 
-         <!--<Button-->
-             <!--android:id="@+id/go_main"-->
-             <!--android:layout_width="wrap_content"-->
-             <!--android:layout_height="wrap_content"-->
-             <!--android:layout_gravity="center_horizontal"-->
-             <!--android:gravity="center"-->
-             <!--android:text="返回首页"-->
-             <!--android:layout_marginTop="25dp"-->
-             <!--android:layout_marginBottom="10dp"-->
-             <!--android:background="@color/beijing"-->
-             <!--android:textColor="@color/white"-->
-             <!--android:textSize="@dimen/size_18"-->
-             <!--android:padding="5dp"-->
-             <!--/>-->
+         <Button
+             android:id="@+id/bt_gomain"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center_horizontal"
+             android:gravity="center"
+             android:text="返回首页"
+             android:layout_marginTop="25dp"
+             android:layout_marginBottom="10dp"
+             android:background="@color/beijing"
+             android:textColor="@color/white"
+             android:textSize="@dimen/size_18"
+             android:padding="5dp"
+             />
      </LinearLayout>
 </LinearLayout>

@@ -58,14 +58,14 @@
           >
       </ListView>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="评价"
-        android:textSize="@dimen/size_18"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        android:background="@drawable/login_bt"
-        android:id="@+id/bt_mingxi_pingjia"
-        />
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="评价"-->
+        <!--android:textSize="@dimen/size_18"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_margin="20dp"-->
+        <!--android:background="@drawable/login_bt"-->
+        <!--android:id="@+id/bt_mingxi_pingjia"-->
+        <!--/>-->
 </LinearLayout>

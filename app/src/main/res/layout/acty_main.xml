@@ -40,7 +40,7 @@
                 <com.stateunion.eatshop.custom_view.RedPointRadioButton
                     android:id="@+id/acty_main_radio2"
                     style="@style/MainRadio"
-                    android:drawableTop="@drawable/slt_main_radio_social"
+                    android:drawableTop="@drawable/slt_main_radio_shop"
                     android:text="@string/main_radio_coup" />
 
                 <com.stateunion.eatshop.custom_view.RedPointRadioButton

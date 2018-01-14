@@ -13,8 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-          android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:padding="5dp"
         android:layout_marginLeft="1dp"
          tools:text="测试数据"
 
@@ -26,5 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:src="@drawable/ic_expand_more"
+        android:layout_marginRight="1dp"
         />
 </LinearLayout>

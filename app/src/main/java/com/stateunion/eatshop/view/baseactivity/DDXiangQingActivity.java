@@ -101,12 +101,15 @@ public class DDXiangQingActivity extends BaseActivity{
                 }
                 if(orderBean.getBody().getZhuangtai()==5){
                     // 已退单
-                    bt_ddxiangqiang_tuiorpoing.setText("已退单");
+                    bt_ddxiangqiang_tuiorpoing.setText("同意退单");
+                    bt_ddxiangqiang_tuiorpoing.setEnabled(false);
+                }if(orderBean.getBody().getZhuangtai()==6){
+                    // 已退单
+                    bt_ddxiangqiang_tuiorpoing.setText("拒绝退单");
                     bt_ddxiangqiang_tuiorpoing.setEnabled(false);
                 }
+
             }
-
-
         }
     }
 
@@ -128,7 +131,6 @@ public class DDXiangQingActivity extends BaseActivity{
                 } else {
                     dialog.dismiss();
                     RequestCommand.setTuidan(new TuiDanCallBack(DDXiangQingActivity.this),AppSessionEngine.getLoginInfo().getGonghao().toString(),order_sn,etContent.getText().toString());
-                    Toast.makeText(DDXiangQingActivity.this, etContent.getText().toString(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -153,6 +155,10 @@ public class DDXiangQingActivity extends BaseActivity{
         @Override
         protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
             super.onResponseSuccess(baseBean, call);
+            if(baseBean.getSuccess()==1){
+                bt_ddxiangqiang_tuiorpoing.setText("退单中");
+                bt_ddxiangqiang_tuiorpoing.setEnabled(false);
+            }
         }
     }
 

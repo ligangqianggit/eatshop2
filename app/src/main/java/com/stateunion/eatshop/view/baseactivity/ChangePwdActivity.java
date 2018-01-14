@@ -57,9 +57,15 @@ public class ChangePwdActivity extends BaseActivity{
                 }else if(!newped2.getText().toString().equals(newpwd1.getText().toString())){
                     Toast.makeText(ChangePwdActivity.this,"两次输入密码不一致，请重新输入！",Toast.LENGTH_LONG).show();
                 }else{
-                    changepwd();
+                    if(newpwd1.getText().toString().length()<6){
+                        Toast.makeText(ChangePwdActivity.this,"密码少于六位，请重新输入！",Toast.LENGTH_LONG).show();
+                    }else if(newpwd1.getText().toString().length()>10){
+                        Toast.makeText(ChangePwdActivity.this,"密码多于十位，请重新输入！",Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        changepwd();
+                    }
                 }
-
             }
         });
     }

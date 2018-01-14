@@ -51,7 +51,7 @@ public class TuiDanShenHe extends BaseActivity{
         @Override
         protected void onResponseSuccess(TuiDanShenHeBean tuiDanShenHeBean, Call<TuiDanShenHeBean> call) {
             super.onResponseSuccess(tuiDanShenHeBean, call);
-            tuiDanListAdapter=new TuiDanListAdapter(tuiDanShenHeBean.getBody(),getAttachTarget().getBaseActivity());
+            tuiDanListAdapter=new TuiDanListAdapter(tuiDanShenHeBean.getBody(),TuiDanShenHe.this);
             list_tuidanshenhe.setAdapter(tuiDanListAdapter);
         }
     }

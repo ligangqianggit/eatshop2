@@ -79,6 +79,7 @@ public class OpinActivity extends BaseActivity implements View.OnClickListener {
            if(baseBean.getSuccess()==1){
                Toast.makeText(getAttachTarget().getBaseActivity(), baseBean.getInfo().toString(),Toast.LENGTH_LONG).show();
                er_opin.setText("");
+               getAttachTarget().getBaseActivity().finish();
            }
 
         }

@@ -23,6 +23,7 @@ import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.retrofit.entiity.DIngDanHaoBean;
 import com.stateunion.eatshop.retrofit.entiity.QuCanMingXiBean;
 import com.stateunion.eatshop.retrofit.entiity.QuCanMingXiEntity;
+import com.stateunion.eatshop.util.DateUtil;
 import com.stateunion.eatshop.zxing.android.CaptureActivity;
 import com.stateunion.eatshop.zxing.bean.ZxingConfig;
 import com.stateunion.eatshop.zxing.common.Constant;
@@ -87,29 +88,58 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
+        boolean result = false;
         switch (view.getId()){
             case R.id.bt_qucan_zaocan:
-                type=1;
-                Dianqisaoma();
+                result= DateUtil.isCurrentInTimeScope(7,0,10,0);
+                if(result){
+                    type=1;
+                    Dianqisaoma();
+                }else{
+                    Toast.makeText(QuCanActivity.this,"未到取餐时间，请稍后重试",Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.bt_qucan_lunch:
-                type=2;
-                Dianqisaoma();
+                result= DateUtil.isCurrentInTimeScope(10,0,15,0);
+                if(result){
+                    type=2;
+                    Dianqisaoma();
+                }else{
+                    Toast.makeText(QuCanActivity.this,"未到取餐时间，请稍后重试",Toast.LENGTH_LONG).show();
+                }
                 break;
 
             case R.id.bt_qucan_dinner:
-                type=3;
-                Dianqisaoma();
+                result= DateUtil.isCurrentInTimeScope(15,0,19,0);
+                if(result){
+                    type=3;
+                    Dianqisaoma();
+                }else{
+                    Toast.makeText(QuCanActivity.this,"未到取餐时间，请稍后重试",Toast.LENGTH_LONG).show();
+                }
+
                 break;
 
             case R.id.bt_qucan_xiaochao:
-                type=4;
-                Dianqisaoma();
+                result= DateUtil.isCurrentInTimeScope(10,0,23,0);
+                if(result){
+                    type=4;
+                    Dianqisaoma();
+                }else{
+                    Toast.makeText(QuCanActivity.this,"未到取餐时间，请稍后重试",Toast.LENGTH_LONG).show();
+                }
+
                 break;
 
             case R.id.bt_qucan_jiaban:
-                type=5;
-                Dianqisaoma();
+                result= DateUtil.isCurrentInTimeScope(19,0,23,0);
+                if(result){
+                    type=5;
+                    Dianqisaoma();
+                }else{
+                    Toast.makeText(QuCanActivity.this,"未到取餐时间，请稍后重试",Toast.LENGTH_LONG).show();
+                }
+
                 break;
             case R.id.iv_qucan_back:
                 QuCanActivity.this.finish();
@@ -190,7 +220,7 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
                         Toast.makeText(this, "请去1窗口取套餐", Toast.LENGTH_LONG).show();
                     }
                 }
-                Toast.makeText(this, shijianduan1, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, shijianduan1, Toast.LENGTH_SHORT).show();
 
             }
         }

@@ -29,15 +29,16 @@ public class PayJieGuoActivity extends BaseActivity{
                 PayJieGuoActivity.this.finish();
             }
         });
-//        go_main= (Button) findViewById(R.id.go_main);
-//        go_main.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                Intent intent=new Intent(PayJieGuoActivity.this, MainActivity.class);
-////                startActivity(intent);
-////                PayJieGuoActivity.this.finish();
-//            }
-//        });
+
+        go_main= (Button) findViewById(R.id.bt_gomain);
+        go_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(PayJieGuoActivity.this, MainActivity.class);
+                startActivity(intent);
+                getBaseActivity().finish();
+            }
+        });
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

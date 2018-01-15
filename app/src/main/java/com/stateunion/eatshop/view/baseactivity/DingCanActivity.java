@@ -242,6 +242,7 @@ public class DingCanActivity extends BaseActivity {
             goodsBean.setIcon(zaolist.get(j).getFoodtupian());
             goodsBean.setOriginal_price("200");
             goodsBean.setPrice(zaolist.get(j).getJiage());
+            goodsBean.setFoodbrief(zaolist.get(j).getFoot_jianjie());
             list3.add(goodsBean);
         }
  //        //商品

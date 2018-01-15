@@ -38,7 +38,18 @@
                 android:text="矿泉水"
                 android:textSize="14sp"
                 android:textColor="@color/black1"/>
-
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="aaaaa"
+      android:textColor="@color/black1"
+      android:gravity="center"
+      android:layout_marginTop="3dp"
+      android:maxLines="1"
+      android:id="@+id/foods_brief"
+      android:singleLine="true"
+      android:ellipsize="end"
+      />
 
             <RelativeLayout
                 android:layout_width="match_parent"

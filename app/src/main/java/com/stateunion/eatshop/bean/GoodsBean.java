@@ -14,6 +14,7 @@ public class GoodsBean {
     public String price; // required
     public String specification; // required
     public int num; // required
+    public String foodbrief;
 //    public List<ItemBean> package_product_info; // required
     public int cart_num; // required
 
@@ -96,6 +97,14 @@ public class GoodsBean {
 
     public void setCart_num(int cart_num) {
         this.cart_num = cart_num;
+    }
+
+    public String getFoodbrief() {
+        return foodbrief;
+    }
+
+    public void setFoodbrief(String foodbrief) {
+        this.foodbrief = foodbrief;
     }
 
     @Override

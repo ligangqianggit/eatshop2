@@ -66,6 +66,7 @@ public class GoodsAdapter extends BaseAdapter {
             viewholder.tv_acount= (TextView) convertView.findViewById(R.id.tv_acount);
             viewholder.iv_pic= (ImageView) convertView.findViewById(R.id.iv_pic);
             viewholder.rl_item= (RelativeLayout) convertView.findViewById(R.id.rl_item);
+            viewholder.tv_foodbrief=(TextView) convertView.findViewById(R.id.foods_brief);
             convertView.setTag(viewholder);
         }else {
             viewholder = (Viewholder) convertView.getTag();
@@ -73,6 +74,7 @@ public class GoodsAdapter extends BaseAdapter {
         viewholder.tv_name.setText(list.get(position).getTitle());
         viewholder.tv_dingcan_mes.setText("此处是mes"+list.get(position).getTitle());
         viewholder.tv_dingcan_price.setText("￥"+list.get(position).getPrice());
+        viewholder.tv_foodbrief.setText(list.get(position).getFoodbrief());
         Log.d("shipeiqi",list.size()+"");
 
         if(list.get(position)!=null){
@@ -162,6 +164,7 @@ public class GoodsAdapter extends BaseAdapter {
         TextView tv_name,tv_dingcan_mes,tv_dingcan_price;
         ImageView iv_add,iv_remove,iv_pic;
         TextView tv_acount;
+        TextView tv_foodbrief;
         RelativeLayout rl_item;
     }
 

@@ -109,6 +109,7 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
                 getBaseActivity().startActivity(new Intent(getBaseActivity(), LoginActivity.class));
             }
         });
+//        init();
 
     }
 
@@ -120,17 +121,19 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
         tv_preson_yue = (TextView) view.findViewById(R.id.tv_preson_yue);
         tv_preson_jifen = (TextView) view.findViewById(R.id.tv_preson_jifen);
         swipeRefresh= (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
-        swipeRefresh.setColorSchemeResources(R.color.colorPrimary,R.color.colorAccent,R.color.colorPrimaryDark);
-        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                RequestCommand.getPreson(new PresonCallBck(PersFragment.this), AppSessionEngine.getLoginInfo().getGonghao());
-
-            }
-        });
 
     }
+  private void init(){
+      swipeRefresh.setColorSchemeResources(R.color.colorPrimary,R.color.colorAccent,R.color.colorPrimaryDark);
+      swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+          @Override
+          public void onRefresh() {
+              RequestCommand.getPreson(new PresonCallBck(PersFragment.this), AppSessionEngine.getLoginInfo().getGonghao());
 
+          }
+      });
+
+  }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view
@@ -198,7 +201,7 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
 
     @Override
     public Dialog createDialog(@StyleRes int themeResId) {
-        Dialog dialog = new Dialog(getContext(), themeResId);
+        Dialog dialog = new Dialog(getActivity(), themeResId);
         return dialog;
     }
 

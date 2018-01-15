@@ -109,7 +109,7 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
                 getBaseActivity().startActivity(new Intent(getBaseActivity(), LoginActivity.class));
             }
         });
-//        init();
+        init();
 
     }
 
@@ -129,6 +129,7 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
           @Override
           public void onRefresh() {
               RequestCommand.getPreson(new PresonCallBck(PersFragment.this), AppSessionEngine.getLoginInfo().getGonghao());
+            swipeRefresh.setRefreshing(false);
 
           }
       });

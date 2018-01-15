@@ -40,8 +40,7 @@ import retrofit2.Call;
  */
 
 public class PersFragment extends BaseFragment implements IBaseDialogView {
-    @BindView(R.id.swipeRefresh)
-    SwipeRefreshLayout swipeRefresh;
+     SwipeRefreshLayout swipeRefresh;
     Unbinder unbinder;
     private Context context = null;
     private LinearLayout llyt_preson_fankui, llyt_preson_history, llyt_preson_zilaio, llyt_preson_changepwd;
@@ -120,6 +119,7 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
         tv_preson_location = (TextView) view.findViewById(R.id.tv_preson_location);
         tv_preson_yue = (TextView) view.findViewById(R.id.tv_preson_yue);
         tv_preson_jifen = (TextView) view.findViewById(R.id.tv_preson_jifen);
+        swipeRefresh= (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary,R.color.colorAccent,R.color.colorPrimaryDark);
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

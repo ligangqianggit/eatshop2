@@ -91,7 +91,7 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
         boolean result = false;
         switch (view.getId()){
             case R.id.bt_qucan_zaocan:
-                result= DateUtil.isCurrentInTimeScope(7,0,10,0);
+//                result= DateUtil.isCurrentInTimeScope(7,0,10,0);
                 if(result){
                     type=1;
                     Dianqisaoma();
@@ -100,7 +100,7 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
                 }
                 break;
             case R.id.bt_qucan_lunch:
-                result= DateUtil.isCurrentInTimeScope(10,0,15,0);
+//                result= DateUtil.isCurrentInTimeScope(10,0,15,0);
                 if(result){
                     type=2;
                     Dianqisaoma();
@@ -110,7 +110,7 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
                 break;
 
             case R.id.bt_qucan_dinner:
-                result= DateUtil.isCurrentInTimeScope(15,0,19,0);
+//                result= DateUtil.isCurrentInTimeScope(15,0,19,0);
                 if(result){
                     type=3;
                     Dianqisaoma();
@@ -121,7 +121,7 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
                 break;
 
             case R.id.bt_qucan_xiaochao:
-                result= DateUtil.isCurrentInTimeScope(10,0,23,0);
+//                result= DateUtil.isCurrentInTimeScope(10,0,23,0);
                 if(result){
                     type=4;
                     Dianqisaoma();
@@ -132,7 +132,7 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
                 break;
 
             case R.id.bt_qucan_jiaban:
-                result= DateUtil.isCurrentInTimeScope(19,0,23,0);
+//                result= DateUtil.isCurrentInTimeScope(19,0,23,0);
                 if(result){
                     type=5;
                     Dianqisaoma();

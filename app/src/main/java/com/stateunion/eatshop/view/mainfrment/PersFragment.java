@@ -128,13 +128,16 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
       swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
           @Override
           public void onRefresh() {
-              RequestCommand.getPreson(new PresonCallBck(PersFragment.this), AppSessionEngine.getLoginInfo().getGonghao());
-            swipeRefresh.setRefreshing(false);
+              getPreson();
 
           }
       });
 
   }
+  private void getPreson(){
+        RequestCommand.getPreson(new PresonCallBck(PersFragment.this), AppSessionEngine.getLoginInfo().getGonghao());
+            Log.d("aaaa","是我");
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view
@@ -147,25 +150,28 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
 
         public PresonCallBck(PersFragment requestView) {
             super(requestView);
+            Log.d("aaaa","是我--------------");
+
         }
 
         @Override
         protected void onResponseSuccess(PersonInfoBean personInfoBean, Call<PersonInfoBean> call) {
             super.onResponseSuccess(personInfoBean, call);
-            Log.v("eatshop", "返回数据" + personInfoBean.getBody());
-            tv_preson_user.setText(personInfoBean.getBody().getName());
-            tv_preson_iccard.setText(personInfoBean.getBody().getGonghao());
-            tv_preson_phone.setText(personInfoBean.getBody().getPhone());
-            tv_preson_location.setText(personInfoBean.getBody().getZhuzhi());
-            tv_preson_yue.setText("余额：" + personInfoBean.getBody().getYumoney());
-            tv_preson_jifen.setText("积分：" + personInfoBean.getBody().getJifen());
+            getAttachTarget().tv_preson_user.setText(personInfoBean.getBody().getName());
+            getAttachTarget().tv_preson_iccard.setText(personInfoBean.getBody().getGonghao());
+            getAttachTarget().tv_preson_phone.setText(personInfoBean.getBody().getPhone());
+            getAttachTarget().tv_preson_location.setText(personInfoBean.getBody().getZhuzhi());
+            getAttachTarget().tv_preson_yue.setText("余额：" + personInfoBean.getBody().getYumoney());
+            getAttachTarget().tv_preson_jifen.setText("积分：" + personInfoBean.getBody().getJifen());
             shengri = personInfoBean.getBody().getChusheng();
-              getAttachTarget().swipeRefresh.setRefreshing(false);
+            getAttachTarget().swipeRefresh.setRefreshing(false);
             //此处加载网络图片
             url = "http://ceshi123.dns178.com/" + personInfoBean.getBody().getTouxiang();
             Picasso.with(getAttachTarget().getContext()).
                     load(url).resize(200, 200).transform
                     (new CircleTransform()).into(iv_preson_touxiang);
+            Log.v("eatshop", "返回数据zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+
         }
 
         @Override
@@ -178,8 +184,8 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
 
     @Override
     public void refreshData(View rootView) {
-        RequestCommand.getPreson(new PresonCallBck(PersFragment.this), AppSessionEngine.getLoginInfo().getGonghao());
-    }
+        getPreson();
+     }
 
     @Override
     public void onResume() {
@@ -218,8 +224,9 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
 
     @Override
     public void onDestroyView() {
-        super.onDestroyView();
         isAlive = false;
+
+        super.onDestroyView();
         unbinder.unbind();
     }
 }

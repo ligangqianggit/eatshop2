@@ -126,7 +126,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         return couPonFragment==null?couPonFragment=new CouPonFragment():couPonFragment;
     }
     private PersFragment getPersFragment(){
-        return persFragment==null?persFragment=new PersFragment():persFragment;
+        return new PersFragment();
     }
     private StaffHomeFragment gettakeFragment(){
         return staffHomeFragment==null?staffHomeFragment=new StaffHomeFragment():staffHomeFragment;

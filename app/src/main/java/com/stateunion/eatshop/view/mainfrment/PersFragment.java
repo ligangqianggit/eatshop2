@@ -184,7 +184,7 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
     @Override
     public void onResume() {
         super.onResume();
-        RequestCommand.getPreson(new PresonCallBck(PersFragment.this), AppSessionEngine.getLoginInfo().getGonghao());
+//        RequestCommand.getPreson(new PresonCallBck(PersFragment.this), AppSessionEngine.getLoginInfo().getGonghao());
     }
 
     /**

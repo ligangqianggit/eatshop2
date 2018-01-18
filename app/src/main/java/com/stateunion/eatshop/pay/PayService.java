@@ -130,7 +130,13 @@ String payType="微信支付";
 //       SubmitCallBackack
        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
        String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
-        Log.v("eatshop","list 样式"+gson.toJson(OrderList));
+       Log.v("eatshop","用户名:"+AppSessionEngine.getLoginInfo().getGonghao().toString());
+       Log.v("eatshop","时间戳:"+date);
+       Log.v("eatshop","钱数："+money);
+        Log.v("eatshop","list 样式:   "+gson.toJson(OrderList));
+
+       Log.v("eatshop","支付类型："+ payType);
+
        RequestCommand.zhifujiekou(new SubmitCallBack(this),AppSessionEngine.getLoginInfo().getGonghao().toString(),date,payType,money,gson.toJson(OrderList));
    }
     //获取余额

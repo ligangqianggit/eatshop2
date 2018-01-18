@@ -204,7 +204,8 @@ public class DingCanActivity extends BaseActivity {
         mExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                      if(childPosition==0){
+
+                if(childPosition==0){
                           canType="早餐";
                      } else if(childPosition==1){
                        canType="午餐";
@@ -298,6 +299,7 @@ public class DingCanActivity extends BaseActivity {
 //            goodsBean.setIcon(zaolist.get(j).getFoodtupian());
 //            goodsBean.setOriginal_price("200");
 //            goodsBean.setPrice(zaolist.get(j).getJiage());
+
 //            list7.add(goodsBean);
 //        }
 //

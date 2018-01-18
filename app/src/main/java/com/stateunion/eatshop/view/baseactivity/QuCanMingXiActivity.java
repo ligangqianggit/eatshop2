@@ -55,7 +55,6 @@ public class QuCanMingXiActivity extends BaseActivity{
         quCanxiangqingListAdapter=new QuCanxiangqingListAdapter(QuCanActivity.body,this);
         list_qucanmingxi.setAdapter(quCanxiangqingListAdapter);
 
-
 //        RequestCommand.getQucanxiangqing(new QuCanXiangQingCallBack(this),AppSessionEngine.getLoginInfo().getGonghao(),order1,shijianduan1,chuangkouhao);
     }
 

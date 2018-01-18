@@ -8,6 +8,7 @@ import android.os.Parcelable;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -41,7 +42,8 @@ import retrofit2.Call;
 
 public class QuCanActivity extends BaseActivity implements View.OnClickListener {
 
-    private Button bt_qucan_zaocan,bt_qucan_lunch,bt_qucan_dinner,bt_qucan_xiaochao,bt_qucan_jiaban;
+    private Button bt_qucan_zaocan,bt_qucan_lunch,bt_qucan_dinner;
+//    bt_qucan_jiaban
     private int REQUEST_CODE_SCAN = 111;
     private ImageView iv_qucan_back;
     public  static String dingdanhao;
@@ -62,14 +64,12 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
         bt_qucan_zaocan= (Button) findViewById(R.id.bt_qucan_zaocan);
         bt_qucan_lunch= (Button) findViewById(R.id.bt_qucan_lunch);
         bt_qucan_dinner= (Button) findViewById(R.id.bt_qucan_dinner);
-        bt_qucan_xiaochao= (Button) findViewById(R.id.bt_qucan_xiaochao);
-        bt_qucan_jiaban= (Button) findViewById(R.id.bt_qucan_jiaban);
+//        bt_qucan_jiaban= (Button) findViewById(R.id.bt_qucan_jiaban);
         iv_qucan_back.setOnClickListener(this);
         bt_qucan_zaocan.setOnClickListener(this);
         bt_qucan_lunch.setOnClickListener(this);
         bt_qucan_dinner.setOnClickListener(this);
-        bt_qucan_xiaochao.setOnClickListener(this);
-        bt_qucan_jiaban.setOnClickListener(this);
+//        bt_qucan_jiaban.setOnClickListener(this);
     }
 
     public class DingDanHaoCallBack extends DialogCallback<DIngDanHaoBean,QuCanActivity>{
@@ -84,7 +84,6 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
             dingdanhao=dIngDanHaoBean.getBody().getOrder_sn();
         }
     }
-
 
     @Override
     public void onClick(View view) {
@@ -117,30 +116,18 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
                 }else{
                     Toast.makeText(QuCanActivity.this,"未到取餐时间，请稍后重试",Toast.LENGTH_LONG).show();
                 }
-
                 break;
 
-            case R.id.bt_qucan_xiaochao:
-                result= DateUtil.isCurrentInTimeScope(10,0,23,0);
-                if(result){
-                    type=4;
-                    Dianqisaoma();
-                }else{
-                    Toast.makeText(QuCanActivity.this,"未到取餐时间，请稍后重试",Toast.LENGTH_LONG).show();
-                }
-
-                break;
-
-            case R.id.bt_qucan_jiaban:
-                result= DateUtil.isCurrentInTimeScope(19,0,23,0);
-                if(result){
-                    type=5;
-                    Dianqisaoma();
-                }else{
-                    Toast.makeText(QuCanActivity.this,"未到取餐时间，请稍后重试",Toast.LENGTH_LONG).show();
-                }
-
-                break;
+//            case R.id.bt_qucan_jiaban:
+//                result= DateUtil.isCurrentInTimeScope(19,0,7,0);
+//                if(result){
+//                    type=5;
+//                    Dianqisaoma();
+//                }else{
+//                    Toast.makeText(QuCanActivity.this,"未到取餐时间，请稍后重试",Toast.LENGTH_LONG).show();
+//                }
+//
+//                break;
             case R.id.iv_qucan_back:
                 QuCanActivity.this.finish();
                 break;
@@ -186,12 +173,15 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
 
             if (data != null) {
                 String content = data.getStringExtra(Constant.CODED_CONTENT);
+                Log.v("eatshop","扫码返回的数据："+content);
                 String shijianduan1="";
+                Boolean iswucan=false;
+                Boolean iswancan=false;
+                Boolean isjiaban=false;
                 if(content.equals("1")){
                     if(type==1){
                         shijianduan1="早餐";
                         RequestCommand.getQucanxiangqing(new QuCanXiangQingCallBack(this), com.stateunion.eatshop.util.AppSessionEngine.getLoginInfo().getGonghao(),dingdanhao,shijianduan1,content);
-
                     }
                     if(type==2){
                         shijianduan1="午餐";
@@ -199,25 +189,35 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
 
                     }
                      if(type==3){
+                         Log.v("eatshop","取晚餐");
                          shijianduan1="晚餐";
                          RequestCommand.getQucanxiangqing(new QuCanXiangQingCallBack(this), com.stateunion.eatshop.util.AppSessionEngine.getLoginInfo().getGonghao(),dingdanhao,shijianduan1,content);
 
                      }
-                    if(type==4){
-                        Toast.makeText(this, "请去2窗口取小炒", Toast.LENGTH_LONG).show();
-                    }
+                    
                     if(type==5){
                         shijianduan1="加班";
                         RequestCommand.getQucanxiangqing(new QuCanXiangQingCallBack(this), com.stateunion.eatshop.util.AppSessionEngine.getLoginInfo().getGonghao(),dingdanhao,shijianduan1,content);
 
                     }
                 }else if(content.equals("2")){
-                    if(type==4){
-                        shijianduan1="小炒";
+                    iswucan=DateUtil.isCurrentInTimeScope(10,0,15,0);
+                    iswancan=DateUtil.isCurrentInTimeScope(15,1,19,0);
+                    isjiaban=DateUtil.isCurrentInTimeScope(19,1,7,0);
+                    if(iswucan){
+                        shijianduan1="午餐";
                         RequestCommand.getQucanxiangqing(new QuCanXiangQingCallBack(this), com.stateunion.eatshop.util.AppSessionEngine.getLoginInfo().getGonghao(),dingdanhao,shijianduan1,content);
-
+                    }else
+                    if(iswancan){
+                        shijianduan1="晚餐";
+                        RequestCommand.getQucanxiangqing(new QuCanXiangQingCallBack(this), com.stateunion.eatshop.util.AppSessionEngine.getLoginInfo().getGonghao(),dingdanhao,shijianduan1,content);
+                    }else
+                    if(isjiaban){
+                        shijianduan1="加班";
+                        RequestCommand.getQucanxiangqing(new QuCanXiangQingCallBack(this), com.stateunion.eatshop.util.AppSessionEngine.getLoginInfo().getGonghao(),dingdanhao,shijianduan1,content);
                     }else{
-                        Toast.makeText(this, "请去1窗口取套餐", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "未到取餐时间！", Toast.LENGTH_LONG).show();
+
                     }
                 }
 //                Toast.makeText(this, shijianduan1, Toast.LENGTH_SHORT).show();
@@ -237,6 +237,7 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
         protected void onResponseSuccess(QuCanMingXiBean quCanMingXiBean, Call<QuCanMingXiBean> call) {
             super.onResponseSuccess(quCanMingXiBean, call);
             body=quCanMingXiBean.getBody();
+            Log.v("eatshop","网络请求返回数据");
             if(quCanMingXiBean.getSuccess()==1){
                 Intent intent=new Intent(QuCanActivity.this,QuCanMingXiActivity.class);
                 startActivity(intent);

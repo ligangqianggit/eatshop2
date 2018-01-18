@@ -1,9 +1,13 @@
 package com.stateunion.eatshop.view.baseactivity;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -55,7 +59,6 @@ public class TuiDanShenHe extends BaseActivity{
             list_tuidanshenhe.setAdapter(tuiDanListAdapter);
         }
     }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

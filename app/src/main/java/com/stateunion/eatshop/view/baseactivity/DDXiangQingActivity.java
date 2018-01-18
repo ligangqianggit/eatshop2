@@ -101,7 +101,7 @@ public class DDXiangQingActivity extends BaseActivity{
                 }
                 if(orderBean.getBody().getZhuangtai()==5){
                     // 已退单
-                    bt_ddxiangqiang_tuiorpoing.setText("同意退单");
+                    bt_ddxiangqiang_tuiorpoing.setText("已同意");
                     bt_ddxiangqiang_tuiorpoing.setEnabled(false);
                 }if(orderBean.getBody().getZhuangtai()==6){
                     // 已退单

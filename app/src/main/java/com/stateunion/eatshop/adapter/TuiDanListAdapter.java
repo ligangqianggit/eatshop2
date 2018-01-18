@@ -1,5 +1,6 @@
 package com.stateunion.eatshop.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -85,8 +87,8 @@ public class TuiDanListAdapter extends BaseAdapter{
                 @Override
                 public void onClick(View view) {
                     //拒绝
+                    showAlertDialog(tuiDanShenHeBeanInfo.get(i).getOrder_sn());
                     position=i;
-                    RequestCommand.CSZTuiDanShenHe(new TuiDanShenHeCallBack(context),tuiDanShenHeBeanInfo.get(i).getOrder_sn(),2);
                 }
             });
             zujian.bt_tuidan_tongyi.setOnClickListener(new View.OnClickListener() {
@@ -95,13 +97,48 @@ public class TuiDanListAdapter extends BaseAdapter{
                     //同意
                     position=i;
                     RequestCommand.CSZTuiDanShenHe(new TuiDanShenHeCallBack(context),tuiDanShenHeBeanInfo.get(i).getOrder_sn(),1);
-
                 }
             });
 
         }
         return view;
     }
+
+    private void showAlertDialog(final String order_sn) {
+        final AlertDialog dialog = new AlertDialog.Builder(context).create();
+        dialog.setView(LayoutInflater.from(context).inflate(R.layout.alert_dialog1, null));
+        dialog.show();
+        dialog.getWindow().setContentView(R.layout.alert_dialog1);
+        Button btnPositive = (Button) dialog.findViewById(R.id.bt_dialog_tuidan);
+        Button btnNegative = (Button) dialog.findViewById(R.id.bt_dialog_quxiao);
+        final EditText etContent = (EditText) dialog.findViewById(R.id.et_dialog_message);
+        btnPositive.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                String str = etContent.getText().toString();
+                if (isNullEmptyBlank(str)) {
+                    etContent.setError("输入内如不能为空");
+                } else {
+                    dialog.dismiss();
+                    RequestCommand.CSZTuiDanShenHe(new TuiDanShenHeCallBack(context),order_sn,2);
+                }
+            }
+        });
+        btnNegative.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                dialog.dismiss();
+            }
+        });
+    }
+    private static boolean isNullEmptyBlank(String str) {
+        if (str == null || "".equals(str) || "".equals(str.trim()))
+            return true;
+        return false;
+    }
+
 
     public class TuiDanShenHeCallBack extends DialogCallback<BaseBean,TuiDanShenHe>{
         public TuiDanShenHeCallBack(TuiDanShenHe requestView) {

@@ -49,15 +49,11 @@ public class QuCanxiangqingListAdapter extends BaseAdapter{
             zujian=new Zujian();
             view=layoutInflater.inflate(R.layout.item_history_two,null);
             zujian.tv_history_caipin= (TextView) view.findViewById(R.id.tv_history_caipin);
-
             zujian.tv_history_moneyone= (TextView) view.findViewById(R.id.tv_history_moneyone);
-
             zujian.tv_history_shuliang= (TextView) view.findViewById(R.id.tv_history_shuliang);
             zujian.tv_history_caipin.setText(quCanMingXiEntities.get(i).getFoot_name());
-
             zujian.tv_history_moneyone.setText(quCanMingXiEntities.get(i).getJiage()+"元");
             zujian.tv_history_shuliang.setText("数量:"+quCanMingXiEntities.get(i).getGoods_num());
-
         }
         return view;
     }

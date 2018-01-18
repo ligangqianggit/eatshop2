@@ -65,28 +65,28 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             />
-        <Button
-            android:id="@+id/bt_qucan_xiaochao"
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="小炒"
-            android:background="@color/beijing"
-            android:textSize="@dimen/size_18"
-            android:padding="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            />
-        <Button
-            android:id="@+id/bt_qucan_jiaban"
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="加班"
-            android:background="@color/beijing"
-            android:textSize="@dimen/size_18"
-            android:padding="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            />
+        <!--<Button-->
+            <!--android:id="@+id/bt_qucan_xiaochao"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="小炒"-->
+            <!--android:background="@color/beijing"-->
+            <!--android:textSize="@dimen/size_18"-->
+            <!--android:padding="5dp"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--/>-->
+        <!--<Button-->
+            <!--android:id="@+id/bt_qucan_jiaban"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="加班"-->
+            <!--android:background="@color/beijing"-->
+            <!--android:textSize="@dimen/size_18"-->
+            <!--android:padding="5dp"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--/>-->
 </LinearLayout>

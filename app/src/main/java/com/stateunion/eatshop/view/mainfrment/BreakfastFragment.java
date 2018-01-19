@@ -39,37 +39,29 @@ public class BreakfastFragment extends Fragment implements IBaseDialogView {
     Unbinder unbinder;
     private boolean isAlin = false;
     TongjiOrderAdpter tongjiOrderAdpter;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.frag_lunch, container, false);
         isAlin = true;
         call();
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
-
     public void call() {
         RequestCommand.getTongji(new TongJICallBackW(BreakfastFragment.this), "早餐");
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         isAlin = false;
         unbinder.unbind();
     }
-
-
     public class TongJICallBackW extends DialogCallback<TongJiBean, BreakfastFragment> {
         ShengRiListAdapter shengRiListAdapter;
-
         public TongJICallBackW(BreakfastFragment requestView) {
             super(requestView);
         }
-
         @Override
         protected void onResponseSuccess(TongJiBean tongJiBean, Call<TongJiBean> call) {
             super.onResponseSuccess(tongJiBean, call);
@@ -80,23 +72,18 @@ public class BreakfastFragment extends Fragment implements IBaseDialogView {
             tvTongjiShengrinum.setText("今日生日员工:" + tongJiBean.getBody().getSheng_num());
         }
     }
-
     @Override
     public Dialog createDialog(@StyleRes int themeResId) {
         Dialog dialog = new Dialog(getActivity(), themeResId);
         return dialog;
     }
-
     @Override
     public void showError(String message) {
-
     }
-
     @Override
     public BaseActivity getBaseActivity() {
         return null;
     }
-
     @Override
     public boolean isAlive() {
         return isAlin;

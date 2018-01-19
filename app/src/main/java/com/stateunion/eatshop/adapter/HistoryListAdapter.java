@@ -56,18 +56,38 @@ public class HistoryListAdapter extends BaseAdapter{
             zujian=new Zujian();
             view=layoutInflater.inflate(R.layout.item_history_one,null);
             zujian.bt_xiangqing= (Button) view.findViewById(R.id.bt_history_xiangqing);
+            zujian.bt_history_zhuangtai= (Button) view.findViewById(R.id.bt_history_zhuangtai);
             zujian.tv_history_diangdanhao= (TextView) view.findViewById(R.id.tv_history_diangdanhao);
             zujian.tv_history_time= (TextView) view.findViewById(R.id.tv_history_time);
             zujian.tv_history_money= (TextView) view.findViewById(R.id.tv_history_money);
             zujian.list_item_history= (ListView) view.findViewById(R.id.list_item_history);
-            zujian.tv_history_diangdanhao.setText("订单号:"+historyInfo.get(i)
-                    .getOrder_sn());
-            zujian.tv_history_time.setText(DateUtil.timedate(historyInfo.get(i).getPay_time()));
+            zujian.tv_history_diangdanhao.setText("订单号:"+historyInfo.get(i).getOrder_sn());
+            zujian.tv_history_time.setText("下单时间:"+DateUtil.timedate(historyInfo.get(i).getPay_time()));
             historyListItemAdapter=new HistoryListItemAdapter(historyInfo.get(i).getGoods(),context);
             zujian.list_item_history.setAdapter(historyListItemAdapter);
 //            ChildLiatviewUtil.setListViewHeightBasedOnChildren(zujian.list_item_history);
             zujian.tv_history_money.setText("金额:"+historyInfo.get(i).getAll_money()+"元");
-
+            if(historyInfo.get(i).getZhuangtai()==0){
+                zujian.bt_history_zhuangtai.setText("可评价");
+            }else if(historyInfo.get(i).getZhuangtai()==1){
+                zujian.bt_history_zhuangtai.setText("已评价");
+            }
+            else if(historyInfo.get(i).getZhuangtai()==2){
+                zujian.bt_history_zhuangtai.setText("未到取餐时间");
+            }
+            else if(historyInfo.get(i).getZhuangtai()==3){
+                zujian.bt_history_zhuangtai.setText("可退单");
+            }else if(historyInfo.get(i).getZhuangtai()==4){
+                zujian.bt_history_zhuangtai.setText("退单中");
+            }
+            else if(historyInfo.get(i).getZhuangtai()==5){
+                zujian.bt_history_zhuangtai.setText("同意退单");
+            }
+            else if(historyInfo.get(i).getZhuangtai()==6){
+                zujian.bt_history_zhuangtai.setText("拒绝退单");
+            }else if(historyInfo.get(i).getZhuangtai()==7){
+                zujian.bt_history_zhuangtai.setText("失效");
+            }
             zujian.bt_xiangqing.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -82,6 +102,6 @@ public class HistoryListAdapter extends BaseAdapter{
     public final class Zujian{
         public TextView tv_history_diangdanhao,tv_history_time,tv_history_money;
         public ListView list_item_history;
-        public Button bt_xiangqing;
+        public Button bt_xiangqing,bt_history_zhuangtai;
     }
 }

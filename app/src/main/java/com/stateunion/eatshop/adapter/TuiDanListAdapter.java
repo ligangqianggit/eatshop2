@@ -96,7 +96,7 @@ public class TuiDanListAdapter extends BaseAdapter{
                 public void onClick(View view) {
                     //同意
                     position=i;
-                    RequestCommand.CSZTuiDanShenHe(new TuiDanShenHeCallBack(context),tuiDanShenHeBeanInfo.get(i).getOrder_sn(),1);
+                    RequestCommand.CSZTuiDanShenHe(new TuiDanShenHeCallBack(context),tuiDanShenHeBeanInfo.get(i).getOrder_sn(),1,"");
                 }
             });
 
@@ -121,7 +121,7 @@ public class TuiDanListAdapter extends BaseAdapter{
                     etContent.setError("输入内如不能为空");
                 } else {
                     dialog.dismiss();
-                    RequestCommand.CSZTuiDanShenHe(new TuiDanShenHeCallBack(context),order_sn,2);
+                    RequestCommand.CSZTuiDanShenHe(new TuiDanShenHeCallBack(context),order_sn,2,str);
                 }
             }
         });

@@ -229,6 +229,7 @@ public class upMenuDragment2 extends Fragment implements IBaseDialogView {
                     }
                 }, "2018-01-01 00:00", "2030-12-31 00:00");
                 timeSelector.show();
+                break;
             case R.id.tv_dingcantime://订餐的日期
                 timeSelector = new TimeSelector(context, new TimeSelector.ResultHandler() {
                     @Override
@@ -237,6 +238,7 @@ public class upMenuDragment2 extends Fragment implements IBaseDialogView {
                     }
                 }, "2018-01-01 00:00", "2030-12-31 00:00");
                 timeSelector.show();
+                break;
             case R.id.tv_yuyuestop://预约截至时间
                 timeSelector = new TimeSelector(context, new TimeSelector.ResultHandler() {
                     @Override

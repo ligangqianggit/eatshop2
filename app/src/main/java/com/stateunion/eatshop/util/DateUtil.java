@@ -542,6 +542,16 @@ public class DateUtil {
         }
         return result;
     }
+    public static int getWeekOfDate(Date dt) {
+        int[] weekDays = {0, 1, 2, 3, 4,5, 6,7};
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dt);
 
+        int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
+        if (w < 0)
+            w = 0;
+
+        return weekDays[w]-1;
+    }
 }
 

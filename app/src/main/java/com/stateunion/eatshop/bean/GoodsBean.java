@@ -4,7 +4,6 @@ package com.stateunion.eatshop.bean;
  * Created by fengyongge on 2016/7/6 0006.
  */
 public class GoodsBean {
-
     public int product_id; // required
     public int category_id; // required
     public String title; // required
@@ -104,6 +103,8 @@ public class GoodsBean {
     }
 
     public void setFoodbrief(String foodbrief) {
+
+
         this.foodbrief = foodbrief;
     }
 
@@ -115,6 +116,7 @@ public class GoodsBean {
                 ", title='" + title + '\'' +
                 ", is_package_status=" + is_package_status +
                 ", icon='" + icon + '\'' +
+
                 ", original_price='" + original_price + '\'' +
                 ", price='" + price + '\'' +
                 ", specification='" + specification + '\'' +

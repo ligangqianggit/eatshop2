@@ -43,11 +43,14 @@ import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.retrofit.entiity.DiangCanEntity;
 import com.stateunion.eatshop.retrofit.entiity.DingCanBean;
 import com.stateunion.eatshop.retrofit.view.IBaseDialogView;
+import com.stateunion.eatshop.util.DateUtil;
 import com.stateunion.eatshop.util.LoginHelp;
 import com.stateunion.eatshop.zxing.common.Constant;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -111,8 +114,11 @@ public class DingCanActivity extends BaseActivity {
         setContentView(R.layout.activity_diancan);
         myApp = (ProjectApplication) getApplicationContext();
         mHanlder = new Handler(getMainLooper());
+        Date date=new Date();
 
-        initView();
+        SimpleDateFormat dateFm = new SimpleDateFormat("EEEE");
+        thisgroupPosition=  DateUtil.getWeekOfDate(date);
+         initView();
          addListener();
         ll_shopcar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,13 +144,11 @@ public class DingCanActivity extends BaseActivity {
             zaolist =new ArrayList<>();
               zaolist.clear();
              zaolist.addAll(dingcanBean.getBody());
-            Log.d("看我的长度",zaolist.size()+"");
 
             initData();
             initEm();
             mExpandableListView.expandGroup(thisgroupPosition);
-
-        }
+         }
     }
 
     public void initView() {
@@ -196,6 +200,9 @@ public class DingCanActivity extends BaseActivity {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                  // 请务必返回 false，否则分组不会展开
+                if(groupPosition<thisgroupPosition){
+                    return true;
+                }
                   return false;
             }
         });
@@ -204,6 +211,7 @@ public class DingCanActivity extends BaseActivity {
         mExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+
 
                 if(childPosition==0){
                           canType="早餐";
@@ -224,6 +232,7 @@ public class DingCanActivity extends BaseActivity {
 //                catograyAdapter.setSelection(childPosition);
 //                catograyAdapter.notifyDataSetChanged();
 //                goodsAdapter.notifyDataSetChanged();
+
                 return false;
             }
         });

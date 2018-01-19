@@ -170,7 +170,6 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
             Picasso.with(getAttachTarget().getContext()).
                     load(url).resize(200, 200).transform
                     (new CircleTransform()).into(iv_preson_touxiang);
-            Log.v("eatshop", "返回数据zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
 
         }
 

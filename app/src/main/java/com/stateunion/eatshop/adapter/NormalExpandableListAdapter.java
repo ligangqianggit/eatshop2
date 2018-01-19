@@ -1,13 +1,18 @@
 package com.stateunion.eatshop.adapter;
 
+import android.content.Context;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.stateunion.eatshop.R;
+
+import java.util.HashMap;
 
 /**
  * Created by admini on 2018/1/9.
@@ -18,10 +23,17 @@ public class NormalExpandableListAdapter extends BaseExpandableListAdapter {
     private String[] groupData;
     private String[][] childData;
     private OnGroupExpandedListener mOnGroupExpandedListener;
-
-    public NormalExpandableListAdapter(String[] groupData, String[][] childData) {
+    Context context;
+     // 判断是否点击的标识
+     SparseBooleanArray selected;
+    int old = -1;
+    int parentPosition = -1;
+    public NormalExpandableListAdapter(String[] groupData, String[][] childData, Context context) {
         this.groupData = groupData;
         this.childData = childData;
+        selected = new SparseBooleanArray();
+        this.context=context;
+
     }
 
     public void setOnGroupExpandedListener(OnGroupExpandedListener onGroupExpandedListener) {
@@ -91,6 +103,30 @@ public class NormalExpandableListAdapter extends BaseExpandableListAdapter {
         } else {
             childViewHolder = (ChildViewHolder) convertView.getTag();
         }
+//        if (isLastChild) {
+//            // 设置展开后的group标头图片
+//            childViewHolder.tvTitle.setBackgroundResource(R.color.investinfo_color);
+//            // 在折叠后再次展开，之前的选中会消失，此处需要设置一次
+//            if (groupPosition == groupPosition) {
+//                setItemChecked(mGroupPosition, mChildPosition);
+//            }
+//        } else {
+//            // 折叠后的group标头图片
+//            indicator
+//                    .setImageResource(R.drawable.expander_arrow_collapse);
+//        }
+
+//重点代码
+        if (selected.get(childPosition)&&this.parentPosition==groupPosition) {
+            childViewHolder.tvTitle.setBackgroundResource(R.color.yellow);
+            childViewHolder.tvTitle.setTextColor (context.getResources().getColor(R.color.white));
+        } else {
+            // convertView.setBackgroundResource(R.color.white);
+            childViewHolder.tvTitle.setBackgroundResource(R.color.white);
+            childViewHolder.tvTitle.setTextColor (context.getResources().getColor(R.color.gray));
+
+        }
+
         childViewHolder.tvTitle.setText(childData[groupPosition][childPosition]);
         return convertView;
     }
@@ -120,5 +156,12 @@ public class NormalExpandableListAdapter extends BaseExpandableListAdapter {
     private static class ChildViewHolder {
         TextView tvTitle;
     }
-
+    public void setSelectedItem(int groupPosition,int selected) {
+        this.parentPosition = groupPosition;
+        if (old != -1) {
+            this.selected.put(old, false);
+        }
+        this.selected.put(selected, true);
+        old = selected;
+    }
 }

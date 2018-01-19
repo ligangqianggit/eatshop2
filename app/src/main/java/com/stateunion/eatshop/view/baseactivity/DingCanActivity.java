@@ -79,6 +79,7 @@ public class DingCanActivity extends BaseActivity {
     GoodsDetailAdapter goodsDetailAdapter;//套餐详情的adapter
     private static DecimalFormat df;
     private LinearLayout ll_shopcar;
+
     //底部数据
     private BottomSheetLayout bottomSheetLayout;
     private View bottomSheet;
@@ -92,7 +93,7 @@ public class DingCanActivity extends BaseActivity {
     private List<GoodsBean> list7 = new ArrayList<GoodsBean>();
     private ExpandableListView mExpandableListView;
 
-
+     NormalExpandableListAdapter adapter;
     public List<DiangCanEntity> zaolist;
     private List<DiangCanEntity> getZaolist = new ArrayList<DiangCanEntity>();
 
@@ -103,7 +104,7 @@ public class DingCanActivity extends BaseActivity {
 
     private Handler mHanlder;
     private ViewGroup anim_mask_layout;//动画层
-
+    private static int mychildPosition;
     String money;
     String canType="早餐";
     String canRiqi="星期一";
@@ -148,6 +149,8 @@ public class DingCanActivity extends BaseActivity {
             initData();
             initEm();
             mExpandableListView.expandGroup(thisgroupPosition);
+            adapter.setSelectedItem(thisgroupPosition,mychildPosition);
+            adapter.notifyDataSetChanged();
          }
     }
 
@@ -187,7 +190,7 @@ public class DingCanActivity extends BaseActivity {
         df = new DecimalFormat("0.00");
     }
     private void initEm(){
-        final NormalExpandableListAdapter adapter = new NormalExpandableListAdapter(Constant.BOOKS, Constant.FIGURES);
+          adapter = new NormalExpandableListAdapter(Constant.BOOKS, Constant.FIGURES,this);
         mExpandableListView.setAdapter(adapter);
         adapter.setOnGroupExpandedListener(new OnGroupExpandedListener() {
             @Override
@@ -232,8 +235,10 @@ public class DingCanActivity extends BaseActivity {
 //                catograyAdapter.setSelection(childPosition);
 //                catograyAdapter.notifyDataSetChanged();
 //                goodsAdapter.notifyDataSetChanged();
+//                setItemChecked(groupPosition, childPosition);
+                mychildPosition=childPosition;
 
-                return false;
+                 return true;
             }
         });
 
@@ -653,6 +658,31 @@ public class DingCanActivity extends BaseActivity {
             }
         }
         return result;
+    }
+
+    private void setItemChecked(int groupPosition, int childPosition) {
+        if (mExpandableListView == null) {
+            return;
+        }
+
+//        this.mGroupPosition = groupPosition;
+//        this.mChildPosition = childPosition;
+
+        int numberOfGroupThatIsOpened = 0;
+        for (int i = 0; i < groupPosition; i++) {
+            if (mExpandableListView.isGroupExpanded(i)) {
+                numberOfGroupThatIsOpened += adapter.getChildrenCount(i);
+            }
+        }
+        int position = numberOfGroupThatIsOpened + groupPosition
+                + childPosition + 1;
+        System.out.println("groupPosition=" + groupPosition
+                + ", childPosition=" + childPosition + ", position="
+                + position + ", isItemChecked="
+                + mExpandableListView.isItemChecked(position));
+        if (!mExpandableListView.isItemChecked(position)) {
+            mExpandableListView.setItemChecked(position, true);
+        }
     }
 }
 

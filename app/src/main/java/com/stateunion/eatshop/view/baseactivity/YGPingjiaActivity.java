@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.stateunion.eatshop.R;
+import com.stateunion.eatshop.RowModel;
 import com.stateunion.eatshop.adapter.DDxiangqingListAdapter;
 import com.stateunion.eatshop.adapter.YGPingjiaListAdapter;
 import com.stateunion.eatshop.retrofit.RequestCommand;
@@ -71,4 +72,5 @@ public class YGPingjiaActivity extends BaseActivity{
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }

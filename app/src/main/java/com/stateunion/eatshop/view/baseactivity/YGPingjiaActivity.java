@@ -16,6 +16,7 @@ import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.retrofit.entiity.OrderBean;
+import com.stateunion.eatshop.retrofit.entiity.YGPingJIaBean;
 import com.stateunion.eatshop.util.AppSessionEngine;
 
 import retrofit2.Call;
@@ -49,16 +50,16 @@ public class YGPingjiaActivity extends BaseActivity{
 //        RequestCommand.getDDxiangqiang(new YGPingjiaCallBack(this), AppSessionEngine.getLoginInfo().getGonghao().toString(),order_sn);
     }
 
-    public class YGPingjiaCallBack extends DialogCallback<BaseBean,YGPingjiaActivity> {
-//        YGPingjiaListAdapter ygPingjiaListAdapter;
+    public class YGPingjiaCallBack extends DialogCallback<YGPingJIaBean,YGPingjiaActivity> {
+        YGPingjiaListAdapter ygPingjiaListAdapter;
         public YGPingjiaCallBack(YGPingjiaActivity requestView) {
             super(requestView);
         }
         @Override
-        protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
-            super.onResponseSuccess(baseBean, call);
-//            ygPingjiaListAdapter=new YGPingjiaListAdapter(baseBean.getBody().getGoods(),getAttachTarget().getBaseActivity());
-//            list_ygpingjia.setAdapter(ygPingjiaListAdapter);
+        protected void onResponseSuccess(YGPingJIaBean ygPingJIaBean, Call<YGPingJIaBean> call) {
+            super.onResponseSuccess(ygPingJIaBean, call);
+            ygPingjiaListAdapter=new YGPingjiaListAdapter(ygPingJIaBean.getBody().getGoods(),getAttachTarget().getBaseActivity());
+            list_ygpingjia.setAdapter(ygPingjiaListAdapter);
         }
     }
 

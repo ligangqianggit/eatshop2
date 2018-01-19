@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.stateunion.eatshop.R;
@@ -34,6 +35,7 @@ public class DDXiangQingActivity extends BaseActivity{
     public static ListView list_ddxiangqiang;
     private ImageView iv_ddxiangqiang_back;
     public static Button bt_ddxiangqiang_tuiorpoing;
+    public  static TextView tv_ddxingqiang_jvjuemes;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,7 @@ public class DDXiangQingActivity extends BaseActivity{
     }
     //厨师还控件
     public void intview(){
+        tv_ddxingqiang_jvjuemes= (TextView) findViewById(R.id.tv_ddxingqiang_jvjuemes);
         bt_ddxiangqiang_tuiorpoing= (Button) findViewById(R.id.bt_ddxiangqiang_tuiorpoing);
         list_ddxiangqiang= (ListView) findViewById(R.id.list_ddxiangqiang);
         iv_ddxiangqiang_back= (ImageView) findViewById(R.id.iv_ddxiangqiang_back);
@@ -76,6 +79,7 @@ public class DDXiangQingActivity extends BaseActivity{
                             startActivity(intent);
                         }
                     });
+
                 }else
                 if(orderBean.getBody().getZhuangtai()==1){
                     bt_ddxiangqiang_tuiorpoing.setText("已评价");
@@ -83,7 +87,8 @@ public class DDXiangQingActivity extends BaseActivity{
                 }else
                 if(orderBean.getBody().getZhuangtai()==2){
                     //未消费不能评价不能退
-                    bt_ddxiangqiang_tuiorpoing.setVisibility(View.GONE);
+                    bt_ddxiangqiang_tuiorpoing.setText("未到取餐时间");
+                    bt_ddxiangqiang_tuiorpoing.setEnabled(false);
                 }
                 if(orderBean.getBody().getZhuangtai()==3){
                     //可退单
@@ -101,11 +106,16 @@ public class DDXiangQingActivity extends BaseActivity{
                 }
                 if(orderBean.getBody().getZhuangtai()==5){
                     // 已退单
-                    bt_ddxiangqiang_tuiorpoing.setText("已同意");
+                    bt_ddxiangqiang_tuiorpoing.setText("同意退单");
                     bt_ddxiangqiang_tuiorpoing.setEnabled(false);
                 }if(orderBean.getBody().getZhuangtai()==6){
                     // 已退单
+                    tv_ddxingqiang_jvjuemes.setText("拒绝原因:"+orderBean.getBody().getJuyuan());
                     bt_ddxiangqiang_tuiorpoing.setText("拒绝退单");
+                    bt_ddxiangqiang_tuiorpoing.setEnabled(false);
+                }
+                if(orderBean.getBody().getZhuangtai()==7){
+                    bt_ddxiangqiang_tuiorpoing.setText("失效");
                     bt_ddxiangqiang_tuiorpoing.setEnabled(false);
                 }
 

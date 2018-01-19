@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.stateunion.eatshop.R;
 import com.stateunion.eatshop.retrofit.entiity.OrderBean;
+import com.stateunion.eatshop.retrofit.entiity.YGPingJIaBean;
 
 import java.util.List;
 
@@ -21,24 +22,24 @@ import java.util.List;
  */
 
 public class YGPingjiaListAdapter extends BaseAdapter{
-    private List<OrderBean.OrderBeanInfo.OrderBeanInfoList> orderBeanInfoList;
+    private List<YGPingJIaBean.BodyBean.GoodsBean> goodsBeans;
     private Context context;
     private LayoutInflater layoutInflater;
     int index;
-    public YGPingjiaListAdapter(List<OrderBean.OrderBeanInfo.OrderBeanInfoList> orderBeanInfoList, Context context) {
-        this.orderBeanInfoList = orderBeanInfoList;
+    public YGPingjiaListAdapter(List<YGPingJIaBean.BodyBean.GoodsBean> goodsBeans, Context context) {
+        this.goodsBeans = goodsBeans;
         this.context = context;
         this.layoutInflater=LayoutInflater.from(context);
     }
     
     @Override
     public int getCount() {
-        return orderBeanInfoList.size();
+        return goodsBeans.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return orderBeanInfoList.get(i);
+        return goodsBeans.get(i);
     }
 
     @Override
@@ -75,8 +76,8 @@ public class YGPingjiaListAdapter extends BaseAdapter{
                 zujian.et_ygpingjiaitem_message.clearFocus();
             }
 
-            zujian.tv_ygpingjiaitem_caipin.setText("餐品:"+orderBeanInfoList.get(i).getFoot_name());
-            zujian.tv_ygpingjiaitem_chushi.setText("厨师:"+orderBeanInfoList.get(i).getChushi());
+            zujian.tv_ygpingjiaitem_caipin.setText("餐品:"+goodsBeans.get(i).getFoot_name());
+            zujian.tv_ygpingjiaitem_chushi.setText("厨师:"+goodsBeans.get(i).getChushi());
             zujian.ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
                 @Override
                 public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {

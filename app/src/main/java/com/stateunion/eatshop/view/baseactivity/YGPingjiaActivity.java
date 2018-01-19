@@ -13,6 +13,7 @@ import com.stateunion.eatshop.R;
 import com.stateunion.eatshop.adapter.DDxiangqingListAdapter;
 import com.stateunion.eatshop.adapter.YGPingjiaListAdapter;
 import com.stateunion.eatshop.retrofit.RequestCommand;
+import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.retrofit.entiity.OrderBean;
 import com.stateunion.eatshop.util.AppSessionEngine;
@@ -25,7 +26,6 @@ import retrofit2.Call;
 
 public class YGPingjiaActivity extends BaseActivity{
     private ImageView iv_ygpingjia_back;
-    private OrderBean orderBean;
     public static ListView list_ygpingjia;
     String order_sn;
     @Override
@@ -45,19 +45,20 @@ public class YGPingjiaActivity extends BaseActivity{
                 YGPingjiaActivity.this.finish();
             }
         });
-        RequestCommand.getDDxiangqiang(new YGPingjiaCallBack(this), AppSessionEngine.getLoginInfo().getGonghao().toString(),order_sn);
+        RequestCommand.getYGPingjialist(new YGPingjiaCallBack(this),order_sn);
+//        RequestCommand.getDDxiangqiang(new YGPingjiaCallBack(this), AppSessionEngine.getLoginInfo().getGonghao().toString(),order_sn);
     }
 
-    public class YGPingjiaCallBack extends DialogCallback<OrderBean,YGPingjiaActivity> {
-        YGPingjiaListAdapter ygPingjiaListAdapter;
+    public class YGPingjiaCallBack extends DialogCallback<BaseBean,YGPingjiaActivity> {
+//        YGPingjiaListAdapter ygPingjiaListAdapter;
         public YGPingjiaCallBack(YGPingjiaActivity requestView) {
             super(requestView);
         }
         @Override
-        protected void onResponseSuccess(OrderBean orderBean, Call<OrderBean> call) {
-            super.onResponseSuccess(orderBean, call);
-            ygPingjiaListAdapter=new YGPingjiaListAdapter(orderBean.getBody().getGoods(),getAttachTarget().getBaseActivity());
-            list_ygpingjia.setAdapter(ygPingjiaListAdapter);
+        protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
+            super.onResponseSuccess(baseBean, call);
+//            ygPingjiaListAdapter=new YGPingjiaListAdapter(baseBean.getBody().getGoods(),getAttachTarget().getBaseActivity());
+//            list_ygpingjia.setAdapter(ygPingjiaListAdapter);
         }
     }
 

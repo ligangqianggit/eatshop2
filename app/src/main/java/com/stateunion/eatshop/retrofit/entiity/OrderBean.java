@@ -23,7 +23,10 @@ public class OrderBean extends BaseBean{
         public String status;
         public String all_money;
         public List<OrderBeanInfoList> goods;
+
         private int zhuangtai;
+
+        private String juyuan;
 
         public String getStatus() {
             return status;
@@ -54,6 +57,14 @@ public class OrderBean extends BaseBean{
 
         public void setZhuangtai(int zhuangtai) {
             this.zhuangtai = zhuangtai;
+        }
+
+        public String getJuyuan() {
+            return juyuan;
+        }
+
+        public void setJuyuan(String juyuan) {
+            this.juyuan = juyuan;
         }
 
         public class OrderBeanInfoList {

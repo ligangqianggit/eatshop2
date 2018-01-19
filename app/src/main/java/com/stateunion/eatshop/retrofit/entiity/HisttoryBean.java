@@ -26,6 +26,7 @@ public class HisttoryBean extends BaseBean {
         private String order_sn;
         private String all_money;
         private int id;
+        private int zhuangtai;
 
 
         public String getPay_time() {
@@ -68,6 +69,14 @@ public class HisttoryBean extends BaseBean {
 
         public void setId(int id) {
             this.id = id;
+        }
+
+        public int getZhuangtai() {
+            return zhuangtai;
+        }
+
+        public void setZhuangtai(int zhuangtai) {
+            this.zhuangtai = zhuangtai;
         }
 
         public class HistoryInfoBeanList{

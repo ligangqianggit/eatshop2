@@ -153,6 +153,7 @@ public class ZiLiaoActivity extends BaseActivity {
 //                ;//ParamKey.TOKEN 自定义参数key常量类，即参数名
         try{
             FileInputStream fis = new FileInputStream(outputFiles);
+            Log.v("eatshop","图片地址："+fis);
             Bitmap bitmap  = BitmapFactory.decodeStream(fis);
             String touxiang= bitmaptoString(bitmap);
             RequestCommand.Upziliaos(new ChangeUserInfoCallback(this),AppSessionEngine.getgonghao(),
@@ -305,7 +306,7 @@ public class ZiLiaoActivity extends BaseActivity {
 //将Bitmap转换成字符串
         String string=null;
         ByteArrayOutputStream bStream=new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100,bStream);
+        bitmap.compress(Bitmap.CompressFormat.PNG,60,bStream);
         byte[]bytes=bStream.toByteArray();
         string= Base64.encodeToString(bytes,Base64.DEFAULT);
         return string;

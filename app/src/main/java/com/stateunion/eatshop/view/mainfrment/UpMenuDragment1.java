@@ -1,9 +1,12 @@
 package com.stateunion.eatshop.view.mainfrment;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -11,20 +14,31 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.stateunion.eatshop.R;
+import com.stateunion.eatshop.retrofit.RequestCommand;
+import com.stateunion.eatshop.retrofit.bean.BaseBean;
+import com.stateunion.eatshop.retrofit.callback.DialogCallback;
+import com.stateunion.eatshop.retrofit.view.IBaseDialogView;
 import com.stateunion.eatshop.util.TakePhone;
+import com.stateunion.eatshop.view.baseactivity.BaseActivity;
 
 import org.feezu.liuli.timeselector.TimeSelector;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,17 +47,36 @@ import butterknife.Unbinder;
 import kr.co.namee.permissiongen.PermissionFail;
 import kr.co.namee.permissiongen.PermissionGen;
 import kr.co.namee.permissiongen.PermissionSuccess;
+import retrofit2.Call;
 
 /**
  * Created by admini on 2018/1/5.
  */
 
-public class UpMenuDragment1 extends Fragment {
+public class UpMenuDragment1 extends Fragment implements IBaseDialogView {
+
+
+    @BindView(R.id.et_foodtitle)//食物名称
+            EditText et_foodtitle;
+
+    @BindView(R.id.et_price)//食物价格
+            EditText et_price;
+
+    @BindView(R.id.et_foodinfo)//食物简介
+            EditText et_foodinfo;
+
+    @BindView(R.id.et_chushi)//厨师名字
+            EditText et_chushi;
+
+    @BindView(R.id.tv_yuyuestar)
+    TextView tv_yuyuestar;//预约开始时间
 
     @BindView(R.id.img_food)
     ImageView imgFood;
-    @BindView(R.id.tv_buytime)
-    TextView tvBuytime;
+    @BindView(R.id.tv_dingcantime)
+    TextView tv_dingcantime;
+    @BindView(R.id.tv_yuyuestop)
+    TextView tv_yuyuestop;
     @BindView(R.id.tv_tuitime)
     TextView tvTuitime;
     @BindView(R.id.bt_upfood)
@@ -52,58 +85,27 @@ public class UpMenuDragment1 extends Fragment {
     private Context context = null;
     private boolean isAlive = false;
 
-
     private TimeSelector timeSelector;
     public static TakePhone takePhoneUtils;
-
+    public static String outputFiles;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.upmenu_fragment, container, false);
-        context = view.getContext();
         unbinder = ButterKnife.bind(this, view);
+        context = view.getContext();
         initUtil();
         return view;
     }
+    public void intview(View view){
 
+
+
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-    }
-
-    @OnClick({R.id.img_food, R.id.tv_buytime, R.id.tv_tuitime, R.id.bt_upfood})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.img_food:
-                PermissionGen.with(UpMenuDragment1.this)
-                        .addRequestCode(TakePhone.REQ_SELECT_PHOTO1)
-                        .permissions(Manifest.permission.READ_EXTERNAL_STORAGE,
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                Manifest.permission.CAMERA
-                        ).request();
-                break;
-            case R.id.tv_buytime:
-                timeSelector = new TimeSelector(context, new TimeSelector.ResultHandler() {
-                    @Override
-                    public void handle(String time) {
-                        tvBuytime.setText(time);
-                    }
-                }, "2018-01-01 00:00", "2030-12-31 00:00");
-                timeSelector.show();
-                break;
-            case R.id.tv_tuitime:
-                timeSelector = new TimeSelector(context, new TimeSelector.ResultHandler() {
-                    @Override
-                    public void handle(String time) {
-                        tvTuitime.setText(time);
-                    }
-                }, "2018-01-01 00:00", "2030-12-31 00:00");
-                timeSelector.show();
-                break;
-            case R.id.bt_upfood:
-                break;
-        }
     }
 
 
@@ -153,9 +155,13 @@ public class UpMenuDragment1 extends Fragment {
             @Override
             public void onFinish(File outputFile, Uri outputUri) {
                 // 4、当拍照或从图库选取图片成功后回调
+                Log.v("eatshop","===+++===+++====outputFile："+outputFile);
+                Log.v("eatshop","===+++===+++====outputUri："+outputUri);
                 Glide.with(UpMenuDragment1.this).load(outputUri).into(imgFood);
+                outputFiles=outputFile.getAbsolutePath();
+                Log.d("aaaa",outputFile.getAbsolutePath()+"[[[["+outputFile.toString());
             }
-        }, false);//true裁剪，false不裁剪
+        }, true);//true裁剪，false不裁剪
 
     }
 
@@ -164,9 +170,9 @@ public class UpMenuDragment1 extends Fragment {
         takePhoneUtils.takePhoto();
     }
 
-    @PermissionSuccess(requestCode = TakePhone.REQ_SELECT_PHOTO1)
+    @PermissionSuccess(requestCode = TakePhone.REQ_SELECT_PHOTO)
     private void selectPhoto() {
-        takePhoneUtils.selectPhoto(TakePhone.REQ_SELECT_PHOTO1);
+        takePhoneUtils.selectPhoto(TakePhone.REQ_SELECT_PHOTO);
     }
 
     @PermissionFail(requestCode = TakePhone.REQ_TAKE_PHOTO)
@@ -174,20 +180,170 @@ public class UpMenuDragment1 extends Fragment {
         showDialog();
     }
 
-    @PermissionFail(requestCode = TakePhone.REQ_SELECT_PHOTO1)
+    @PermissionFail(requestCode = TakePhone.REQ_SELECT_PHOTO)
     private void showTip2() {
         showDialog();
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+        PermissionGen.onRequestPermissionsResult(UpMenuDragment1.this, requestCode, permissions, grantResults);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // 2、在Activity中的onActivityResult()方法里与LQRPhotoSelectUtils关联
-        takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
+        Log.d("lailema","ooooo"+requestCode);
+
+        switch (requestCode){
+            case TakePhone.REQ_SELECT_PHOTO://该结果码与FragmentActivity中是保持一致的
+                //在这里获取你需要的数据
+                takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
+                break;
+            case 2:
+
+                break;
+
+        }
+    }
+
+    public static Fragment newInstance() {
+        return new UpMenuDragment();
+    }
+
+    @OnClick({R.id.img_food, R.id.tv_yuyuestop, R.id.tv_tuitime, R.id.bt_upfood,R.id.tv_dingcantime,R.id.tv_yuyuestar})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.img_food:
+                PermissionGen.with(UpMenuDragment1.this)
+                        .addRequestCode(TakePhone.REQ_SELECT_PHOTO)
+                        .permissions(Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.CAMERA
+                        ).request();
+                break;
+            case R.id.tv_yuyuestar://预约开始时间
+                timeSelector = new TimeSelector(context, new TimeSelector.ResultHandler() {
+                    @Override
+                    public void handle(String time) {
+                        tv_yuyuestar.setText(time);
+                    }
+                }, "2018-01-01 00:00", "2030-12-31 00:00");
+                timeSelector.show();
+            case R.id.tv_dingcantime://订餐的日期
+                timeSelector = new TimeSelector(context, new TimeSelector.ResultHandler() {
+                    @Override
+                    public void handle(String time) {
+                        tv_dingcantime.setText(time);
+                    }
+                }, "2018-01-01 00:00", "2030-12-31 00:00");
+                timeSelector.show();
+            case R.id.tv_yuyuestop://预约截至时间
+                timeSelector = new TimeSelector(context, new TimeSelector.ResultHandler() {
+                    @Override
+                    public void handle(String time) {
+                        tv_yuyuestop.setText(time);
+                    }
+                }, "2018-01-01 00:00", "2030-12-31 00:00");
+                timeSelector.show();
+                break;
+            case R.id.tv_tuitime:
+                timeSelector = new TimeSelector(context, new TimeSelector.ResultHandler() {
+                    @Override
+                    public void handle(String time) {
+                        tvTuitime.setText(time);
+                    }
+                }, "2018-01-01 00:00", "2030-12-31 00:00");
+                timeSelector.show();
+                break;
+            case R.id.bt_upfood:
+                if(et_foodtitle.getText().toString().equals("")){
+                    Toast.makeText(context,"请输入菜品的名称！",Toast.LENGTH_LONG).show();
+                }else if(et_price.getText().toString().equals("")){
+                    Toast.makeText(context,"请输入菜品的价格！",Toast.LENGTH_LONG).show();
+                }
+                else if(et_chushi.getText().toString().equals("")){
+                    Toast.makeText(context,"请输入厨师姓名！",Toast.LENGTH_LONG).show();
+                }
+                else if(et_foodinfo.getText().toString().equals("")){
+                    Toast.makeText(context,"请输入菜品简介！",Toast.LENGTH_LONG).show();
+                }
+                else if(outputFiles==null){
+                    Toast.makeText(context,"请选择图片！",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    String imagefile=submitInfo();
+                    String riqi= tv_dingcantime.getText().toString().substring(0,9);
+                    Log.v("eatshop","日期截取:"+riqi);
+                    RequestCommand.setFood(new SetFoodCallBack(UpMenuDragment1.this),
+                            et_foodtitle.getText().toString(),
+                            et_price.getText().toString(),
+                            imagefile,
+                            et_chushi.getText().toString(),
+                            et_price.getText().toString(),
+                            "0",
+                            "套餐",
+                            "午餐",
+                            tv_yuyuestar.getText().toString(),
+                            tv_yuyuestop.getText().toString(),
+                            riqi,
+                            tvTuitime.getText().toString()
+                    );
+                }
+                break;
+        }
+    }
+
+    @Override
+    public Dialog createDialog(int themeResId) {
+        Dialog dialog = new Dialog(getActivity(), themeResId);
+        return dialog;
+    }
+
+    @Override
+    public void showError(String message) {
+
+    }
+
+    @Override
+    public BaseActivity getBaseActivity() {
+        return null;
+    }
+
+    @Override
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public class   SetFoodCallBack extends DialogCallback<BaseBean,UpMenuDragment1> {
+        public SetFoodCallBack(UpMenuDragment1 requestView) {
+            super(requestView);
+        }
+        @Override
+        protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
+            super.onResponseSuccess(baseBean, call);
+
+        }
+    }
+    public  String submitInfo() {
+        String touxiang=null;
+        try{
+            FileInputStream fis = new FileInputStream(outputFiles);
+            Log.v("eatshop","图片地址："+fis);
+            Bitmap bitmap  = BitmapFactory.decodeStream(fis);
+            touxiang= bitmaptoString(bitmap);
+
+        }catch (Exception e){
+
+        }
+        return touxiang;
+    }
+    public String bitmaptoString(Bitmap bitmap){
+//将Bitmap转换成字符串
+        String string=null;
+        ByteArrayOutputStream bStream=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,60,bStream);
+        byte[]bytes=bStream.toByteArray();
+        string= Base64.encodeToString(bytes,Base64.DEFAULT);
+        return string;
     }
 }

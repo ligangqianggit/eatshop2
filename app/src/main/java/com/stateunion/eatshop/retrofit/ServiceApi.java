@@ -13,6 +13,7 @@ import com.stateunion.eatshop.retrofit.entiity.QuCanMingXiBean;
 import com.stateunion.eatshop.retrofit.entiity.TongJiBean;
 import com.stateunion.eatshop.retrofit.entiity.TuiDanShenHeBean;
 import com.stateunion.eatshop.retrofit.entiity.UserInfoBean;
+import com.stateunion.eatshop.retrofit.entiity.YGPingJIaBean;
 import com.stateunion.eatshop.retrofit.entiity.YuZhiFuBean;
 import com.stateunion.eatshop.retrofit.entiity.YueBean;
 
@@ -301,7 +302,7 @@ public interface ServiceApi {
      */
     @POST("pingxian")
     @FormUrlEncoded
-    Call<BaseBean> kepinglist(@Field("order_sn") String order_sn);
+    Call<YGPingJIaBean> kepinglist(@Field("order_sn") String order_sn);
 
 
     /**

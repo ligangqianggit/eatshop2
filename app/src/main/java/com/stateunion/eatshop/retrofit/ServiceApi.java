@@ -149,7 +149,7 @@ public interface ServiceApi {
     Call<BaseBean> xiugaizilaios(@Field("gonghao") String user_id,
                                 @Field("phone") String phone,
                                 @Field("zhuzhi") String zhuzhi,
-                                 @Field("touxiang") String touxiang
+                                 @Field("tou") String touxiang
 
                                  //@Part("avatar\"; filename=\"avatar.jpg") RequestBody avatar
 //                                  @PartMap() Map<String, RequestBody> files
@@ -262,7 +262,8 @@ public interface ServiceApi {
      */
     @POST("do_tui")
     @FormUrlEncoded
-    Call<BaseBean> tuichushishenhe(@Field("order_sn") String order_sn,@Field("jiekou") int jiekou);
+    Call<BaseBean> tuichushishenhe(@Field("order_sn") String order_sn,@Field("jiekou") int jiekou,@Field("jvyuan") String juyuan
+            );
 
 
     /**
@@ -292,5 +293,36 @@ public interface ServiceApi {
     @POST("chupai")
     @FormUrlEncoded
     Call<PaiMingBean> paiming(@Field("user_id") String user_id);
+
+    /**
+     * 可评价列表
+     * @param
+     *
+     */
+    @POST("pingxian")
+    @FormUrlEncoded
+    Call<BaseBean> kepinglist(@Field("order_sn") String order_sn);
+
+
+    /**
+     * 上报菜品
+     * @param
+     *
+     */
+    @POST("shangchuan")
+    @FormUrlEncoded
+    Call<BaseBean> shangchuanfood(@Field("foot_name") String foot_name,      //菜名
+                               @Field("foot_jianjie") String foot_jianjie,//菜品简介
+                               @Field("foodtu") String foodtu,            //菜品图片
+                               @Field("chushi") String chushi,            //厨师姓名
+                               @Field("jiage") String jiage,              //价格
+                               @Field("shuliang") String shuliang,        //菜品的数量
+                               @Field("fenlei") String fenlei,            //菜品的分类
+                               @Field("shijianduan") String shijianduan,  //菜品所属的类型（早餐，晚餐。午餐）
+                               @Field("yuyue_start") String yuyue_start,  //预约开始时间
+                               @Field("jiezhi") String jiezhi,            //预约截至时间
+                               @Field("riqi") String riqi,                //点餐日期
+                               @Field("tui_time") String tui_time       //退单日期
+                               );
 
 }

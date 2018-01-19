@@ -44,18 +44,28 @@
 
         </ListView>
 
+        <TextView
+            android:id="@+id/tv_ddxingqiang_jvjuemes"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/gray"
+            android:textSize="@dimen/size_22" />
+
         <Button
             android:id="@+id/bt_ddxiangqiang_tuiorpoing"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:textSize="@dimen/size_18"
+            android:layout_weight="1"
             android:background="@color/beijing"
             android:textColor="@color/white"
-            />
+            android:textSize="@dimen/size_18" />
     </LinearLayout>
 
 </LinearLayout>

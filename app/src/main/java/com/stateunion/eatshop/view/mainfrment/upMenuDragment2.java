@@ -32,6 +32,7 @@ import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.retrofit.view.IBaseDialogView;
 import com.stateunion.eatshop.util.TakePhone;
+import com.stateunion.eatshop.util.ZoomBitmap;
 import com.stateunion.eatshop.view.baseactivity.BaseActivity;
 
 import org.feezu.liuli.timeselector.TimeSelector;
@@ -39,6 +40,8 @@ import org.feezu.liuli.timeselector.TimeSelector;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +50,9 @@ import butterknife.Unbinder;
 import kr.co.namee.permissiongen.PermissionFail;
 import kr.co.namee.permissiongen.PermissionGen;
 import kr.co.namee.permissiongen.PermissionSuccess;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 
 /**
@@ -72,7 +78,7 @@ public class upMenuDragment2 extends Fragment implements IBaseDialogView {
     TextView tv_yuyuestar;//预约开始时间
 
     @BindView(R.id.img_food)
-    ImageView imgFood;
+    ImageView imgwancanFood;
     @BindView(R.id.tv_dingcantime)
     TextView tv_dingcantime;
     @BindView(R.id.tv_yuyuestop)
@@ -155,13 +161,12 @@ public class upMenuDragment2 extends Fragment implements IBaseDialogView {
             @Override
             public void onFinish(File outputFile, Uri outputUri) {
                 // 4、当拍照或从图库选取图片成功后回调
-                Log.v("eatshop","===+++===+++====outputFile："+outputFile);
-                Log.v("eatshop","===+++===+++====outputUri："+outputUri);
-                Glide.with(upMenuDragment2.this).load(outputUri).into(imgFood);
+//                Glide.with(UpMenuDragment.this).load(outputUri).into(imgFood);
                 outputFiles=outputFile.getAbsolutePath();
+                imgwancanFood.setImageBitmap(getBitmap(outputFiles));
                 Log.d("aaaa",outputFile.getAbsolutePath()+"[[[["+outputFile.toString());
             }
-        }, true);//true裁剪，false不裁剪
+        }, false);//true裁剪，false不裁剪
 
     }
 
@@ -274,17 +279,18 @@ public class upMenuDragment2 extends Fragment implements IBaseDialogView {
                 }
                 else{
                     String imagefile=submitInfo();
-                    String riqi= tv_dingcantime.getText().toString().substring(0,9);
+                    Log.v("eatshop","图片："+imagefile);
+                    String riqi= tv_dingcantime.getText().toString().substring(0,10);
                     Log.v("eatshop","日期截取:"+riqi);
                     RequestCommand.setFood(new SetFoodCallBack(upMenuDragment2.this),
                             et_foodtitle.getText().toString(),
-                            et_price.getText().toString(),
+                            et_foodinfo.getText().toString(),
                             imagefile,
                             et_chushi.getText().toString(),
                             et_price.getText().toString(),
                             "0",
                             "套餐",
-                            "午餐",
+                            "晚餐",
                             tv_yuyuestar.getText().toString(),
                             tv_yuyuestop.getText().toString(),
                             riqi,
@@ -316,7 +322,7 @@ public class upMenuDragment2 extends Fragment implements IBaseDialogView {
         return isAlive;
     }
 
-    public class   SetFoodCallBack extends DialogCallback<BaseBean,upMenuDragment2> {
+    public class   SetFoodCallBack extends DialogCallback<BaseBean,upMenuDragment2>{
         public SetFoodCallBack(upMenuDragment2 requestView) {
             super(requestView);
         }
@@ -326,19 +332,41 @@ public class upMenuDragment2 extends Fragment implements IBaseDialogView {
 
         }
     }
-    public  String submitInfo() {
+    public String submitInfo() {
         String touxiang=null;
+        List<File> fileList = new ArrayList<>();
+        fileList.add(new File(outputFiles));
+// 创建 RequestBody，用于封装构建RequestBody
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), "");
+
+// MultipartBody.Part  和后端约定好Key，这里的partName是用image
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", outputFiles.toString(), requestFile);
+// 添加描述
+        String descriptionString = "hello, 这是文件描述";
+        RequestBody description =
+                RequestBody.create(
+                        MediaType.parse("multipart/form-data"), descriptionString);
+
+//
+        File file = new File(outputFiles);//filePath 图片地址
+//        String token = "ASDDSKKK19990SDDDSS";//用户token
+//        MultipartBody.Builder builder = new MultipartBody.Builder()
+//                .setType(MultipartBody.FORM)//表单类型
+//                ;//ParamKey.TOKEN 自定义参数key常量类，即参数名
         try{
             FileInputStream fis = new FileInputStream(outputFiles);
             Log.v("eatshop","图片地址："+fis);
             Bitmap bitmap  = BitmapFactory.decodeStream(fis);
+            bitmap= ZoomBitmap.zoomImage(bitmap,bitmap.getWidth()/8,bitmap.getHeight()/8);
             touxiang= bitmaptoString(bitmap);
-
         }catch (Exception e){
 
         }
         return touxiang;
     }
+
     public String bitmaptoString(Bitmap bitmap){
 //将Bitmap转换成字符串
         String string=null;
@@ -347,6 +375,17 @@ public class upMenuDragment2 extends Fragment implements IBaseDialogView {
         byte[]bytes=bStream.toByteArray();
         string= Base64.encodeToString(bytes,Base64.DEFAULT);
         return string;
+    }
+    private Bitmap getBitmap(String outputFiles){
+        Bitmap bitmap=null;
+        try{
+            FileInputStream fis = new FileInputStream(outputFiles);
+            Log.v("eatshop","图片地址："+fis);
+            bitmap  = BitmapFactory.decodeStream(fis);
+        }catch (Exception e){
+
+        }
+        return bitmap;
     }
 
 }

@@ -30,6 +30,7 @@ import com.stateunion.eatshop.retrofit.bean.BaseBean;
 import com.stateunion.eatshop.retrofit.callback.DialogCallback;
 import com.stateunion.eatshop.util.CircleTransform;
 import com.stateunion.eatshop.util.TakePhone;
+import com.stateunion.eatshop.util.ZoomBitmap;
 import com.stateunion.eatshop.view.mainfrment.upMenuDragment3;
 
 import java.io.ByteArrayOutputStream;
@@ -155,6 +156,7 @@ public class ZiLiaoActivity extends BaseActivity {
             FileInputStream fis = new FileInputStream(outputFiles);
             Log.v("eatshop","图片地址："+fis);
             Bitmap bitmap  = BitmapFactory.decodeStream(fis);
+            bitmap= ZoomBitmap.zoomImage(bitmap,bitmap.getWidth()/8,bitmap.getHeight()/8);
             String touxiang= bitmaptoString(bitmap);
             RequestCommand.Upziliaos(new ChangeUserInfoCallback(this),AppSessionEngine.getgonghao(),
                     ed_ziliao_phone.getText().toString(),
@@ -244,8 +246,9 @@ public class ZiLiaoActivity extends BaseActivity {
             public void onFinish(File outputFile, Uri outputUri) {
                 // 4、当拍照或从图库选取图片成功后回调
                  outputFiles=outputFile.getAbsolutePath();
-                Log.d("dizhi",outputFile.getAbsolutePath()+"==="+outputUri.toString());
-                Glide.with(ZiLiaoActivity.this).load(outputUri).into(tv_ziliao_touxiang);
+                Log.d("eatshop",outputFile.getAbsolutePath()+"==="+outputUri.toString());
+//                Glide.with(ZiLiaoActivity.this).load(outputUri).into(tv_ziliao_touxiang);
+                tv_ziliao_touxiang.setImageBitmap(getBitmap(outputFiles));
             }
         }, false);//true裁剪，false不裁剪
 
@@ -310,5 +313,16 @@ public class ZiLiaoActivity extends BaseActivity {
         byte[]bytes=bStream.toByteArray();
         string= Base64.encodeToString(bytes,Base64.DEFAULT);
         return string;
+    }
+    public Bitmap getBitmap(String outputFiles){
+        Bitmap bitmap=null;
+        try{
+            FileInputStream fis = new FileInputStream(outputFiles);
+            Log.v("eatshop","图片地址："+fis);
+            bitmap  = BitmapFactory.decodeStream(fis);
+        }catch (Exception e){
+
+        }
+        return bitmap;
     }
 }

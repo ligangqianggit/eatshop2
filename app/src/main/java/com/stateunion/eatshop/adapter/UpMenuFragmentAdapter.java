@@ -24,7 +24,10 @@ public class UpMenuFragmentAdapter extends FragmentPagerAdapter {
 
         private List<String> tabNames;
         private List<Fragment> fragments;
-
+    UpMenuDragment upMenuDragment;
+    UpMenuDragment1 upMenuDragment1;
+    upMenuDragment2 upMenuDragment2;
+    upMenuDragment3 upMenuDragment3;
     public UpMenuFragmentAdapter(FragmentManager fm, List<String> tabNames, List<Fragment> fragments) {
         super(fm);
         this.tabNames = tabNames;
@@ -34,12 +37,16 @@ public class UpMenuFragmentAdapter extends FragmentPagerAdapter {
         public Fragment getItem(int position) {
             if (position == 0) {
                 return new UpMenuDragment();
+//                return upMenuDragment==null ?upMenuDragment=new UpMenuDragment():upMenuDragment;
             } else if (position == 1) {
+//                return upMenuDragment1==null ?upMenuDragment1=new UpMenuDragment1():upMenuDragment1;
                 return new UpMenuDragment1();
             }else if (position==2){
-                return new   upMenuDragment2();
+//                return upMenuDragment2==null ?upMenuDragment2=new upMenuDragment2():upMenuDragment2;
+                return new upMenuDragment2();
             }
-            return new  upMenuDragment3();
+            return new upMenuDragment3();
+            //            return   upMenuDragment3==null ?upMenuDragment3=new upMenuDragment3():upMenuDragment3;
 
      }
 

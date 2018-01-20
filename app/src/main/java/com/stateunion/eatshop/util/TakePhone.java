@@ -21,6 +21,11 @@ import java.io.File;
 
 public class TakePhone {
     public static final int REQ_TAKE_PHOTO = 10001;
+    public static final int REQ_TAKE_PHOTO1 = 10005;
+
+    public static final int REQ_TAKE_PHOTO2 = 10006;
+    public static final int REQ_TAKE_PHOTO3= 10007;
+
     public static final int REQ_SELECT_PHOTO = 10002;//早餐
     public static final int REQ_SELECT_PHOTO1 = 10004;//中午
     public static final int REQ_SELECT_PHOTO2 = 10005;//晚上
@@ -261,6 +266,50 @@ public class TakePhone {
                                 tmpFile.delete();
                             if (mListener != null) {
                                 mListener.onFinish(mOutputFile, mOutputUri);
+                            }
+                        }
+                    }
+                    break;
+                case TakePhone.REQ_SELECT_PHOTO2://图库
+                    if (data != null) {
+                        Uri sourceUri = data.getData();
+                        String[] proj = {MediaStore.Images.Media.DATA};
+                        Cursor cursor = mActivity.managedQuery(sourceUri, proj, null, null, null);
+                        int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                        cursor.moveToFirst();
+                        String imgPath = cursor.getString(columnIndex);
+                        mInputFile = new File(imgPath);
+
+                        if (mShouldCrop) {//裁剪
+                            mOutputFile = new File(generateImgePath());
+                            mOutputUri = Uri.fromFile(mOutputFile);
+                            zoomPhoto(mInputFile, mOutputFile);
+                        } else {//不裁剪
+                            mOutputUri = Uri.fromFile(mInputFile);
+                            if (mListener != null) {
+                                mListener.onFinish(mInputFile, mOutputUri);
+                            }
+                        }
+                    }
+                    break;
+                case TakePhone.REQ_SELECT_PHOTO3://图库
+                    if (data != null) {
+                        Uri sourceUri = data.getData();
+                        String[] proj = {MediaStore.Images.Media.DATA};
+                        Cursor cursor = mActivity.managedQuery(sourceUri, proj, null, null, null);
+                        int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                        cursor.moveToFirst();
+                        String imgPath = cursor.getString(columnIndex);
+                        mInputFile = new File(imgPath);
+
+                        if (mShouldCrop) {//裁剪
+                            mOutputFile = new File(generateImgePath());
+                            mOutputUri = Uri.fromFile(mOutputFile);
+                            zoomPhoto(mInputFile, mOutputFile);
+                        } else {//不裁剪
+                            mOutputUri = Uri.fromFile(mInputFile);
+                            if (mListener != null) {
+                                mListener.onFinish(mInputFile, mOutputUri);
                             }
                         }
                     }

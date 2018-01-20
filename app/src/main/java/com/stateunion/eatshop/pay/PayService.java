@@ -247,8 +247,8 @@ String payType="微信支付";
   private void Pya(){
 
          MyALipayUtils.ALiPayBuilder builder = new MyALipayUtils.ALiPayBuilder();
-        builder.setAppid("123")
-                .setRsa("456")//根据情况设置Rsa2与Rsa
+        builder.setAppid("2018010301535568")
+                .setRsa(ZFBPayUtil.RSA_PRIVATE)//根据情况设置Rsa2与Rsa
                 .setMoney("0.01")//单位时分
                 .setTitle("支付测试")
                 .setOrderTradeId("487456")//从服务端获取

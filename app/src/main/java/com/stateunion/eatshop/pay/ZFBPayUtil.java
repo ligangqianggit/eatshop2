@@ -30,29 +30,19 @@ public class ZFBPayUtil {
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_CHECK_FLAG = 2;
     // 商户PID
-//    public static final String PARTNER = "2088021520076733";
-//    // 商户收款账号
-//    public static final String SELLER = "2088021520076733";
-//    // 商户私钥，pkcs8格式
-//    public static final String RSA_PRIVATE = "MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAOb6O6ebFlEjko3VtRyTZtNs8XuZdYZxnJ4cATwpQTmnuT+6ouUSH+7eQ/J1ISS55hr4ztMJzXeZ9YC2H+QWcpE4oITLuAskUZWr86/3Rpb1huyn2ADU2V2oImmWDcSFpr4vPbyYXX80wEP3dsiRCw2WoOxUfEcadYNyvFEYzo4ZAgMBAAECgYEAs+8P9dudIQxjKNboxiAWJHJkFHNR2LA83/bVB3bj9vQwHfNY3ral5cGEkSap8SBYn35gMIscYyWu2NwIL/lEuV2Rknrm5I9si+Q64AV5u8X7iQIVAiM+LvygxmwRCVRw7cFPTdgndu7Ku7KDI96zkKTjh2hC7iygMBnlndEo8OECQQD8WqJHyBxTcDEy8LR/iq25oXmc0snXDgh6IHDIVl8/IBa4y6+t/Gxgph7Htd+W656prfW/cc4F2As/eta9fIR1AkEA6lCI8pX9NJRGp164/xTJy7W35Ctkf/lQDRCg4O8T0NlhCmmCpNq5mlGr0HAEeeuHUBdGeJaM2/ETBXJRk5jelQJBAKH8O7cACM62cZ5VTEeiaSmDMWEtHUriQybBtCOk7bbDjlJIzRhNs/PGLnPblw51aH9anyiokKrHp1C0NSukxhECQQC936MKCTcVC26xpBV/RuY7eDba47rd5TbUT3w+qh3BqNV1LYjbdA7hGXuEPbGy5oRRB3torn7Yn+MND9VBKKh9AkASyR7/6qe/vHPAJGkYkomUkWhP4a6gIY+1q0LclgeoIRvgefI4g+TIA8e3lxKuspxHzO20Inww7WE65615WxNY";
-//    // 支付宝公钥
-//    public static final String RSA_PUBLIC = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB";
-
-//     商户PID
-    public static final String PARTNER = "2088921321370581";
+    public static final String PARTNER = "2088021520076733";
     // 商户收款账号
-    public static final String SELLER = "2088921321370581";
+    public static final String SELLER = "2088021520076733";
     // 商户私钥，pkcs8格式
-    public static final String RSA_PRIVATE = "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCCTQihABa2ahl4IK1E3VSWqGUH+XtewNpCg/+oVYYNpWSfIcQWp6OfsWMNJCCoSMXBYEF/I+0w5qZ9RyaIhMzE+RSVfSSU00yi3xgyI306fvk5LyVqkIrXL/lyju10l1MOGYF3DkiJPdt3i7QhGgN5tMd+1uKR63ESvqKRaFhQ4sJHrplM7Th4RadKDxelsoE9ETkPqKXRiDgrP9/nOw4nWYQoGVO87+PwTOQISDXcCykOcXmSjIEStLhit+6z+P9KCznfs2CHhg1jonk2zf+CJAovxCYdquSi+kaVv7fjN59GGcCQ3Bh2G/PANIpZ6JVhEQ7doHfPmQAQN4O4MhwjAgMBAAECggEAe2+GcR6oZX31SruJ6ObTLzWvH/LTUFvZZ5GsK0d5iovX2ngeTmfYtXtRni1PUpw92obZBRx/ogeeSKeSdVl4slBTk5nNgb75poE5ZqYAB94pMmbbRyxOmrOz1zZW9FA2OfEnmCVLyddzhLgvl/wQtsbvBdWDJUCpCVzWnHEA2P3dbXOP8onTbvfboXgH1Or1KQNl3HUm3I58nPZJt3ZERATORmKc4z/i/+n79T2BBnzktp1DAZ8ze/3kSQW6SChmCDUQC+5iUUU4fg25FmTIzE9aH6yaDetFeI1tGQqwL/LQOQBGC0AGQNv/fceCaZUyBUZcaD+id5URjrvMJiLg4QKBgQC7iC+y4EH88c9kmiOMmQWK3Oal18J/e4zhpfwdx9oICcyJ0Xm10ZncG0tslxO3CynzyWhLJ3NY83CEkPUqRlzwjFHbfjrskJacP4htr9eKG0Hn/sOeEAiymMXYr+cyNVlNzP7clG/iKLLbQLVP5QTJv9TM9lMELDHF4bSvDtp2VQKBgQCx37Q3/nusPY/2raluQ5JqU7pKQB3zdkVj5jg8Dcv0Rrb6ZCUN+GmVO+xBj2pnei40UKfk8XKQoUw3ng+dXPTRbmSKREAAgnEPL/wQGHJYw6CTxYip/LBh9Hyuhtvl+bo6qbXN2nQXBsqWyJn/ORGIyW3dIdr1CQX5qKiOfS0QlwKBgF+OS0/IOZeb12OZrxeLOWnCmbxTroWq/ORV4ZuDJDQIWjK3jF77CH1BYzNX3/HbPGs+a2gwF/RxRxoliucZp23i8ir3rSqxmizPqsLJYPi8Xt7Jz/+Qh/4JHncFWrcYvAKKvCrFcCU7O7fAxyKIveHXX6V4tmBf7JS6J4kz9llpAoGAFjImGP6mjB26gzu0cs/3y1DbZDyQADt3+TlXNxc5pifU2XX5sb6X3kl199BfpL34WgreiJEgjK+0BRSyOh7JZgDyhtZxbh7Y4N5KA/ApBK6UsRvrK9seX3rUvCqT8iSxenSG/UMPTXhJe3tYzCJg78LC9N8upXkUx8ymC/HO180CgYADVYXIyUwaD1jMytDQ80/UhN0ulGkJEnao5zqyuqyRqT8Q0cw8EVfjrPAVWJ/LxXZrFpt8bAOb+qbhhH4ue4FtGcNck3JJcnTdAjSTRjWp14MPdhqIDPD2ofnvShvTTbqD6Hlgm6OTSpWS+26LnWEKixa/MIaf9zxekoB9wbm/jQ==";
+    public static final String RSA_PRIVATE = "MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAOb6O6ebFlEjko3VtRyTZtNs8XuZdYZxnJ4cATwpQTmnuT+6ouUSH+7eQ/J1ISS55hr4ztMJzXeZ9YC2H+QWcpE4oITLuAskUZWr86/3Rpb1huyn2ADU2V2oImmWDcSFpr4vPbyYXX80wEP3dsiRCw2WoOxUfEcadYNyvFEYzo4ZAgMBAAECgYEAs+8P9dudIQxjKNboxiAWJHJkFHNR2LA83/bVB3bj9vQwHfNY3ral5cGEkSap8SBYn35gMIscYyWu2NwIL/lEuV2Rknrm5I9si+Q64AV5u8X7iQIVAiM+LvygxmwRCVRw7cFPTdgndu7Ku7KDI96zkKTjh2hC7iygMBnlndEo8OECQQD8WqJHyBxTcDEy8LR/iq25oXmc0snXDgh6IHDIVl8/IBa4y6+t/Gxgph7Htd+W656prfW/cc4F2As/eta9fIR1AkEA6lCI8pX9NJRGp164/xTJy7W35Ctkf/lQDRCg4O8T0NlhCmmCpNq5mlGr0HAEeeuHUBdGeJaM2/ETBXJRk5jelQJBAKH8O7cACM62cZ5VTEeiaSmDMWEtHUriQybBtCOk7bbDjlJIzRhNs/PGLnPblw51aH9anyiokKrHp1C0NSukxhECQQC936MKCTcVC26xpBV/RuY7eDba47rd5TbUT3w+qh3BqNV1LYjbdA7hGXuEPbGy5oRRB3torn7Yn+MND9VBKKh9AkASyR7/6qe/vHPAJGkYkomUkWhP4a6gIY+1q0LclgeoIRvgefI4g+TIA8e3lxKuspxHzO20Inww7WE65615WxNY";
     // 支付宝公钥
-    public static final String RSA_PUBLIC = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg1hOu27wMVWJceYQkC0uy8li5GsYFkw2RGHaa0AgatThf2SZN9MGvsgmlIjhDk8HhqGIfsCN4t+3bi84SVCEh5/dGPhajG06LL7MLXzmjqpqPuVKBU54RCAhY7s0vvWmds4PWHrt6Ibw3vpVer+srwBe50w+a3ne+Zq6UXW0gEZHNu1AERDTGsb2t9kEdr8RoH6GQcLLD6D2/sIh426uGgl6tGdCfAjRto7UqzqWXuOdV8F4PwWqrM/mqE6KVM71zW2uLgLgZpNYhi4pfkAOnvTbgad/T56p+AL3w0WAdXbK9dyEQqEbjIdoYDNxniwLxOvHJNTRkgcm5N8Kod2DRwIDAQAB";
-
+    public static final String RSA_PUBLIC = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB";
     private Context context;
     public DoSomeThing afterpay;
     private String price,name,ordernum,urlback;
     public void payZFB(Context context,String price,String name,String ordernum,String urlback) {
         this.context = context;
-//        this.afterpay=(DoSomeThing) context;
+        this.afterpay=(DoSomeThing) context;
         this.price=price;
         this.name=name;
         this.ordernum=ordernum;
@@ -73,7 +63,7 @@ public class ZFBPayUtil {
                     // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 支付成功后执行
-//                        afterpay.callZFBPaySuccess();
+                        afterpay.callZFBPaySuccess();
                     } else {
                         // 判断resultStatus 为非“9000”则代表可能支付失败
                         // “8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
@@ -162,7 +152,7 @@ public class ZFBPayUtil {
                 // 构造PayTask 对象
                 PayTask payTask = new PayTask((Activity) context);
                 // 调用查询接口，获取查询结果
-//                boolean isExist = payTask.checkAccountIfExist();  唯一改动
+//                boolean isExist = payTask.checkAccountIfExist();
 
                 Message msg = new Message();
                 msg.what = SDK_CHECK_FLAG;

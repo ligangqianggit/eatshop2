@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.stateunion.eatshop.R;
@@ -63,6 +64,7 @@ public class UpCaiPinActivity extends FragmentActivity {
         setContentView(R.layout.activity_uploadcaidan);
         ButterKnife.bind(this);
         initFragment();
+        Log.d("wo chongxinlaile","=========================");
       }
 
 
@@ -100,10 +102,11 @@ public class UpCaiPinActivity extends FragmentActivity {
                 UpMenuDragment1.takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
                 break;
             case TakePhone.REQ_SELECT_PHOTO2:
-                UpMenuDragment.takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
+                 upMenuDragment2.takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
                 break;
             case TakePhone.REQ_SELECT_PHOTO3:
-                UpMenuDragment.takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
+
+                upMenuDragment3.takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
                 break;
         }
         }

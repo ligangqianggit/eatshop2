@@ -551,7 +551,7 @@ public class DateUtil {
         if (w < 0)
             w = 0;
 
-        return weekDays[w]-1;
+        return weekDays[w];
     }
 }
 

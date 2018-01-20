@@ -170,22 +170,22 @@ public class upMenuDragment2 extends Fragment implements IBaseDialogView {
 
     }
 
-    @PermissionSuccess(requestCode = TakePhone.REQ_TAKE_PHOTO)
+    @PermissionSuccess(requestCode = TakePhone.REQ_TAKE_PHOTO2)
     private void takePhoto() {
         takePhoneUtils.takePhoto();
     }
 
-    @PermissionSuccess(requestCode = TakePhone.REQ_SELECT_PHOTO)
+    @PermissionSuccess(requestCode = TakePhone.REQ_SELECT_PHOTO2)
     private void selectPhoto() {
-        takePhoneUtils.selectPhoto(TakePhone.REQ_SELECT_PHOTO);
+        takePhoneUtils.selectPhoto(TakePhone.REQ_SELECT_PHOTO2);
     }
 
-    @PermissionFail(requestCode = TakePhone.REQ_TAKE_PHOTO)
+    @PermissionFail(requestCode = TakePhone.REQ_TAKE_PHOTO2)
     private void showTip1() {
         showDialog();
     }
 
-    @PermissionFail(requestCode = TakePhone.REQ_SELECT_PHOTO)
+    @PermissionFail(requestCode = TakePhone.REQ_SELECT_PHOTO2)
     private void showTip2() {
         showDialog();
     }
@@ -200,7 +200,7 @@ public class upMenuDragment2 extends Fragment implements IBaseDialogView {
         Log.d("lailema","ooooo"+requestCode);
 
         switch (requestCode){
-            case TakePhone.REQ_SELECT_PHOTO://该结果码与FragmentActivity中是保持一致的
+            case TakePhone.REQ_SELECT_PHOTO2://该结果码与FragmentActivity中是保持一致的
                 //在这里获取你需要的数据
                 takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
                 break;
@@ -220,7 +220,7 @@ public class upMenuDragment2 extends Fragment implements IBaseDialogView {
         switch (view.getId()) {
             case R.id.img_food:
                 PermissionGen.with(upMenuDragment2.this)
-                        .addRequestCode(TakePhone.REQ_SELECT_PHOTO)
+                        .addRequestCode(TakePhone.REQ_SELECT_PHOTO2)
                         .permissions(Manifest.permission.READ_EXTERNAL_STORAGE,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                 Manifest.permission.CAMERA

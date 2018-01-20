@@ -105,6 +105,7 @@ public class upMenuDragment3 extends Fragment implements IBaseDialogView {
         unbinder = ButterKnife.bind(this, view);
         context = view.getContext();
         initUtil();
+
         return view;
     }
 
@@ -161,7 +162,7 @@ public class upMenuDragment3 extends Fragment implements IBaseDialogView {
             public void onFinish(File outputFile, Uri outputUri) {
                 // 4、当拍照或从图库选取图片成功后回调
 //                Glide.with(UpMenuDragment.this).load(outputUri).into(imgFood);
-                outputFiles = outputFile.getAbsolutePath();
+                 outputFiles = outputFile.getAbsolutePath();
                 imgxiaochaoFood.setImageBitmap(getBitmap(outputFiles));
                 Log.d("aaaa", outputFile.getAbsolutePath() + "[[[[" + outputFile.toString());
             }
@@ -169,22 +170,22 @@ public class upMenuDragment3 extends Fragment implements IBaseDialogView {
 
     }
 
-    @PermissionSuccess(requestCode = TakePhone.REQ_TAKE_PHOTO)
+    @PermissionSuccess(requestCode = TakePhone.REQ_TAKE_PHOTO3)
     private void takePhoto() {
         takePhoneUtils.takePhoto();
     }
 
-    @PermissionSuccess(requestCode = TakePhone.REQ_SELECT_PHOTO)
+    @PermissionSuccess(requestCode = TakePhone.REQ_SELECT_PHOTO3)
     private void selectPhoto() {
-        takePhoneUtils.selectPhoto(TakePhone.REQ_SELECT_PHOTO);
+        takePhoneUtils.selectPhoto(TakePhone.REQ_SELECT_PHOTO3);
     }
 
-    @PermissionFail(requestCode = TakePhone.REQ_TAKE_PHOTO)
+    @PermissionFail(requestCode = TakePhone.REQ_TAKE_PHOTO3)
     private void showTip1() {
         showDialog();
     }
 
-    @PermissionFail(requestCode = TakePhone.REQ_SELECT_PHOTO)
+    @PermissionFail(requestCode = TakePhone.REQ_SELECT_PHOTO3)
     private void showTip2() {
         showDialog();
     }
@@ -199,7 +200,7 @@ public class upMenuDragment3 extends Fragment implements IBaseDialogView {
         Log.d("lailema", "ooooo" + requestCode);
 
         switch (requestCode) {
-            case TakePhone.REQ_SELECT_PHOTO://该结果码与FragmentActivity中是保持一致的
+            case TakePhone.REQ_SELECT_PHOTO3://该结果码与FragmentActivity中是保持一致的
                 //在这里获取你需要的数据
                 takePhoneUtils.attachToActivityForResult(requestCode, resultCode, data);
                 break;
@@ -219,7 +220,7 @@ public class upMenuDragment3 extends Fragment implements IBaseDialogView {
         switch (view.getId()) {
             case R.id.img_xiaochao_food:
                 PermissionGen.with(upMenuDragment3.this)
-                        .addRequestCode(TakePhone.REQ_SELECT_PHOTO)
+                        .addRequestCode(TakePhone.REQ_SELECT_PHOTO3)
                         .permissions(Manifest.permission.READ_EXTERNAL_STORAGE,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                 Manifest.permission.CAMERA

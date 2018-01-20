@@ -156,9 +156,9 @@ public class UpMenuDragment extends Fragment implements IBaseDialogView {
             @Override
             public void onFinish(File outputFile, Uri outputUri) {
                 // 4、当拍照或从图库选取图片成功后回调
-//                Glide.with(UpMenuDragment.this).load(outputUri).into(imgFood);
+                Glide.with(UpMenuDragment.this).load(outputUri).into(imgzaocanFood);
                 outputFiles=outputFile.getAbsolutePath();
-                imgzaocanFood.setImageBitmap(getBitmap(outputFiles));
+//                imgzaocanFood.setImageBitmap(getBitmap(outputFiles));
                 Log.d("aaaa",outputFile.getAbsolutePath()+"[[[["+outputFile.toString());
             }
         }, false);//true裁剪，false不裁剪
@@ -382,4 +382,14 @@ public class UpMenuDragment extends Fragment implements IBaseDialogView {
         }
         return bitmap;
     }
+
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//         outState.putString("image", outputFiles);
+//    }
+//    @Override
+//    public void onActivityCreated(Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        Log.d("cccccccccccc",savedInstanceState.getString("image"));
+//     }
 }

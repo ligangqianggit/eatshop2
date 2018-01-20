@@ -118,7 +118,7 @@ public class NormalExpandableListAdapter extends BaseExpandableListAdapter {
 
 //重点代码
         if (selected.get(childPosition)&&this.parentPosition==groupPosition) {
-            childViewHolder.tvTitle.setBackgroundResource(R.color.yellow);
+            childViewHolder.tvTitle.setBackgroundResource(R.color.beijing);
             childViewHolder.tvTitle.setTextColor (context.getResources().getColor(R.color.white));
         } else {
             // convertView.setBackgroundResource(R.color.white);

@@ -53,7 +53,9 @@ public class PayService extends BaseActivity{
     public static RadioButton yue,zhifubao,weixin;
     private Button buyNow;
     private boolean isWxPay=false;
-    //    private IWXAPI msgApi;
+    private boolean isYEPay=false;
+
+    private IWXAPI msgApi;
     private LinearLayout rl_zhifubao_pay,rl_weixin_pay;
     ListView lv_product;
     public static String money;
@@ -121,10 +123,25 @@ String payType="微信支付";
         bt_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SubmitOrder();
+                if(payType.equals("余额支付")){
+                    SubmitOrder();
+                }else if(payType.equals("微信支付")){
+                    if(msgApi==null) {
+                        Log.d("a====================","wx==========================");
+
+                        msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
+                        if (msgApi.isWXAppInstalled() && msgApi.isWXAppSupportAPI()) {
+//                            payWithWX();
+                            Toast.makeText(PayService.this,"支付宝支付，请使用其他方式支付！",Toast.LENGTH_LONG).show();
+                            payWithZFB();
+                        } else {
+                            showError("微信客户端未安装，请确认");
+                        }
+                    }
+                }
             }
         });
-        RequestCommand.getYue(new YueCallBack(PayService.this), AppSessionEngine.getLoginInfo().getGonghao().toString());
+//        RequestCommand.getYue(new YueCallBack(PayService.this), AppSessionEngine.getLoginInfo().getGonghao().toString());
     }
    private void SubmitOrder(){
 //       SubmitCallBackack
@@ -147,8 +164,7 @@ String payType="微信支付";
         @Override
         protected void onResponseSuccess(YueBean yueBean, Call<YueBean> call) {
             super.onResponseSuccess(yueBean, call);
-            Log.v("eatshop","====================="+yueBean.getBody().getYumoney());
-            Double.parseDouble(yueBean.getBody().getYumoney());
+             Double.parseDouble(yueBean.getBody().getYumoney());
             yue.setText("当前余额："+yueBean.getBody().getYumoney()+"元");
             if(Double.parseDouble(yueBean.getBody().getYumoney())<Double.parseDouble(money)){
                //余额小于支付金额
@@ -172,11 +188,11 @@ String payType="微信支付";
         return str;
     }
 
-    private View.OnClickListener listener=new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+//    private View.OnClickListener listener=new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
 //          switch (v.getId()){
-//              case R.id.bt_buy:
+//              case R.id.bt_pay:
 //                if (isWxPay){
 //                    if(msgApi==null)
 //                        msgApi= WXAPIFactory.createWXAPI(PayService.this,null);
@@ -191,30 +207,40 @@ String payType="微信支付";
 //                }
 //                  break;
 //              case R.id.rl_zhifubao_pay:
-//
-//                  zfbPay.setImageResource(R.mipmap.right_circle_true);
+//                   zfbPay.setImageResource(R.mipmap.right_circle_true);
 //                  wxPay.setImageResource(R.mipmap.right_circle_false);
 //                  isWxPay = false;
+//                  isYEPay=false;
 //                  break;
-//              case R.id.rl_weixin_pay:
+//              case R.id.radio_weixin:
 //                  wxPay.setImageResource(R.mipmap.right_circle_true);
 //                  zfbPay.setImageResource(R.mipmap.right_circle_false);
+////                  yue.setImageResource(R.mipmap.right_circle_false);
 //                  isWxPay = true;
+//                  isYEPay=false;
+//                  break;
+//
+//              case R.id.radio_yue:
+//                  wxPay.setImageResource(R.mipmap.right_circle_false);
+//                  zfbPay.setImageResource(R.mipmap.right_circle_false);
+//                  isYEPay=true;
+//                  isWxPay = false;
+//
 //                  break;
 //              default:
 //                  break;
 //          }
-          }
-      };
+//          }
+//      };
 
     private void payWithZFB() {
         ZFBPayUtil zfb = new ZFBPayUtil();
-//        zfb.payZFB(PayService.this, price, ss[type], ordernum, urlback);  调用
+        zfb.payZFB(PayService.this, money, "商品", "1212121", "www.baidu.com"); // 调用
     }
 
     private void payWithWX() {
         WXPayUtil pay = new WXPayUtil();
- //        pay.payWX(getApplicationContext(), (int) f + "", ss[type], wxorder, msgApi);
+         pay.payWX(getApplicationContext(), (int) 0.1 + "", "ceshi", "ceshi", msgApi);
     }
 
 

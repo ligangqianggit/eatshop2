@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -86,7 +87,6 @@ public class ZFBPayUtil {
                     break;
             }
         }
-
     };
 
     public void goToZFB() {
@@ -106,7 +106,7 @@ public class ZFBPayUtil {
         }
         // 订单
 //		String orderInfo = getOrderInfo("测试商品", "该测试商品的详细描述", "0.01");
-     final    String orderInfo = getOrderInfo(name, "该测试商品的详细描述", price,urlback);
+        String orderInfo = getOrderInfo(name, "该测试商品的详细描述", price,urlback);
         // 对订单做RSA 签名
         String sign = sign(orderInfo);
         try {
@@ -123,23 +123,15 @@ public class ZFBPayUtil {
 
             @Override
             public void run() {
-//                // 构造PayTask 对象
-//                PayTask alipay = new PayTask((Activity) context);
-//                // 调用支付接口，获取支付结果
-//                String result = alipay.pay(payInfo);
-//
-//                Message msg = new Message();
-//                msg.what = SDK_PAY_FLAG;
-//                msg.obj = result;
-//                mHandler.sendMessage(msg);
+                // 构造PayTask 对象
                 PayTask alipay = new PayTask((Activity) context);
-                Map<String, String> result = alipay.payV2(orderInfo, true);
+                // 调用支付接口，获取支付结果
+                String result = alipay.pay(payInfo,true);
 
                 Message msg = new Message();
                 msg.what = SDK_PAY_FLAG;
                 msg.obj = result;
                 mHandler.sendMessage(msg);
-
             }
         };
 
@@ -160,11 +152,11 @@ public class ZFBPayUtil {
                 // 构造PayTask 对象
                 PayTask payTask = new PayTask((Activity) context);
                 // 调用查询接口，获取查询结果
-                boolean isExist = true;
-//                        payTask.checkAccountIfExist();
-                 Message msg = new Message();
+//                boolean isExist = payTask.checkAccountIfExist();  唯一改动
+
+                Message msg = new Message();
                 msg.what = SDK_CHECK_FLAG;
-                msg.obj = isExist;
+                msg.obj = true;
                 mHandler.sendMessage(msg);
             }
         };
@@ -186,8 +178,7 @@ public class ZFBPayUtil {
 
     /**
      * create the order info. 创建订单信息
-
-
+     *
      */
     public String getOrderInfo(String subject, String body, String price,String urlback) {
 

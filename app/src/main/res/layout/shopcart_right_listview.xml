@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
-    >
+    android:background="@color/white">
 
     <RelativeLayout
         android:id="@+id/rl_item"
@@ -16,17 +15,17 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentLeft="true"
+            android:layout_marginBottom="15dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
             tools:background="@mipmap/ic_launcher" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/iv_pic"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/iv_pic"
             android:orientation="vertical">
 
 
@@ -36,20 +35,31 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/iv_pic"
                 android:text="矿泉水"
-                android:textSize="14sp"
-                android:textColor="@color/black1"/>
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="aaaaa"
-      android:textColor="@color/black1"
-      android:gravity="center"
-      android:layout_marginTop="3dp"
-      android:maxLines="1"
-      android:id="@+id/foods_brief"
-      android:singleLine="true"
-      android:ellipsize="end"
-      />
+                android:textColor="@color/black1"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/foods_brief"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="aaaaa"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/foods_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="bbbb"
+                android:textColor="@color/gray" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -73,12 +83,12 @@
                         android:id="@+id/tv_dingcan_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_desc"
-                        android:layout_toRightOf="@+id/iv_pic"
+                        android:layout_below="@+id/tv_dingcan_mes"
                         android:layout_marginBottom="5dp"
+                        android:layout_toRightOf="@+id/iv_pic"
+                        android:text="¥10.0"
                         android:textColor="@color/title_red"
-                        android:textSize="16sp"
-                        android:text="¥10.0" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -88,8 +98,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:onClick="onClick"
                     android:layout_marginRight="15dp"
+                    android:onClick="onClick"
                     android:src="@drawable/ic_add_circle_outline_black_24dp" />
 
                 <TextView
@@ -97,11 +107,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:layout_toLeftOf="@+id/iv_add"
                     android:background="@color/white"
                     android:textColor="@color/gray"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
                     android:textSize="16sp"
                     android:visibility="invisible" />
 

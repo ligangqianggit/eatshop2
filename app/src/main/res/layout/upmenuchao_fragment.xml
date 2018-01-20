@@ -5,100 +5,193 @@
     android:background="@color/white"
     >
     <LinearLayout
+        android:id="@+id/llyt_toubu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
-  <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-      android:layout_marginTop="5dp"
-      >
         <RelativeLayout
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:background="@color/gray"
-            android:layout_marginLeft="2dp"
-            android:id="@+id/rl_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             >
-            <ImageView
+            <RelativeLayout
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                android:background="@color/gray"
+                android:layout_marginLeft="2dp"
+                android:id="@+id/rl_food"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_food"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"
+                    android:scaleType="centerInside"
+                    android:id="@+id/img_xiaochao_food"
+                    />
+            </RelativeLayout>
+
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/icon_food"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"
-                android:layout_centerInParent="true"
-                android:id="@+id/img_xiaochao_food"
+                android:hint="请输入标题"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/rl_food"
+                android:layout_alignTop="@+id/rl_food"
+                android:textColor="@color/black"
+                android:id="@+id/et_xiaochao_foodtitle"
+                android:textSize="18sp"
+                android:theme="@style/MyEditText"
+                android:layout_marginLeft="3dp"
+                android:gravity="center_vertical"
+                />
+
+            <EditText
+                android:id="@+id/et_xiaochao_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/rl_food"
+                android:layout_alignBottom="@+id/rl_food"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="3dp"
+                android:layout_toEndOf="@+id/rl_food"
+                android:layout_toRightOf="@+id/rl_food"
+                android:gravity="center_vertical"
+                android:hint="价格"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:theme="@style/MyEditText"
+
                 />
         </RelativeLayout>
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="请输入标题"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_toRightOf="@+id/rl_food"
-            android:layout_alignTop="@+id/rl_food"
-            android:textColor="@color/black"
-            android:id="@+id/et_xiaochao_foodtitle"
-            android:textSize="25sp"
-            android:theme="@style/MyEditText"
-            android:layout_marginLeft="3dp"
-            android:gravity="center_vertical"
-            />
-
-    <EditText
-        android:id="@+id/et_xiaochao_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/rl_food"
-        android:layout_alignBottom="@+id/rl_food"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="3dp"
-        android:layout_toEndOf="@+id/rl_food"
-        android:layout_toRightOf="@+id/rl_food"
-        android:gravity="center_vertical"
-        android:hint="价格"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:theme="@style/MyEditText"
-
-        />
-</RelativeLayout>
         <EditText
             android:id="@+id/et_xiaochao_foodinfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="3dp"
             android:hint="请输入描述内容"
             android:textColor="@color/black"
             android:gravity="center_vertical"
             android:theme="@style/MyEditText"
-            android:maxLines="3"
-
+            android:textSize="@dimen/text_size_18"
+            android:maxLines="2"
             />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="厨师"
-            android:layout_margin="10dp"
+            android:layout_margin="3dp"
             android:id="@+id/et_xiaochao_chushi"
             android:textColor="@color/black"
             android:gravity="center_vertical"
             android:theme="@style/MyEditText"
-
+            android:textSize="@dimen/text_size_18"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入小炒的数量"
+            android:layout_margin="3dp"
+            android:id="@+id/et_xiaochao_num"
+            android:textColor="@color/black"
+            android:gravity="center_vertical"
+            android:theme="@style/MyEditText"
+            android:textSize="@dimen/text_size_18"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入小炒是属于午餐或者晚餐"
+            android:layout_margin="3dp"
+            android:id="@+id/et_xiaochao_wuorwan"
+            android:textColor="@color/black"
+            android:gravity="center_vertical"
+            android:theme="@style/MyEditText"
+            android:textSize="@dimen/text_size_18"
             />
     </LinearLayout>
-<!--上部分结束-->
+    <!--上部分结束-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
+        android:layout_below="@+id/llyt_toubu"
         >
+        //预约开始时间
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="预约开始时间"
+                android:textColor="@color/gray"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_xiaochao_yuyuestar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="11-18 09:30"
+                android:textColor="@color/gray"
+                android:textSize="20sp" />
+        </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:background="@color/gray" />
+
+        //预约截止时间
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            >
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="预约截止时间"
+                android:textColor="@color/gray"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_xiaochao_yuyuestop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="11-18 09:30"
+                android:textColor="@color/gray"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:background="@color/gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -132,84 +225,53 @@
             android:layout_height="1dp"
             android:layout_margin="10dp"
             android:background="@color/gray" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        >
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="预约截止时间"
-            android:textColor="@color/gray"
-            android:textSize="20sp" />
+            android:orientation="horizontal"
+            android:background="@color/white"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="退单截至时间"
+                android:textSize="20sp"
+                android:gravity="center_horizontal"
+                android:textColor="@color/gray"
+                />
 
-        <TextView
-            android:id="@+id/tv_xiaochao_buytime"
-            android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tv_xiaochao_tuitime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="11-18 09:30"
+                android:textColor="@color/gray"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:background="@color/gray" />
+        <Button
+
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="11-18 09:30"
-            android:textColor="@color/gray"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_margin="10dp"
-        android:background="@color/gray" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="退单时间"
-            android:textSize="20sp"
-            android:gravity="center_horizontal"
-            android:textColor="@color/gray"
+            android:text="确定上传"
+            android:background="@color/font_orange"
+            android:padding="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/bt_xiaochao_upfood"
             />
-
-        <TextView
-            android:id="@+id/tv_xiaochao_tuitime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="11-18 09:30"
-            android:textColor="@color/gray"
-            android:textSize="20sp" />
-
     </LinearLayout>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_margin="10dp"
-        android:background="@color/gray" />
-    <Button
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="确定上传"
-        android:background="@color/font_orange"
-        android:padding="5dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/bt_xiaochao_upfood"
-        />
-    </LinearLayout>
+
 </RelativeLayout>

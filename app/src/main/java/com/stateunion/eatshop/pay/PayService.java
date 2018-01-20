@@ -131,13 +131,15 @@ String payType="微信支付";
 
                         msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
                         if (msgApi.isWXAppInstalled() && msgApi.isWXAppSupportAPI()) {
-//                            payWithWX();
-                            Toast.makeText(PayService.this,"支付宝支付，请使用其他方式支付！",Toast.LENGTH_LONG).show();
-                            payWithZFB();
+                            payWithWX();
                         } else {
                             showError("微信客户端未安装，请确认");
                         }
                     }
+                }else if(payType.equals("支付宝支付")){
+                    Toast.makeText(PayService.this,"支付宝支付，请使用其他方式支付！",Toast.LENGTH_LONG).show();
+//                    payWithZFB();
+                    Pya();
                 }
             }
         });
@@ -242,7 +244,19 @@ String payType="微信支付";
         WXPayUtil pay = new WXPayUtil();
          pay.payWX(getApplicationContext(), (int) 0.1 + "", "ceshi", "ceshi", msgApi);
     }
+  private void Pya(){
 
+         MyALipayUtils.ALiPayBuilder builder = new MyALipayUtils.ALiPayBuilder();
+        builder.setAppid("123")
+                .setRsa("456")//根据情况设置Rsa2与Rsa
+                .setMoney("0.01")//单位时分
+                .setTitle("支付测试")
+                .setOrderTradeId("487456")//从服务端获取
+                .setNotifyUrl("fdsfasdf")//从服务端获取
+                .build()
+                .toALiPay(PayService.this);
+
+    }
 
     public void callWXPayFailure() {
 

@@ -203,9 +203,9 @@ public class DingCanActivity extends BaseActivity {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                  // 请务必返回 false，否则分组不会展开
-                if(groupPosition<thisgroupPosition){
-                    return true;
-                }
+//                if(groupPosition<thisgroupPosition){
+//                    return true;
+//                }
                   return false;
             }
         });

@@ -123,8 +123,7 @@ public class WXPayUtil {
 //			show.setText(sb.toString());
 
             resultunifiedorder=result;
-            System.out.println("------------------------------------------------------------"+sb);
-			/*genPayReq();
+ 			/*genPayReq();
 			sendPayReq();*/
         }
 
@@ -209,8 +208,7 @@ public class WXPayUtil {
 
         try {
             String	nonceStr = genNonceStr();
-            System.out.println(ordernum+"ppppppppppppp");
-            xml.append("</xml>");
+             xml.append("</xml>");
             List<NameValuePair> packageParams = new LinkedList<NameValuePair>();
             packageParams.add(new BasicNameValuePair("appid", Constants.APP_ID));
             packageParams.add(new BasicNameValuePair("body", name));
@@ -261,10 +259,10 @@ public class WXPayUtil {
 
     }
     private void sendPayReq() {
-
-
-        msgApi.registerApp(Constants.APP_ID);
+         msgApi.registerApp(Constants.APP_ID);
         msgApi.sendReq(req);
+        Log.d("orion", String.valueOf(genTimeStamp()+""+"======================================="+msgApi.sendReq(req)));
+
     }
 
     public static String getPhoneIp() {

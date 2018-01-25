@@ -126,16 +126,16 @@ String payType="微信支付";
                 if(payType.equals("余额支付")){
                     SubmitOrder();
                 }else if(payType.equals("微信支付")){
-                    if(msgApi==null) {
-                        Log.d("a====================","wx==========================");
+//                    if(msgApi==null) {
 
                         msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
-                        if (msgApi.isWXAppInstalled() && msgApi.isWXAppSupportAPI()) {
+                    Log.d("---------",msgApi.isWXAppInstalled()+""+msgApi.isWXAppSupportAPI());
+//                        if (msgApi.isWXAppInstalled() && msgApi.isWXAppSupportAPI()) {
                             payWithWX();
-                        } else {
-                            showError("微信客户端未安装，请确认");
-                        }
-                    }
+//                        } else {
+//                            showError("微信客户端未安装，请确认");
+//                        }
+//                    }
                 }else if(payType.equals("支付宝支付")){
                     Toast.makeText(PayService.this,"支付宝支付，请使用其他方式支付！",Toast.LENGTH_LONG).show();
 //                    payWithZFB();

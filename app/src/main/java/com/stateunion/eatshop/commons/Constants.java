@@ -17,7 +17,7 @@ public class Constants {
     public static final long VERSION_UPDATE_CONTROL_TIME = 3 * 24 * 60 * 60 * 1000;
     public static final String APP_ID = "wx8596138b3771e451";
 
-    public static final String API_KEY = "12121212";
+    public static final String API_KEY = "20150902b4c09247ec02edce69f6a2d0";
 
-    public static final String MCH_ID = "12121212";
+    public static final String MCH_ID = "1496490612";
 }

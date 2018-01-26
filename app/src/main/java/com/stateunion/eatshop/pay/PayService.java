@@ -29,8 +29,11 @@ import com.stateunion.eatshop.retrofit.entiity.YueBean;
 import com.stateunion.eatshop.util.AppSessionEngine;
 import com.stateunion.eatshop.view.baseactivity.BaseActivity;
 import com.stateunion.eatshop.view.baseactivity.PayJieGuoActivity;
+import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,6 +44,7 @@ import retrofit2.Call;
 
 import static com.stateunion.eatshop.view.baseactivity.DingCanActivity.goodsAdapter;
 import static com.stateunion.eatshop.view.baseactivity.DingCanActivity.selectedList;
+
 
 
 /**
@@ -139,8 +143,7 @@ String payType="微信支付";
                 }else if(payType.equals("支付宝支付")){
                     Toast.makeText(PayService.this,"支付宝支付，请使用其他方式支付！",Toast.LENGTH_LONG).show();
 //                    payWithZFB();
-                    Pya();
-                }
+                 }
             }
         });
 //        RequestCommand.getYue(new YueCallBack(PayService.this), AppSessionEngine.getLoginInfo().getGonghao().toString());
@@ -241,20 +244,11 @@ String payType="微信支付";
     }
 
     private void payWithWX() {
+
+
         WXPayUtil pay = new WXPayUtil();
          pay.payWX(getApplicationContext(), (int) 0.1 + "", "ceshi", "ceshi", msgApi);
-    }
-  private void Pya(){
 
-         MyALipayUtils.ALiPayBuilder builder = new MyALipayUtils.ALiPayBuilder();
-        builder.setAppid("2018010301535568")
-                .setRsa(ZFBPayUtil.RSA_PRIVATE)//根据情况设置Rsa2与Rsa
-                .setMoney("0.01")//单位时分
-                .setTitle("支付测试")
-                .setOrderTradeId("487456")//从服务端获取
-                .setNotifyUrl("fdsfasdf")//从服务端获取
-                .build()
-                .toALiPay(PayService.this);
 
     }
 

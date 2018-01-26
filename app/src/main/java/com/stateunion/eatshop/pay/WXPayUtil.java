@@ -50,8 +50,8 @@ public class WXPayUtil {
         req = new PayReq();
         sb = new StringBuffer();
         this.msgApi.registerApp(Constants.APP_ID);
-		/*GetPrepayIdTask getPrepayId = new GetPrepayIdTask();
-		getPrepayId.execute();*/
+//		GetPrepayIdTask getPrepayId = new GetPrepayIdTask();
+//		getPrepayId.execute();
 
         //genProductArgs();
         genPayReq();
@@ -87,7 +87,7 @@ public class WXPayUtil {
         sb.append("key=");
         sb.append(Constants.API_KEY);
 
-        this.sb.append("sign str\n"+sb.toString()+"\n\n");
+//        this.sb.append("sign str\n"+sb.toString()+"\n\n");
         String appSign = PayMD5.getMessageDigest(sb.toString().getBytes());
          return appSign;
     }
@@ -137,13 +137,10 @@ public class WXPayUtil {
 
             String url = String.format("https://api.mch.weixin.qq.com/pay/unifiedorder");
             String entity = genProductArgs();
-
-
             byte[] buf = WxPayUtil.httpPost(url, entity);
-
-            String content = new String(buf);
+             String content = new String(buf);
              Map<String,String> xml=decodeXml(content);
-
+       Log.d("xml",xml+"");
 
             return xml;
         }
@@ -226,8 +223,6 @@ public class WXPayUtil {
 
 
             String xmlstring =toXml(packageParams);
-            System.out.println("xmlstring::::::::"+xmlstring);
-            System.out.println("xmlstring.getBytes() to  ISO8859-1"+new String(xmlstring.getBytes(),"ISO8859-1"));
             return new String(xmlstring.getBytes(),"ISO8859-1");
 
         } catch (Exception e) {
@@ -235,14 +230,15 @@ public class WXPayUtil {
             return null;
         }
     }
+
+
     private void genPayReq() {
         req.appId = Constants.APP_ID;
         req.partnerId = Constants.MCH_ID;
-        req.prepayId = ordernum;
-        req.packageValue = "prepay_id="+ordernum;
+        req.prepayId = ordernum;//order
+        req.packageValue = "Sign=WXPay";//"prepay_id="+ordernum;
         req.nonceStr = genNonceStr();
         req.timeStamp = String.valueOf(genTimeStamp());
-
         List<NameValuePair> signParams = new LinkedList<NameValuePair>();
         signParams.add(new BasicNameValuePair("appid", req.appId));
         signParams.add(new BasicNameValuePair("noncestr", req.nonceStr));
@@ -255,9 +251,15 @@ public class WXPayUtil {
         sb.append("sign\n"+req.sign+"\n\n");
 
 
-        Log.e("orion", signParams.toString());
+        Log.e("orion",req.timeStamp+"]]]"+req.prepayId);
 
     }
+
+
+
+
+
+
     private void sendPayReq() {
          msgApi.registerApp(Constants.APP_ID);
         msgApi.sendReq(req);

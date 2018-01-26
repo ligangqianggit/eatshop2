@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.stateunion.eatshop.R;
 import com.stateunion.eatshop.adapter.PayListAdapter;
+import com.stateunion.eatshop.commons.Constants;
 import com.stateunion.eatshop.custom_view.MyListView;
 import com.stateunion.eatshop.retrofit.RequestCommand;
 import com.stateunion.eatshop.retrofit.bean.BaseBean;
@@ -27,6 +28,7 @@ import com.stateunion.eatshop.retrofit.entiity.PostOrderBean;
 import com.stateunion.eatshop.retrofit.entiity.YuZhiFuBean;
 import com.stateunion.eatshop.retrofit.entiity.YueBean;
 import com.stateunion.eatshop.util.AppSessionEngine;
+import com.stateunion.eatshop.util.PayMD5;
 import com.stateunion.eatshop.view.baseactivity.BaseActivity;
 import com.stateunion.eatshop.view.baseactivity.PayJieGuoActivity;
 import com.tencent.mm.opensdk.modelpay.PayReq;
@@ -157,7 +159,6 @@ String payType="微信支付";
        Log.v("eatshop","钱数："+money);
         Log.v("eatshop","list 样式:   "+gson.toJson(OrderList));
 
-       Log.v("eatshop","支付类型："+ payType);
 
        RequestCommand.zhifujiekou(new SubmitCallBack(this),AppSessionEngine.getLoginInfo().getGonghao().toString(),date,payType,money,gson.toJson(OrderList));
    }
@@ -244,13 +245,17 @@ String payType="微信支付";
     }
 
     private void payWithWX() {
-
-
-        WXPayUtil pay = new WXPayUtil();
-         pay.payWX(getApplicationContext(), (int) 0.1 + "", "ceshi", "ceshi", msgApi);
+//        SubmitOrder();
+         final IWXAPI msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
+         WXPayUtil pay = new WXPayUtil();
+         pay.payWX(getApplicationContext(), 0.1 + "", "李刚单", "123456", msgApi);//钢蛋换成订单order 名字也是
 
 
     }
+
+
+
+
 
     public void callWXPayFailure() {
 

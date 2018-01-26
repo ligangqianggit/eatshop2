@@ -2,8 +2,11 @@ package com.stateunion.eatshop.wxapi;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.growingio.android.sdk.utils.LogUtil;
 import com.stateunion.eatshop.commons.Constants;
@@ -30,8 +33,15 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
         // setContentView(R.layout.pay_result);
 
         api = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
- //        api.handleIntent(getIntent(), this);
+         api.handleIntent(getIntent(), this);
         //payWithWXBack();
+    }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        setIntent(intent);
+        api.handleIntent(intent, this);
     }
 
     @Override
@@ -41,22 +51,28 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
 
     @Override
     public void onResp(BaseResp resp) {
-        LogUtil.d(TAG, "Luke = " + resp.toString());
-
+         Log.d("aaaaaaaaaaaaaaaaaaa",resp.toString()+"[[[[[[[[["+resp.errCode);
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
             int code = resp.errCode;
             switch (code) {
                 case 0:
+                    Toast.makeText(WXPayEntryActivity.this,"支付成功",Toast.LENGTH_SHORT).show();
                      break;
                 case -1:
-                     finish();
+                    Toast.makeText(WXPayEntryActivity.this,"支付失败1"+resp.errStr,Toast.LENGTH_SHORT).show();
+
+//                    finish();
                     break;
                 case -2:
-                     finish();
+                    Toast.makeText(WXPayEntryActivity.this,"支付取消",Toast.LENGTH_SHORT).show();
+
+//                    finish();
                     break;
                 default:
-                     setResult(RESULT_OK);
-                    finish();
+                    Toast.makeText(WXPayEntryActivity.this,"支付失败"+resp.errStr,Toast.LENGTH_SHORT).show();
+
+//                    setResult(RESULT_OK);
+//                    finish();
                     break;
             }
         }

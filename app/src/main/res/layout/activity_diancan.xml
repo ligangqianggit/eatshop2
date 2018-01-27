@@ -107,10 +107,10 @@
 
                     <ImageView
                         android:id="@+id/iv_diancan_back"
-                        android:layout_width="15dp"
+                        android:layout_width="20dp"
                         android:layout_height="25dp"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/ic_back_white"
+                        android:background="@drawable/ic_title_back"
                         />
                 </RelativeLayout>
 

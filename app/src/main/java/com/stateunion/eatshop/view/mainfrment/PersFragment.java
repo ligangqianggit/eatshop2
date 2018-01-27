@@ -43,9 +43,8 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
      SwipeRefreshLayout swipeRefresh;
     Unbinder unbinder;
     private Context context = null;
-    private LinearLayout llyt_preson_fankui, llyt_preson_history, llyt_preson_zilaio, llyt_preson_changepwd;
+    private LinearLayout llyt_preson_fankui, llyt_preson_history, llyt_preson_zilaio, llyt_preson_changepwd,llyt_preson_tuichu;
     public static TextView tv_preson_user, tv_preson_iccard, tv_preson_phone, tv_preson_location, tv_preson_yue, tv_preson_jifen;
-    private Button btLogOut;
     private boolean isAlive = false;
     public static ImageView iv_preson_touxiang;
     public static String url, shengri;
@@ -100,8 +99,8 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
                 startActivity(intent);
             }
         });
-        btLogOut = (Button) rootView.findViewById(R.id.bt_logout);
-        btLogOut.setOnClickListener(new View.OnClickListener() {
+        llyt_preson_tuichu = (LinearLayout) rootView.findViewById(R.id.llyt_preson_tuichu);
+        llyt_preson_tuichu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                 LoginOut();
@@ -132,7 +131,6 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
 
           }
       });
-
   }
   private void getPreson(){
         RequestCommand.getPreson(new PresonCallBck(PersFragment.this), AppSessionEngine.getLoginInfo().getGonghao());
@@ -145,7 +143,6 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
         unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
-
     public static class PresonCallBck extends DialogCallback<PersonInfoBean, PersFragment> {
 
         public PresonCallBck(PersFragment requestView) {
@@ -153,7 +150,6 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
             Log.d("aaaa","是我--------------");
 
         }
-
         @Override
         protected void onResponseSuccess(PersonInfoBean personInfoBean, Call<PersonInfoBean> call) {
             super.onResponseSuccess(personInfoBean, call);
@@ -161,8 +157,8 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
             getAttachTarget().tv_preson_iccard.setText(personInfoBean.getBody().getGonghao());
             getAttachTarget().tv_preson_phone.setText(personInfoBean.getBody().getPhone());
             getAttachTarget().tv_preson_location.setText(personInfoBean.getBody().getZhuzhi());
-            getAttachTarget().tv_preson_yue.setText("余额：" + personInfoBean.getBody().getYumoney());
-            getAttachTarget().tv_preson_jifen.setText("积分：" + personInfoBean.getBody().getJifen());
+            getAttachTarget().tv_preson_yue.setText( personInfoBean.getBody().getYumoney());
+            getAttachTarget().tv_preson_jifen.setText( personInfoBean.getBody().getJifen());
             shengri = personInfoBean.getBody().getChusheng();
             getAttachTarget().swipeRefresh.setRefreshing(false);
             //此处加载网络图片

@@ -33,7 +33,7 @@ import com.stateunion.eatshop.view.basefrment.BaseFragment;
 public class MainFragment extends BaseFragment {
   private Context context=null;
   private RollPagerView mRollViewPager;
-  private Button bt_main_tongji,bt_main_dingcan,bt_main_tuidan,bt_main_pingjia,bt_main_qucan,bt_main_shangchuan,bt_main_paiming;
+  private ImageView iv_main_dingcan,iv_main_qucan,iv_main_tuidan,iv_main_shangchuan,iv_main_tongji,iv_main_pingjia,iv_main_paiming;
     @Override
     public int getLayoutId() {
         return R.layout.fragment_main;
@@ -67,35 +67,35 @@ public class MainFragment extends BaseFragment {
         }
       });
       //点餐统计
-      bt_main_tongji= (Button) rootView.findViewById(R.id.bt_main_tongji);
-      bt_main_tongji.setOnClickListener(new View.OnClickListener() {
+      iv_main_tongji= (ImageView) rootView.findViewById(R.id.iv_main_tongji);
+      iv_main_tongji.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
           Intent intent=new Intent(context, TongJiActivity.class);
           startActivity(intent);
         }
       });
-
-      bt_main_dingcan= (Button) rootView.findViewById(R.id.bt_main_dingcan);
-      bt_main_dingcan.setOnClickListener(new View.OnClickListener() {
+      //订餐
+      iv_main_dingcan= (ImageView) rootView.findViewById(R.id.iv_main_dingcan);
+      iv_main_dingcan.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
           Intent intent=new Intent(context, DingCanActivity.class);
           startActivity(intent);
         }
       });
-
-      bt_main_tuidan= (Button) rootView.findViewById(R.id.bt_main_tuidan);
-      bt_main_tuidan.setOnClickListener(new View.OnClickListener() {
+      //退单
+      iv_main_tuidan= (ImageView) rootView.findViewById(R.id.iv_main_tuidan);
+      iv_main_tuidan.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
           Intent intent=new Intent(context, TuiDanShenHe.class);
           startActivity(intent);
         }
       });
-
-      bt_main_pingjia= (Button) rootView.findViewById(R.id.bt_main_pingjia);
-      bt_main_pingjia.setOnClickListener(new View.OnClickListener() {
+      //评价
+      iv_main_pingjia= (ImageView) rootView.findViewById(R.id.iv_main_pingjia);
+      iv_main_pingjia.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
           Intent intent=new Intent(context, PingJIaActivity.class);
@@ -103,8 +103,8 @@ public class MainFragment extends BaseFragment {
         }
       });
 
-      bt_main_qucan= (Button) rootView.findViewById(R.id.bt_main_qucan);
-      bt_main_qucan.setOnClickListener(new View.OnClickListener() {
+      iv_main_qucan= (ImageView) rootView.findViewById(R.id.iv_main_qucan);
+      iv_main_qucan.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
           Intent intent=new Intent(context, QuCanActivity.class);
@@ -113,8 +113,8 @@ public class MainFragment extends BaseFragment {
       });
 
 
-      bt_main_shangchuan= (Button) rootView.findViewById(R.id.bt_main_shangchuan);
-      bt_main_shangchuan.setOnClickListener(new View.OnClickListener() {
+      iv_main_shangchuan= (ImageView) rootView.findViewById(R.id.iv_main_shangchuan);
+      iv_main_shangchuan.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
           Intent intent=new Intent(context, UpCaiPinActivity.class);
@@ -122,8 +122,8 @@ public class MainFragment extends BaseFragment {
         }
       });
 
-      bt_main_paiming= (Button) rootView.findViewById(R.id.bt_main_paiming);
-      bt_main_paiming.setOnClickListener(new View.OnClickListener() {
+      iv_main_paiming= (ImageView) rootView.findViewById(R.id.iv_main_paiming);
+      iv_main_paiming.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
           Intent intent=new Intent(context, PaiMIngActivity.class);

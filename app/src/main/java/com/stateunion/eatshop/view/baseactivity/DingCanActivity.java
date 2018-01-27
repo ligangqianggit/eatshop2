@@ -214,8 +214,6 @@ public class DingCanActivity extends BaseActivity {
         mExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-
-
                 if(childPosition==0){
                           canType="早餐";
                      } else if(childPosition==1){
@@ -237,16 +235,13 @@ public class DingCanActivity extends BaseActivity {
 //                goodsAdapter.notifyDataSetChanged();
 //                setItemChecked(groupPosition, childPosition);
                 mychildPosition=childPosition;
-
                  return true;
             }
         });
-
     }
     //填充数据
     private void initData() {
         list3.clear();
-
         //商品
         for (int j=0;j<zaolist.size();j++){
             Log.d("玩撒1",zaolist.size()+"");
@@ -258,6 +253,9 @@ public class DingCanActivity extends BaseActivity {
             goodsBean.setOriginal_price("200");
             goodsBean.setPrice(zaolist.get(j).getJiage());
             goodsBean.setFoodbrief(zaolist.get(j).getFoot_jianjie());
+//            if(zaolist.get(j).getFenlei().toString().equals("小炒")){
+//                goodsBean.setSpecification(zaolist.get(j).getShuliang());
+//            }
             list3.add(goodsBean);
         }
  //        //商品

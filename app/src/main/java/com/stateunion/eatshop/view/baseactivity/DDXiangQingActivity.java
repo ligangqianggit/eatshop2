@@ -31,7 +31,7 @@ import retrofit2.Call;
  */
 
 public class DDXiangQingActivity extends BaseActivity{
-      String order_sn;
+    String order_sn;
     public static ListView list_ddxiangqiang;
     private ImageView iv_ddxiangqiang_back;
     public static Button bt_ddxiangqiang_tuiorpoing;
@@ -70,16 +70,17 @@ public class DDXiangQingActivity extends BaseActivity{
                 dDxiangqingListAdapter=new DDxiangqingListAdapter(orderBean.getBody().getGoods(),getAttachTarget().getBaseActivity());
                 list_ddxiangqiang.setAdapter(dDxiangqingListAdapter);
                 if(orderBean.getBody().getZhuangtai()==0){
-                    bt_ddxiangqiang_tuiorpoing.setText("评价");
-                    bt_ddxiangqiang_tuiorpoing.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent=new Intent(DDXiangQingActivity.this,YGPingjiaActivity.class);
-                            intent.putExtra("order_sn",order_sn);
-                            startActivity(intent);
-                        }
-                    });
-
+                    //不做处理
+                    bt_ddxiangqiang_tuiorpoing.setVisibility(View.GONE);
+//                    bt_ddxiangqiang_tuiorpoing.setText("评价");
+//                    bt_ddxiangqiang_tuiorpoing.setOnClickListener( new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            Intent intent=new Intent(DDXiangQingActivity.this,YGPingjiaActivity.class);
+//                            intent.putExtra("order_sn",order_sn);
+//                            startActivity(intent);
+//                        }
+//                    });
                 }else
                 if(orderBean.getBody().getZhuangtai()==1){
                     bt_ddxiangqiang_tuiorpoing.setText("已评价");
@@ -137,7 +138,7 @@ public class DDXiangQingActivity extends BaseActivity{
             public void onClick(View arg0) {
                 String str = etContent.getText().toString();
                 if (isNullEmptyBlank(str)) {
-                    etContent.setError("输入内如不能为空");
+                    etContent.setError("输入内容不能为空");
                 } else {
                     dialog.dismiss();
                     RequestCommand.setTuidan(new TuiDanCallBack(DDXiangQingActivity.this),AppSessionEngine.getLoginInfo().getGonghao().toString(),order_sn,etContent.getText().toString());

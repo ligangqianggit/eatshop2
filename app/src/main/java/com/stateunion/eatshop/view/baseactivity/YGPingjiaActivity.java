@@ -6,8 +6,13 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.stateunion.eatshop.R;
 import com.stateunion.eatshop.RowModel;
@@ -27,40 +32,81 @@ import retrofit2.Call;
  */
 
 public class YGPingjiaActivity extends BaseActivity{
-    private ImageView iv_ygpingjia_back;
-    public static ListView list_ygpingjia;
-    String order_sn;
+    private ImageView iv_pngjia_back;
+    String caiid,caiming,chushi,goods_id;
+    private TextView tv_ygpingjiaitem_caipin,tv_ygpingjiaitem_chushi;
+    private RatingBar ratingBar;
+    private String barnum;
+    private EditText et_ygpingjiaitem_message;
+    private Button bt_ddxiangqiang_tuiorpoing;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ygpingjia);
+        setContentView(R.layout.item_yuangongpingjia);
         Intent intent=getIntent();
-        order_sn=intent.getStringExtra("order_sn");
+        caiid=intent.getStringExtra("shiwuid");
+        caiming=intent.getStringExtra("caiming");
+        chushi=intent.getStringExtra("chushi");
+        goods_id=intent.getStringExtra("id");
         intview();
     }
     public void intview(){
-        list_ygpingjia = (ListView) findViewById(R.id.list_ygpingjia);
-        iv_ygpingjia_back= (ImageView) findViewById(R.id.iv_ygpingjia_back);
-        iv_ygpingjia_back.setOnClickListener(new View.OnClickListener() {
+        bt_ddxiangqiang_tuiorpoing= (Button) findViewById(R.id.bt_ddxiangqiang_tuiorpoing);
+
+        et_ygpingjiaitem_message= (EditText) findViewById(R.id.et_ygpingjiaitem_message);
+        ratingBar= (RatingBar) findViewById(R.id.ratingBar);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                Float i=ratingBar.getRating();
+                int num=Math.round(i);
+                barnum=num+"";
+            }
+        });
+
+        tv_ygpingjiaitem_caipin= (TextView) findViewById(R.id.tv_ygpingjiaitem_caipin);
+        tv_ygpingjiaitem_chushi= (TextView) findViewById(R.id.tv_ygpingjiaitem_chushi);
+        tv_ygpingjiaitem_caipin.setText(caiming);
+        tv_ygpingjiaitem_chushi.setText("厨师:"+chushi);
+        iv_pngjia_back= (ImageView) findViewById(R.id.iv_pngjia_back);
+        iv_pngjia_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 YGPingjiaActivity.this.finish();
             }
         });
-        RequestCommand.getYGPingjialist(new YGPingjiaCallBack(this),order_sn);
-//        RequestCommand.getDDxiangqiang(new YGPingjiaCallBack(this), AppSessionEngine.getLoginInfo().getGonghao().toString(),order_sn);
+
+        bt_ddxiangqiang_tuiorpoing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (et_ygpingjiaitem_message.getText().toString().equals("")){
+                    Toast.makeText(YGPingjiaActivity.this,"亲，说说您对这道菜的评价吧！",Toast.LENGTH_LONG).show();
+                }else{
+                    Log.v("eatshop","商品id"+goods_id);
+                    Log.v("eatshop","食物id"+caiid);
+                    Log.v("eatshop","菜名"+caiming);
+                    Log.v("eatshop","厨师"+chushi);
+                    Log.v("eatshop","内容："+et_ygpingjiaitem_message.getText().toString());
+                    Log.v("eatshop","分数："+barnum);
+                    RequestCommand.setYGPingjia(new YGPingjiaCallBack(YGPingjiaActivity.this),goods_id,caiid,caiming,AppSessionEngine.getLoginInfo().getGonghao().toString(),chushi,et_ygpingjiaitem_message.getText().toString(),barnum);
+                }
+            }
+        });
+
     }
 
-    public class YGPingjiaCallBack extends DialogCallback<YGPingJIaBean,YGPingjiaActivity> {
-        YGPingjiaListAdapter ygPingjiaListAdapter;
+    public class YGPingjiaCallBack extends DialogCallback<BaseBean,YGPingjiaActivity> {
         public YGPingjiaCallBack(YGPingjiaActivity requestView) {
             super(requestView);
         }
         @Override
-        protected void onResponseSuccess(YGPingJIaBean ygPingJIaBean, Call<YGPingJIaBean> call) {
-            super.onResponseSuccess(ygPingJIaBean, call);
-            ygPingjiaListAdapter=new YGPingjiaListAdapter(ygPingJIaBean.getBody().getGoods(),getAttachTarget().getBaseActivity());
-            list_ygpingjia.setAdapter(ygPingjiaListAdapter);
+        protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
+            super.onResponseSuccess(baseBean, call);
+            if(baseBean.getSuccess()==1){
+                Toast.makeText(getAttachTarget().getBaseActivity(),"感谢您的评价",Toast.LENGTH_LONG).show();
+                YGPingjiaActivity.this.finish();
+            }
         }
     }
 

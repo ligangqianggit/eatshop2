@@ -215,7 +215,10 @@ public interface ServiceApi {
      */
     @POST("saomiao")
     @FormUrlEncoded
-    Call<QuCanMingXiBean> qucanmingxi(@Field("user_id") String user_id, @Field("order_sn") String order, @Field("shijianduan") String shijianduan, @Field("fenlei") String fenlei);
+    Call<QuCanMingXiBean> qucanmingxi(@Field("user_id") String user_id,
+                                      @Field("order_sn") String order,
+                                      @Field("shijianduan") String shijianduan,
+                                      @Field("fenlei") String fenlei);
 
 
     /**
@@ -244,8 +247,14 @@ public interface ServiceApi {
      */
     @POST("pingjia")
     @FormUrlEncoded
-
-    Call<BaseBean> ygpingjia(@Field("order_sn") String dingdan_id,@Field("list") List<String> list);
+    Call<BaseBean> ygpingjia(@Field("goods_id") String goods_id,
+                             @Field("shiwu_id") String shiwu_id,
+                             @Field("foot_name") String foot_name,
+                             @Field("user_id") String user_id,
+                             @Field("chushi") String chushi,
+                             @Field("content") String content,
+                             @Field("fen") String fen
+                             );
 
     /**
      * 退单接口

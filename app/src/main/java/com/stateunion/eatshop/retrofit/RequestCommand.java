@@ -144,9 +144,10 @@ public class RequestCommand {
         send(call, callback);
     }
 
+
     //员工评价接口
-    public static void setYGPingjia(RequestCallback callback, String diangdan_id, List<String> list) {
-        Call call = getApi().ygpingjia(diangdan_id, list);
+    public static void setYGPingjia(RequestCallback callback,  String goods_id, String shiwu_id, String foot_name, String user_id, String chushi, String content, String fen) {
+        Call call = getApi().ygpingjia(goods_id, shiwu_id,foot_name,user_id,chushi,content,fen);
         send(call, callback);
     }
 

@@ -2,79 +2,124 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/yemain_beijing"
     android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/tv_ygpingjiaitem_caipin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:text="菜品"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size_22" />
-
-    <TextView
-        android:id="@+id/tv_ygpingjiaitem_chushi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:text="厨师"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size_15" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/yemain_beijing" />
-
-    <TextView
-        android:id="@+id/tv_ygpingjiaitem_pingfenxianshi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:text="无可挑剔"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size_22"
-        android:visibility="gone" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        style="@style/foodRatingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="5dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:rating="0"
-        android:stepSize="1"
-
-        />
-
-    <EditText
-        android:id="@+id/et_ygpingjiaitem_message"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/shape_pingjiao"
-        android:gravity="left|top"
-        android:hint="亲，菜品口味如何，您还满意吗？"
-        android:inputType="textMultiLine"
-        android:minLines="3"
-        android:padding="3dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray" />
+        android:background="@color/beijing">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:text="评价"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/iv_pngjia_back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_back_white" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        >
+
+        <TextView
+            android:id="@+id/tv_ygpingjiaitem_caipin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="菜品"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_22" />
+
+        <TextView
+            android:id="@+id/tv_ygpingjiaitem_chushi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="厨师"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_15" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/yemain_beijing" />
+
+        <TextView
+            android:id="@+id/tv_ygpingjiaitem_pingfenxianshi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="无可挑剔"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_22"
+            android:visibility="gone" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@style/foodRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:rating="0"
+            android:stepSize="1"
+
+            />
+
+        <EditText
+            android:id="@+id/et_ygpingjiaitem_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/shape_pingjiao"
+            android:gravity="left|top"
+            android:hint="亲，菜品口味如何，您还满意吗？"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:padding="3dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray" />
+
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/bt_ddxiangqiang_tuiorpoing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/beijing"
+        android:textColor="@color/white"
+        android:text="提交"
+        android:textSize="@dimen/size_18" />
 
 </LinearLayout>

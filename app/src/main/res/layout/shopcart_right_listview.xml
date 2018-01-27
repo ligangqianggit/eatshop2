@@ -50,16 +50,16 @@
                 android:text="aaaaa"
                 android:textColor="@color/gray" />
 
-            <TextView
-                android:id="@+id/foods_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="bbbb"
-                android:textColor="@color/gray" />
+            <!--<TextView-->
+                <!--android:id="@+id/foods_num"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:ellipsize="end"-->
+                <!--android:gravity="center"-->
+                <!--android:maxLines="1"-->
+                <!--android:singleLine="true"-->
+                <!--android:text="bbbb"-->
+                <!--android:textColor="@color/gray" />-->
 
             <RelativeLayout
                 android:layout_width="match_parent"

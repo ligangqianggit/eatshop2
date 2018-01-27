@@ -1,271 +1,366 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yemain_beijing"
-    android:orientation="vertical"
-    android:id="@+id/swipeRefresh"
-    >
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:orientation="vertical">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/font_orange"
-    >
-    <TextView
-        android:id="@+id/tv_preson_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main_radio_per"
-        android:textSize="@dimen/size_22"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="4dp"
-        android:textColor="@color/white"
-        />
-<ImageView
-    android:id="@+id/iv_preson_touxiang"
-    android:layout_width="90dp"
-    android:layout_height="90dp"
-    android:layout_below="@+id/tv_preson_title"
-    android:src="@mipmap/ic_launcher"
-    android:layout_marginLeft="15dp"
-    android:layout_marginTop="20dp"
-    />
-    <TextView
-        android:id="@+id/tv_preson_user"
-        android:layout_width="wrap_content"
-        android:layout_toRightOf="@+id/iv_preson_touxiang"
-        android:layout_alignTop="@+id/iv_preson_touxiang"
-        android:layout_height="wrap_content"
-        android:text="用户名"
-        android:textColor="@color/black"
-        android:drawableLeft="@mipmap/ic_preson_user"
-        android:gravity="center"
-        android:drawablePadding="5dp"
-        android:textSize="@dimen/size_15"
-        android:layout_marginLeft="15dp"
-        />
-    <TextView
-        android:id="@+id/tv_preson_iccard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tv_preson_user"
-        android:layout_alignStart="@+id/tv_preson_user"
-        android:layout_below="@+id/tv_preson_user"
-        android:layout_marginTop="10dp"
-        android:text="工号"
-        android:drawableLeft="@mipmap/ic_preson_cord"
-        android:gravity="center"
-        android:drawablePadding="5dp"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size_15"
-        />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_preson_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tv_preson_iccard"
-        android:layout_alignStart="@+id/tv_preson_iccard"
-        android:layout_below="@+id/tv_preson_iccard"
-        android:layout_marginTop="10dp"
-        android:drawableLeft="@mipmap/ic_preson_phone"
-        android:gravity="center"
-        android:drawablePadding="5dp"
-        android:text="188888888888"
-        android:textColor="@color/black"
-        />
-
-    <TextView
-        android:id="@+id/tv_preson_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tv_preson_phone"
-        android:layout_alignStart="@+id/tv_preson_phone"
-        android:layout_below="@+id/tv_preson_phone"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:drawableLeft="@mipmap/ic_preson_location"
-        android:gravity="center"
-        android:drawablePadding="5dp"
-        android:text="青岛亚马逊" />
-
-<TextView
-    android:id="@+id/tv_preson_xian"
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="@color/gray"
-    android:layout_below="@+id/tv_preson_location"
-    android:layout_marginTop="5dp"
-    android:layout_marginLeft="25dp"
-    android:layout_marginRight="25dp"
-    />
-
-    <TextView
-        android:id="@+id/tv_preson_fengexian"
-        android:layout_width="1dp"
-        android:layout_height="18dp"
-        android:background="@color/gray"
-        android:layout_below="@+id/tv_preson_xian"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_centerHorizontal="true"
-        />
-    <TextView
-        android:id="@+id/tv_preson_yue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="余额:8888"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_20"
-        android:layout_toLeftOf="@+id/tv_preson_fengexian"
-        android:layout_alignBaseline="@+id/tv_preson_fengexian"
-        android:layout_marginRight="15dp"
-        />
-
-    <TextView
-        android:id="@+id/tv_preson_jifen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="积分:8888"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_20"
-        android:layout_toRightOf="@+id/tv_preson_fengexian"
-        android:layout_alignBaseline="@+id/tv_preson_fengexian"
-        android:layout_marginLeft="15dp"
-        />
-</RelativeLayout>
-    <LinearLayout
-        android:id="@+id/llyt_preson_zilaio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:layout_marginTop="5dp"
-        >
-        <TextView
-            android:layout_width="0dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/ic_preson_opin"
-            android:text="完善资料"
-            android:textSize="@dimen/text_size_20"
-            android:textColor="@color/gray"
-            android:layout_weight="5"
-            android:gravity="center_vertical"
-            android:padding="8dp"
-            />
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="25dp"
-            android:src="@drawable/ic_right_hui"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            />
-    </LinearLayout>
+            android:background="@color/beijing">
 
-    <LinearLayout
-        android:id="@+id/llyt_preson_history"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:layout_marginTop="1dp"
-        >
-        <TextView
-            android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tv_preson_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
+                android:text="@string/main_radio_per"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_22" />
+
+            <ImageView
+                android:id="@+id/iv_preson_touxiang"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_below="@+id/tv_preson_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:src="@mipmap/ic_preson_touxiang" />
+
+            <TextView
+                android:id="@+id/tv_preson_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_preson_touxiang"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="用户名"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_22" />
+
+            <TextView
+                android:id="@+id/tv_preson_tianchong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_preson_user"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/tv_preson_iccard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_preson_tianchong"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/tv_preson_tianchong"
+                android:drawableLeft="@mipmap/ic_preson_cord"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="工号"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_15" />
+
+            <TextView
+                android:id="@+id/tv_preson_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_preson_tianchong"
+                android:layout_below="@+id/tv_preson_iccard"
+                android:layout_toRightOf="@+id/tv_preson_tianchong"
+                android:drawableLeft="@mipmap/ic_preson_phone"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="188888888888"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_preson_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_preson_tianchong"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:drawableLeft="@mipmap/ic_preson_location"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="青岛亚马逊"
+                android:textColor="@color/black" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/ic_preson_history"
-            android:text="历史订单"
-            android:textSize="@dimen/text_size_20"
-            android:textColor="@color/gray"
-            android:layout_weight="5"
-            android:gravity="center_vertical"
-            android:padding="8dp"
-            />
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="25dp"
-            android:src="@drawable/ic_right_hui"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            />
-    </LinearLayout>
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:id="@+id/llyt_preson_fankui"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:layout_marginTop="1dp"
-        >
-        <TextView
-            android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/tv_preson_yue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_20"
+                    android:layout_gravity="center"
+                    android:text="0"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_20"
+                    android:layout_gravity="center"
+                    android:text="余额"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/tv_preson_fengexian"
+                    android:layout_width="1dp"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:background="@color/beijing" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/tv_preson_jifen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_20"
+                    android:layout_gravity="center"
+                    android:text="0"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_20"
+                    android:layout_gravity="center"
+                    android:text="积分"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/white">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_preson_fengexian"-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:background="@color/beijing" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_preson_yue"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBaseline="@+id/tv_preson_fengexian"-->
+        <!--android:layout_alignBottom="@+id/tv_preson_fengexian"-->
+        <!--android:layout_marginEnd="15dp"-->
+        <!--android:layout_marginRight="15dp"-->
+        <!--android:layout_toLeftOf="@+id/tv_preson_fengexian"-->
+        <!--android:layout_toStartOf="@+id/tv_preson_fengexian"-->
+        <!--android:text="8888"-->
+        <!--android:textColor="@color/black"-->
+        <!--android:textSize="@dimen/text_size_20" />-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignLeft="@+id/tv_preson_yue"-->
+        <!--android:layout_alignRight="@+id/tv_preson_yue"-->
+        <!--android:layout_below="@+id/tv_preson_yue"-->
+        <!--android:text="余额"-->
+        <!--android:textColor="@color/black"-->
+        <!--android:textSize="@dimen/text_size_20" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_preson_jifen"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBaseline="@+id/tv_preson_fengexian"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:layout_toRightOf="@+id/tv_preson_fengexian"-->
+        <!--android:text="积分:8888"-->
+        <!--android:textColor="@color/black"-->
+        <!--android:textSize="@dimen/text_size_20" />-->
+        <!--</RelativeLayout>-->
+
+        <LinearLayout
+            android:id="@+id/llyt_preson_zilaio"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/ic_preson_history"
-            android:text="意见反馈"
-            android:textSize="@dimen/text_size_20"
-            android:textColor="@color/gray"
-            android:layout_weight="5"
-            android:gravity="center_vertical"
-            android:padding="8dp"
-            />
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="25dp"
-            android:src="@drawable/ic_right_hui"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            />
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
 
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/llyt_preson_changepwd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:layout_marginTop="1dp"
-        >
-        <TextView
-            android:layout_width="0dp"
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:drawableLeft="@mipmap/ic_preson_opin"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:text="完善资料"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_17" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:src="@drawable/ic_right_hui" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llyt_preson_history"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/ic_preson_history"
-            android:text="修改密码"
-            android:textSize="@dimen/text_size_20"
-            android:textColor="@color/gray"
-            android:layout_weight="5"
-            android:gravity="center_vertical"
-            android:padding="8dp"
-            />
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="25dp"
-            android:src="@drawable/ic_right_hui"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            />
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:drawableLeft="@mipmap/ic_preson_history"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:text="历史订单"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_17" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="退出登录"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size_20"
-        android:background="@color/font_orange"
-        android:layout_margin="20dp"
-        android:id="@+id/bt_logout"
-        />
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:src="@drawable/ic_right_hui" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llyt_preson_fankui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:drawableLeft="@mipmap/ic_preson_history"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:text="意见反馈"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_17" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:src="@drawable/ic_right_hui" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llyt_preson_changepwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:drawableLeft="@mipmap/ic_preson_history"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:text="修改密码"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_17" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:src="@drawable/ic_right_hui" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llyt_preson_tuichu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:drawableLeft="@mipmap/ic_preson_history"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:text="退出登录"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_17" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:src="@drawable/ic_right_hui" />
+
+        </LinearLayout>
     </LinearLayout>
-</android.support.v4.widget.SwipeRefreshLayout
-    >
+</android.support.v4.widget.SwipeRefreshLayout>

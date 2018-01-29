@@ -87,6 +87,11 @@ public class OrderBean extends BaseBean{
             private String dingdanid;
             private String shiwu_id;
             private String shijianduan;
+            /**
+             * ping_zhuang : 0
+             */
+
+            private String ping_zhuang;
 
 
             public String getJiezhi() {
@@ -239,6 +244,14 @@ public class OrderBean extends BaseBean{
 
             public void setShijianduan(String shijianduan) {
                 this.shijianduan = shijianduan;
+            }
+
+            public String getPing_zhuang() {
+                return ping_zhuang;
+            }
+
+            public void setPing_zhuang(String ping_zhuang) {
+                this.ping_zhuang = ping_zhuang;
             }
         }
     }

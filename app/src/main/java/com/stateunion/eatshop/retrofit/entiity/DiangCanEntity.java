@@ -1,7 +1,5 @@
 package com.stateunion.eatshop.retrofit.entiity;
 
-import java.util.List;
-
 /**
  * Created by 青春 on 2017/12/28.
  */
@@ -74,7 +72,10 @@ DiangCanEntity {
             private String jiezhi;
             private String foodtupian;
 
-            public int getId() {
+            private String shuliang;
+
+
+    public int getId() {
                 return id;
             }
 
@@ -177,6 +178,14 @@ DiangCanEntity {
             public void setFoodtupian(String foodtupian) {
                 this.foodtupian = foodtupian;
             }
+
+    public String getShuliang() {
+        return shuliang;
+    }
+
+    public void setShuliang(String shuliang) {
+        this.shuliang = shuliang;
+    }
 
 //        }
 

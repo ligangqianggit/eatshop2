@@ -39,9 +39,9 @@ public class WXPayUtil {
     private IWXAPI msgApi;
     private Map<String, String> resultunifiedorder;
     private StringBuffer sb;
-    private String price, name,ordernum;
+    private String price, name,ordernum,singStr;
 
-    public void payWX(Context context, String price, String name, String ordernum, IWXAPI msgApi) {
+    public void payWX(Context context, String price, String name, String ordernum,String singStr, IWXAPI msgApi) {
         this.price = price;
         this.name = name;
         this.ordernum=ordernum;
@@ -49,6 +49,7 @@ public class WXPayUtil {
 
         req = new PayReq();
         sb = new StringBuffer();
+        this.singStr=singStr;
         this.msgApi.registerApp(Constants.APP_ID);
 //		GetPrepayIdTask getPrepayId = new GetPrepayIdTask();
 //		getPrepayId.execute();
@@ -246,7 +247,7 @@ public class WXPayUtil {
         signParams.add(new BasicNameValuePair("partnerid", req.partnerId));
         signParams.add(new BasicNameValuePair("prepayid", req.prepayId));
         signParams.add(new BasicNameValuePair("timestamp", req.timeStamp));
-        req.sign = genAppSign(signParams);
+        req.sign = singStr;//genAppSign(signParams);
 
         sb.append("sign\n"+req.sign+"\n\n");
 
@@ -263,7 +264,6 @@ public class WXPayUtil {
     private void sendPayReq() {
          msgApi.registerApp(Constants.APP_ID);
         msgApi.sendReq(req);
-        Log.d("orion", String.valueOf(genTimeStamp()+""+"======================================="+msgApi.sendReq(req)));
 
     }
 

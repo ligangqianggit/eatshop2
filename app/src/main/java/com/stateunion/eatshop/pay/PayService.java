@@ -131,8 +131,11 @@ public class PayService extends BaseActivity{
             public void onClick(View view) {
                 if(payType.equals("余额支付")){
                     SubmitOrder();
+                    Log.d("aaaaa","===================");
                 }else if(payType.equals("微信支付")){
 //                    if(msgApi==null) {
+                    Log.d("aaaaa","-------------------------");
+
                     msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
                     Log.d("---------",msgApi.isWXAppInstalled()+""+msgApi.isWXAppSupportAPI());
 //                        if (msgApi.isWXAppInstalled() && msgApi.isWXAppSupportAPI()) {
@@ -259,7 +262,10 @@ public class PayService extends BaseActivity{
                  if(payType.toString().equals("微信支付")){
                      final IWXAPI msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
                      WXPayUtil pay = new WXPayUtil();
-                     pay.payWX(getApplicationContext(), money + "", yuZhiFuBean.getBody().getNoncestr(), yuZhiFuBean.getBody().getPrepayid().toString(), msgApi);//钢蛋换成订单order 名字也是
+                     pay.payWX(getApplicationContext(), money + "",
+                             yuZhiFuBean.getBody().getNoncestr(), yuZhiFuBean.getBody().getPrepayid().toString(),yuZhiFuBean.getBody().getSign(), msgApi);//钢蛋换成订单order 名字也是
+                  Log.d("aaaaa",  yuZhiFuBean.getBody().getPrepayid().toString());
+
                  }
             }
 

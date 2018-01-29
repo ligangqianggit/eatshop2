@@ -71,7 +71,7 @@ public class PayService extends BaseActivity{
     public static String stryue;
    Gson gson;
     List<PostOrderBean> OrderList=new ArrayList();
-String payType="微信支付";
+    public static String payType="微信支付";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,11 +133,10 @@ String payType="微信支付";
                     SubmitOrder();
                 }else if(payType.equals("微信支付")){
 //                    if(msgApi==null) {
-
-                        msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
+                    msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
                     Log.d("---------",msgApi.isWXAppInstalled()+""+msgApi.isWXAppSupportAPI());
 //                        if (msgApi.isWXAppInstalled() && msgApi.isWXAppSupportAPI()) {
-                            payWithWX();
+                    SubmitOrder();
 //                        } else {
 //                            showError("微信客户端未安装，请确认");
 //                        }
@@ -145,20 +144,19 @@ String payType="微信支付";
                 }else if(payType.equals("支付宝支付")){
                     Toast.makeText(PayService.this,"支付宝支付，请使用其他方式支付！",Toast.LENGTH_LONG).show();
 //                    payWithZFB();
-                 }
+                }
             }
         });
-//        RequestCommand.getYue(new YueCallBack(PayService.this), AppSessionEngine.getLoginInfo().getGonghao().toString());
+        RequestCommand.getYue(new YueCallBack(PayService.this), AppSessionEngine.getLoginInfo().getGonghao().toString());
     }
    private void SubmitOrder(){
 //       SubmitCallBackack
-       SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
-       String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
-       Log.v("eatshop","用户名:"+AppSessionEngine.getLoginInfo().getGonghao().toString());
-       Log.v("eatshop","时间戳:"+date);
-       Log.v("eatshop","钱数："+money);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+        String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
+        Log.v("eatshop","用户名:"+AppSessionEngine.getLoginInfo().getGonghao().toString());
+        Log.v("eatshop","时间戳:"+date);
+        Log.v("eatshop","钱数："+money);
         Log.v("eatshop","list 样式:   "+gson.toJson(OrderList));
-
 
        RequestCommand.zhifujiekou(new SubmitCallBack(this),AppSessionEngine.getLoginInfo().getGonghao().toString(),date,payType,money,gson.toJson(OrderList));
    }
@@ -244,19 +242,6 @@ String payType="微信支付";
         zfb.payZFB(PayService.this, money, "商品", "1212121", "www.baidu.com"); // 调用
     }
 
-    private void payWithWX() {
-//        SubmitOrder();
-         final IWXAPI msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
-         WXPayUtil pay = new WXPayUtil();
-         pay.payWX(getApplicationContext(), 0.1 + "", "李刚单", "123456", msgApi);//钢蛋换成订单order 名字也是
-
-
-    }
-
-
-
-
-
     public void callWXPayFailure() {
 
      }
@@ -270,7 +255,12 @@ String payType="微信支付";
         protected void onResponseSuccess(YuZhiFuBean yuZhiFuBean, Call<YuZhiFuBean> call) {
             super.onResponseSuccess(yuZhiFuBean, call);
             if(yuZhiFuBean.getSuccess()==1){
-                RequestCommand.YuePay(new YuePayCallBack(PayService.this),AppSessionEngine.getLoginInfo().getGonghao().toString(),yuZhiFuBean.getBody().toString(),money);
+//                RequestCommand.YuePay(new YuePayCallBack(PayService.this),AppSessionEngine.getLoginInfo().getGonghao().toString(),yuZhiFuBean.getBody().toString(),money);
+                 if(payType.toString().equals("微信支付")){
+                     final IWXAPI msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
+                     WXPayUtil pay = new WXPayUtil();
+                     pay.payWX(getApplicationContext(), money + "", yuZhiFuBean.getBody().getNoncestr(), yuZhiFuBean.getBody().getPrepayid().toString(), msgApi);//钢蛋换成订单order 名字也是
+                 }
             }
 
         }

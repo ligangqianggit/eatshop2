@@ -162,7 +162,6 @@ public class PayService extends BaseActivity{
         Log.v("eatshop","时间戳:"+date);
         Log.v("eatshop","钱数："+money);
         Log.v("eatshop","list 样式:   "+gson.toJson(OrderList));
-       money="0.01";
        RequestCommand.zhifujiekou(new SubmitCallBack(this),AppSessionEngine.getLoginInfo().getGonghao().toString(),date,payType,money,gson.toJson(OrderList));
    }
     //获取余额
@@ -269,7 +268,7 @@ public class PayService extends BaseActivity{
                  if(payType.toString().equals("微信支付")){
                      final IWXAPI msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
                      WXPayUtil pay = new WXPayUtil();
-                     PayOrder= yuZhiFuBean.getBody().getPrepayid().toString();
+                     PayOrder= yuZhiFuBean.getBody().getOrder_sn().toString();
                      pay.payWX(getApplicationContext(), money + "",
                              yuZhiFuBean.getBody().getNoncestr(), yuZhiFuBean.getBody().getPrepayid().toString(),yuZhiFuBean.getBody().getSign(), msgApi);//钢蛋换成订单order 名字也是
 //                     final IWXAPI msgApi = WXAPIFactory.createWXAPI(PayService.this, null);

@@ -76,6 +76,7 @@ public class StaffHomeFragment extends BaseFragment implements IBaseDialogView {
                 RequestCommand.getDingdanhao(new DingDanHaoCallBack(StaffHomeFragment.this), AppSessionEngine.getLoginInfo().getGonghao());
             }
         });
+        isAlive = true;
 
     }
 

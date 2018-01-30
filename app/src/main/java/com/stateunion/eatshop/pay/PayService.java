@@ -161,7 +161,7 @@ public class PayService extends BaseActivity{
         Log.v("eatshop","时间戳:"+date);
         Log.v("eatshop","钱数："+money);
         Log.v("eatshop","list 样式:   "+gson.toJson(OrderList));
-
+       money="0.01";
        RequestCommand.zhifujiekou(new SubmitCallBack(this),AppSessionEngine.getLoginInfo().getGonghao().toString(),date,payType,money,gson.toJson(OrderList));
    }
     //获取余额
@@ -259,6 +259,11 @@ public class PayService extends BaseActivity{
         protected void onResponseSuccess(YuZhiFuBean yuZhiFuBean, Call<YuZhiFuBean> call) {
             super.onResponseSuccess(yuZhiFuBean, call);
             if(yuZhiFuBean.getSuccess()==1){
+                if(payType.toString().equals("余额支付")){
+                    Intent intent=new Intent(PayService.this, PayJieGuoActivity.class);
+                    startActivity(intent);
+                    PayService.this.finish();
+                }
 //                RequestCommand.YuePay(new YuePayCallBack(PayService.this),AppSessionEngine.getLoginInfo().getGonghao().toString(),yuZhiFuBean.getBody().toString(),money);
                  if(payType.toString().equals("微信支付")){
                      final IWXAPI msgApi = WXAPIFactory.createWXAPI(PayService.this, null);

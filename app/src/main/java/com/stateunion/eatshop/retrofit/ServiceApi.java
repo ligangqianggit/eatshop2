@@ -344,5 +344,4 @@ public interface ServiceApi {
     @FormUrlEncoded
     Call<BaseBean> paynotity(@Field("order_sn") String order_sn,@Field("code") String code);
 
-
 }

@@ -335,4 +335,14 @@ public interface ServiceApi {
                                @Field("tui_time") String tui_time       //退单日期
                                );
 
+    /**
+     * 支付成功回掉
+     * @param
+     *
+     */
+    @POST("wx_notify")
+    @FormUrlEncoded
+    Call<BaseBean> paynotity(@Field("order_sn") String order_sn,@Field("code") String code);
+
+
 }

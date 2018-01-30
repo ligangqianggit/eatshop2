@@ -188,4 +188,10 @@ public class RequestCommand {
         Call call = getApi().shangchuanfood(foot_name, foot_jianjie, foodtu, chushi, jiage, shuliang, fenlei, shijianduan, yuyue_start, jiezhi, riqi, tui_time);
         send(call, callback);
     }
+
+    //支付结果回掉
+    public static void setPayNotify(RequestCallback callback, String order_sn,String code) {
+        Call call = getApi().paynotity(order_sn,code);
+        send(call, callback);
+    }
 }

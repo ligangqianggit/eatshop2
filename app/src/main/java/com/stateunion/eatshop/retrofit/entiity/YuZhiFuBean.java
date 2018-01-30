@@ -34,6 +34,11 @@ public class YuZhiFuBean extends BaseBean{
         private String prepayid;
         private String noncestr;
         private String sign;
+        /**
+         * order_sn : 2018013015392374778
+         */
+
+        private String order_sn;
 
         public String getPrepayid() {
             return prepayid;
@@ -57,6 +62,14 @@ public class YuZhiFuBean extends BaseBean{
 
         public void setSign(String sign) {
             this.sign = sign;
+        }
+
+        public String getOrder_sn() {
+            return order_sn;
+        }
+
+        public void setOrder_sn(String order_sn) {
+            this.order_sn = order_sn;
         }
     }
 }

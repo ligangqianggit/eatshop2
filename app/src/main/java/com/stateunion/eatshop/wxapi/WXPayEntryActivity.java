@@ -54,29 +54,17 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
          Log.d("aaaaaaaaaaaaaaaaaaa",resp.toString()+"[[[[[[[[["+resp.errCode);
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
             int code = resp.errCode;
-            switch (code) {
-                case 0:
-                    Toast.makeText(WXPayEntryActivity.this,"支付成功",Toast.LENGTH_SHORT).show();
-                     break;
-                case -1:
-                    Toast.makeText(WXPayEntryActivity.this,"支付失败"+resp.errStr,Toast.LENGTH_SHORT).show();
-
-                    finish();
-                    break;
-                case -2:
-                    Toast.makeText(WXPayEntryActivity.this,"支付取消",Toast.LENGTH_SHORT).show();
-
-                    finish();
-                    break;
-                default:
-                    Toast.makeText(WXPayEntryActivity.this,"支付失败"+resp.errStr,Toast.LENGTH_SHORT).show();
-
-//                    setResult(RESULT_OK);
-                    finish();
-                    break;
+            if(code==0){
+            if (PayService.payService!=null){
+                PayService.payService.callZfjieguo("1");
+            }else {
+                if (PayService.payService!=null){
+                    PayService.payService.callZfjieguo("0");
+                }
+            }
             }
         }
-
+this.finish();
     }
 
 //    private void payWithWXBack() {

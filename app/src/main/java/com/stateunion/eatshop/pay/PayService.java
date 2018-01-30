@@ -60,7 +60,7 @@ public class PayService extends BaseActivity{
     private Button buyNow;
     private boolean isWxPay=false;
     private boolean isYEPay=false;
-
+   public  static  PayService payService;
     private IWXAPI msgApi;
     private LinearLayout rl_zhifubao_pay,rl_weixin_pay;
     ListView lv_product;
@@ -68,7 +68,7 @@ public class PayService extends BaseActivity{
     Button bt_pay;
     private PayListAdapter payListAdapter;
     private List<String> list;
-    public static String stryue;
+    public static String stryue,PayOrder;
    Gson gson;
     List<PostOrderBean> OrderList=new ArrayList();
     public static String payType="微信支付";
@@ -79,6 +79,7 @@ public class PayService extends BaseActivity{
         Intent intent=getIntent();
         money=intent.getStringExtra("money");
         init();
+        payService=this;
     }
     private void init(){
         lv_product = (ListView)findViewById(R.id.lv_pay);
@@ -262,6 +263,7 @@ public class PayService extends BaseActivity{
                  if(payType.toString().equals("微信支付")){
                      final IWXAPI msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
                      WXPayUtil pay = new WXPayUtil();
+                     PayOrder= yuZhiFuBean.getBody().getPrepayid().toString();
                      pay.payWX(getApplicationContext(), money + "",
                              yuZhiFuBean.getBody().getNoncestr(), yuZhiFuBean.getBody().getPrepayid().toString(),yuZhiFuBean.getBody().getSign(), msgApi);//钢蛋换成订单order 名字也是
 //                     final IWXAPI msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
@@ -297,5 +299,25 @@ public class PayService extends BaseActivity{
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+    public void callZfjieguo(String payType){
+        RequestCommand.setPayNotify(new RequestZfCallBack(this),PayOrder,payType);
+    }
+    public   class RequestZfCallBack extends DialogCallback<BaseBean,PayService>{
+
+        public RequestZfCallBack(PayService requestView) {
+            super(requestView);
+        }
+
+        @Override
+        protected void onResponseSuccess(BaseBean baseBean, Call<BaseBean> call) {
+            super.onResponseSuccess(baseBean, call);
+            goJieguo();
+        }
+    }
+    private void goJieguo(){
+        Intent intent=new Intent(PayService.this, PayJieGuoActivity.class);
+        startActivity(intent);
+        PayService.this.finish();
     }
 }

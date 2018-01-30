@@ -1,8 +1,10 @@
 package com.stateunion.eatshop.view.mainfrment;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.StyleRes;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,19 +14,27 @@ import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.stateunion.eatshop.R;
+import com.stateunion.eatshop.retrofit.RequestCommand;
+import com.stateunion.eatshop.retrofit.callback.DialogCallback;
+import com.stateunion.eatshop.retrofit.entiity.DIngDanHaoBean;
+import com.stateunion.eatshop.retrofit.view.IBaseDialogView;
+import com.stateunion.eatshop.util.AppSessionEngine;
 import com.stateunion.eatshop.view.baseactivity.DingCanActivity;
 import com.stateunion.eatshop.view.baseactivity.QuCanActivity;
 import com.stateunion.eatshop.view.baseactivity.TongGaoActivity;
 import com.stateunion.eatshop.view.basefrment.BaseFragment;
 
+import retrofit2.Call;
+
 /**
  * Created by zhang on 2017/12/28.
  */
 
-public class StaffHomeFragment extends BaseFragment{
+public class StaffHomeFragment extends BaseFragment implements IBaseDialogView {
     private Context context=null;
     private RollPagerView mRollViewPager;
     private ImageView iv_yuangong_dingcan,iv_yuangong_qucan;
+    private boolean isAlive = false;
     @Override
     public int getLayoutId() {
         return R.layout.fragment_mainyuangong;
@@ -32,7 +42,7 @@ public class StaffHomeFragment extends BaseFragment{
 
     @Override
     public void createView(View rootView) {
-
+        isAlive = true;
         context=rootView.getContext();
         mRollViewPager = (RollPagerView) rootView.findViewById(R.id.roll_yuangong_pager);
         //设置播放时间间隔
@@ -63,12 +73,28 @@ public class StaffHomeFragment extends BaseFragment{
         iv_yuangong_qucan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, QuCanActivity.class);
-                startActivity(intent);
+                RequestCommand.getDingdanhao(new DingDanHaoCallBack(StaffHomeFragment.this), AppSessionEngine.getLoginInfo().getGonghao());
             }
         });
 
     }
+
+    @Override
+    public Dialog createDialog(@StyleRes int themeResId) {
+        Dialog dialog = new Dialog(getActivity(), themeResId);
+        return dialog;
+    }
+
+    @Override
+    public void showError(String message) {
+
+    }
+
+    @Override
+    public boolean isAlive() {
+        return isAlive;
+    }
+
     private class TestNormalAdapter extends StaticPagerAdapter {
         private int[] imgs = {
                 R.drawable.bg_lunbo1,
@@ -112,4 +138,21 @@ public class StaffHomeFragment extends BaseFragment{
     @Override
     public void refreshData(View rootView) {
      }
+
+    public  class DingDanHaoCallBack extends DialogCallback<DIngDanHaoBean,StaffHomeFragment> {
+
+        public DingDanHaoCallBack(StaffHomeFragment requestView) {
+            super(requestView);
+        }
+        @Override
+        protected void onResponseSuccess(DIngDanHaoBean dIngDanHaoBean, Call<DIngDanHaoBean> call) {
+            super.onResponseSuccess(dIngDanHaoBean, call);
+            if(dIngDanHaoBean.getSuccess()==1){
+                Intent intent=new Intent(context, QuCanActivity.class);
+                intent.putExtra("dingdanhao",dIngDanHaoBean.getBody().getOrder_sn().toString());
+                startActivity(intent);
+            }
+        }
+    }
+
 }

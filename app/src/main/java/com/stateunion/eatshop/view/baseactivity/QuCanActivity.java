@@ -53,9 +53,8 @@ public class QuCanActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qucan);
-
-        RequestCommand.getDingdanhao(new DingDanHaoCallBack(this), AppSessionEngine.getgonghao().toString());
-
+        Intent intent=getIntent();
+        dingdanhao=intent.getStringExtra("dingdanhao");
         intview();
     }
         public void intview(){

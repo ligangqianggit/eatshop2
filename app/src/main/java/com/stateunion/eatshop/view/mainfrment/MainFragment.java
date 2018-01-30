@@ -112,7 +112,6 @@ public class MainFragment extends BaseFragment {
         }
       });
 
-
       iv_main_shangchuan= (ImageView) rootView.findViewById(R.id.iv_main_shangchuan);
       iv_main_shangchuan.setOnClickListener(new View.OnClickListener() {
         @Override

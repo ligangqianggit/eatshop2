@@ -24,7 +24,7 @@ import com.stateunion.eatshop.view.basefrment.BaseFragment;
 public class StaffHomeFragment extends BaseFragment{
     private Context context=null;
     private RollPagerView mRollViewPager;
-    private Button btOrder,btTake;
+    private ImageView iv_yuangong_dingcan,iv_yuangong_qucan;
     @Override
     public int getLayoutId() {
         return R.layout.fragment_mainyuangong;
@@ -51,16 +51,16 @@ public class StaffHomeFragment extends BaseFragment{
         //mRollViewPager.setHintView(new TextHintView(this));
         //mRollViewPager.setHintView(null);
 
-        btOrder= (Button) rootView.findViewById(R.id.bt_yuangong_dingcan);
-        btOrder.setOnClickListener(new View.OnClickListener() {
+        iv_yuangong_dingcan= (ImageView) rootView.findViewById(R.id.iv_yuangong_dingcan);
+        iv_yuangong_dingcan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, DingCanActivity.class);
                 startActivity(intent);
             }
         });
-        btTake= (Button) rootView.findViewById(R.id.bt_yuangong_qucan);
-        btTake.setOnClickListener(new View.OnClickListener() {
+        iv_yuangong_qucan= (ImageView) rootView.findViewById(R.id.iv_yuangong_qucan);
+        iv_yuangong_qucan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, QuCanActivity.class);

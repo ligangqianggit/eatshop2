@@ -53,8 +53,7 @@ public class WXPayUtil {
         this.msgApi.registerApp(Constants.APP_ID);
 //		GetPrepayIdTask getPrepayId = new GetPrepayIdTask();
 //		getPrepayId.execute();
-
-        //genProductArgs();
+         //genProductArgs();
         genPayReq();
         sendPayReq();
     }
@@ -74,7 +73,7 @@ public class WXPayUtil {
 
 
         String packageSign = PayMD5.getMessageDigest(sb.toString().getBytes()).toUpperCase();
-         return packageSign;
+        return packageSign;
     }
     private String genAppSign(List<NameValuePair> params) {
         StringBuilder sb = new StringBuilder();
@@ -124,8 +123,8 @@ public class WXPayUtil {
 //			show.setText(sb.toString());
 
             resultunifiedorder=result;
- 			/*genPayReq();
-			sendPayReq();*/
+  			genPayReq();
+			sendPayReq();
         }
 
         @Override
@@ -141,7 +140,9 @@ public class WXPayUtil {
             byte[] buf = WxPayUtil.httpPost(url, entity);
              String content = new String(buf);
              Map<String,String> xml=decodeXml(content);
-       Log.d("xml",xml+"");
+             Log.d("+====================","");
+
+            Log.d("xml",xml+"");
 
             return xml;
         }
@@ -213,7 +214,7 @@ public class WXPayUtil {
             packageParams.add(new BasicNameValuePair("mch_id", Constants.MCH_ID));
             packageParams.add(new BasicNameValuePair("nonce_str", nonceStr));
             packageParams.add(new BasicNameValuePair("notify_url", "http://223.72.216.227:8088/un-fzjktj-web/appService/wxpayCallBack.action?third_id=thirdpay_41"));
-            packageParams.add(new BasicNameValuePair("out_trade_no",PayMD5.getMessageDigest(ordernum.getBytes())));//genOutTradNo())
+            packageParams.add(new BasicNameValuePair("out_trade_no",genOutTradNo()));//genOutTradNo()) PayMD5.getMessageDigest(ordernum.getBytes())
             packageParams.add(new BasicNameValuePair("spbill_create_ip",getPhoneIp()));
             packageParams.add(new BasicNameValuePair("total_fee", String.valueOf((int)(Float.valueOf(price)*100))));
             packageParams.add(new BasicNameValuePair("trade_type", "APP"));
@@ -236,8 +237,8 @@ public class WXPayUtil {
     private void genPayReq() {
         req.appId = Constants.APP_ID;
         req.partnerId = Constants.MCH_ID;
-        req.prepayId = ordernum;//order
-        req.packageValue = "Sign=WXPay";//"prepay_id="+ordernum;
+        req.prepayId = ordernum; //order ordernum resultunifiedorder.get("prepay_id");
+         req.packageValue = "Sign=WXPay";//"prepay_id="+ordernum;
         req.nonceStr = genNonceStr();
         req.timeStamp = String.valueOf(genTimeStamp());
         List<NameValuePair> signParams = new LinkedList<NameValuePair>();
@@ -247,12 +248,9 @@ public class WXPayUtil {
         signParams.add(new BasicNameValuePair("partnerid", req.partnerId));
         signParams.add(new BasicNameValuePair("prepayid", req.prepayId));
         signParams.add(new BasicNameValuePair("timestamp", req.timeStamp));
-        req.sign = singStr;//genAppSign(signParams);
+        req.sign = genAppSign(signParams);//genAppSign(signParams);;//genAppSign(signParams);
 
         sb.append("sign\n"+req.sign+"\n\n");
-
-
-        Log.e("orion",req.timeStamp+"]]]"+req.prepayId);
 
     }
 

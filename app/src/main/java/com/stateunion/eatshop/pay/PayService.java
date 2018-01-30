@@ -264,7 +264,10 @@ public class PayService extends BaseActivity{
                      WXPayUtil pay = new WXPayUtil();
                      pay.payWX(getApplicationContext(), money + "",
                              yuZhiFuBean.getBody().getNoncestr(), yuZhiFuBean.getBody().getPrepayid().toString(),yuZhiFuBean.getBody().getSign(), msgApi);//钢蛋换成订单order 名字也是
-                  Log.d("aaaaa",  yuZhiFuBean.getBody().getPrepayid().toString());
+//                     final IWXAPI msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
+//                     WXPayUtil pay = new WXPayUtil();
+//                     pay.payWX(getApplicationContext(), 0.1 + "",
+//                            "测试", "",yuZhiFuBean.getBody().getSign(), msgApi);//钢蛋换成订单order 名字也是
 
                  }
             }

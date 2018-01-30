@@ -59,20 +59,20 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
                     Toast.makeText(WXPayEntryActivity.this,"支付成功",Toast.LENGTH_SHORT).show();
                      break;
                 case -1:
-                    Toast.makeText(WXPayEntryActivity.this,"支付失败1"+resp.errStr,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WXPayEntryActivity.this,"支付失败"+resp.errStr,Toast.LENGTH_SHORT).show();
 
-//                    finish();
+                    finish();
                     break;
                 case -2:
                     Toast.makeText(WXPayEntryActivity.this,"支付取消",Toast.LENGTH_SHORT).show();
 
-//                    finish();
+                    finish();
                     break;
                 default:
                     Toast.makeText(WXPayEntryActivity.this,"支付失败"+resp.errStr,Toast.LENGTH_SHORT).show();
 
 //                    setResult(RESULT_OK);
-//                    finish();
+                    finish();
                     break;
             }
         }

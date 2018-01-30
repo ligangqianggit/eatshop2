@@ -80,6 +80,7 @@ public class PayService extends BaseActivity{
         money=intent.getStringExtra("money");
         init();
         payService=this;
+        payType="微信支付";
     }
     private void init(){
         lv_product = (ListView)findViewById(R.id.lv_pay);

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
@@ -150,8 +151,8 @@ public class MainFragment extends BaseFragment implements IBaseDialogView {
 
   @Override
   public void showError(String message) {
-
-  }
+    Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+   }
 
   @Override
   public boolean isAlive() {
@@ -217,6 +218,13 @@ public class MainFragment extends BaseFragment implements IBaseDialogView {
         intent.putExtra("dingdanhao",dIngDanHaoBean.getBody().getOrder_sn().toString());
         startActivity(intent);
       }
+    }
+
+    @Override
+    public void onFailure(Call<DIngDanHaoBean> call) {
+      super.onFailure(call);
+      Log.d("======================","---------------");
+
     }
   }
 }

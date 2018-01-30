@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.StyleRes;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
@@ -73,6 +75,7 @@ public class StaffHomeFragment extends BaseFragment implements IBaseDialogView {
         iv_yuangong_qucan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("---------------------","======================");
                 RequestCommand.getDingdanhao(new DingDanHaoCallBack(StaffHomeFragment.this), AppSessionEngine.getLoginInfo().getGonghao());
             }
         });
@@ -88,6 +91,7 @@ public class StaffHomeFragment extends BaseFragment implements IBaseDialogView {
 
     @Override
     public void showError(String message) {
+        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
 
     }
 

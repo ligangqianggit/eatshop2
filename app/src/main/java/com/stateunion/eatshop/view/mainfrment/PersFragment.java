@@ -209,6 +209,7 @@ public class PersFragment extends BaseFragment implements IBaseDialogView {
 
     @Override
     public void showError(String message) {
+        Log.d("======================",message);
 
     }
 

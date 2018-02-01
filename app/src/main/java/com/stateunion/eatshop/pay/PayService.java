@@ -102,8 +102,7 @@ public class PayService extends BaseActivity{
              OrderList.add(postOrderBean);
           }
           payListAdapter=new PayListAdapter(PayService.this,goodsAdapter,selectedList);
-        lv_product.setAdapter(payListAdapter);
-
+          lv_product.setAdapter(payListAdapter);
           radioGroup= (RadioGroup) findViewById(R.id.mRadioGroup);
           yue= (RadioButton) findViewById(R.id.radio_yue);
           weixin=(RadioButton) findViewById(R.id.radio_weixin);
@@ -116,11 +115,9 @@ public class PayService extends BaseActivity{
                   }
                   if(weixin.getId()==checkedId){
                       payType="微信支付";
-
                   }
                   if(zhifubao.getId()==checkedId){
                       payType="支付宝支付";
-
                   }
               }
           });
@@ -270,12 +267,20 @@ public class PayService extends BaseActivity{
                      WXPayUtil pay = new WXPayUtil();
                      PayOrder= yuZhiFuBean.getBody().getOrder_sn().toString();
                      pay.payWX(getApplicationContext(), money + "",
-                             yuZhiFuBean.getBody().getNoncestr(), yuZhiFuBean.getBody().getPrepayid().toString(),yuZhiFuBean.getBody().getSign(), msgApi);//钢蛋换成订单order 名字也是
+                             yuZhiFuBean.getBody()
+                                     .getNoncestr(), yuZhiFuBean.getBody().getPrepayid().toString(),yuZhiFuBean.getBody().getSign(), msgApi);//钢蛋换成订单order 名字也是
 //                     final IWXAPI msgApi = WXAPIFactory.createWXAPI(PayService.this, null);
 //                     WXPayUtil pay = new WXPayUtil();
 //                     pay.payWX(getApplicationContext(), 0.1 + "",
 //                            "测试", "",yuZhiFuBean.getBody().getSign(), msgApi);//钢蛋换成订单order 名字也是
 
+                 }
+                 if(payType.toString().equals("支付宝支付")){
+                     //这里进行支付宝支付
+                     yuZhiFuBean.getBody().getZhifubao();//这是支付宝返回的拼接字符串
+
+                     ZFBPayUtil zfb = new ZFBPayUtil();
+                     zfb.payZFB(PayService.this, money, "商品", "1212121", "www.baidu.com"); // 调用
                  }
             }
 

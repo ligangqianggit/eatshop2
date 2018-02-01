@@ -39,6 +39,11 @@ public class YuZhiFuBean extends BaseBean{
          */
 
         private String order_sn;
+        /**
+         * zhifubao :
+         */
+
+        private String zhifubao;
 
         public String getPrepayid() {
             return prepayid;
@@ -70,6 +75,14 @@ public class YuZhiFuBean extends BaseBean{
 
         public void setOrder_sn(String order_sn) {
             this.order_sn = order_sn;
+        }
+
+        public String getZhifubao() {
+            return zhifubao;
+        }
+
+        public void setZhifubao(String zhifubao) {
+            this.zhifubao = zhifubao;
         }
     }
 }

@@ -77,10 +77,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             case R.id.acty_main_radio0:
                 getSupportFragmentManager().beginTransaction().replace(R.id.acty_main_frame,getFragment(DataStore.getInt(APPKey.SP_MAIN_RADIO_1 ))).commit();
                break;
-//            case R.id.acty_main_radio1:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.acty_main_frame,getFragment(DataStore.getInt(APPKey.SP_MAIN_RADIO_2 ))).commit();
-//
-//                break;
             case R.id.acty_main_radio2:
                 getSupportFragmentManager().beginTransaction().replace(R.id.acty_main_frame,getFragment(DataStore.getInt(APPKey.SP_MAIN_RADIO_3 ))).commit();
                 break;
@@ -102,8 +98,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                  }else {
                     return gettakeFragment();
                 }
-//            case APPKey.SP_MAIN_RADIO_LAYOUT_TAKE:
-//                return getTakeFragment();
             case APPKey.SP_MAIN_RADIO_LAYOUT_COUP:
                 return getCouPonFragment();
             case APPKey.SP_MAIN_RADIO_LAYOUT_PERS:

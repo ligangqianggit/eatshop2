@@ -6,7 +6,6 @@
     android:layout_height="match_parent">
     <!-- 整体透明画布 -->
 
-
     <SurfaceView
         android:id="@+id/preview_view"
         android:layout_width="match_parent"

@@ -118,9 +118,7 @@ public class MainFragment extends BaseFragment implements IBaseDialogView {
       iv_main_qucan.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
           RequestCommand.getDingdanhao(new DingDanHaoCallBack(MainFragment.this), AppSessionEngine.getLoginInfo().getGonghao());
-
         }
       });
 

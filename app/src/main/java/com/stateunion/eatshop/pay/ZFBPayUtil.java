@@ -51,16 +51,26 @@ public class ZFBPayUtil {
     private Context context;
     public DoSomeThing afterpay;
     private String price,name,ordernum,urlback;
-    public void payZFB(Context context,String price,String name,String ordernum,String urlback) {
+//    public void payZFB(Context context,String price,String name,String ordernum,String urlback) {
+//        this.context = context;
+////        this.afterpay=(DoSomeThing) context;
+//        this.price=price;
+//        this.name=name;
+//        this.ordernum=ordernum;
+//        this.urlback=urlback;
+//        this.context=context;
+//         goToZFB();
+//    }
+
+
+    public void payZFB(Context context,String ordernum) {
         this.context = context;
 //        this.afterpay=(DoSomeThing) context;
-        this.price=price;
-        this.name=name;
         this.ordernum=ordernum;
-        this.urlback=urlback;
-        this.context=context;
-         goToZFB();
+        goToZFB2();
     }
+
+
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @SuppressWarnings("unused")
@@ -110,6 +120,28 @@ public class ZFBPayUtil {
             }
         };
     };
+
+    public void goToZFB2(){
+        final String orderInfo = ordernum;   // 订单信息
+
+        Runnable payRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                PayTask alipay = new PayTask((Activity) context);
+                Map<String, String> result = alipay.payV2(orderInfo,true);
+
+                Message msg = new Message();
+                msg.what = SDK_PAY_FLAG;
+                msg.obj = result;
+                mHandler.sendMessage(msg);
+            }
+        };
+        // 必须异步调用
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
+    }
+
 
 
     public void goToZFB() {

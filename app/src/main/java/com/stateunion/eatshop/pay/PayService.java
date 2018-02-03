@@ -144,8 +144,7 @@ public class PayService extends BaseActivity{
 //                        }
 //                    }
                 }else if(payType.equals("支付宝支付")){
-                    Toast.makeText(PayService.this,"支付宝支付，请使用其他方式支付！",Toast.LENGTH_LONG).show();
-//                    payWithZFB();
+                    SubmitOrder();
                 }
             }
         });
@@ -239,8 +238,9 @@ public class PayService extends BaseActivity{
 //      };
 
     private void payWithZFB() {
-        ZFBPayUtil zfb = new ZFBPayUtil();
-        zfb.payZFB(PayService.this, money, "商品", "1212121", "www.baidu.com"); // 调用
+//        ZFBPayUtil zfb = new ZFBPayUtil();
+//        zfb.payZFB(PayService.this, "0.01", "商品", "1212121", "www.baidu.com"); // 调用
+//        zfb.payZFB(PayService.this, "0.01");
     }
 
     public void callWXPayFailure() {
@@ -277,10 +277,9 @@ public class PayService extends BaseActivity{
                  }
                  if(payType.toString().equals("支付宝支付")){
                     //这里进行支付宝支付
-                    yuZhiFuBean.getBody().getZhifubao();//这是支付宝返回的拼接字符串
-
+                   //这是支付宝返回的拼接字符串
                     ZFBPayUtil zfb = new ZFBPayUtil();
-                    zfb.payZFB(PayService.this, money, "商品", "1212121", "www.baidu.com"); // 调用
+                    zfb.payZFB(PayService.this,  yuZhiFuBean.getBody().getZhifubao()); // 调用
                 }
             }
 

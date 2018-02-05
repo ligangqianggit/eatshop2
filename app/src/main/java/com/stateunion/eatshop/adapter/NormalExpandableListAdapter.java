@@ -22,18 +22,20 @@ public class NormalExpandableListAdapter extends BaseExpandableListAdapter {
     private static final String TAG = "NormalExpandableListAda";
     private String[] groupData;
     private String[][] childData;
+    private String[][] shijianData;
+
     private OnGroupExpandedListener mOnGroupExpandedListener;
     Context context;
      // 判断是否点击的标识
      SparseBooleanArray selected;
     int old = -1;
     int parentPosition = -1;
-    public NormalExpandableListAdapter(String[] groupData, String[][] childData, Context context) {
+    public NormalExpandableListAdapter(String[] groupData, String[][] childData,String[][] cshijianData, Context context) {
         this.groupData = groupData;
         this.childData = childData;
         selected = new SparseBooleanArray();
         this.context=context;
-
+        this.shijianData=cshijianData;
     }
 
     public void setOnGroupExpandedListener(OnGroupExpandedListener onGroupExpandedListener) {
@@ -99,6 +101,7 @@ public class NormalExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_expand_child, parent, false);
             childViewHolder = new ChildViewHolder();
             childViewHolder.tvTitle = (TextView) convertView.findViewById(R.id.label_expand_child);
+            childViewHolder.shijian= (TextView) convertView.findViewById(R.id.shijian);
             convertView.setTag(childViewHolder);
         } else {
             childViewHolder = (ChildViewHolder) convertView.getTag();
@@ -120,14 +123,18 @@ public class NormalExpandableListAdapter extends BaseExpandableListAdapter {
         if (selected.get(childPosition)&&this.parentPosition==groupPosition) {
             childViewHolder.tvTitle.setBackgroundResource(R.color.beijing);
             childViewHolder.tvTitle.setTextColor (context.getResources().getColor(R.color.white));
+            childViewHolder.shijian.setBackgroundResource(R.color.beijing);
+            childViewHolder.shijian.setTextColor (context.getResources().getColor(R.color.white));
         } else {
             // convertView.setBackgroundResource(R.color.white);
             childViewHolder.tvTitle.setBackgroundResource(R.color.white);
             childViewHolder.tvTitle.setTextColor (context.getResources().getColor(R.color.gray));
-
+            childViewHolder.shijian.setBackgroundResource(R.color.white);
+            childViewHolder.shijian.setTextColor (context.getResources().getColor(R.color.gray));
         }
 
         childViewHolder.tvTitle.setText(childData[groupPosition][childPosition]);
+        childViewHolder.shijian.setText(shijianData[groupPosition][childPosition]);
         return convertView;
     }
 
@@ -154,7 +161,7 @@ public class NormalExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     private static class ChildViewHolder {
-        TextView tvTitle;
+        TextView tvTitle,shijian;
     }
     public void setSelectedItem(int groupPosition,int selected) {
         this.parentPosition = groupPosition;

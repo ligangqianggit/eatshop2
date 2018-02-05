@@ -190,7 +190,7 @@ public class DingCanActivity extends BaseActivity {
         df = new DecimalFormat("0.00");
     }
     private void initEm(){
-          adapter = new NormalExpandableListAdapter(Constant.BOOKS, Constant.FIGURES,this);
+          adapter = new NormalExpandableListAdapter(Constant.BOOKS, Constant.FIGURES,Constant.FIGURESS,this);
         mExpandableListView.setAdapter(adapter);
         adapter.setOnGroupExpandedListener(new OnGroupExpandedListener() {
             @Override

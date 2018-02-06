@@ -79,7 +79,8 @@ public class ZFBPayUtil {
             switch (msg.what) {
                 case SDK_PAY_FLAG: {
                     @SuppressWarnings("unchecked")
-                    PayResult payResult = new PayResult(( String) msg.obj);
+//                    PayResult payResult = new PayResult(( String) msg.obj);
+                            PayResult payResult = new PayResult((Map<String, String>) msg.obj);
                       /**
                      对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
                      */
@@ -94,6 +95,8 @@ public class ZFBPayUtil {
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         Toast.makeText(context, "支付失败", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(context, PayJieGuoActivity.class);
+                        context.startActivity(intent);
                     }
                     break;
                 }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.stateunion.eatshop.R;
+import com.stateunion.eatshop.view.baseactivity.PayJieGuoActivity;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -88,6 +89,8 @@ public class ZFBPayUtil {
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         Toast.makeText(context, "支付成功", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(context, PayJieGuoActivity.class);
+                        context.startActivity(intent);
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         Toast.makeText(context, "支付失败", Toast.LENGTH_SHORT).show();

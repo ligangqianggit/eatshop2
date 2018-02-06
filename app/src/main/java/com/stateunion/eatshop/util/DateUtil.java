@@ -550,7 +550,7 @@ public class DateUtil {
         int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
         if (w < 0)
             w = 0;
-        return weekDays[w]+1;
+        return weekDays[w];
     }
 }
 

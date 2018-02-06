@@ -16,6 +16,7 @@ public class GoodsBean {
     public String foodbrief;
 //    public List<ItemBean> package_product_info; // required
     public int cart_num; // required
+    public String fenlei;
 
     public int getProduct_id() {
         return product_id;
@@ -123,5 +124,13 @@ public class GoodsBean {
                 ", num=" + num +
                 ", cart_num=" + cart_num +
                 '}';
+    }
+
+    public String getFenlei() {
+        return fenlei;
+    }
+
+    public void setFenlei(String fenlei) {
+        this.fenlei = fenlei;
     }
 }

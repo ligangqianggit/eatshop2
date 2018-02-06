@@ -72,12 +72,14 @@ public class GoodsAdapter extends BaseAdapter {
             viewholder = (Viewholder) convertView.getTag();
         }
         viewholder.tv_name.setText(list.get(position).getTitle());
-        viewholder.tv_dingcan_mes.setText("此处是mes"+list.get(position).getTitle());
+        if (list.get(position).getFenlei().equals("小炒")){
+            viewholder.tv_dingcan_mes.setText("剩余"+list.get(position).getSpecification());
+        }else {
+            viewholder.tv_dingcan_mes.setText("");
+        }
         viewholder.tv_dingcan_price.setText("￥"+list.get(position).getPrice());
         viewholder.tv_foodbrief.setText(list.get(position).getFoodbrief());
-        Log.d("shipeiqi",list.size()+"");
-
-        if(list.get(position)!=null){
+         if(list.get(position)!=null){
         //默认进来数量
             if (list.get(position).getNum()<1){
                 viewholder.tv_acount.setVisibility(View.INVISIBLE);

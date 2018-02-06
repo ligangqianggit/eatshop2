@@ -203,9 +203,9 @@ public class DingCanActivity extends BaseActivity {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                  // 请务必返回 false，否则分组不会展开
-//                if(groupPosition<thisgroupPosition){
-//                    return true;
-//                }
+                if(groupPosition<thisgroupPosition){
+                    return true;
+                }
                   return false;
             }
         });
@@ -253,6 +253,8 @@ public class DingCanActivity extends BaseActivity {
             goodsBean.setOriginal_price("200");
             goodsBean.setPrice(zaolist.get(j).getJiage());
             goodsBean.setFoodbrief(zaolist.get(j).getFoot_jianjie());
+            goodsBean.setSpecification(zaolist.get(j).getShuliang());
+            goodsBean.setFenlei(zaolist.get(j).getFenlei());
 //            if(zaolist.get(j).getFenlei().toString().equals("小炒")){
 //                goodsBean.setSpecification(zaolist.get(j).getShuliang());
 //            }

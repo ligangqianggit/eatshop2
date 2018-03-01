@@ -32,21 +32,47 @@
             android:src="@drawable/ic_title_back" />
     </RelativeLayout>
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tl_tabLayout"
+    <RadioGroup
+        android:id="@+id/acty_paiming_radioGroups"
         android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
-        android:layout_height="40dp"
-        app:tabIndicatorColor="@null"
-        app:tabIndicatorHeight="5dp"
-        app:tabTextColor="@color/black"
-        app:tabSelectedTextColor="@color/beijing"
-        app:tabMode="fixed"
-        app:tabBackground="@drawable/selected"/>
+        android:layout_height="wrap_content"
+         android:background="@color/beijing"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/acty_paiming_radio0"
+            style="@style/MainRadio"
+            android:checked="true"
+            android:drawableTop="@drawable/slt_paiming_radio_one"
+            android:text="日排名"
+            android:textColor="@color/white"
+            />
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/acty_main_radio1"-->
+        <!--style="@style/MainRadio"-->
+        <!--android:drawableTop="@drawable/slt_main_radio_game"-->
+        <!--android:text="@string/main_radio_take" />-->
 
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_viewPager"
+        <com.stateunion.eatshop.custom_view.RedPointRadioButton
+            android:id="@+id/acty_paiming_radio2"
+            style="@style/MainRadio"
+            android:drawableTop="@drawable/slt_paiming_radio_one"
+            android:text="周排名"
+            android:textColor="@color/white"
+            />
+
+        <com.stateunion.eatshop.custom_view.RedPointRadioButton
+            android:id="@+id/acty_paiming_radio3"
+            style="@style/MainRadio"
+            android:drawableTop="@drawable/slt_paiming_radio_one"
+            android:text="月排名"
+            android:textColor="@color/white"
+            />
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/acty_paiming_frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="15dp"

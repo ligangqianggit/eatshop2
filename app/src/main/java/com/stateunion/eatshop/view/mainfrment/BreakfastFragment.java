@@ -8,7 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.stateunion.eatshop.R;
@@ -39,17 +41,48 @@ public class BreakfastFragment extends Fragment implements IBaseDialogView {
     Unbinder unbinder;
     private boolean isAlin = false;
     TongjiOrderAdpter tongjiOrderAdpter;
+
+    @BindView(R.id.rl_tongji_zonglan)
+    RelativeLayout rl_tongji_zonglan;
+
+    @BindView(R.id.list_zonglan)
+    ListView list_zonglan;
+
+    @BindView(R.id.iv_tongji_jiantou)
+    ImageView iv_tongji_jiantou;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_lunch, container, false);
         isAlin = true;
         call();
+        call2();
         unbinder = ButterKnife.bind(this, view);
+        intview();
         return view;
     }
+
+    public void intview(){
+        rl_tongji_zonglan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(list_zonglan.getVisibility()==View.GONE){
+                    list_zonglan.setVisibility(View.VISIBLE);
+                    iv_tongji_jiantou.setImageDrawable(getResources().getDrawable(R.drawable.ic_shang_hui));
+                }else if(list_zonglan.getVisibility()==View.VISIBLE){
+                    list_zonglan.setVisibility(View.GONE);
+                    iv_tongji_jiantou.setImageDrawable(getResources().getDrawable(R.drawable.ic_xia_hui));
+                }
+            }
+        });
+    }
+
     public void call() {
-        RequestCommand.getTongji(new TongJICallBackW(BreakfastFragment.this), "早餐");
+        RequestCommand.getTongji(new  TongJICallBackW(BreakfastFragment.this), "早餐");
+    }
+    public void call2(){
+        RequestCommand.getTongji(new  TongJICallBack(BreakfastFragment.this), "全部");
     }
     @Override
     public void onDestroyView() {
@@ -72,6 +105,20 @@ public class BreakfastFragment extends Fragment implements IBaseDialogView {
             tvTongjiShengrinum.setText("今日生日员工:" + tongJiBean.getBody().getSheng_num());
         }
     }
+
+    public class TongJICallBack extends DialogCallback<TongJiBean, BreakfastFragment> {
+        ShengRiListAdapter shengRiListAdapter;
+        public TongJICallBack(BreakfastFragment requestView) {
+            super(requestView);
+        }
+        @Override
+        protected void onResponseSuccess(TongJiBean tongJiBean, Call<TongJiBean> call) {
+            super.onResponseSuccess(tongJiBean, call);
+            tongjiOrderAdpter = new TongjiOrderAdpter(tongJiBean.getBody().getGoods(), getActivity());
+            list_zonglan.setAdapter(tongjiOrderAdpter);
+        }
+    }
+
     @Override
     public Dialog createDialog(@StyleRes int themeResId) {
         Dialog dialog = new Dialog(getActivity(), themeResId);

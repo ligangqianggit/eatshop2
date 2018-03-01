@@ -8,7 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.stateunion.eatshop.R;
@@ -38,8 +40,18 @@ public class LunthFragment extends Fragment implements IBaseDialogView {
     @BindView(R.id.list_order)
     ListView listOrder;
     private boolean isAlin = false;
-
     TongjiOrderAdpter tongjiOrderAdpter;
+
+    @BindView(R.id.rl_tongji_zonglan)
+    RelativeLayout rl_tongji_zonglan;
+
+    @BindView(R.id.list_zonglan)
+    ListView list_zonglan;
+
+    @BindView(R.id.iv_tongji_jiantou)
+    ImageView iv_tongji_jiantou;
+
+
 
     @Nullable
     @Override
@@ -48,12 +60,32 @@ public class LunthFragment extends Fragment implements IBaseDialogView {
         isAlin = true;
         unbinder = ButterKnife.bind(this, view);
         call();
+        call2();
+        intview();
         return view;
+    }
+
+    public void intview(){
+        rl_tongji_zonglan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(list_zonglan.getVisibility()==View.GONE){
+                    list_zonglan.setVisibility(View.VISIBLE);
+                    iv_tongji_jiantou.setImageDrawable(getResources().getDrawable(R.drawable.ic_shang_hui));
+                }else if(list_zonglan.getVisibility()==View.VISIBLE){
+                    list_zonglan.setVisibility(View.GONE);
+                    iv_tongji_jiantou.setImageDrawable(getResources().getDrawable(R.drawable.ic_xia_hui));
+                }
+            }
+        });
     }
 
     public void call() {
         RequestCommand.getTongji(new TongJICallBack(LunthFragment.this), "午餐");
+    }
 
+    public void call2(){
+        RequestCommand.getTongji(new TongJICallBack1(LunthFragment.this), "全部");
     }
 
     @Override
@@ -79,6 +111,18 @@ public class LunthFragment extends Fragment implements IBaseDialogView {
             listShengri.setAdapter(shengRiListAdapter);
             listOrder.setAdapter(tongjiOrderAdpter);
             tvTongjiShengrinum.setText("今日生日员工:" + tongJiBean.getBody().getSheng_num());
+        }
+    }
+
+    public class TongJICallBack1 extends DialogCallback<TongJiBean, LunthFragment> {
+        public TongJICallBack1(LunthFragment requestView) {
+            super(requestView);
+        }
+        @Override
+        protected void onResponseSuccess(TongJiBean tongJiBean, Call<TongJiBean> call) {
+            super.onResponseSuccess(tongJiBean, call);
+            tongjiOrderAdpter = new TongjiOrderAdpter(tongJiBean.getBody().getGoods(), getActivity());
+            list_zonglan.setAdapter(tongjiOrderAdpter);
         }
     }
 

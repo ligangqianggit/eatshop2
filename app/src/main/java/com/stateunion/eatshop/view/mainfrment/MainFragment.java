@@ -25,6 +25,7 @@ import com.stateunion.eatshop.retrofit.view.IBaseDialogView;
 import com.stateunion.eatshop.util.AppSessionEngine;
 import com.stateunion.eatshop.view.baseactivity.DingCanActivity;
 import com.stateunion.eatshop.view.baseactivity.PaiMIngActivity;
+import com.stateunion.eatshop.view.baseactivity.PaiMingTwoActivity;
 import com.stateunion.eatshop.view.baseactivity.PingJIaActivity;
 import com.stateunion.eatshop.view.baseactivity.QuCanActivity;
 import com.stateunion.eatshop.view.baseactivity.TongGaoActivity;
@@ -135,7 +136,7 @@ public class MainFragment extends BaseFragment implements IBaseDialogView {
       iv_main_paiming.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-          Intent intent=new Intent(context, PaiMIngActivity.class);
+          Intent intent=new Intent(context, PaiMingTwoActivity.class);
           startActivity(intent);
         }
       });
@@ -222,7 +223,6 @@ public class MainFragment extends BaseFragment implements IBaseDialogView {
     public void onFailure(Call<DIngDanHaoBean> call) {
       super.onFailure(call);
       Log.d("======================","---------------");
-
     }
   }
 }

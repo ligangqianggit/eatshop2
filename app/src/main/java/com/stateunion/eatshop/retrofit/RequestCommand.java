@@ -37,8 +37,8 @@ public class RequestCommand {
 
     //密码登录
     public static void pswLogin(RequestCallback callback, String useLoginName,
-                                String useLoginPswd) {
-        Call call = getApi().pawLogin(useLoginName, useLoginPswd);
+                                String useLoginPswd,String userCid) {
+        Call call = getApi().pawLogin(useLoginName, useLoginPswd,userCid);
         send(call, callback);
     }
 
@@ -178,8 +178,8 @@ public class RequestCommand {
 
 
     //厨师端厨师排名
-    public static void getPaiming(RequestCallback callback, String user_id) {
-        Call call = getApi().paiming(user_id);
+    public static void getPaiming(RequestCallback callback, String type) {
+        Call call = getApi().paiming(type);
         send(call, callback);
     }
 

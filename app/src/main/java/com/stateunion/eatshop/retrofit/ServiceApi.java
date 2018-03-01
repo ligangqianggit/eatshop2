@@ -74,7 +74,8 @@ public interface ServiceApi {
     @POST("login")
     @FormUrlEncoded
     Call<UserInfoBean> pawLogin(@Field("user") String useLoginName,
-                            @Field("password") String useLoginPswd
+                            @Field("password") String useLoginPswd,
+                                @Field("user_cid") String userCid
 
     );
 
@@ -127,8 +128,10 @@ public interface ServiceApi {
 
     @POST("uppassword")
     @FormUrlEncoded
-    Call<BaseBean> changePwd(@Field("user_id") String user_id,@Field("oldpassword") String oldpassword,
-                             @Field("newpassword") String newpassword,@Field("twopassword") String twopassword);
+    Call<BaseBean> changePwd(@Field("user_id") String user_id,
+                             @Field("oldpassword") String oldpassword,
+                             @Field("newpassword") String newpassword,
+                             @Field("twopassword") String twopassword);
 
     /**
      * 修改资料接口
@@ -272,7 +275,9 @@ public interface ServiceApi {
      */
     @POST("do_tui")
     @FormUrlEncoded
-    Call<BaseBean> tuichushishenhe(@Field("order_sn") String order_sn,@Field("jiekou") int jiekou,@Field("jvyuan") String juyuan
+    Call<BaseBean> tuichushishenhe(@Field("order_sn") String order_sn,
+                                   @Field("jiekou") int jiekou,
+                                   @Field("jvyuan") String juyuan
             );
 
 
@@ -302,7 +307,7 @@ public interface ServiceApi {
      */
     @POST("chupai")
     @FormUrlEncoded
-    Call<PaiMingBean> paiming(@Field("user_id") String user_id);
+    Call<PaiMingBean> paiming(@Field("type") String type);
 
     /**
      * 可评价列表
@@ -343,5 +348,4 @@ public interface ServiceApi {
     @POST("notify")
     @FormUrlEncoded
     Call<BaseBean> paynotity(@Field("order_sn") String order_sn,@Field("code") String code);
-
 }

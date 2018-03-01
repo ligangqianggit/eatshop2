@@ -35,7 +35,7 @@ public class TongJiActivity extends BaseActivity{
     private TabLayout.Tab one;
     private TabLayout.Tab two;
     private TabLayout.Tab three;
-    private TabLayout.Tab four;
+//    private TabLayout.Tab four;
     private ImageView iv_tongji_back;
     public static ListView list_shengri;
     public static TextView tv_tongji_shengrinum;
@@ -62,7 +62,6 @@ public class TongJiActivity extends BaseActivity{
         mViewPager= (ViewPager) findViewById(R.id.viewPager);
         myFragmentPagerAdapter = new TongJiPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(myFragmentPagerAdapter);
-
         //将TabLayout与ViewPager绑定在一起
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
         mTabLayout.setupWithViewPager(mViewPager);
@@ -71,8 +70,7 @@ public class TongJiActivity extends BaseActivity{
         one = mTabLayout.getTabAt(0);
         two = mTabLayout.getTabAt(1);
         three = mTabLayout.getTabAt(2);
-        four = mTabLayout.getTabAt(3);
-
+//        four = mTabLayout.getTabAt(3);
     }
 
     @Override

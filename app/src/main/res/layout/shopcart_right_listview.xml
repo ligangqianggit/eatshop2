@@ -80,7 +80,7 @@
                         android:layout_toRightOf="@+id/iv_pic"
                         android:text="剩余xx份"
                         android:textColor="@color/gray"
-                        android:textSize="20px"
+                        android:textSize="12sp"
                         />
 
                     <TextView

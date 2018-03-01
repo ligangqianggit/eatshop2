@@ -10,7 +10,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-
         >
 
         <TextView
@@ -18,9 +17,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-
-            android:textColor="@color/black"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/font_red"
+            android:text="1"
             android:textSize="@dimen/size_18" />
 
         <TextView
@@ -30,8 +30,8 @@
             android:text="厨师"
             android:textColor="@color/gray"
             android:textSize="@dimen/size_22"
-            android:layout_toRightOf="@+id/tv_paimingitem_paiming"
-            android:layout_alignBaseline="@+id/tv_paimingitem_paiming"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             />
 

@@ -60,15 +60,26 @@
 
 
         <TextView
-            android:id="@+id/tv_history_money"
+            android:id="@+id/tv_history_money0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_history_xian2"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
-            android:text="金额:5元"
+            android:text="金额:"
             android:textColor="@color/gray"
+            android:textSize="@dimen/text_size_18" />
+
+        <TextView
+            android:id="@+id/tv_history_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_history_money0"
+            android:layout_alignBaseline="@+id/tv_history_money0"
+            android:layout_marginLeft="5dp"
+            android:text="5元"
+            android:textColor="@color/font_red"
             android:textSize="@dimen/text_size_18" />
 
         <Button

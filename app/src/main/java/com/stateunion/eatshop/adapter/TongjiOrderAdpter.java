@@ -48,7 +48,6 @@ public class TongjiOrderAdpter  extends BaseAdapter {
             zujian=new TongjiOrderAdpter.Zujian();
             view=layoutInflater.inflate(R.layout.activity_order_item,null);
             zujian.tv_shengri_name= (TextView) view.findViewById(R.id.tv_buynum);
-
             zujian.tv_shengri_name.setText(GoodsBean.get(i).getFood_name()+" x "+GoodsBean.get(i).getNum());
         }
         return view;

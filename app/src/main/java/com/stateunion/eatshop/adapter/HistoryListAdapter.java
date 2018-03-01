@@ -66,7 +66,7 @@ public class HistoryListAdapter extends BaseAdapter{
             historyListItemAdapter=new HistoryListItemAdapter(historyInfo.get(i).getGoods(),context);
             zujian.list_item_history.setAdapter(historyListItemAdapter);
 //            ChildLiatviewUtil.setListViewHeightBasedOnChildren(zujian.list_item_history);
-            zujian.tv_history_money.setText("金额:"+historyInfo.get(i).getAll_money()+"元");
+            zujian.tv_history_money.setText(historyInfo.get(i).getAll_money()+"元");
             if(historyInfo.get(i).getZhuangtai()==0){
                 zujian.bt_history_zhuangtai.setText("可评价");
             }else if(historyInfo.get(i).getZhuangtai()==1){

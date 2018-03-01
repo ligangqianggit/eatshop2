@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.igexin.sdk.GTIntentService;
+import com.igexin.sdk.PushManager;
 import com.igexin.sdk.message.GTCmdMessage;
 import com.igexin.sdk.message.GTTransmitMessage;
 
@@ -20,21 +21,37 @@ import com.igexin.sdk.message.GTTransmitMessage;
  */
 
 public class DemoIntentService extends GTIntentService{
+    public static String cid;
     public DemoIntentService() {
 
     }
 
     @Override
     public void onReceiveServicePid(Context context, int pid) {
+
     }
 
     @Override
     public void onReceiveMessageData(Context context, GTTransmitMessage msg) {
+        byte[] payload = msg.getPayload();
+        String appid = msg.getAppid();
+        String taskid = msg.getTaskId();
+        String messageid = msg.getMessageId();
+        String pkg = msg.getPkgName();
+        String cid = msg.getClientId();
+        boolean result = PushManager.getInstance().sendFeedbackMessage(context, taskid, messageid, 90001);
+        if (payload == null) {
+        } else {
+        }
+        String data = new String(payload);
+        Log.d("eatshop", "receiver payload = " + data);
+
     }
 
     @Override
     public void onReceiveClientId(Context context, String clientid) {
-        Log.e(TAG, "onReceiveClientId -> " + "clientid = " + clientid);
+        Log.v("eatshop", "onReceiveClientId -> " + "clientid = " + clientid);
+        cid=clientid;
     }
 
     @Override

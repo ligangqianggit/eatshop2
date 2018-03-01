@@ -63,14 +63,12 @@ public class ZFBPayUtil {
 //         goToZFB();
 //    }
 
-
     public void payZFB(Context context,String ordernum) {
         this.context = context;
 //        this.afterpay=(DoSomeThing) context;
         this.ordernum=ordernum;
         goToZFB2();
     }
-
 
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
@@ -136,7 +134,6 @@ public class ZFBPayUtil {
             public void run() {
                 PayTask alipay = new PayTask((Activity) context);
                 Map<String, String> result = alipay.payV2(orderInfo,true);
-
                 Message msg = new Message();
                 msg.what = SDK_PAY_FLAG;
                 msg.obj = result;

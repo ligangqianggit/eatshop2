@@ -15,23 +15,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             >
+
             <RelativeLayout
-                android:layout_width="110dp"
-                android:layout_height="80dp"
-                android:background="@color/gray"
-                android:layout_marginLeft="2dp"
                 android:id="@+id/rl_food"
-                >
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="2dp"
+                android:background="@color/gray">
+
                 <ImageView
+                    android:id="@+id/img_xiaochao_food"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_food"
-                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:layout_centerInParent="true"
+                    android:gravity="center"
                     android:scaleType="centerInside"
-                    android:id="@+id/img_xiaochao_food"
-                    />
+                    android:src="@mipmap/icon_food" />
             </RelativeLayout>
 
             <EditText
@@ -272,6 +272,4 @@
             android:id="@+id/bt_xiaochao_upfood"
             />
     </LinearLayout>
-
-
 </RelativeLayout>

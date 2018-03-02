@@ -5,6 +5,7 @@
     android:background="@color/white"
     >
     <LinearLayout
+        android:id="@+id/llyt_shang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -14,24 +15,24 @@
     android:layout_height="wrap_content"
       android:layout_marginTop="5dp"
       >
-        <RelativeLayout
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:background="@color/gray"
-            android:layout_marginLeft="2dp"
-            android:id="@+id/rl_food"
-            >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/icon_food"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"
-                android:layout_centerInParent="true"
-                android:scaleType="centerInside"
-                android:id="@+id/img_food"
-                />
-        </RelativeLayout>
+
+      <RelativeLayout
+          android:id="@+id/rl_food"
+          android:layout_width="90dp"
+          android:layout_height="90dp"
+          android:layout_marginLeft="2dp"
+          android:background="@color/gray">
+
+          <ImageView
+              android:id="@+id/img_food"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_centerHorizontal="true"
+              android:layout_centerInParent="true"
+              android:gravity="center"
+              android:scaleType="centerInside"
+              android:src="@mipmap/icon_food" />
+      </RelativeLayout>
 
         <EditText
             android:layout_width="wrap_content"
@@ -43,7 +44,7 @@
             android:layout_alignTop="@+id/rl_food"
             android:textColor="@color/black"
             android:id="@+id/et_foodtitle"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:theme="@style/MyEditText"
             android:layout_marginLeft="3dp"
             android:gravity="center_vertical"
@@ -63,7 +64,7 @@
         android:gravity="center_vertical"
         android:hint="价格"
         android:textColor="@color/black"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:theme="@style/MyEditText"
 
         />
@@ -72,7 +73,7 @@
             android:id="@+id/et_foodinfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:hint="请输入描述内容"
             android:textColor="@color/black"
             android:gravity="center_vertical"
@@ -85,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="厨师"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:id="@+id/et_chushi"
             android:textColor="@color/black"
             android:gravity="center_vertical"
@@ -95,10 +96,11 @@
     </LinearLayout>
 <!--上部分结束-->
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/llyt_shang"
         >
         //预约开始时间
         <LinearLayout
@@ -235,8 +237,9 @@
         android:layout_height="1dp"
         android:layout_margin="10dp"
         android:background="@color/gray" />
-    <Button
 
+    </LinearLayout>
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="确定上传"
@@ -245,7 +248,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
         android:id="@+id/bt_upfood"
         />
-    </LinearLayout>
 </RelativeLayout>

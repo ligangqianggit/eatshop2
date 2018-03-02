@@ -9,6 +9,6 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:divider="@color/yemain_beijing"
-        android:dividerHeight="5dp"
+        android:dividerHeight="1dp"
         />
 </LinearLayout>

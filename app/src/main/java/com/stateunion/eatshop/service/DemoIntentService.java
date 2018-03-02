@@ -45,7 +45,6 @@ public class DemoIntentService extends GTIntentService{
         }
         String data = new String(payload);
         Log.d("eatshop", "receiver payload = " + data);
-
     }
 
     @Override

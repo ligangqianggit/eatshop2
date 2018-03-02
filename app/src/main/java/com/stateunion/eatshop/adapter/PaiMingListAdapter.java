@@ -51,7 +51,8 @@ public class PaiMingListAdapter extends BaseAdapter{
             zujian.tv_paimingitem_chushi= (TextView) view.findViewById(R.id.tv_paimingitem_chushi);
             zujian.tv_paimingitem_paiming= (TextView) view.findViewById(R.id.tv_paimingitem_paiming);
             zujian.tv_paimingitem_fenshu= (TextView) view.findViewById(R.id.tv_paimingitem_fenshu);
-            zujian.tv_paimingitem_paiming.setText(""+i);
+            int num=i+1;
+            zujian.tv_paimingitem_paiming.setText(""+num);
             zujian.tv_paimingitem_chushi.setText("厨师:"+listBeans.get(i).getChushi());
             zujian.tv_paimingitem_fenshu.setText("总分数:"+listBeans.get(i).getZongfen());
         }

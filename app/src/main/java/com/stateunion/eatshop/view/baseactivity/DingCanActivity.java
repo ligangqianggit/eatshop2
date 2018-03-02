@@ -127,7 +127,8 @@ public class DingCanActivity extends BaseActivity {
                 showBottomSheet();
             }
         });
-        getdingcaninfo(canRiqi,canType);
+        canRiqi=Constant.BOOKS[thisgroupPosition];
+         getdingcaninfo(canRiqi,canType);
 
     }
     private void getdingcaninfo(String mydate,String leiXing){

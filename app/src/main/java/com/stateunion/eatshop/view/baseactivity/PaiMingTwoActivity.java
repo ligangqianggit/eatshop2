@@ -62,16 +62,16 @@ public class PaiMingTwoActivity extends BaseActivity implements RadioGroup.OnChe
         switch (checkedId){
             case R.id.acty_paiming_radio0:
                 getSupportFragmentManager().beginTransaction().replace(R.id.acty_paiming_frame,new DayPaiFragment()).commit();
-                Toast.makeText(PaiMingTwoActivity.this,"点击0",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PaiMingTwoActivity.this,"点击0",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.acty_paiming_radio2:
                 getSupportFragmentManager().beginTransaction().replace(R.id.acty_paiming_frame,getWeekFragment()).commit();
-                Toast.makeText(PaiMingTwoActivity.this,"点击1",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PaiMingTwoActivity.this,"点击1",Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.acty_paiming_radio3:
                 getSupportFragmentManager().beginTransaction().replace(R.id.acty_paiming_frame,getMonthFragment()).commit();
-                Toast.makeText(PaiMingTwoActivity.this,"点击2",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PaiMingTwoActivity.this,"点击2",Toast.LENGTH_SHORT).show();
 
                 break;
         }

@@ -2,6 +2,7 @@ package com.stateunion.eatshop.view.baseactivity;
 
 import android.app.Dialog;
 import android.support.annotation.StyleRes;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -21,7 +22,7 @@ import retrofit2.Call;
  */
 
 public class DayPaiFragment extends BaseFragment implements IBaseDialogView {
-    private ListView list_paimingtwo;
+    private  ListView list_paimingtwo;
     private boolean isAlin = false;
     @Override
     public int getLayoutId() {
@@ -31,13 +32,13 @@ public class DayPaiFragment extends BaseFragment implements IBaseDialogView {
     @Override
     public void createView(View rootView) {
         intview(rootView);
+        isAlin = true;
     }
     public void intview(View view){
         list_paimingtwo= (ListView) view.findViewById(R.id.list_paimingtwo);
     }
     public void getPaiming(){
         RequestCommand.getPaiming(new PaiMingCallBack(DayPaiFragment.this),"1");
-
     }
     @Override
     public void refreshData(View rootView) {
@@ -61,7 +62,8 @@ public class DayPaiFragment extends BaseFragment implements IBaseDialogView {
         return isAlin;
     }
 
-    public class PaiMingCallBack extends DialogCallback<PaiMingBean,DayPaiFragment> {
+
+    public  class PaiMingCallBack extends DialogCallback<PaiMingBean,DayPaiFragment> {
         PaiMingListAdapter paiMingListAdapter;
         public PaiMingCallBack(DayPaiFragment requestView) {
             super(requestView);
@@ -69,8 +71,10 @@ public class DayPaiFragment extends BaseFragment implements IBaseDialogView {
         @Override
         protected void onResponseSuccess(PaiMingBean paiMingBean, Call<PaiMingBean> call) {
             super.onResponseSuccess(paiMingBean, call);
-            paiMingListAdapter=new PaiMingListAdapter(paiMingBean.getBody().getList(),getAttachTarget().getBaseActivity());
+            Log.v("eatshop","执行了setadapter"+paiMingBean.getBody().getList().size());
+            paiMingListAdapter=new PaiMingListAdapter(paiMingBean.getBody().getList(),getActivity());
             list_paimingtwo.setAdapter(paiMingListAdapter);
+
         }
     }
 }

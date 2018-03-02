@@ -30,6 +30,7 @@ public class WeekPaiFragment extends BaseFragment implements IBaseDialogView {
     @Override
     public void createView(View rootView) {
         intview(rootView);
+        isAlin=true;
     }
     public void intview(View view){
         list_paimingtwo= (ListView) view.findViewById(R.id.list_paimingtwo);
@@ -68,7 +69,7 @@ public class WeekPaiFragment extends BaseFragment implements IBaseDialogView {
         @Override
         protected void onResponseSuccess(PaiMingBean paiMingBean, Call<PaiMingBean> call) {
             super.onResponseSuccess(paiMingBean, call);
-            paiMingListAdapter=new PaiMingListAdapter(paiMingBean.getBody().getList(),getAttachTarget().getBaseActivity());
+            paiMingListAdapter=new PaiMingListAdapter(paiMingBean.getBody().getList(),getActivity());
             list_paimingtwo.setAdapter(paiMingListAdapter);
         }
     }
